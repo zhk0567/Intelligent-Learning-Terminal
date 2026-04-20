@@ -2,6 +2,7 @@
 
 package com.intangibleheritage.music
 
+import android.net.Uri
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.EnterTransition
@@ -12,8 +13,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.MenuBook
 import androidx.compose.material.icons.outlined.Edit
-import androidx.compose.material.icons.outlined.MenuBook
 import androidx.compose.material.icons.outlined.MusicNote
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.ShoppingCart
@@ -55,10 +56,11 @@ import com.intangibleheritage.music.feature.community.PostDetailScreen
 import com.intangibleheritage.music.feature.mall.MallScreen
 import com.intangibleheritage.music.feature.mall.ProductDetailScreen
 import com.intangibleheritage.music.feature.musichall.MusicHallScreen
+import com.intangibleheritage.music.feature.musichall.MusicHallMoreScreen
+import com.intangibleheritage.music.feature.musichall.MusicHallTagResultScreen
 import com.intangibleheritage.music.feature.player.PlayerScreen
 import com.intangibleheritage.music.feature.profile.ProfileScreen
 import com.intangibleheritage.music.feature.profile.SettingsNotificationScreen
-import com.intangibleheritage.music.feature.profile.SettingsPlaceholderScreen
 import com.intangibleheritage.music.feature.profile.SettingsPrivacyScreen
 import com.intangibleheritage.music.feature.profile.SettingsScreen
 import com.intangibleheritage.music.feature.stories.StoriesScreen
@@ -74,7 +76,7 @@ private enum class MainTab(
     val icon: ImageVector
 ) {
     MUSIC_HALL(R.string.nav_music_hall, Icons.Outlined.MusicNote),
-    STORIES(R.string.nav_stories, Icons.Outlined.MenuBook),
+    STORIES(R.string.nav_stories, Icons.AutoMirrored.Outlined.MenuBook),
     COMMUNITY(R.string.nav_community, Icons.Outlined.Edit),
     MALL(R.string.nav_mall, Icons.Outlined.ShoppingCart),
     PROFILE(R.string.nav_profile, Icons.Outlined.Person)
@@ -118,6 +120,13 @@ fun HeritageApp() {
             Unit
         }
     }
+    val navigateSingleTop = remember(navController) {
+        { targetRoute: String ->
+            navController.navigate(targetRoute) {
+                launchSingleTop = true
+            }
+        }
+    }
     // 使用 scrollToPage：瞬时切页，避免 animateScrollToPage 导致底栏「选中态/涟漪」要等动画结束才更新，体感像按钮延迟
     val jumpToTab = remember(pagerState, scope) {
         { index: Int ->
@@ -126,7 +135,9 @@ fun HeritageApp() {
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        HeritageTechBackdrop()
+        if (showBottomBar) {
+            HeritageTechBackdrop()
+        }
         Scaffold(
             containerColor = androidx.compose.ui.graphics.Color.Transparent,
             snackbarHost = { SnackbarHost(snackbarHostState) },
@@ -172,42 +183,48 @@ fun HeritageApp() {
                 composable(HeritageNavigation.ROUTE_MAIN_TABS) {
                     HorizontalPager(
                         state = pagerState,
-                        beyondViewportPageCount = 2,
+                        beyondViewportPageCount = 1,
                         userScrollEnabled = false,
                         modifier = Modifier.fillMaxSize()
                     ) { page ->
                         when (MainTab.entries[page]) {
                             MainTab.MUSIC_HALL -> MusicHallScreen(
                                 onPlayTrack = { trackId ->
-                                    navController.navigate(HeritageNavigation.player(trackId))
+                                    navigateSingleTop(HeritageNavigation.player(trackId))
                                 },
                                 onFeedback = onMusicHallFeedback,
                                 onOpenNotifications = {
-                                    navController.navigate(HeritageNavigation.ROUTE_NOTIFICATIONS)
+                                    navigateSingleTop(HeritageNavigation.ROUTE_NOTIFICATIONS)
+                                },
+                                onOpenMore = { sectionTitle ->
+                                    navigateSingleTop(HeritageNavigation.musicHallMore(sectionTitle))
+                                },
+                                onOpenTagResult = { tagName ->
+                                    navigateSingleTop(HeritageNavigation.musicHallTag(tagName))
                                 }
                             )
                             MainTab.STORIES -> StoriesScreen(
-                                onOpenStory = { id -> navController.navigate(HeritageNavigation.story(id)) },
+                                onOpenStory = { id -> navigateSingleTop(HeritageNavigation.story(id)) },
                                 onOpenNotifications = {
-                                    navController.navigate(HeritageNavigation.ROUTE_NOTIFICATIONS)
+                                    navigateSingleTop(HeritageNavigation.ROUTE_NOTIFICATIONS)
                                 }
                             )
                             MainTab.COMMUNITY -> CommunityScreen(
                                 onOpenPost = { id ->
-                                    navController.navigate(HeritageNavigation.communityPost(id))
+                                    navigateSingleTop(HeritageNavigation.communityPost(id))
                                 },
-                                onComposeClick = { navController.navigate(HeritageNavigation.ROUTE_COMPOSE) }
+                                onComposeClick = { navigateSingleTop(HeritageNavigation.ROUTE_COMPOSE) }
                             )
                             MainTab.MALL -> MallScreen(
                                 onProductClick = { id ->
-                                    navController.navigate(HeritageNavigation.product(id))
+                                    navigateSingleTop(HeritageNavigation.product(id))
                                 }
                             )
                             MainTab.PROFILE -> ProfileScreen(
                                 onGridItemClick = { id ->
-                                    navController.navigate(ProfileContentNav.routeFor(id))
+                                    navigateSingleTop(ProfileContentNav.routeFor(id))
                                 },
-                                onOpenSettings = { navController.navigate(HeritageNavigation.ROUTE_SETTINGS) },
+                                onOpenSettings = { navigateSingleTop(HeritageNavigation.ROUTE_SETTINGS) },
                                 onExploreMusicHall = { jumpToTab(MainTab.MUSIC_HALL.ordinal) },
                                 onExploreStories = { jumpToTab(MainTab.STORIES.ordinal) }
                             )
@@ -216,6 +233,26 @@ fun HeritageApp() {
                 }
                 composable(HeritageNavigation.ROUTE_NOTIFICATIONS) {
                     NotificationCenterScreen(onBack = { navController.popBackStack() })
+                }
+                composable(
+                    route = "${HeritageNavigation.ROUTE_MUSIC_HALL_MORE_PREFIX}{sectionTitle}",
+                    arguments = listOf(navArgument("sectionTitle") { type = NavType.StringType })
+                ) { entry ->
+                    val raw = entry.arguments?.getString("sectionTitle") ?: return@composable
+                    MusicHallMoreScreen(
+                        sectionTitle = Uri.decode(raw),
+                        onBack = { navController.popBackStack() }
+                    )
+                }
+                composable(
+                    route = "${HeritageNavigation.ROUTE_MUSIC_HALL_TAG_PREFIX}{tagName}",
+                    arguments = listOf(navArgument("tagName") { type = NavType.StringType })
+                ) { entry ->
+                    val raw = entry.arguments?.getString("tagName") ?: return@composable
+                    MusicHallTagResultScreen(
+                        tagName = Uri.decode(raw),
+                        onBack = { navController.popBackStack() }
+                    )
                 }
                 composable(
                     route = "${HeritageNavigation.ROUTE_STORY_PREFIX}{storyId}",
@@ -243,13 +280,13 @@ fun HeritageApp() {
                 composable(HeritageNavigation.ROUTE_SETTINGS) {
                     SettingsScreen(
                         onBack = { navController.popBackStack() },
-                        onOpenAbout = { navController.navigate(HeritageNavigation.ROUTE_ABOUT) },
-                        onOpenLicenses = { navController.navigate(HeritageNavigation.ROUTE_LICENSES) },
+                        onOpenAbout = { navigateSingleTop(HeritageNavigation.ROUTE_ABOUT) },
+                        onOpenLicenses = { navigateSingleTop(HeritageNavigation.ROUTE_LICENSES) },
                         onOpenNotifications = {
-                            navController.navigate(HeritageNavigation.ROUTE_SETTINGS_NOTIFICATIONS)
+                            navigateSingleTop(HeritageNavigation.ROUTE_SETTINGS_NOTIFICATIONS)
                         },
                         onOpenPrivacy = {
-                            navController.navigate(HeritageNavigation.ROUTE_SETTINGS_PRIVACY)
+                            navigateSingleTop(HeritageNavigation.ROUTE_SETTINGS_PRIVACY)
                         }
                     )
                 }

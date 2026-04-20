@@ -8,15 +8,20 @@ import java.util.concurrent.TimeUnit
 
 object NetworkModule {
 
-    fun createRetrofit(baseUrl: String): Retrofit {
-        val logging = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BASIC
-        }
-        val client = OkHttpClient.Builder()
-            .addInterceptor(logging)
+    fun createRetrofit(
+        baseUrl: String,
+        enableLogging: Boolean = false
+    ): Retrofit {
+        val clientBuilder = OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
-            .build()
+        if (enableLogging) {
+            val logging = HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BASIC
+            }
+            clientBuilder.addInterceptor(logging)
+        }
+        val client = clientBuilder.build()
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(client)

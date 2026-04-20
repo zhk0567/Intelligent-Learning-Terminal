@@ -1,7 +1,5 @@
 package com.intangibleheritage.music.feature.player
 
-import android.os.Handler
-import android.os.Looper
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,7 +34,6 @@ import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -57,6 +54,7 @@ import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.HeritageSecondaryTopBar
 import com.intangibleheritage.music.core.ui.navigation.InvalidDeepLinkScreen
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 import java.util.Locale
 import kotlin.math.max
 
@@ -84,62 +82,22 @@ fun PlayerScreen(
     var playbackError by remember { mutableStateOf<String?>(null) }
     var isBuffering by remember { mutableStateOf(false) }
     var isPlaying by remember { mutableStateOf(false) }
-    var positionMs by remember { mutableLongStateOf(0L) }
-    var durationMs by remember { mutableLongStateOf(0L) }
-    var sliderDragging by remember { mutableStateOf(false) }
-    var sliderUiFraction by remember { mutableFloatStateOf(0f) }
 
     val allTracks = remember { AppRepositories.audio.allTracks() }
     val trackIndex = remember(track.id) { allTracks.indexOfFirst { it.id == track.id } }
     val hasPrev = trackIndex > 0
     val hasNext = trackIndex >= 0 && trackIndex < allTracks.lastIndex
 
-    val sliderDraggingState = rememberUpdatedState(sliderDragging)
-
     DisposableEffect(track.id, track.streamUrl) {
         playbackError = null
-        val handler = Handler(Looper.getMainLooper())
         val p = ExoPlayer.Builder(context).build()
-        val positionTick = object : Runnable {
-            override fun run() {
-                if (!sliderDraggingState.value) {
-                    positionMs = p.currentPosition
-                    val d = p.duration
-                    if (d > 0 && d != C.TIME_UNSET) {
-                        durationMs = d
-                    }
-                }
-                if (p.isPlaying) {
-                    handler.postDelayed(this, 250L)
-                }
-            }
-        }
         val listener = object : Player.Listener {
             override fun onPlaybackStateChanged(state: Int) {
                 isBuffering = state == Player.STATE_BUFFERING
-                if (state == Player.STATE_IDLE) {
-                    durationMs = 0L
-                }
-                if (state == Player.STATE_READY) {
-                    val d = p.duration
-                    if (d > 0 && d != C.TIME_UNSET) {
-                        durationMs = d
-                    }
-                }
             }
 
             override fun onIsPlayingChanged(playing: Boolean) {
                 isPlaying = playing
-                handler.removeCallbacks(positionTick)
-                if (playing) {
-                    handler.post(positionTick)
-                } else if (!sliderDraggingState.value) {
-                    positionMs = p.currentPosition
-                    val d = p.duration
-                    if (d > 0 && d != C.TIME_UNSET) {
-                        durationMs = d
-                    }
-                }
             }
 
             override fun onPlayerError(error: PlaybackException) {
@@ -157,7 +115,6 @@ fun PlayerScreen(
             AppRepositories.profile.addHistory(track.id)
         }
         onDispose {
-            handler.removeCallbacks(positionTick)
             p.removeListener(listener)
             p.release()
             player = null
@@ -179,22 +136,6 @@ fun PlayerScreen(
             playbackError = playbackError,
             isBuffering = isBuffering,
             isPlaying = isPlaying,
-            positionMs = positionMs,
-            durationMs = durationMs,
-            sliderDragging = sliderDragging,
-            sliderUiFraction = sliderUiFraction,
-            onSliderDragChange = { dragging, fraction ->
-                sliderDragging = dragging
-                sliderUiFraction = fraction
-            },
-            onSliderSeekFinished = {
-                player?.let { p ->
-                    val dur = p.duration
-                    if (dur > 0 && dur != C.TIME_UNSET) {
-                        p.seekTo((sliderUiFraction * dur).toLong())
-                    }
-                }
-            },
             onPlayPause = {
                 player?.let { p ->
                     if (p.isPlaying) p.pause() else p.play()
@@ -232,12 +173,6 @@ private fun PlayerContent(
     playbackError: String?,
     isBuffering: Boolean,
     isPlaying: Boolean,
-    positionMs: Long,
-    durationMs: Long,
-    sliderDragging: Boolean,
-    sliderUiFraction: Float,
-    onSliderDragChange: (dragging: Boolean, fraction: Float) -> Unit,
-    onSliderSeekFinished: () -> Unit,
     onPlayPause: () -> Unit,
     onRetry: () -> Unit,
     hasPrev: Boolean,
@@ -246,11 +181,6 @@ private fun PlayerContent(
     onSkipNext: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val durationForSlider = max(durationMs, 1L)
-    val progress =
-        (positionMs.toFloat() / durationForSlider.toFloat()).coerceIn(0f, 1f)
-    val sliderValue = if (sliderDragging) sliderUiFraction else progress
-
     Column(modifier = modifier) {
         PlayerAlbumArt(coverImageRes = track.coverImageRes)
 
@@ -269,14 +199,9 @@ private fun PlayerContent(
         }
 
         PlayerPlaybackProgress(
-            positionMs = positionMs,
-            durationMs = durationMs,
+            player = player,
             isBuffering = isBuffering && playbackError == null,
-            sliderValue = sliderValue,
-            sliderUiFraction = sliderUiFraction,
-            sliderEnabled = player != null && durationMs > 0 && playbackError == null,
-            onSliderDragChange = onSliderDragChange,
-            onSliderSeekFinished = onSliderSeekFinished
+            playbackError = playbackError
         )
 
         PlayerTransportControls(
@@ -318,15 +243,42 @@ private fun PlayerAlbumArt(
 
 @Composable
 private fun PlayerPlaybackProgress(
-    positionMs: Long,
-    durationMs: Long,
+    player: ExoPlayer?,
     isBuffering: Boolean,
-    sliderValue: Float,
-    sliderUiFraction: Float,
-    sliderEnabled: Boolean,
-    onSliderDragChange: (dragging: Boolean, fraction: Float) -> Unit,
-    onSliderSeekFinished: () -> Unit
+    playbackError: String?
 ) {
+    var positionMs by remember(player) { mutableLongStateOf(0L) }
+    var durationMs by remember(player) { mutableLongStateOf(0L) }
+    var sliderDragging by remember(player) { mutableStateOf(false) }
+    var sliderUiFraction by remember(player) { mutableFloatStateOf(0f) }
+
+    val durationForSlider = max(durationMs, 1L)
+    val progress = (positionMs.toFloat() / durationForSlider.toFloat()).coerceIn(0f, 1f)
+    val sliderValue = if (sliderDragging) sliderUiFraction else progress
+    val sliderEnabled = player != null && durationMs > 0 && playbackError == null
+
+    DisposableEffect(player) {
+        onDispose {
+            positionMs = 0L
+            durationMs = 0L
+            sliderDragging = false
+            sliderUiFraction = 0f
+        }
+    }
+    androidx.compose.runtime.LaunchedEffect(player) {
+        if (player == null) return@LaunchedEffect
+        while (true) {
+            if (!sliderDragging) {
+                positionMs = player.currentPosition
+                val d = player.duration
+                if (d > 0 && d != C.TIME_UNSET) {
+                    durationMs = d
+                }
+            }
+            delay(500)
+        }
+    }
+
     RowTimeAndBuffering(
         positionMs = positionMs,
         durationMs = durationMs,
@@ -338,10 +290,18 @@ private fun PlayerPlaybackProgress(
 
     Slider(
         value = sliderValue,
-        onValueChange = { v -> onSliderDragChange(true, v) },
+        onValueChange = { v ->
+            sliderDragging = true
+            sliderUiFraction = v
+        },
         onValueChangeFinished = {
-            onSliderSeekFinished()
-            onSliderDragChange(false, sliderUiFraction)
+            player?.let { p ->
+                val dur = p.duration
+                if (dur > 0 && dur != C.TIME_UNSET) {
+                    p.seekTo((sliderUiFraction * dur).toLong())
+                }
+            }
+            sliderDragging = false
         },
         enabled = sliderEnabled,
         modifier = Modifier.fillMaxWidth()

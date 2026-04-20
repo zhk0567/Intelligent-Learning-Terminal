@@ -83,10 +83,10 @@ internal object MusicHallDtoMapper {
     }
 
     private fun drawableForHot(id: String): Int = when (id) {
-        "h1" -> R.drawable.music_hot_1
-        "h2" -> R.drawable.music_hot_2
-        "h3" -> R.drawable.music_hot_3
-        "h4" -> R.drawable.music_hot_4
-        else -> R.drawable.music_hot_1
+        "h1" -> R.drawable.music_hot_elem_1
+        "h2" -> R.drawable.music_hot_elem_2
+        "h3" -> R.drawable.music_hot_elem_3
+        "h4" -> R.drawable.music_hot_elem_4
+        else -> R.drawable.music_hot_elem_1
     }
 }

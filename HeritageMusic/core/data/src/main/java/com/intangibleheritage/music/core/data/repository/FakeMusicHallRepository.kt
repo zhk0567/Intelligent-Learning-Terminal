@@ -35,15 +35,15 @@ class FakeMusicHallRepository : MusicHallRepository {
             )
         ),
         dailyHot = listOf(
-            HotTile("h1", R.drawable.music_hot_1, R.string.hot_h1_title, audioTrackId = "track_echoes_east"),
-            HotTile("h2", R.drawable.music_hot_2, R.string.hot_h2_title, audioTrackId = "track_wall_rhymes"),
-            HotTile("h3", R.drawable.music_hot_3, R.string.hot_h3_title, audioTrackId = "track_ladies_music"),
-            HotTile("h4", R.drawable.music_hot_4, R.string.hot_h4_title, audioTrackId = "track_echoes_east")
+            HotTile("h1", R.drawable.music_hot_elem_1, R.string.hot_h1_title, audioTrackId = "track_echoes_east"),
+            HotTile("h2", R.drawable.music_hot_elem_2, R.string.hot_h2_title, audioTrackId = "track_wall_rhymes"),
+            HotTile("h3", R.drawable.music_hot_elem_3, R.string.hot_h3_title, audioTrackId = "track_ladies_music"),
+            HotTile("h4", R.drawable.music_hot_elem_4, R.string.hot_h4_title, audioTrackId = "track_echoes_east")
         ),
         dailyPicks = listOf(
-            DailyPick("p1", R.string.pick_echoes_east, R.drawable.music_pick_1, "track_echoes_east"),
-            DailyPick("p2", R.string.pick_wall_rhymes, R.drawable.music_pick_2, "track_wall_rhymes"),
-            DailyPick("p3", R.string.pick_ladies_music, R.drawable.music_pick_3, "track_ladies_music")
+            DailyPick("p1", R.string.pick_echoes_east, R.drawable.music_pick_elem_1, "track_echoes_east"),
+            DailyPick("p2", R.string.pick_wall_rhymes, R.drawable.music_pick_elem_2, "track_wall_rhymes"),
+            DailyPick("p3", R.string.pick_ladies_music, R.drawable.music_pick_elem_3, "track_ladies_music")
         ),
         guessTags = listOf(
             TagChip("t1", R.string.tag_folk_festival),

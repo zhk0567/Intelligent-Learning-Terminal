@@ -49,6 +49,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.intangibleheritage.music.core.data.AppRepositories
+import com.intangibleheritage.music.core.data.RuntimePerformanceConfig
 import com.intangibleheritage.music.core.data.model.Product
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.HeritageSecondaryTopBar
@@ -87,7 +88,9 @@ fun ProductDetailScreen(
         {
             scope.launch {
                 detailState = ProductDetailUiState.Loading
-                delay(240)
+                if (RuntimePerformanceConfig.enableFakeDelay) {
+                    delay(240)
+                }
                 detailState = runCatching {
                     if (productId == "simulate_error") {
                         error("simulate detail error")

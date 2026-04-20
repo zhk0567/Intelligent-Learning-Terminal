@@ -2,6 +2,7 @@ package com.intangibleheritage.music.feature.stories
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -10,9 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
@@ -41,6 +42,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -53,6 +55,7 @@ import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.InvalidDeepLinkScreen
 import com.intangibleheritage.music.core.ui.theme.BorderTeal
 import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
+import com.intangibleheritage.music.core.ui.theme.ScreenLayout
 import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 import kotlinx.coroutines.launch
 
@@ -73,16 +76,13 @@ fun StoryDetailScreen(
     }
 
     val scope = rememberCoroutineScope()
-    var favIds by remember { mutableStateOf<Set<String>>(emptySet()) }
+    val favIds by AppRepositories.profile.favoriteIds().collectAsStateWithLifecycle(emptySet())
     val snackbarHostState = remember { SnackbarHostState() }
     var comment by remember { mutableStateOf("") }
     val likeMsg = stringResource(R.string.story_detail_interact_like)
     val shareMsg = stringResource(R.string.story_detail_interact_share)
     val commentSentMsg = stringResource(R.string.story_detail_comment_sent)
     val commentEmptyMsg = stringResource(R.string.story_detail_comment_empty_hint)
-    LaunchedEffect(Unit) {
-        AppRepositories.profile.favoriteIds().collect { favIds = it }
-    }
     LaunchedEffect(storyId) {
         AppRepositories.profile.addHistory(storyId)
     }
@@ -167,92 +167,125 @@ private fun StoryDetailBody(
     onShare: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    LazyColumn(
         modifier = modifier
-            .verticalScroll(rememberScrollState())
-            .padding(horizontal = 16.dp)
-            .padding(bottom = 24.dp)
+            .padding(horizontal = ScreenLayout.HorizontalPadding)
+            .fillMaxSize(),
+        contentPadding = PaddingValues(bottom = ScreenLayout.BottomSpacing)
     ) {
-        Spacer(modifier = Modifier.height(8.dp))
-        AsyncImage(
-            model = story.imageRes,
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(3f / 4f)
-                .clip(RoundedCornerShape(12.dp)),
-            contentScale = ContentScale.Crop
-        )
+        item { Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing)) }
+        item {
+            AsyncImage(
+                model = story.imageRes,
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(3f / 4f)
+                    .clip(RoundedCornerShape(12.dp)),
+                contentScale = ContentScale.Crop
+            )
+        }
         story.overlayTextRes?.let { overlayRes ->
-            Spacer(modifier = Modifier.height(12.dp))
-            Text(
-                text = stringResource(overlayRes),
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onBackground
-            )
-        }
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = stringResource(R.string.story_detail_body),
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-        Spacer(modifier = Modifier.height(12.dp))
-        Row {
-            FilledTonalButton(onClick = onLike) {
-                Icon(Icons.Filled.ThumbUp, contentDescription = null)
-                Spacer(modifier = Modifier.width(6.dp))
-                Text(stringResource(R.string.story_detail_interact_like))
-            }
-            Spacer(modifier = Modifier.width(10.dp))
-            FilledTonalButton(onClick = onShare) {
-                Icon(Icons.Outlined.IosShare, contentDescription = null)
-                Spacer(modifier = Modifier.width(6.dp))
-                Text(stringResource(R.string.story_detail_interact_share))
+            item { Spacer(modifier = Modifier.height(ScreenLayout.GroupSpacing)) }
+            item {
+                Text(
+                    text = stringResource(overlayRes),
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
             }
         }
-        Spacer(modifier = Modifier.height(24.dp))
-        Text(
-            text = stringResource(R.string.story_detail_related),
-            style = MaterialTheme.typography.titleMedium,
-            color = PrimaryTeal
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(containerColor = SurfaceCard),
-            border = BorderStroke(1.dp, BorderTeal.copy(alpha = 0.35f))
-        ) {
+        item { Spacer(modifier = Modifier.height(16.dp)) }
+        item {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = SurfaceCard),
+                border = BorderStroke(1.dp, BorderTeal.copy(alpha = 0.35f))
+            ) {
+                Text(
+                    text = stringResource(R.string.story_detail_body),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(ScreenLayout.CardContentPadding)
+                )
+            }
+        }
+        item { Spacer(modifier = Modifier.height(ScreenLayout.GroupSpacing)) }
+        item {
             Text(
-                text = stringResource(R.string.story_detail_related_hint),
-                modifier = Modifier.padding(16.dp),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                text = stringResource(R.string.section_actions),
+                style = MaterialTheme.typography.titleMedium,
+                color = PrimaryTeal
             )
         }
-        Spacer(modifier = Modifier.height(20.dp))
-        Text(
-            text = stringResource(R.string.community_comments_title),
-            style = MaterialTheme.typography.titleMedium,
-            color = PrimaryTeal
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        OutlinedTextField(
-            value = comment,
-            onValueChange = { onCommentChange(it.take(120)) },
-            modifier = Modifier.fillMaxWidth(),
-            placeholder = { Text(stringResource(R.string.story_detail_comment_hint)) },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = BorderTeal,
-                unfocusedBorderColor = BorderTeal.copy(alpha = 0.5f)
+        item { Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing)) }
+        item {
+            Row {
+                FilledTonalButton(onClick = onLike) {
+                    Icon(Icons.Filled.ThumbUp, contentDescription = null)
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text(stringResource(R.string.story_detail_interact_like))
+                }
+                Spacer(modifier = Modifier.width(10.dp))
+                FilledTonalButton(onClick = onShare) {
+                    Icon(Icons.Outlined.IosShare, contentDescription = null)
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text(stringResource(R.string.story_detail_interact_share))
+                }
+            }
+        }
+        item { Spacer(modifier = Modifier.height(ScreenLayout.SectionSpacing)) }
+        item {
+            Text(
+                text = stringResource(R.string.story_detail_related),
+                style = MaterialTheme.typography.titleMedium,
+                color = PrimaryTeal
             )
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        FilledTonalButton(
-            onClick = onSendComment,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(stringResource(R.string.story_detail_comment_send))
+        }
+        item { Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing)) }
+        item {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = SurfaceCard),
+                border = BorderStroke(1.dp, BorderTeal.copy(alpha = 0.35f))
+            ) {
+                Text(
+                    text = stringResource(R.string.story_detail_related_hint),
+                    modifier = Modifier.padding(ScreenLayout.CardContentPadding),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+        }
+        item { Spacer(modifier = Modifier.height(20.dp)) }
+        item {
+            Text(
+                text = stringResource(R.string.community_comments_title),
+                style = MaterialTheme.typography.titleMedium,
+                color = PrimaryTeal
+            )
+        }
+        item { Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing)) }
+        item {
+            OutlinedTextField(
+                value = comment,
+                onValueChange = { onCommentChange(it.take(120)) },
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = { Text(stringResource(R.string.story_detail_comment_hint)) },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = BorderTeal,
+                    unfocusedBorderColor = BorderTeal.copy(alpha = 0.5f)
+                )
+            )
+        }
+        item { Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing)) }
+        item {
+            FilledTonalButton(
+                onClick = onSendComment,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(stringResource(R.string.story_detail_comment_send))
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ import coil.ImageLoaderFactory
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
 import com.intangibleheritage.music.core.data.AppRepositories
+import com.intangibleheritage.music.core.data.RuntimePerformanceConfig
 import com.intangibleheritage.music.core.network.HeritageApi
 import com.intangibleheritage.music.core.network.NetworkModule
 import java.io.File
@@ -18,7 +19,11 @@ class HeritageApplication : Application(), ImageLoaderFactory {
 
     override fun onCreate() {
         super.onCreate()
-        val retrofit = NetworkModule.createRetrofit(BuildConfig.API_BASE_URL)
+        RuntimePerformanceConfig.enableFakeDelay = BuildConfig.ENABLE_FAKE_DELAY
+        val retrofit = NetworkModule.createRetrofit(
+            baseUrl = BuildConfig.API_BASE_URL,
+            enableLogging = BuildConfig.ENABLE_NETWORK_LOGGING
+        )
         val api = NetworkModule.api<HeritageApi>(retrofit)
         AppRepositories.initialize(this, BuildConfig.USE_REMOTE_API, api)
     }

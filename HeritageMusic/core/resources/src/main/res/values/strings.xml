@@ -17,7 +17,7 @@
     <string name="heritage_crossover">非遗跨界</string>
     <string name="basic_learning">基础学习</string>
     <string name="view_more">查看更多</string>
-    <string name="pick_echoes_east">东方乐器的回响</string>
+    <string name="pick_echoes_east">东方回响</string>
     <string name="pick_wall_rhymes">绘壁遗韵</string>
     <string name="pick_ladies_music">仕女弄乐图</string>
     <string name="tag_folk_festival">民俗节日</string>
@@ -35,6 +35,13 @@
     <string name="music_hall_snackbar_bottom">查看：%1$s（内容筹备中）</string>
     <string name="music_hall_loading">加载中…</string>
     <string name="music_hall_offline_hint">当前为离线演示数据</string>
+    <string name="music_hall_more_hint">承接页（演示）：后续将接入真实列表与筛选能力</string>
+    <string name="music_hall_tag_result_title">%1$s · 结果</string>
+    <string name="music_hall_tag_result_hint">标签「%1$s」的内容结果（演示）</string>
+    <string name="music_hall_entry_1">丝路弦歌专题</string>
+    <string name="music_hall_entry_2">敦煌乐舞导览</string>
+    <string name="music_hall_entry_3">器乐赏析课堂</string>
+    <string name="music_hall_entry_4">民乐跨界实验</string>
     <string name="notifications_title">消息通知</string>
     <string name="notifications_empty">暂无通知，敬请期待。</string>
     <string name="notifications_unread_count">未读 %1$d 条</string>
@@ -112,6 +119,7 @@
     <string name="currency_yuan">元</string>
     <string name="reviews_count">%1$d次评价</string>
     <string name="section_description">描述</string>
+    <string name="section_actions">互动操作</string>
     <string name="section_color">颜色</string>
     <string name="section_product_specs">规格参数</string>
     <string name="section_delivery">配送说明</string>

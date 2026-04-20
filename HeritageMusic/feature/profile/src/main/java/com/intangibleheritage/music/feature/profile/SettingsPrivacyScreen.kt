@@ -12,6 +12,7 @@ import androidx.compose.material.icons.outlined.ChevronRight
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -21,6 +22,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.HeritageSecondaryTopBar
+import com.intangibleheritage.music.core.ui.theme.ScreenLayout
+import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,9 +43,10 @@ fun SettingsPrivacyScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(horizontal = 16.dp)
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+                .padding(horizontal = ScreenLayout.HorizontalPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(vertical = ScreenLayout.TopSpacing),
+            verticalArrangement = Arrangement.spacedBy(ScreenLayout.GroupSpacing)
         ) {
             PrivacyActionRow(
                 title = stringResource(R.string.settings_privacy_policy),
@@ -91,6 +95,7 @@ private fun PrivacyActionRow(
                 tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
         },
-        modifier = Modifier.clickable { }
+        modifier = Modifier.clickable { },
+        colors = ListItemDefaults.colors(containerColor = SurfaceCard)
     )
 }

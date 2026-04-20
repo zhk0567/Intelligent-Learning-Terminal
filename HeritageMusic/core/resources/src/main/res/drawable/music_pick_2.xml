@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 编钟 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="200dp"
     android:height="280dp"
     android:viewportWidth="200"
     android:viewportHeight="280">
     <path
-        android:fillColor="#508B5CF6"
-        android:pathData="M100,40 C132,40 158,72 162,120 L168,240 L32,248 L38,120 C42,72 68,40 100,40 Z" />
+        android:fillColor="#3F8B5CF6"
+        android:pathData="M70,62 L130,62 L142,92 L142,154 C142,178 124,196 100,196 C76,196 58,178 58,154 L58,92 Z" />
     <path
         android:fillColor="#00000000"
         android:strokeColor="#FFA78BFA"
-        android:strokeWidth="2"
-        android:pathData="M100,40 C132,40 158,72 162,120 L168,240 L32,248 L38,120 C42,72 68,40 100,40 Z" />
+        android:strokeWidth="2.4"
+        android:pathData="M70,62 L130,62 L142,92 L142,154 C142,178 124,196 100,196 C76,196 58,178 58,154 L58,92 Z" />
     <path
         android:strokeColor="#FF22D3EE"
-        android:strokeWidth="1.5"
-        android:pathData="M100,56 L100,220 M76,88 L124,88 M72,128 L128,128 M76,168 L124,168" />
+        android:strokeWidth="1.6"
+        android:pathData="M70,104 L130,104 M70,132 L130,132 M100,62 L100,196" />
 </vector>

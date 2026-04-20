@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.HeritageSecondaryTopBar
 import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
+import com.intangibleheritage.music.core.ui.theme.ScreenLayout
 import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 
 private data class NotificationItem(
@@ -68,9 +70,8 @@ fun NotificationCenterScreen(onBack: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = ScreenLayout.HorizontalPadding)
         ) {
-            Spacer(modifier = Modifier.height(8.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
@@ -99,6 +100,8 @@ fun NotificationCenterScreen(onBack: () -> Unit) {
                 )
             } else {
                 LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(bottom = ScreenLayout.CardContentPadding),
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     items(items, key = { it.id }) { item ->

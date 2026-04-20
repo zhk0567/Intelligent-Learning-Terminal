@@ -16,12 +16,20 @@ android {
         versionName = "1.0"
         buildConfigField("boolean", "USE_REMOTE_API", "false")
         buildConfigField("String", "API_BASE_URL", "\"https://example.com/\"")
+        buildConfigField("boolean", "ENABLE_NETWORK_LOGGING", "false")
+        buildConfigField("boolean", "ENABLE_FAKE_DELAY", "false")
     }
 
     buildTypes {
+        debug {
+            buildConfigField("boolean", "ENABLE_NETWORK_LOGGING", "false")
+            buildConfigField("boolean", "ENABLE_FAKE_DELAY", "false")
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            buildConfigField("boolean", "ENABLE_NETWORK_LOGGING", "false")
+            buildConfigField("boolean", "ENABLE_FAKE_DELAY", "false")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

@@ -11,7 +11,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -31,16 +31,19 @@ fun HeritageSecondaryTopBar(
     modifier: Modifier = Modifier
 ) {
     TopAppBar(
-        modifier = modifier.drawBehind {
+        modifier = modifier.drawWithCache {
             val y = size.height - 1.dp.toPx()
-            drawLine(
-                brush = Brush.horizontalGradient(
-                    colors = listOf(Color.Transparent, PrimaryTeal.copy(alpha = 0.45f), Color.Transparent)
-                ),
-                start = Offset(0f, y),
-                end = Offset(size.width, y),
-                strokeWidth = 2.dp.toPx()
+            val dividerBrush = Brush.horizontalGradient(
+                colors = listOf(Color.Transparent, PrimaryTeal.copy(alpha = 0.45f), Color.Transparent)
             )
+            onDrawBehind {
+                drawLine(
+                    brush = dividerBrush,
+                    start = Offset(0f, y),
+                    end = Offset(size.width, y),
+                    strokeWidth = 2.dp.toPx()
+                )
+            }
         },
         title = {
             Text(

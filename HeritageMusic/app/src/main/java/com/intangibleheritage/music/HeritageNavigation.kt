@@ -1,5 +1,7 @@
 package com.intangibleheritage.music
 
+import android.net.Uri
+
 /**
  * 应用级导航约定（P0-2），与 [HeritageApp] 中 `NavHost` 保持一致。
  *
@@ -28,12 +30,16 @@ internal object HeritageNavigation {
     const val ROUTE_SETTINGS = "settings"
     const val ROUTE_SETTINGS_NOTIFICATIONS = "settings_notifications"
     const val ROUTE_SETTINGS_PRIVACY = "settings_privacy"
+    const val ROUTE_MUSIC_HALL_MORE_PREFIX = "music_hall_more/"
+    const val ROUTE_MUSIC_HALL_TAG_PREFIX = "music_hall_tag/"
 
     val secondaryRoutePrefixes: List<String> = listOf(
         ROUTE_PRODUCT_PREFIX,
         ROUTE_PLAYER_PREFIX,
         ROUTE_STORY_PREFIX,
-        ROUTE_COMMUNITY_POST_PREFIX
+        ROUTE_COMMUNITY_POST_PREFIX,
+        ROUTE_MUSIC_HALL_MORE_PREFIX,
+        ROUTE_MUSIC_HALL_TAG_PREFIX
     )
 
     fun product(productId: String): String = "${ROUTE_PRODUCT_PREFIX}$productId"
@@ -43,6 +49,12 @@ internal object HeritageNavigation {
     fun story(storyId: String): String = "${ROUTE_STORY_PREFIX}$storyId"
 
     fun communityPost(postId: String): String = "${ROUTE_COMMUNITY_POST_PREFIX}$postId"
+
+    fun musicHallMore(sectionTitle: String): String =
+        "${ROUTE_MUSIC_HALL_MORE_PREFIX}${Uri.encode(sectionTitle)}"
+
+    fun musicHallTag(tagName: String): String =
+        "${ROUTE_MUSIC_HALL_TAG_PREFIX}${Uri.encode(tagName)}"
 
     fun hidesBottomBar(route: String): Boolean =
         secondaryRoutePrefixes.any { route.startsWith(it) } ||

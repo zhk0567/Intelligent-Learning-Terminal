@@ -61,14 +61,13 @@ internal const val MusicHallBannerVirtualMultiplier = 1_000
 @Composable
 internal fun MusicHallBannerSection(
     bannersFiltered: List<BannerSlide>,
-    queryKey: String,
     onPlayTrack: (String) -> Unit,
     onFeedback: (String) -> Unit
 ) {
     if (bannersFiltered.isEmpty()) return
     val context = LocalContext.current
     Spacer(modifier = Modifier.height(14.dp))
-    key(bannersFiltered.size, queryKey) {
+    key(bannersFiltered.size) {
         val n = bannersFiltered.size
         val loop = n > 1
         val virtualCount = if (loop) n * MusicHallBannerVirtualMultiplier else 1
@@ -131,7 +130,8 @@ internal fun MusicHallBannerSection(
 internal fun MusicHallDailyHotSection(
     hotFiltered: List<HotTile>,
     onPlayTrack: (String) -> Unit,
-    onFeedback: (String) -> Unit
+    onFeedback: (String) -> Unit,
+    onOpenMore: (String) -> Unit
 ) {
     if (hotFiltered.isEmpty()) return
     val context = LocalContext.current
@@ -139,7 +139,7 @@ internal fun MusicHallDailyHotSection(
     SectionHeader(
         titleRes = R.string.daily_hot,
         onMoreClick = {
-            onFeedback(context.getString(R.string.music_hall_snackbar_bottom, context.getString(R.string.daily_hot)))
+            onOpenMore(context.getString(R.string.daily_hot))
         }
     )
     Spacer(modifier = Modifier.height(10.dp))
@@ -193,14 +193,15 @@ internal fun MusicHallDailyPicksSection(
     picksFilteredResolved: List<DailyPick>,
     queryNonEmpty: Boolean,
     onPlayTrack: (String) -> Unit,
-    onFeedback: (String) -> Unit
+    onFeedback: (String) -> Unit,
+    onOpenMore: (String) -> Unit
 ) {
     val context = LocalContext.current
     Spacer(modifier = Modifier.height(18.dp))
     SectionHeader(
         titleRes = R.string.daily_picks,
         onMoreClick = {
-            onFeedback(context.getString(R.string.music_hall_snackbar_bottom, context.getString(R.string.daily_picks)))
+            onOpenMore(context.getString(R.string.daily_picks))
         }
     )
     Spacer(modifier = Modifier.height(10.dp))
@@ -231,10 +232,16 @@ internal fun MusicHallDailyPicksSection(
 @Composable
 internal fun MusicHallGuessTagsSection(
     tagsFiltered: List<TagChip>,
-    queryNonEmpty: Boolean
+    queryNonEmpty: Boolean,
+    onOpenTagResult: (String) -> Unit,
+    onOpenMore: (String) -> Unit
 ) {
+    val context = LocalContext.current
     Spacer(modifier = Modifier.height(18.dp))
-    SectionHeader(titleRes = R.string.guess_you_like, onMoreClick = {})
+    SectionHeader(
+        titleRes = R.string.guess_you_like,
+        onMoreClick = { onOpenMore(context.getString(R.string.guess_you_like)) }
+    )
     Spacer(modifier = Modifier.height(10.dp))
     if (tagsFiltered.isEmpty() && queryNonEmpty) {
         Text(
@@ -252,7 +259,10 @@ internal fun MusicHallGuessTagsSection(
             tagsFiltered.take(3).forEachIndexed { index, tag ->
                 val selected = selectedIndex == index
                 AssistChip(
-                    onClick = { selectedIndex = index },
+                    onClick = {
+                        selectedIndex = index
+                        onOpenTagResult(context.getString(tag.labelRes))
+                    },
                     label = { Text(stringResource(tag.labelRes)) },
                     shape = RoundedCornerShape(20.dp),
                     colors = AssistChipDefaults.assistChipColors(
@@ -272,7 +282,8 @@ internal fun MusicHallGuessTagsSection(
 @Composable
 internal fun MusicHallBottomCardsSection(
     bottomFiltered: List<HorizontalCard>,
-    onFeedback: (String) -> Unit
+    onFeedback: (String) -> Unit,
+    onOpenMore: (String) -> Unit
 ) {
     if (bottomFiltered.isEmpty()) return
     val context = LocalContext.current
@@ -282,7 +293,7 @@ internal fun MusicHallBottomCardsSection(
         card = card,
         onClick = {
             val title = context.resources.getString(card.titleRes)
-            onFeedback(context.getString(R.string.music_hall_snackbar_bottom, title))
+            onOpenMore(title)
         }
     )
     Spacer(modifier = Modifier.height(6.dp))

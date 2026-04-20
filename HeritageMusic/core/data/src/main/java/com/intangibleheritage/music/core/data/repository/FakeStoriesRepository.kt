@@ -1,5 +1,6 @@
 package com.intangibleheritage.music.core.data.repository
 
+import com.intangibleheritage.music.core.data.RuntimePerformanceConfig
 import com.intangibleheritage.music.core.data.model.StoryFeedItem
 import com.intangibleheritage.music.core.data.model.StoryFeedTab
 import com.intangibleheritage.music.core.resources.R
@@ -36,12 +37,16 @@ class FakeStoriesRepository : StoriesRepository {
     }
 
     override suspend fun refreshFeed(tab: StoryFeedTab): List<StoryFeedItem> {
-        delay(650)
+        if (RuntimePerformanceConfig.enableFakeDelay) {
+            delay(650)
+        }
         return feed(tab)
     }
 
     override suspend fun loadMore(tab: StoryFeedTab, accumulated: List<StoryFeedItem>): List<StoryFeedItem> {
-        delay(420)
+        if (RuntimePerformanceConfig.enableFakeDelay) {
+            delay(420)
+        }
         val base = feed(tab)
         val baseSize = base.size
         if (accumulated.size >= baseSize + 4) return emptyList()

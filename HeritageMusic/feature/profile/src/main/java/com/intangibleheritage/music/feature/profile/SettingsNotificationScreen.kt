@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
@@ -21,6 +22,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.HeritageSecondaryTopBar
+import com.intangibleheritage.music.core.ui.theme.ScreenLayout
+import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,9 +49,10 @@ fun SettingsNotificationScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(horizontal = 16.dp)
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+                .padding(horizontal = ScreenLayout.HorizontalPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(vertical = ScreenLayout.TopSpacing),
+            verticalArrangement = Arrangement.spacedBy(ScreenLayout.GroupSpacing)
         ) {
             SettingSwitchRow(
                 title = stringResource(R.string.settings_notify_push),
@@ -84,7 +88,7 @@ fun SettingsNotificationScreen(
                 text = stringResource(R.string.settings_demo_saved),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(vertical = 8.dp)
+                modifier = Modifier.padding(top = 4.dp, bottom = 8.dp)
             )
         }
     }
@@ -113,6 +117,7 @@ private fun SettingSwitchRow(
                 checked = checked,
                 onCheckedChange = onCheckedChange
             )
-        }
+        },
+        colors = ListItemDefaults.colors(containerColor = SurfaceCard)
     )
 }

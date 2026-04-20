@@ -1,6 +1,7 @@
 package com.intangibleheritage.music.feature.community
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material.icons.outlined.IosShare
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -46,6 +49,7 @@ import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.InvalidDeepLinkScreen
 import com.intangibleheritage.music.core.ui.theme.BorderTeal
 import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
+import com.intangibleheritage.music.core.ui.theme.ScreenLayout
 import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 import kotlinx.coroutines.launch
 
@@ -103,33 +107,40 @@ fun PostDetailScreen(
                 .fillMaxSize()
                 .padding(padding)
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp)
-                .padding(bottom = 24.dp)
+                .padding(horizontal = ScreenLayout.HorizontalPadding)
+                .padding(bottom = ScreenLayout.BottomSpacing)
         ) {
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing))
             Text(
                 text = post.titleOverride ?: stringResource(post.titleRes),
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.onBackground
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing))
             Text(
                 text = post.subtitleOverride ?: stringResource(post.subtitleRes),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Spacer(modifier = Modifier.height(20.dp))
-            Text(
-                text = post.bodyOverride ?: stringResource(post.bodyRes),
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onBackground
-            )
-            Spacer(modifier = Modifier.height(24.dp))
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = SurfaceCard),
+                border = BorderStroke(1.dp, BorderTeal.copy(alpha = 0.35f))
+            ) {
+                Text(
+                    text = post.bodyOverride ?: stringResource(post.bodyRes),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    modifier = Modifier.padding(ScreenLayout.CardContentPadding)
+                )
+            }
+            Spacer(modifier = Modifier.height(ScreenLayout.SectionSpacing))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(SurfaceCard, RoundedCornerShape(12.dp))
-                    .padding(16.dp),
+                    .padding(ScreenLayout.CardContentPadding),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
@@ -144,7 +155,13 @@ fun PostDetailScreen(
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(ScreenLayout.SectionSpacing))
+            Text(
+                text = stringResource(R.string.section_actions),
+                style = MaterialTheme.typography.titleMedium,
+                color = PrimaryTeal
+            )
+            Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing))
             Row {
                 FilledTonalButton(
                     onClick = {
@@ -170,13 +187,13 @@ fun PostDetailScreen(
                     Text(stringResource(R.string.community_action_share))
                 }
             }
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(ScreenLayout.SectionSpacing))
             Text(
                 text = stringResource(R.string.community_comments_title),
                 style = MaterialTheme.typography.titleMedium,
                 color = PrimaryTeal
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing))
             OutlinedTextField(
                 value = comment,
                 onValueChange = { comment = it.take(120) },
@@ -189,7 +206,7 @@ fun PostDetailScreen(
                     unfocusedBorderColor = BorderTeal.copy(alpha = 0.5f)
                 )
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing))
             FilledTonalButton(
                 onClick = {
                     scope.launch {

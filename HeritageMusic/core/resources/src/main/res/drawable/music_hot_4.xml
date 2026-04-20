@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 钹 / 圆形打击 -->
+<!-- 琵琶 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="160dp"
     android:height="160dp"
     android:viewportWidth="160"
     android:viewportHeight="160">
     <path
-        android:fillColor="#4022D3EE"
-        android:pathData="M80,32 C108,32 132,56 132,84 C132,112 108,136 80,136 C52,136 28,112 28,84 C28,56 52,32 80,32 Z" />
+        android:fillColor="#3E22D3EE"
+        android:pathData="M80,22 L90,22 L98,56 L112,78 L108,122 L52,128 L48,84 L62,60 Z" />
     <path
         android:fillColor="#00000000"
         android:strokeColor="#FF22D3EE"
-        android:strokeWidth="2.5"
-        android:pathData="M80,32 C108,32 132,56 132,84 C132,112 108,136 80,136 C52,136 28,112 28,84 C28,56 52,32 80,32 Z" />
+        android:strokeWidth="2.2"
+        android:pathData="M80,22 L90,22 L98,56 L112,78 L108,122 L52,128 L48,84 L62,60 Z" />
     <path
         android:strokeColor="#FF67E8F9"
-        android:strokeWidth="1.5"
-        android:pathData="M80,48 L80,120 M48,84 L112,84" />
+        android:strokeWidth="1.4"
+        android:pathData="M84,30 L84,120 M74,52 L94,52 M70,72 L98,72 M66,92 L102,92" />
 </vector>

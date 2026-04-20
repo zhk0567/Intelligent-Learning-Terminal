@@ -40,23 +40,31 @@ import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.theme.BorderTeal
 import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
 import com.intangibleheritage.music.core.ui.theme.SurfaceCard
+import kotlinx.coroutines.delay
 
 @Composable
 fun MusicHallScreen(
     onPlayTrack: (String) -> Unit = {},
     onFeedback: (String) -> Unit = {},
-    onOpenNotifications: () -> Unit = {}
+    onOpenNotifications: () -> Unit = {},
+    onOpenMore: (String) -> Unit = {},
+    onOpenTagResult: (String) -> Unit = {}
 ) {
     val repo = AppRepositories.musicHall
     var home by remember { mutableStateOf<MusicHallHomeData?>(null) }
     var query by remember { mutableStateOf("") }
+    var debouncedQuery by remember { mutableStateOf("") }
 
     LaunchedEffect(Unit) {
         home = repo.loadHome()
     }
+    LaunchedEffect(query) {
+        delay(220)
+        debouncedQuery = query
+    }
 
     val context = LocalContext.current
-    val q = query.trim()
+    val q = debouncedQuery.trim()
 
     val bannersFiltered = remember(home, q) {
         val list = home?.banners.orEmpty()
@@ -188,7 +196,6 @@ fun MusicHallScreen(
                 item {
                     MusicHallBannerSection(
                         bannersFiltered = bannersFiltered,
-                        queryKey = q,
                         onPlayTrack = onPlayTrack,
                         onFeedback = onFeedback
                     )
@@ -197,7 +204,8 @@ fun MusicHallScreen(
                     MusicHallDailyHotSection(
                         hotFiltered = hotFiltered,
                         onPlayTrack = onPlayTrack,
-                        onFeedback = onFeedback
+                        onFeedback = onFeedback,
+                        onOpenMore = onOpenMore
                     )
                 }
                 item {
@@ -205,19 +213,23 @@ fun MusicHallScreen(
                         picksFilteredResolved = picksFilteredResolved,
                         queryNonEmpty = q.isNotEmpty(),
                         onPlayTrack = onPlayTrack,
-                        onFeedback = onFeedback
+                        onFeedback = onFeedback,
+                        onOpenMore = onOpenMore
                     )
                 }
                 item {
                     MusicHallGuessTagsSection(
                         tagsFiltered = tagsFiltered,
-                        queryNonEmpty = q.isNotEmpty()
+                        queryNonEmpty = q.isNotEmpty(),
+                        onOpenTagResult = onOpenTagResult,
+                        onOpenMore = onOpenMore
                     )
                 }
                 item {
                     MusicHallBottomCardsSection(
                         bottomFiltered = bottomFiltered,
-                        onFeedback = onFeedback
+                        onFeedback = onFeedback,
+                        onOpenMore = onOpenMore
                     )
                 }
             }
