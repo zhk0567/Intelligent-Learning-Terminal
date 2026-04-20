@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+    <!-- 透明底，仅绘制敦煌风摆件 -->
+    <path
+        android:fillColor="#C8883A"
+        android:pathData="M162,362h188v20h-188z" />
+
+    <path
+        android:fillColor="#DCA152"
+        android:pathData="M256,84c-68,0 -122,54 -122,122c0,36 16,70 43,93c14,12 24,29 24,47v10h110v-10c0,-18 10,-35 24,-47c27,-23 43,-57 43,-93c0,-68 -54,-122 -122,-122z" />
+
+    <path
+        android:fillColor="#E7BC78"
+        android:pathData="M256,112c-52,0 -94,42 -94,94c0,30 13,58 36,77c18,15 30,37 31,61h54c1,-24 13,-46 31,-61c23,-19 36,-47 36,-77c0,-52 -42,-94 -94,-94z" />
+
+    <path
+        android:fillColor="#8E5B2A"
+        android:pathData="M190,172h132v12h-132z" />
+    <path
+        android:fillColor="#8E5B2A"
+        android:pathData="M178,214h156v12h-156z" />
+    <path
+        android:fillColor="#8E5B2A"
+        android:pathData="M186,256h140v12h-140z" />
+
+    <path
+        android:fillColor="#6E441F"
+        android:pathData="M256,134m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0" />
+</vector>

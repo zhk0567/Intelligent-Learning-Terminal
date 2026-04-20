@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 竹笛 / 箫类管乐剪影 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="112dp"
+    android:viewportWidth="200"
+    android:viewportHeight="112">
+    <path
+        android:fillColor="#4022D3EE"
+        android:pathData="M24,54 L176,48 L178,58 L22,64 Z" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FF22D3EE"
+        android:strokeWidth="2"
+        android:pathData="M24,54 L176,48 L178,58 L22,64 Z" />
+    <path
+        android:fillColor="#FF22D3EE"
+        android:pathData="M52,50 L54,62 M76,49 L78,61 M100,48 L102,60 M124,47 L126,59 M148,46 L150,58" />
+</vector>

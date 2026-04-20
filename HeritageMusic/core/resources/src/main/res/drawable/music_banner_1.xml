@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 古筝剪影：透明底 + 霓虹描边，用于轮播 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="112dp"
+    android:viewportWidth="200"
+    android:viewportHeight="112">
+    <path
+        android:fillColor="#4022D3EE"
+        android:pathData="M12,58 L188,52 L192,64 L8,70 Z" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FF22D3EE"
+        android:strokeWidth="2"
+        android:pathData="M12,58 L188,52 L192,64 L8,70 Z" />
+    <path
+        android:strokeColor="#FF67E8F9"
+        android:strokeWidth="1.2"
+        android:pathData="M28,48 L28,74 M44,46 L44,76 M60,45 L60,77 M76,44 L76,78 M92,43 L92,79 M108,43 L108,79 M124,44 L124,78 M140,45 L140,77 M156,46 L156,76 M172,48 L172,74" />
+</vector>

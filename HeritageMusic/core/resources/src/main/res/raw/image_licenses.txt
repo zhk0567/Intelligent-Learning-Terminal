@@ -1,0 +1,15 @@
+本应用配图说明（HeritageMusic）
+
+一、当前版本（科技风 UI）
+音乐馆轮播、每日热门、精选、故事瀑布流、我的宫格、商城敦煌主题商品等位图资源已统一为
+core/resources/src/main/res/drawable/ 下的矢量图（XML）：透明背景 + 电青/紫色霓虹描边，
+题材包含古筝、琵琶、竹笛、编钟、鼓、古琴、钹等非遗乐器剪影，以及敦煌沙丘意象线稿。
+上述 XML 为本项目为演示与主题一致性绘制的原创矢量资源，可自由用于本工程构建。
+
+二、历史说明（若本地仍存在同名 .jpg）
+此前若使用 Unsplash 摄影图作为占位，其许可说明见各文件旁注释；若仅保留 .xml  drawable，
+则以本节「一」为准。
+
+三、产品占位
+product_bronze_bells / product_silk_scarf / product_pipa_bookmark 等为渐变 shape 矢量，
+与科技风主题一致。

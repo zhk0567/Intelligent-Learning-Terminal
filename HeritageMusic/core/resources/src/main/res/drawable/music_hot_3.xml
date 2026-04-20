@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 古琴 / 横置弦乐 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="160dp"
+    android:viewportWidth="160"
+    android:viewportHeight="160">
+    <path
+        android:fillColor="#4022D3EE"
+        android:pathData="M16,72 L144,68 L146,88 L14,92 Z" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FF22D3EE"
+        android:strokeWidth="2"
+        android:pathData="M16,72 L144,68 L146,88 L14,92 Z" />
+    <path
+        android:strokeColor="#FF67E8F9"
+        android:strokeWidth="1"
+        android:pathData="M32,66 L32,94 M48,65 L48,95 M64,64 L64,96 M80,63 L80,97 M96,64 L96,96 M112,65 L112,95 M128,66 L128,94" />
+</vector>

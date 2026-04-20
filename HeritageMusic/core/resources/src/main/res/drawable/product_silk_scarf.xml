@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+    <!-- 透明底，仅绘制丝巾 -->
+    <path
+        android:fillColor="#F0A7C3"
+        android:pathData="M122,164l268,32l-28,238l-242,-30z" />
+    <path
+        android:fillColor="#D56A9E"
+        android:pathData="M148,186l216,26l-22,188l-194,-24z" />
+
+    <path
+        android:fillColor="#F8D7A0"
+        android:pathData="M178,222l48,6l-6,48l-48,-6z" />
+    <path
+        android:fillColor="#F8D7A0"
+        android:pathData="M246,230l58,7l-7,58l-58,-7z" />
+    <path
+        android:fillColor="#F8D7A0"
+        android:pathData="M202,296l72,9l-9,72l-72,-9z" />
+
+    <path
+        android:fillColor="#B34479"
+        android:pathData="M160,170l236,29l-4,28l-236,-29z" />
+    <path
+        android:fillColor="#B34479"
+        android:pathData="M126,406l236,29l-3,26l-236,-29z" />
+</vector>

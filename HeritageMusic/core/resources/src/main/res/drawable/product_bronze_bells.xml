@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+    <!-- 透明底，仅保留编钟器物 -->
+    <path
+        android:fillColor="#C58D3A"
+        android:pathData="M154,142h204v26h-204z" />
+
+    <path
+        android:fillColor="#8A5A24"
+        android:pathData="M136,168h240v14h-240z" />
+
+    <path
+        android:fillColor="#D6A24A"
+        android:pathData="M170,186c-22,0 -40,18 -40,40v104c0,44 36,80 80,80s80,-36 80,-80v-104c0,-22 -18,-40 -40,-40z" />
+    <path
+        android:fillColor="#B77B2F"
+        android:pathData="M222,186c-22,0 -40,18 -40,40v104c0,44 36,80 80,80v-224z" />
+
+    <path
+        android:fillColor="#D6A24A"
+        android:pathData="M302,186c-22,0 -40,18 -40,40v90c0,38 31,69 69,69s69,-31 69,-69v-90c0,-22 -18,-40 -40,-40z" />
+    <path
+        android:fillColor="#B77B2F"
+        android:pathData="M336,186c-22,0 -40,18 -40,40v90c0,38 31,69 69,69v-199z" />
+
+    <path
+        android:fillColor="#7B4A1D"
+        android:pathData="M210,254m-9,0a9,9 0,1 1,18 0a9,9 0,1 1,-18 0" />
+    <path
+        android:fillColor="#7B4A1D"
+        android:pathData="M331,244m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0" />
+</vector>

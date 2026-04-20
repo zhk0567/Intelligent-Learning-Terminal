@@ -1,0 +1,5 @@
+/HeritageMusic/.gradle/
+/HeritageMusic/**/build/
+/HeritageMusic/local.properties
+/HeritageMusic/.idea/
+*.iml

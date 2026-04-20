@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 古筝竖构图 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="260dp"
+    android:viewportWidth="200"
+    android:viewportHeight="260">
+    <path android:fillColor="#3022D3EE" android:pathData="M0,0 L200,0 L200,260 L0,260 Z" />
+    <path android:fillColor="#4022D3EE" android:pathData="M40,32 L160,28 L164,232 L36,236 Z" />
+    <path android:fillColor="#00000000" android:strokeColor="#FF22D3EE" android:strokeWidth="2"
+        android:pathData="M40,32 L160,28 L164,232 L36,236 Z" />
+    <path android:strokeColor="#FF67E8F9" android:strokeWidth="1"
+        android:pathData="M56,40 L56,228 M72,38 L72,230 M88,36 L88,232 M104,35 L104,233 M120,36 L120,232 M136,38 L136,230 M152,40 L152,228" />
+</vector>

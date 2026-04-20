@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+
+    <!-- 透明底：仅绘制琵琶主体 -->
+    <path
+        android:fillColor="#8D5A32"
+        android:pathData="M250,56c-24,14 -38,37 -38,63v36c0,23 -9,43 -26,61l-14,15c-33,34 -46,76 -38,123c12,76 77,136 156,141c92,6 170,-67 170,-156c0,-58 -30,-102 -73,-136l-11,-9c-16,-12 -24,-29 -24,-49v-31c0,-31 -16,-55 -43,-69c-18,-9 -42,-8 -59,1z" />
+
+    <path
+        android:fillColor="#B47A4C"
+        android:pathData="M259,82c-13,7 -21,20 -21,36v35c0,31 -11,58 -33,81l-14,15c-27,28 -37,62 -31,100c9,58 61,103 121,107c73,4 134,-52 134,-123c0,-45 -23,-80 -57,-106l-11,-9c-22,-17 -34,-43 -34,-71v-29c0,-19 -10,-33 -26,-42c-9,-4 -20,-4 -28,0z" />
+
+    <path
+        android:fillColor="#DDB07A"
+        android:pathData="M286,74l0,84c0,10 8,18 18,18s18,-8 18,-18v-84z" />
+
+    <path
+        android:fillColor="#E6C390"
+        android:pathData="M228,84l0,84c0,10 8,18 18,18s18,-8 18,-18v-84z" />
+
+    <path
+        android:fillColor="#5A3A21"
+        android:pathData="M154,314c0,83 63,147 147,147s147,-64 147,-147c0,-6 -0.3,-12 -1,-18c-7,74 -67,131 -146,131s-139,-57 -146,-131c-0.7,6 -1,12 -1,18z" />
+
+    <path
+        android:fillColor="#D9A566"
+        android:pathData="M256,112m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0" />
+    <path
+        android:fillColor="#D9A566"
+        android:pathData="M256,146m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0" />
+    <path
+        android:fillColor="#D9A566"
+        android:pathData="M256,180m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0" />
+</vector>

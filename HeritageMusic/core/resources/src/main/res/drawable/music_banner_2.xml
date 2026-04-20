@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 琵琶剪影 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="112dp"
+    android:viewportWidth="200"
+    android:viewportHeight="112">
+    <path
+        android:fillColor="#408B5CF6"
+        android:pathData="M100,18 C130,18 158,42 162,72 C165,88 150,98 130,98 C95,98 68,72 68,48 C68,32 82,18 100,18 Z" />
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFA78BFA"
+        android:strokeWidth="2"
+        android:pathData="M100,18 C130,18 158,42 162,72 C165,88 150,98 130,98 C95,98 68,72 68,48 C68,32 82,18 100,18 Z" />
+    <path
+        android:strokeColor="#FF22D3EE"
+        android:strokeWidth="1.5"
+        android:pathData="M100,22 L100,92 M88,36 L112,36 M84,52 L116,52 M88,68 L112,68" />
+</vector>

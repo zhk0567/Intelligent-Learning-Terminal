@@ -1,0 +1,34 @@
+本模块 drawable-nodpi 中的位图来自 Unsplash（https://unsplash.com），遵循 Unsplash 许可：https://unsplash.com/license
+可在应用中使用；建议在产品或关于页中注明摄影师与 Unsplash（许可不要求强制署名，但鼓励致谢）。
+
+资源文件名 | Unsplash 作品页（含作者信息）
+---|---
+music_banner_1.jpg | https://unsplash.com/photos/ancient-chinese-bronze-bells-on-a-red-wooden-frame-wYoxFG1Bq9k
+music_banner_2.jpg | https://unsplash.com/photos/woman-in-traditional-chinese-attire-playing-pipa-1-37j53dUCY
+music_banner_3.jpg | https://unsplash.com/photos/a-person-plays-a-guzheng-a-chinese-instrument-vk1ZCnOLjcg
+music_hot_1.jpg | https://unsplash.com/photos/person-playing-piano-during-daytime-_d2e3iuNuUo
+music_hot_2.jpg | https://unsplash.com/photos/person-playing-brown-string-instrument--0bciF5_qUA
+music_hot_3.jpg | https://unsplash.com/photos/a-woman-playing-a-musical-instrument-on-stage-G3I-kgEJm1M
+music_hot_4.jpg | https://unsplash.com/photos/woman-in-traditional-chinese-clothing-holding-a-pipa-vaH_E2xpSno
+music_pick_1.jpg | https://unsplash.com/photos/close-up-of-a-wooden-stringed-instrument-with-ornate-details-Ed5889SONo8
+music_pick_2.jpg | https://unsplash.com/photos/a-musical-instrument-sitting-on-top-of-a-wooden-floor-JoYNY1-ujpM
+music_pick_3.jpg | https://unsplash.com/photos/a-close-up-of-a-musical-instrument-on-a-table-mRj3qh2Z0Rg
+story_feed_01.jpg | https://unsplash.com/photos/woman-in-traditional-chinese-attire-playing-pipa-1-37j53dUCY
+story_feed_02.jpg | https://unsplash.com/photos/woman-in-traditional-chinese-clothing-holding-a-pipa-vaH_E2xpSno
+story_feed_03.jpg | https://unsplash.com/photos/a-person-plays-a-guzheng-a-chinese-instrument-vk1ZCnOLjcg
+story_feed_04.jpg | https://unsplash.com/photos/woman-in-red-dress-holding-brown-wooden-stick-Bq91Mr2wkJ0
+story_feed_05.jpg | https://unsplash.com/photos/woman-holding-string-instrument-while-smiling-S59YRa4-e1o
+story_feed_06.jpg | https://unsplash.com/photos/a-couple-of-women-sitting-next-to-each-other-mejAKjkrUlg
+story_feed_07.jpg | https://unsplash.com/photos/close-up-of-a-wooden-stringed-instrument-with-ornate-details-Ed5889SONo8
+story_feed_08.jpg | https://unsplash.com/photos/woman-in-blue-and-white-polka-dot-long-sleeve-shirt-sitting-on-bench-KAOQ8Hb_Xx8
+profile_grid_01.jpg | https://unsplash.com/photos/ancient-chinese-bronze-bells-on-a-red-wooden-frame-wYoxFG1Bq9k
+profile_grid_02.jpg | https://unsplash.com/photos/aerial-photography-of-house-at-lake-yueyaquan-during-daytime-Y17FE9Fuw4Y
+profile_grid_03.jpg | https://unsplash.com/photos/group-of-people-riding-on-a-camel-i6P1H0By5Kk
+profile_grid_04.jpg | https://unsplash.com/photos/gray-pagoda-painting-CjzPG39qVWs
+profile_grid_05.jpg | https://unsplash.com/photos/assorted-color-textile-hangs-under-clear-blue-sky-during-daytime-NEKj44vMT5g
+profile_grid_06.jpg | https://unsplash.com/photos/a-close-up-of-a-musical-instrument-on-a-table-mRj3qh2Z0Rg
+product_dunhuang.jpg | https://unsplash.com/photos/aerial-photography-of-house-at-lake-yueyaquan-during-daytime-Y17FE9Fuw4Y
+music_crossover.jpg | https://unsplash.com/photos/a-guitar-sitting-on-top-of-a-wooden-table-mcG6uq4Df5s
+music_learning.jpg | https://unsplash.com/photos/person-playing-piano-during-daytime-_d2e3iuNuUo
+
+说明：Wikimedia Commons 在本机网络环境下直连 upload.wikimedia.org 易失败，故改用 Unsplash CDN 拉取并裁剪为演示用尺寸。

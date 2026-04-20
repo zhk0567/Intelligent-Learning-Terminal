@@ -1,0 +1,29 @@
+kotlin version: 2.0.21
+error message: java.lang.AssertionError: Metaspace
+	at org.jetbrains.kotlin.com.intellij.openapi.diagnostic.DefaultLogger.error(DefaultLogger.java:83)
+	at org.jetbrains.kotlin.com.intellij.openapi.diagnostic.Logger.error(Logger.java:436)
+	at org.jetbrains.kotlin.com.intellij.openapi.util.ObjectTree.handleExceptions(ObjectTree.java:195)
+	at org.jetbrains.kotlin.com.intellij.openapi.util.ObjectTree.runWithTrace(ObjectTree.java:141)
+	at org.jetbrains.kotlin.com.intellij.openapi.util.ObjectTree.executeAll(ObjectTree.java:162)
+	at org.jetbrains.kotlin.com.intellij.openapi.util.Disposer.dispose(Disposer.java:250)
+	at org.jetbrains.kotlin.com.intellij.openapi.util.Disposer.dispose(Disposer.java:238)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:130)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:49)
+	at org.jetbrains.kotlin.cli.common.CLITool.exec(CLITool.kt:101)
+	at org.jetbrains.kotlin.cli.common.CLITool.exec(CLITool.kt:79)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execAndOutputXml(CLICompiler.kt:65)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.compileInProcessImpl(GradleKotlinCompilerWork.kt:391)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork.access$compileInProcessImpl(GradleKotlinCompilerWork.kt:85)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork$compileInProcess$future$1.call(GradleKotlinCompilerWork.kt:364)
+	at org.jetbrains.kotlin.compilerRunner.GradleKotlinCompilerWork$compileInProcess$future$1.call(GradleKotlinCompilerWork.kt:363)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Caused by: java.lang.OutOfMemoryError: Metaspace
+
+
