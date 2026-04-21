@@ -18,6 +18,7 @@ import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -37,9 +38,6 @@ import androidx.compose.ui.unit.dp
 import com.intangibleheritage.music.core.data.AppRepositories
 import com.intangibleheritage.music.core.data.model.MusicHallHomeData
 import com.intangibleheritage.music.core.resources.R
-import com.intangibleheritage.music.core.ui.theme.BorderTeal
-import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
-import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 import kotlinx.coroutines.delay
 
 @Composable
@@ -48,7 +46,10 @@ fun MusicHallScreen(
     onFeedback: (String) -> Unit = {},
     onOpenNotifications: () -> Unit = {},
     onOpenMore: (String) -> Unit = {},
-    onOpenTagResult: (String) -> Unit = {}
+    onOpenTagResult: (String) -> Unit = {},
+    onOpenArchive: () -> Unit = {},
+    onOpenCourses: () -> Unit = {},
+    onOpenInteractive: () -> Unit = {}
 ) {
     val repo = AppRepositories.musicHall
     var home by remember { mutableStateOf<MusicHallHomeData?>(null) }
@@ -65,20 +66,34 @@ fun MusicHallScreen(
 
     val context = LocalContext.current
     val q = debouncedQuery.trim()
+    val bannerSearchTexts = remember(home, context) {
+        home?.banners.orEmpty().associate { it.id to bannerTitle(it, context) }
+    }
+    val hotSearchTexts = remember(home, context) {
+        home?.dailyHot.orEmpty().associate { it.id to hotTitle(it, context) }
+    }
+    val picksSearchTexts = remember(home, context) {
+        home?.dailyPicks.orEmpty().associate { it.id to pickTitle(it, context) }
+    }
+    val tagSearchTexts = remember(home, context) {
+        home?.guessTags.orEmpty().associate { it.id to context.resources.getString(it.labelRes) }
+    }
+    val bottomSearchTexts = remember(home, context) {
+        home?.bottomCards.orEmpty().associate { it.id to context.resources.getString(it.titleRes) }
+    }
 
     val bannersFiltered = remember(home, q) {
         val list = home?.banners.orEmpty()
         if (q.isEmpty()) list
-        else list.filter { bannerTitle(it, context).contains(q, ignoreCase = true) }
+        else list.filter { bannerSearchTexts[it.id]?.contains(q, ignoreCase = true) == true }
     }
     val hotFiltered = remember(home, q) {
         val list = home?.dailyHot.orEmpty()
         if (q.isEmpty()) list
         else {
             list.filter { tile ->
-                val title = hotTitle(tile, context)
                 val desc = tile.contentDescription
-                title.contains(q, ignoreCase = true) ||
+                (hotSearchTexts[tile.id]?.contains(q, ignoreCase = true) == true) ||
                     (desc != null && desc.contains(q, ignoreCase = true))
             }
         }
@@ -86,19 +101,19 @@ fun MusicHallScreen(
     val picksFilteredResolved = remember(home, q) {
         val picks = home?.dailyPicks.orEmpty()
         picks.filter { pick ->
-            q.isEmpty() || pickTitle(pick, context).contains(q, ignoreCase = true)
+            q.isEmpty() || picksSearchTexts[pick.id]?.contains(q, ignoreCase = true) == true
         }
     }
     val tagsFiltered = remember(home, q) {
         val tags = home?.guessTags.orEmpty()
         tags.filter { t ->
-            q.isEmpty() || context.resources.getString(t.labelRes).contains(q, ignoreCase = true)
+            q.isEmpty() || tagSearchTexts[t.id]?.contains(q, ignoreCase = true) == true
         }
     }
     val bottomFiltered = remember(home, q) {
         val bottom = home?.bottomCards.orEmpty()
         bottom.filter { c ->
-            q.isEmpty() || context.resources.getString(c.titleRes).contains(q, ignoreCase = true)
+            q.isEmpty() || bottomSearchTexts[c.id]?.contains(q, ignoreCase = true) == true
         }
     }
 
@@ -134,18 +149,34 @@ fun MusicHallScreen(
                     singleLine = true,
                     shape = RoundedCornerShape(24.dp),
                     colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = BorderTeal,
-                        unfocusedBorderColor = BorderTeal.copy(alpha = 0.5f),
-                        focusedContainerColor = SurfaceCard,
-                        unfocusedContainerColor = SurfaceCard
+                        focusedBorderColor = MaterialTheme.colorScheme.outline,
+                        unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
+                        focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                        unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
                     )
                 )
                 IconButton(onClick = onOpenNotifications) {
                     Icon(
                         Icons.Outlined.Notifications,
                         contentDescription = stringResource(R.string.notifications_title),
-                        tint = PrimaryTeal
+                        tint = MaterialTheme.colorScheme.primary
                     )
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 4.dp),
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                TextButton(onClick = onOpenArchive) {
+                    Text(text = stringResource(R.string.archive_entry_short), color = MaterialTheme.colorScheme.primary)
+                }
+                TextButton(onClick = onOpenCourses) {
+                    Text(text = stringResource(R.string.course_entry_short), color = MaterialTheme.colorScheme.primary)
+                }
+                TextButton(onClick = onOpenInteractive) {
+                    Text(text = stringResource(R.string.interactive_entry_short), color = MaterialTheme.colorScheme.primary)
                 }
             }
         }
@@ -169,7 +200,7 @@ fun MusicHallScreen(
                             .height(120.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        CircularProgressIndicator(color = PrimaryTeal)
+                        CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(

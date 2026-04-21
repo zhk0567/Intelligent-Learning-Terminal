@@ -18,7 +18,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.intangibleheritage.music.core.resources.R
-import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
 
 /**
  * 二级页顶栏：主 Tab 不设顶栏，仅详情/播放等全屏二级页使用，与 [InvalidDeepLinkScreen] 保持一致样式。
@@ -30,11 +29,12 @@ fun HeritageSecondaryTopBar(
     onBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val dividerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.45f)
     TopAppBar(
         modifier = modifier.drawWithCache {
             val y = size.height - 1.dp.toPx()
             val dividerBrush = Brush.horizontalGradient(
-                colors = listOf(Color.Transparent, PrimaryTeal.copy(alpha = 0.45f), Color.Transparent)
+                colors = listOf(Color.Transparent, dividerColor, Color.Transparent)
             )
             onDrawBehind {
                 drawLine(
@@ -56,7 +56,7 @@ fun HeritageSecondaryTopBar(
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = stringResource(R.string.cd_back),
-                    tint = PrimaryTeal
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         },

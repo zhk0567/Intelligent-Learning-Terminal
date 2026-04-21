@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.HeritageSecondaryTopBar
 import com.intangibleheritage.music.core.ui.theme.ScreenLayout
-import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,7 +49,7 @@ fun AboutScreen(onBack: () -> Unit) {
             )
             Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing))
             Card(
-                colors = CardDefaults.cardColors(containerColor = SurfaceCard)
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
             ) {
                 Column(modifier = Modifier.padding(ScreenLayout.CardContentCompactPadding)) {
                     Text(

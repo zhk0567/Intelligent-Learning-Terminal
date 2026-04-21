@@ -275,7 +275,12 @@ private fun PlayerPlaybackProgress(
                     durationMs = d
                 }
             }
-            delay(500)
+            val nextTick = when {
+                player.isPlaying -> 450L
+                isBuffering -> 700L
+                else -> 1000L
+            }
+            delay(nextTick)
         }
     }
 

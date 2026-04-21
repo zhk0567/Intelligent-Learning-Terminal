@@ -1,0 +1,54 @@
+package com.intangibleheritage.music.core.data.repository
+
+import com.intangibleheritage.music.core.data.model.CourseLevel
+import com.intangibleheritage.music.core.data.model.HeritageCourse
+import com.intangibleheritage.music.core.resources.R
+
+class FakeCourseRepository : CourseRepository {
+
+    private val courses = listOf(
+        HeritageCourse(
+            id = "course_basic_guqin",
+            title = "古琴入门：减字谱与指法基础",
+            tutorName = "沈墨",
+            level = CourseLevel.Basic,
+            lessons = 12,
+            summary = "面向零基础学习者，建立古琴基本手型、节奏和减字谱识读能力。",
+            goals = listOf("认识减字谱", "掌握基础指法", "完成 1 首入门曲"),
+            copyrightNote = "课程内容版权归平台与传承人共同所有（演示）",
+            coverRes = R.drawable.music_pick_elem_1,
+            relatedStoryId = "s1",
+            relatedTrackId = "track_echoes_east"
+        ),
+        HeritageCourse(
+            id = "course_advanced_dizi",
+            title = "笛乐进阶：吐音与风格化表达",
+            tutorName = "李青岚",
+            level = CourseLevel.Advanced,
+            lessons = 18,
+            summary = "面向有基础学习者，强化吐音、气息控制和区域风格演奏。",
+            goals = listOf("提升吐音清晰度", "掌握装饰音", "完成风格化演奏片段"),
+            copyrightNote = "课程内容已签署授权与传播协议（演示）",
+            coverRes = R.drawable.music_hot_elem_3,
+            relatedStoryId = "s3",
+            relatedTrackId = "track_ladies_music"
+        ),
+        HeritageCourse(
+            id = "course_research_bells",
+            title = "礼乐研究：编钟复原与音色分析",
+            tutorName = "周礼文",
+            level = CourseLevel.Research,
+            lessons = 10,
+            summary = "面向高校研究阶段，聚焦编钟音色复原与谱例结构分析。",
+            goals = listOf("理解礼乐语境", "掌握频谱分析方法", "完成一篇小型研究报告"),
+            copyrightNote = "课程研究资料仅限教学用途，禁止二次传播（演示）",
+            coverRes = R.drawable.music_hot_elem_1,
+            relatedStoryId = "s2",
+            relatedTrackId = "track_wall_rhymes"
+        )
+    )
+
+    override fun allCourses(): List<HeritageCourse> = courses
+
+    override fun courseById(id: String): HeritageCourse? = courses.firstOrNull { it.id == id }
+}

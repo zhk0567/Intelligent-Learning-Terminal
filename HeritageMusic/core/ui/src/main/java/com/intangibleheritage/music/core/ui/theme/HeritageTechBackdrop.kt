@@ -17,7 +17,10 @@ import androidx.compose.ui.unit.dp
  * 网格已刻意稀疏以降低滑动时 GPU 线段绘制压力。
  */
 @Composable
-fun HeritageTechBackdrop(modifier: Modifier = Modifier) {
+fun HeritageTechBackdrop(
+    modifier: Modifier = Modifier,
+    simplified: Boolean = false
+) {
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -52,7 +55,7 @@ fun HeritageTechBackdrop(modifier: Modifier = Modifier) {
                     center = Offset(w * 0.85f, h * 0.55f),
                     radius = h * 0.45f
                 )
-                val step = 160.dp.toPx()
+                val step = if (simplified) 220.dp.toPx() else 160.dp.toPx()
                 val gridPath = Path().apply {
                     var x = 0f
                     while (x <= w) {
@@ -71,9 +74,15 @@ fun HeritageTechBackdrop(modifier: Modifier = Modifier) {
                 val bottomGlowY = h * 0.92f
                 onDrawBehind {
                     drawRect(brush = bg, size = size)
-                    drawCircle(brush = glow1, radius = w * 0.85f, center = Offset(w * 0.5f, h * 0.12f))
-                    drawCircle(brush = glow2, radius = h * 0.45f, center = Offset(w * 0.85f, h * 0.55f))
-                    drawPath(gridPath, color = TechGridLine, style = gridStroke)
+                    drawCircle(
+                        brush = glow1,
+                        radius = if (simplified) w * 0.72f else w * 0.85f,
+                        center = Offset(w * 0.5f, h * 0.12f)
+                    )
+                    if (!simplified) {
+                        drawCircle(brush = glow2, radius = h * 0.45f, center = Offset(w * 0.85f, h * 0.55f))
+                        drawPath(gridPath, color = TechGridLine, style = gridStroke)
+                    }
                     drawLine(
                         brush = Brush.horizontalGradient(
                             colors = listOf(

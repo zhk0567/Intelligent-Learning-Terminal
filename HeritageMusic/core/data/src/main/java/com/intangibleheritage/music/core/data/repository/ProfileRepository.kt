@@ -13,6 +13,7 @@ interface ProfileRepository {
     suspend fun addHistory(contentId: String)
     suspend fun setUserNickname(nickname: String)
     suspend fun setUserAvatarKey(avatarKey: String)
+    suspend fun setThemeKey(themeKey: String)
     /** 从观看历史中移除一条（收藏不受影响） */
     suspend fun removeHistoryItem(contentId: String)
     /** 清空全部观看历史 */

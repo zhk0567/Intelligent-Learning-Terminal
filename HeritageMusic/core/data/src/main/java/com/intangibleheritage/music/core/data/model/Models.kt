@@ -86,6 +86,19 @@ data class CommunityPost(
 
 enum class CommunityCategory { FolkInstrument, Electronic, Ai }
 
+/** 品牌商城首页四大分区（Week 3 第二阶段：分区列表与筛选）。 */
+enum class MallSection(val routeKey: String) {
+    Story("story"),
+    Cultural("cultural"),
+    Cross("cross"),
+    Instrument("instrument");
+
+    companion object {
+        fun fromRouteKey(key: String): MallSection? =
+            entries.find { it.routeKey.equals(key, ignoreCase = true) }
+    }
+}
+
 data class Product(
     val id: String,
     @StringRes val titleRes: Int,
@@ -94,7 +107,27 @@ data class Product(
     val reviewCount: Int,
     @StringRes val descriptionRes: Int,
     @DrawableRes val imageRes: Int,
+    /** 所属商城分区，用于分区列表与首页预览。 */
+    val section: MallSection,
     @StringRes val shortSubtitleRes: Int? = null
+)
+
+data class CompositionResult(
+    val id: String,
+    val style: String,
+    val mood: String,
+    val tempoBpm: Int,
+    val clipName: String,
+    val clipHint: String
+)
+
+data class MentorReviewResult(
+    val id: String,
+    val rhythmScore: Int,
+    val intonationScore: Int,
+    val expressionScore: Int,
+    val summary: String,
+    val suggestions: List<String>
 )
 
 data class ProfileGridItem(

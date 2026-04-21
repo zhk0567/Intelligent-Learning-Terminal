@@ -53,17 +53,15 @@ import com.intangibleheritage.music.core.data.AppRepositories
 import com.intangibleheritage.music.core.data.model.StoryFeedItem
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.InvalidDeepLinkScreen
-import com.intangibleheritage.music.core.ui.theme.BorderTeal
-import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
 import com.intangibleheritage.music.core.ui.theme.ScreenLayout
-import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StoryDetailScreen(
     storyId: String,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    onOpenProduct: (String) -> Unit
 ) {
     val story = AppRepositories.stories.storyById(storyId)
     if (story == null) {
@@ -105,7 +103,7 @@ fun StoryDetailScreen(
                         Icon(
                             Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = stringResource(R.string.cd_back),
-                            tint = PrimaryTeal
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                 },
@@ -120,7 +118,7 @@ fun StoryDetailScreen(
                         Icon(
                             imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                             contentDescription = stringResource(R.string.story_favorite_cd),
-                            tint = PrimaryTeal
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                 },
@@ -150,6 +148,7 @@ fun StoryDetailScreen(
             onShare = {
                 scope.launch { snackbarHostState.showSnackbar(shareMsg) }
             },
+            onOpenProduct = { onOpenProduct(storyToProductId(storyId)) },
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
@@ -165,6 +164,7 @@ private fun StoryDetailBody(
     onSendComment: () -> Unit,
     onLike: () -> Unit,
     onShare: () -> Unit,
+    onOpenProduct: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -199,8 +199,8 @@ private fun StoryDetailBody(
         item {
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = SurfaceCard),
-                border = BorderStroke(1.dp, BorderTeal.copy(alpha = 0.35f))
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.35f))
             ) {
                 Text(
                     text = stringResource(R.string.story_detail_body),
@@ -215,7 +215,7 @@ private fun StoryDetailBody(
             Text(
                 text = stringResource(R.string.section_actions),
                 style = MaterialTheme.typography.titleMedium,
-                color = PrimaryTeal
+                color = MaterialTheme.colorScheme.primary
             )
         }
         item { Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing)) }
@@ -239,15 +239,15 @@ private fun StoryDetailBody(
             Text(
                 text = stringResource(R.string.story_detail_related),
                 style = MaterialTheme.typography.titleMedium,
-                color = PrimaryTeal
+                color = MaterialTheme.colorScheme.primary
             )
         }
         item { Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing)) }
         item {
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = SurfaceCard),
-                border = BorderStroke(1.dp, BorderTeal.copy(alpha = 0.35f))
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.35f))
             ) {
                 Text(
                     text = stringResource(R.string.story_detail_related_hint),
@@ -255,6 +255,14 @@ private fun StoryDetailBody(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
+                FilledTonalButton(
+                    onClick = onOpenProduct,
+                    modifier = Modifier
+                        .padding(horizontal = ScreenLayout.CardContentPadding)
+                        .padding(bottom = ScreenLayout.CardContentPadding)
+                ) {
+                    Text(stringResource(R.string.story_detail_open_related_product))
+                }
             }
         }
         item { Spacer(modifier = Modifier.height(20.dp)) }
@@ -262,7 +270,7 @@ private fun StoryDetailBody(
             Text(
                 text = stringResource(R.string.community_comments_title),
                 style = MaterialTheme.typography.titleMedium,
-                color = PrimaryTeal
+                color = MaterialTheme.colorScheme.primary
             )
         }
         item { Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing)) }
@@ -273,8 +281,8 @@ private fun StoryDetailBody(
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text(stringResource(R.string.story_detail_comment_hint)) },
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = BorderTeal,
-                    unfocusedBorderColor = BorderTeal.copy(alpha = 0.5f)
+                    focusedBorderColor = MaterialTheme.colorScheme.outline,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant
                 )
             )
         }
@@ -288,4 +296,11 @@ private fun StoryDetailBody(
             }
         }
     }
+}
+
+private fun storyToProductId(storyId: String): String = when (storyId) {
+    "s1" -> "dunhuang_magnet"
+    "s2" -> "silk_scarf"
+    "s3" -> "bronze_bells"
+    else -> "pipa_bookmark"
 }

@@ -60,8 +60,6 @@ import com.intangibleheritage.music.core.data.AppRepositories
 import com.intangibleheritage.music.core.data.model.ProfileGridItem
 import com.intangibleheritage.music.core.data.model.UserProfilePrefs
 import com.intangibleheritage.music.core.resources.R
-import com.intangibleheritage.music.core.ui.theme.BorderTeal
-import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -146,7 +144,7 @@ fun ProfileScreen(
                 Icon(
                     Icons.Outlined.Settings,
                     contentDescription = stringResource(R.string.settings_cd),
-                    tint = PrimaryTeal
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         }
@@ -154,11 +152,11 @@ fun ProfileScreen(
         TabRow(
             selectedTabIndex = tab,
             containerColor = MaterialTheme.colorScheme.background,
-            contentColor = PrimaryTeal,
+            contentColor = MaterialTheme.colorScheme.primary,
             indicator = { positions ->
                 TabRowDefaults.SecondaryIndicator(
                     modifier = Modifier.tabIndicatorOffset(positions[tab]),
-                    color = PrimaryTeal
+                    color = MaterialTheme.colorScheme.primary
                 )
             },
             divider = {}
@@ -169,7 +167,7 @@ fun ProfileScreen(
                 text = {
                     Text(
                         stringResource(R.string.tab_favorites),
-                        color = if (tab == 0) PrimaryTeal else MaterialTheme.colorScheme.onSurfaceVariant
+                        color = if (tab == 0) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             )
@@ -179,7 +177,7 @@ fun ProfileScreen(
                 text = {
                     Text(
                         stringResource(R.string.tab_history),
-                        color = if (tab == 1) PrimaryTeal else MaterialTheme.colorScheme.onSurfaceVariant
+                        color = if (tab == 1) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             )
@@ -255,8 +253,8 @@ fun ProfileScreen(
                         label = { Text(stringResource(R.string.profile_nickname_label)) },
                         singleLine = true,
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = BorderTeal,
-                            unfocusedBorderColor = BorderTeal.copy(alpha = 0.5f)
+                            focusedBorderColor = MaterialTheme.colorScheme.outline,
+                            unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant
                         )
                     )
                     Spacer(modifier = Modifier.height(16.dp))
@@ -324,7 +322,8 @@ private fun AvatarOption(
     selected: Boolean,
     onClick: () -> Unit
 ) {
-    val border = if (selected) Modifier.border(2.dp, PrimaryTeal, CircleShape) else Modifier
+    val border =
+        if (selected) Modifier.border(2.dp, MaterialTheme.colorScheme.primary, CircleShape) else Modifier
     AsyncImage(
         model = res,
         contentDescription = null,
@@ -355,7 +354,7 @@ private fun ProfileEmptyPanel(
             imageVector = if (isFavoritesTab) Icons.Outlined.FavoriteBorder else Icons.Outlined.History,
             contentDescription = null,
             modifier = Modifier.size(56.dp),
-            tint = PrimaryTeal.copy(alpha = 0.65f)
+            tint = MaterialTheme.colorScheme.primary.copy(alpha = 0.65f)
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(

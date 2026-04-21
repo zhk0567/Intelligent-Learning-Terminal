@@ -29,6 +29,7 @@ class DataStoreProfileRepository(
         val history = stringPreferencesKey("history_ids")
         val nickname = stringPreferencesKey("user_nickname")
         val avatarKey = stringPreferencesKey("user_avatar_key")
+        val themeKey = stringPreferencesKey("user_theme_key")
     }
 
     private val allowedAvatarKeys = setOf(
@@ -36,6 +37,12 @@ class DataStoreProfileRepository(
         UserProfilePrefs.AvatarPick1,
         UserProfilePrefs.AvatarPick2,
         UserProfilePrefs.AvatarPick3
+    )
+    private val allowedThemeKeys = setOf(
+        UserProfilePrefs.ThemeTechDark,
+        UserProfilePrefs.ThemePaperLight,
+        UserProfilePrefs.ThemeNeonPurpleBlue,
+        UserProfilePrefs.ThemeForestGold
     )
 
     override fun favorites(): Flow<List<ProfileGridItem>> =
@@ -65,9 +72,12 @@ class DataStoreProfileRepository(
         dataStore.data.map { prefs ->
             val rawKey = prefs[Keys.avatarKey].orEmpty()
             val key = rawKey.takeIf { it in allowedAvatarKeys } ?: UserProfilePrefs.AvatarDefault
+            val rawTheme = prefs[Keys.themeKey].orEmpty()
+            val themeKey = rawTheme.takeIf { it in allowedThemeKeys } ?: UserProfilePrefs.ThemeTechDark
             UserProfilePrefs(
                 nickname = prefs[Keys.nickname].orEmpty(),
-                avatarKey = key
+                avatarKey = key,
+                themeKey = themeKey
             )
         }
             .distinctUntilChanged()
@@ -99,6 +109,11 @@ class DataStoreProfileRepository(
     override suspend fun setUserAvatarKey(avatarKey: String) {
         if (avatarKey !in allowedAvatarKeys) return
         dataStore.edit { it[Keys.avatarKey] = avatarKey }
+    }
+
+    override suspend fun setThemeKey(themeKey: String) {
+        if (themeKey !in allowedThemeKeys) return
+        dataStore.edit { it[Keys.themeKey] = themeKey }
     }
 
     override suspend fun removeHistoryItem(contentId: String) {

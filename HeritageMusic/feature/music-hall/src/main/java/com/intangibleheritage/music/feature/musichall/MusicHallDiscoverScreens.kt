@@ -21,9 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.HeritageSecondaryTopBar
-import com.intangibleheritage.music.core.ui.theme.BorderTeal
 import com.intangibleheritage.music.core.ui.theme.ScreenLayout
-import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -101,8 +99,8 @@ private fun DiscoverListItem(
             .fillMaxWidth()
             .clickable { },
         shape = RoundedCornerShape(14.dp),
-        colors = CardDefaults.cardColors(containerColor = SurfaceCard),
-        border = androidx.compose.foundation.BorderStroke(1.dp, BorderTeal.copy(alpha = 0.35f))
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.35f))
     ) {
         Column(modifier = Modifier.padding(ScreenLayout.CardContentPadding)) {
             Text(

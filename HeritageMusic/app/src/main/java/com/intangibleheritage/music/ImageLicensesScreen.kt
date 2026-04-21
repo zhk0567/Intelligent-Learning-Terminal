@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.HeritageSecondaryTopBar
 import com.intangibleheritage.music.core.ui.theme.ScreenLayout
-import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 import java.nio.charset.StandardCharsets
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -27,8 +26,13 @@ import java.nio.charset.StandardCharsets
 fun ImageLicensesScreen(onBack: () -> Unit) {
     val context = LocalContext.current
     val body = remember(context) {
-        context.resources.openRawResource(R.raw.image_licenses).use { input ->
-            input.bufferedReader(StandardCharsets.UTF_8).readText()
+        val rawId = context.resources.getIdentifier("image_licenses", "raw", context.packageName)
+        if (rawId == 0) {
+            "未找到图片许可文档（raw/image_licenses）。"
+        } else {
+            context.resources.openRawResource(rawId).use { input ->
+                input.bufferedReader(StandardCharsets.UTF_8).readText()
+            }
         }
     }
 
@@ -42,7 +46,7 @@ fun ImageLicensesScreen(onBack: () -> Unit) {
         }
     ) { padding ->
         Card(
-            colors = CardDefaults.cardColors(containerColor = SurfaceCard),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)

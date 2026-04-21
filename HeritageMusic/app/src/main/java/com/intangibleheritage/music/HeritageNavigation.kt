@@ -30,8 +30,20 @@ internal object HeritageNavigation {
     const val ROUTE_SETTINGS = "settings"
     const val ROUTE_SETTINGS_NOTIFICATIONS = "settings_notifications"
     const val ROUTE_SETTINGS_PRIVACY = "settings_privacy"
+    const val ROUTE_SETTINGS_THEME = "settings_theme"
     const val ROUTE_MUSIC_HALL_MORE_PREFIX = "music_hall_more/"
     const val ROUTE_MUSIC_HALL_TAG_PREFIX = "music_hall_tag/"
+    const val ROUTE_ARCHIVE = "archive"
+    const val ROUTE_ARCHIVE_DETAIL_PREFIX = "archive_detail/"
+    const val ROUTE_COURSES = "courses"
+    const val ROUTE_COURSE_DETAIL_PREFIX = "course_detail/"
+    const val ROUTE_COURSE_OUTLINE_PREFIX = "course_outline/"
+    const val ROUTE_COURSE_MATERIALS_PREFIX = "course_materials/"
+    const val ROUTE_COURSE_TUTOR_PREFIX = "course_tutor/"
+    const val ROUTE_INTERACTIVE = "interactive"
+    const val ROUTE_COMPOSITION = "composition"
+    const val ROUTE_MENTOR_REVIEW = "mentor_review"
+    const val ROUTE_MALL_SECTION_PREFIX = "mall_section/"
 
     val secondaryRoutePrefixes: List<String> = listOf(
         ROUTE_PRODUCT_PREFIX,
@@ -39,7 +51,13 @@ internal object HeritageNavigation {
         ROUTE_STORY_PREFIX,
         ROUTE_COMMUNITY_POST_PREFIX,
         ROUTE_MUSIC_HALL_MORE_PREFIX,
-        ROUTE_MUSIC_HALL_TAG_PREFIX
+        ROUTE_MUSIC_HALL_TAG_PREFIX,
+        ROUTE_ARCHIVE_DETAIL_PREFIX,
+        ROUTE_COURSE_DETAIL_PREFIX,
+        ROUTE_COURSE_OUTLINE_PREFIX,
+        ROUTE_COURSE_MATERIALS_PREFIX,
+        ROUTE_COURSE_TUTOR_PREFIX,
+        ROUTE_MALL_SECTION_PREFIX
     )
 
     fun product(productId: String): String = "${ROUTE_PRODUCT_PREFIX}$productId"
@@ -56,6 +74,14 @@ internal object HeritageNavigation {
     fun musicHallTag(tagName: String): String =
         "${ROUTE_MUSIC_HALL_TAG_PREFIX}${Uri.encode(tagName)}"
 
+    fun archiveDetail(assetId: String): String = "${ROUTE_ARCHIVE_DETAIL_PREFIX}$assetId"
+    fun courseDetail(courseId: String): String = "${ROUTE_COURSE_DETAIL_PREFIX}$courseId"
+    fun courseOutline(courseId: String): String = "${ROUTE_COURSE_OUTLINE_PREFIX}$courseId"
+    fun courseMaterials(courseId: String): String = "${ROUTE_COURSE_MATERIALS_PREFIX}$courseId"
+    fun courseTutor(courseId: String): String = "${ROUTE_COURSE_TUTOR_PREFIX}$courseId"
+
+    fun mallSection(sectionRouteKey: String): String = "${ROUTE_MALL_SECTION_PREFIX}$sectionRouteKey"
+
     fun hidesBottomBar(route: String): Boolean =
         secondaryRoutePrefixes.any { route.startsWith(it) } ||
             route == ROUTE_NOTIFICATIONS ||
@@ -64,5 +90,11 @@ internal object HeritageNavigation {
             route == ROUTE_COMPOSE ||
             route == ROUTE_SETTINGS ||
             route == ROUTE_SETTINGS_NOTIFICATIONS ||
-            route == ROUTE_SETTINGS_PRIVACY
+            route == ROUTE_SETTINGS_PRIVACY ||
+            route == ROUTE_SETTINGS_THEME ||
+            route == ROUTE_ARCHIVE ||
+            route == ROUTE_COURSES ||
+            route == ROUTE_INTERACTIVE ||
+            route == ROUTE_COMPOSITION ||
+            route == ROUTE_MENTOR_REVIEW
 }

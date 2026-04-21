@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.HeritageSecondaryTopBar
 import com.intangibleheritage.music.core.ui.theme.ScreenLayout
-import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -96,6 +95,6 @@ private fun PrivacyActionRow(
             )
         },
         modifier = Modifier.clickable { },
-        colors = ListItemDefaults.colors(containerColor = SurfaceCard)
+        colors = ListItemDefaults.colors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     )
 }

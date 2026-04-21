@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.outlined.ChevronRight
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.NotificationsNone
+import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.PhotoLibrary
 import androidx.compose.material.icons.outlined.PrivacyTip
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -27,8 +28,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.HeritageSecondaryTopBar
-import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
-import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,7 +36,8 @@ fun SettingsScreen(
     onOpenAbout: () -> Unit,
     onOpenLicenses: () -> Unit,
     onOpenNotifications: () -> Unit = {},
-    onOpenPrivacy: () -> Unit = {}
+    onOpenPrivacy: () -> Unit = {},
+    onOpenTheme: () -> Unit = {}
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -61,12 +61,12 @@ fun SettingsScreen(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
             )
             SettingsListRow(
-                icon = { Icon(Icons.Outlined.Info, contentDescription = null, tint = PrimaryTeal) },
+                icon = { Icon(Icons.Outlined.Info, contentDescription = null, tint = MaterialTheme.colorScheme.primary) },
                 title = stringResource(R.string.profile_menu_about),
                 onClick = onOpenAbout
             )
             SettingsListRow(
-                icon = { Icon(Icons.Outlined.PhotoLibrary, contentDescription = null, tint = PrimaryTeal) },
+                icon = { Icon(Icons.Outlined.PhotoLibrary, contentDescription = null, tint = MaterialTheme.colorScheme.primary) },
                 title = stringResource(R.string.profile_menu_licenses),
                 onClick = onOpenLicenses
             )
@@ -80,12 +80,17 @@ fun SettingsScreen(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
             )
             SettingsListRow(
-                icon = { Icon(Icons.Outlined.NotificationsNone, contentDescription = null, tint = PrimaryTeal) },
+                icon = { Icon(Icons.Outlined.NotificationsNone, contentDescription = null, tint = MaterialTheme.colorScheme.primary) },
                 title = stringResource(R.string.settings_notifications_title),
                 onClick = onOpenNotifications
             )
             SettingsListRow(
-                icon = { Icon(Icons.Outlined.PrivacyTip, contentDescription = null, tint = PrimaryTeal) },
+                icon = { Icon(Icons.Outlined.Palette, contentDescription = null, tint = MaterialTheme.colorScheme.primary) },
+                title = stringResource(R.string.settings_theme_title),
+                onClick = onOpenTheme
+            )
+            SettingsListRow(
+                icon = { Icon(Icons.Outlined.PrivacyTip, contentDescription = null, tint = MaterialTheme.colorScheme.primary) },
                 title = stringResource(R.string.settings_privacy_title),
                 onClick = onOpenPrivacy
             )
@@ -112,6 +117,6 @@ private fun SettingsListRow(
         },
         modifier = Modifier
             .clickable(onClick = onClick),
-        colors = ListItemDefaults.colors(containerColor = SurfaceCard)
+        colors = ListItemDefaults.colors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     )
 }

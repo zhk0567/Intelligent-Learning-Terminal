@@ -61,7 +61,6 @@ import com.intangibleheritage.music.core.data.AppRepositories
 import com.intangibleheritage.music.core.data.model.StoryFeedItem
 import com.intangibleheritage.music.core.data.model.StoryFeedTab
 import com.intangibleheritage.music.core.resources.R
-import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
@@ -139,11 +138,11 @@ fun StoriesScreen(
                     .weight(1f)
                     .fillMaxWidth(),
                 containerColor = Color.Transparent,
-                contentColor = PrimaryTeal,
+                contentColor = MaterialTheme.colorScheme.primary,
                 indicator = { positions ->
                     TabRowDefaults.SecondaryIndicator(
                         modifier = Modifier.tabIndicatorOffset(positions[tabIndex]),
-                        color = PrimaryTeal
+                        color = MaterialTheme.colorScheme.primary
                     )
                 },
                 divider = {}
@@ -154,7 +153,7 @@ fun StoriesScreen(
                     text = {
                         Text(
                             stringResource(R.string.tab_recommend),
-                            color = if (tabIndex == 0) PrimaryTeal else MaterialTheme.colorScheme.onSurfaceVariant
+                            color = if (tabIndex == 0) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 )
@@ -164,7 +163,7 @@ fun StoriesScreen(
                     text = {
                         Text(
                             stringResource(R.string.tab_following),
-                            color = if (tabIndex == 1) PrimaryTeal else MaterialTheme.colorScheme.onSurfaceVariant
+                            color = if (tabIndex == 1) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 )
@@ -173,7 +172,7 @@ fun StoriesScreen(
                 Icon(
                     Icons.Outlined.Notifications,
                     contentDescription = stringResource(R.string.notifications_title),
-                    tint = PrimaryTeal
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         }
@@ -218,9 +217,10 @@ fun StoriesScreen(
                 ) {
                     items(feed, key = { it.id }) { item ->
                         val favKey = item.id.substringBefore("_more_")
+                        val isFavorite = remember(favIds, favKey) { favKey in favIds }
                         StoryCard(
                             item = item,
-                            isFavorite = favKey in favIds,
+                            isFavorite = isFavorite,
                             onOpen = { onOpenStory(item.id) },
                             onToggleFavorite = {
                                 scope.launch {
@@ -234,7 +234,7 @@ fun StoriesScreen(
                     refreshing = refreshing,
                     state = pullRefreshState,
                     modifier = Modifier.align(Alignment.TopCenter),
-                    contentColor = PrimaryTeal
+                    contentColor = MaterialTheme.colorScheme.primary
                 )
             }
         }
@@ -253,33 +253,34 @@ private fun StoryCard(
             .fillMaxWidth()
             .height(item.heightDp.dp)
             .clip(RoundedCornerShape(12.dp))
+            .clickable(onClick = onOpen)
     ) {
         AsyncImage(
             model = item.imageRes,
             contentDescription = null,
             modifier = Modifier
-                .fillMaxSize()
-                .clickable(onClick = onOpen),
+                .fillMaxSize(),
             contentScale = ContentScale.Crop
         )
         val overlay = item.overlayTextRes
+        val overlayBrush = remember(overlay) {
+            if (overlay == null) null else {
+                Brush.verticalGradient(
+                    colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.65f))
+                )
+            }
+        }
         if (overlay != null) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .clickable(onClick = onOpen)
-                    .background(
-                        Brush.verticalGradient(
-                            colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.65f))
-                        )
-                    )
+                    .background(overlayBrush!!)
             )
             Text(
                 text = stringResource(overlay),
                 modifier = Modifier
                     .align(Alignment.BottomStart)
-                    .padding(10.dp)
-                    .clickable(onClick = onOpen),
+                    .padding(10.dp),
                 style = MaterialTheme.typography.titleMedium,
                 color = Color.White
             )
@@ -293,7 +294,7 @@ private fun StoryCard(
             Icon(
                 imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                 contentDescription = stringResource(R.string.story_favorite_cd),
-                tint = PrimaryTeal,
+                tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(22.dp)
             )
         }

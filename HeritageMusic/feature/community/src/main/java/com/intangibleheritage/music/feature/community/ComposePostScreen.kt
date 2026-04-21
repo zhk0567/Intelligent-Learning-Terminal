@@ -27,7 +27,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.HeritageSecondaryTopBar
-import com.intangibleheritage.music.core.ui.theme.BorderTeal
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -70,8 +69,8 @@ fun ComposePostScreen(
                 label = { Text(stringResource(R.string.compose_field_title)) },
                 singleLine = true,
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = BorderTeal,
-                    unfocusedBorderColor = BorderTeal.copy(alpha = 0.5f)
+                    focusedBorderColor = MaterialTheme.colorScheme.outline,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant
                 )
             )
             Spacer(modifier = Modifier.height(12.dp))
@@ -84,8 +83,8 @@ fun ComposePostScreen(
                 label = { Text(stringResource(R.string.compose_field_body)) },
                 minLines = 6,
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = BorderTeal,
-                    unfocusedBorderColor = BorderTeal.copy(alpha = 0.5f)
+                    focusedBorderColor = MaterialTheme.colorScheme.outline,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant
                 )
             )
             Spacer(modifier = Modifier.height(16.dp))

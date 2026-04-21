@@ -41,9 +41,6 @@ import com.intangibleheritage.music.core.data.AppRepositories
 import com.intangibleheritage.music.core.data.model.CommunityCategory
 import com.intangibleheritage.music.core.data.model.CommunityPost
 import com.intangibleheritage.music.core.resources.R
-import com.intangibleheritage.music.core.ui.theme.BorderTeal
-import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
-import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 
 @Composable
 fun CommunityScreen(
@@ -100,7 +97,7 @@ fun CommunityScreen(
                             .fillMaxWidth(),
                         contentAlignment = Alignment.Center
                     ) {
-                        CircularProgressIndicator(color = PrimaryTeal)
+                        CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
                     }
                 }
                 posts.isEmpty() -> {
@@ -139,7 +136,7 @@ fun CommunityScreen(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(bottom = 24.dp),
-            containerColor = PrimaryTeal,
+            containerColor = MaterialTheme.colorScheme.primary,
             shape = CircleShape
         ) {
             Icon(
@@ -163,15 +160,15 @@ private fun CategoryChip(
         label = { Text(label) },
         shape = RoundedCornerShape(20.dp),
         colors = FilterChipDefaults.filterChipColors(
-            selectedContainerColor = BorderTeal.copy(alpha = 0.25f),
-            containerColor = SurfaceCard,
+            selectedContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.25f),
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
             labelColor = MaterialTheme.colorScheme.onSurface,
-            selectedLabelColor = BorderTeal
+            selectedLabelColor = MaterialTheme.colorScheme.primary
         ),
         border = FilterChipDefaults.filterChipBorder(
             enabled = true,
             selected = selected,
-            borderColor = BorderTeal
+            borderColor = MaterialTheme.colorScheme.outline
         )
     )
 }
@@ -185,8 +182,8 @@ private fun CommunityPostCard(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .background(SurfaceCard)
-            .border(1.dp, BorderTeal, RoundedCornerShape(12.dp))
+            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(12.dp))
             .clickable(onClick = onClick)
             .padding(16.dp)
     ) {

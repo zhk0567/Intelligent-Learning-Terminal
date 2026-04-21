@@ -54,9 +54,6 @@ import com.intangibleheritage.music.core.data.model.Product
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.HeritageSecondaryTopBar
 import com.intangibleheritage.music.core.ui.navigation.InvalidDeepLinkScreen
-import com.intangibleheritage.music.core.ui.theme.BorderTeal
-import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
-import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -161,7 +158,7 @@ fun ProductDetailScreen(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    CircularProgressIndicator(color = PrimaryTeal)
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         text = stringResource(R.string.mall_detail_loading),
@@ -240,14 +237,14 @@ private fun ProductDetailContent(
         Text(
             text = "${product.priceYuan}${stringResource(R.string.currency_yuan)}",
             style = MaterialTheme.typography.headlineMedium,
-            color = BorderTeal
+            color = MaterialTheme.colorScheme.primary
         )
         Spacer(modifier = Modifier.height(8.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
                 Icons.Filled.Star,
                 contentDescription = null,
-                tint = PrimaryTeal,
+                tint = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.size(20.dp)
             )
             Spacer(modifier = Modifier.size(4.dp))
@@ -261,7 +258,7 @@ private fun ProductDetailContent(
         Text(
             text = stringResource(R.string.section_description),
             style = MaterialTheme.typography.titleMedium,
-            color = PrimaryTeal
+            color = MaterialTheme.colorScheme.primary
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
@@ -273,7 +270,7 @@ private fun ProductDetailContent(
         Text(
             text = stringResource(R.string.section_color),
             style = MaterialTheme.typography.titleMedium,
-            color = PrimaryTeal
+            color = MaterialTheme.colorScheme.primary
         )
         Spacer(modifier = Modifier.height(12.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
@@ -286,7 +283,7 @@ private fun ProductDetailContent(
                         .background(swatchColor)
                         .border(
                             width = if (selected) 3.dp else 1.dp,
-                            color = if (selected) PrimaryTeal else Color.White.copy(alpha = 0.3f),
+                            color = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant,
                             shape = CircleShape
                         )
                         .clickable { onSelectSwatch(index) }
@@ -312,7 +309,7 @@ private fun ProductDetailContent(
         Text(
             text = stringResource(R.string.section_reviews),
             style = MaterialTheme.typography.titleMedium,
-            color = PrimaryTeal
+            color = MaterialTheme.colorScheme.primary
         )
         Spacer(modifier = Modifier.height(10.dp))
         ReviewCard(
@@ -344,7 +341,7 @@ private fun SpecSection(
         Text(
             text = stringResource(titleRes),
             style = MaterialTheme.typography.titleMedium,
-            color = PrimaryTeal
+            color = MaterialTheme.colorScheme.primary
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
@@ -360,15 +357,15 @@ private fun specResFor(product: Product): Int = when (product.id) {
     "bronze_bells" -> R.string.product_spec_bronze
     "silk_scarf" -> R.string.product_spec_silk
     "pipa_bookmark" -> R.string.product_spec_pipa
-    else -> R.string.product_spec_dunhuang
+    else -> R.string.product_spec_generic
 }
 
 @Composable
 private fun ReviewCard(author: String, content: String, stars: Int) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = SurfaceCard),
-        border = BorderStroke(1.dp, BorderTeal.copy(alpha = 0.35f))
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.35f))
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -383,7 +380,7 @@ private fun ReviewCard(author: String, content: String, stars: Int) {
                         Icons.Filled.Star,
                         contentDescription = null,
                         modifier = Modifier.size(14.dp),
-                        tint = if (i < stars) PrimaryTeal else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f)
+                        tint = if (i < stars) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f)
                     )
                 }
             }

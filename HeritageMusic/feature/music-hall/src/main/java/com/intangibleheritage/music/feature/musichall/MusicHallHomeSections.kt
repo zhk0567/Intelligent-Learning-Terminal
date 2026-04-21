@@ -51,9 +51,6 @@ import com.intangibleheritage.music.core.data.model.HorizontalCard
 import com.intangibleheritage.music.core.data.model.HotTile
 import com.intangibleheritage.music.core.data.model.TagChip
 import com.intangibleheritage.music.core.resources.R
-import com.intangibleheritage.music.core.ui.theme.BorderTeal
-import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
-import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 
 /** 与 [MusicHallScreen] 中轮播虚拟页倍数一致。 */
 internal const val MusicHallBannerVirtualMultiplier = 1_000
@@ -83,7 +80,7 @@ internal fun MusicHallBannerSection(
                 .fillMaxWidth()
                 .aspectRatio(16f / 8.4f)
                 .clip(RoundedCornerShape(16.dp))
-                .border(1.dp, BorderTeal.copy(alpha = 0.25f), RoundedCornerShape(16.dp))
+                .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.25f), RoundedCornerShape(16.dp))
         ) { page ->
             val slide = bannersFiltered[if (loop) page % n else 0]
             AsyncImage(
@@ -119,7 +116,10 @@ internal fun MusicHallBannerSection(
                         .padding(horizontal = 3.dp)
                         .size(if (selected) 7.dp else 5.dp)
                         .clip(CircleShape)
-                        .background(if (selected) PrimaryTeal else PrimaryTeal.copy(alpha = 0.35f))
+                        .background(
+                            if (selected) MaterialTheme.colorScheme.primary
+                            else MaterialTheme.colorScheme.primary.copy(alpha = 0.35f)
+                        )
                 )
             }
         }
@@ -153,8 +153,8 @@ internal fun MusicHallDailyHotSection(
                     .weight(1f)
                     .aspectRatio(0.95f)
                     .clip(RoundedCornerShape(16.dp))
-                    .border(1.dp, BorderTeal.copy(alpha = 0.4f), RoundedCornerShape(16.dp))
-                    .background(SurfaceCard.copy(alpha = 0.88f))
+                    .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.4f), RoundedCornerShape(16.dp))
+                    .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.88f))
                     .clickable {
                         tile.audioTrackId?.let { tid -> onPlayTrack(tid) }
                             ?: onFeedback(
@@ -266,12 +266,12 @@ internal fun MusicHallGuessTagsSection(
                     label = { Text(stringResource(tag.labelRes)) },
                     shape = RoundedCornerShape(20.dp),
                     colors = AssistChipDefaults.assistChipColors(
-                        containerColor = if (selected) PrimaryTeal.copy(alpha = 0.22f) else SurfaceCard.copy(alpha = 0.85f),
-                        labelColor = if (selected) PrimaryTeal else MaterialTheme.colorScheme.onSurface
+                        containerColor = if (selected) MaterialTheme.colorScheme.primary.copy(alpha = 0.22f) else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.85f),
+                        labelColor = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
                     ),
                     border = AssistChipDefaults.assistChipBorder(
                         enabled = true,
-                        borderColor = if (selected) PrimaryTeal else BorderTeal.copy(alpha = 0.5f)
+                        borderColor = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)
                     )
                 )
             }
@@ -318,8 +318,8 @@ private fun DailyPickGridCard(
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(16.dp))
-            .border(1.dp, BorderTeal.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
-            .background(SurfaceCard.copy(alpha = 0.86f))
+            .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
+            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.86f))
             .aspectRatio(0.82f)
             .then(
                 if (canPlay) {
@@ -360,8 +360,8 @@ private fun HorizontalHighlightCard(
             .fillMaxWidth()
             .height(88.dp)
             .clip(RoundedCornerShape(14.dp))
-            .border(1.dp, BorderTeal.copy(alpha = 0.36f), RoundedCornerShape(14.dp))
-            .background(SurfaceCard.copy(alpha = 0.88f))
+            .border(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.36f), RoundedCornerShape(14.dp))
+            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.88f))
             .clickable(onClick = onClick)
             .padding(horizontal = 12.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically

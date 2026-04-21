@@ -47,10 +47,7 @@ import androidx.compose.ui.unit.dp
 import com.intangibleheritage.music.core.data.AppRepositories
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.InvalidDeepLinkScreen
-import com.intangibleheritage.music.core.ui.theme.BorderTeal
-import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
 import com.intangibleheritage.music.core.ui.theme.ScreenLayout
-import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -92,7 +89,7 @@ fun PostDetailScreen(
                         Icon(
                             Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = stringResource(R.string.cd_back),
-                            tint = PrimaryTeal
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                 },
@@ -125,8 +122,8 @@ fun PostDetailScreen(
             Spacer(modifier = Modifier.height(20.dp))
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = SurfaceCard),
-                border = BorderStroke(1.dp, BorderTeal.copy(alpha = 0.35f))
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.35f))
             ) {
                 Text(
                     text = post.bodyOverride ?: stringResource(post.bodyRes),
@@ -139,14 +136,14 @@ fun PostDetailScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(SurfaceCard, RoundedCornerShape(12.dp))
+                    .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(12.dp))
                     .padding(ScreenLayout.CardContentPadding),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
                     text = stringResource(R.string.community_author_label),
                     style = MaterialTheme.typography.labelLarge,
-                    color = PrimaryTeal
+                    color = MaterialTheme.colorScheme.primary
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
@@ -159,7 +156,7 @@ fun PostDetailScreen(
             Text(
                 text = stringResource(R.string.section_actions),
                 style = MaterialTheme.typography.titleMedium,
-                color = PrimaryTeal
+                color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing))
             Row {
@@ -191,7 +188,7 @@ fun PostDetailScreen(
             Text(
                 text = stringResource(R.string.community_comments_title),
                 style = MaterialTheme.typography.titleMedium,
-                color = PrimaryTeal
+                color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing))
             OutlinedTextField(
@@ -202,8 +199,8 @@ fun PostDetailScreen(
                 placeholder = { Text(stringResource(R.string.community_comment_hint)) },
                 keyboardOptions = KeyboardOptions.Default.copy(capitalization = KeyboardCapitalization.Sentences),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = BorderTeal,
-                    unfocusedBorderColor = BorderTeal.copy(alpha = 0.5f)
+                    focusedBorderColor = MaterialTheme.colorScheme.outline,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant
                 )
             )
             Spacer(modifier = Modifier.height(ScreenLayout.TopSpacing))
@@ -229,7 +226,7 @@ fun PostDetailScreen(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(SurfaceCard.copy(alpha = 0.35f), RoundedCornerShape(8.dp))
+                    .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.35f), RoundedCornerShape(8.dp))
                     .padding(12.dp)
             )
         }

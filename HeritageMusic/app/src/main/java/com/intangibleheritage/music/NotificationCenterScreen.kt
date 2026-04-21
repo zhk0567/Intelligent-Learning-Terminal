@@ -30,9 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.intangibleheritage.music.core.resources.R
 import com.intangibleheritage.music.core.ui.navigation.HeritageSecondaryTopBar
-import com.intangibleheritage.music.core.ui.theme.PrimaryTeal
 import com.intangibleheritage.music.core.ui.theme.ScreenLayout
-import com.intangibleheritage.music.core.ui.theme.SurfaceCard
 
 private data class NotificationItem(
     val id: String,
@@ -85,7 +83,7 @@ fun NotificationCenterScreen(onBack: () -> Unit) {
                 Text(
                     text = stringResource(R.string.notifications_mark_all_read),
                     style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Medium),
-                    color = PrimaryTeal,
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.clickable {
                         items = items.map { it.copy(unread = false) }
                     }
@@ -129,7 +127,7 @@ private fun NotificationCard(
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                color = SurfaceCard.copy(alpha = if (item.unread) 0.94f else 0.86f),
+                color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = if (item.unread) 0.94f else 0.86f),
                 shape = RoundedCornerShape(12.dp)
             )
             .clickable(onClick = onClick)
@@ -146,7 +144,7 @@ private fun NotificationCard(
                 Text(
                     text = "  •",
                     style = MaterialTheme.typography.titleSmall,
-                    color = PrimaryTeal
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
