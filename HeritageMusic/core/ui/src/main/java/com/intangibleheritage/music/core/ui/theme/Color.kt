@@ -59,6 +59,12 @@ internal fun updateLegacyThemeBridge(
         HeritageThemeKeys.ForestGold -> colorScheme.primary
         else -> colorScheme.primary
     }
-    LegacyThemeBridge.techGridLine = techBase.copy(alpha = 0.22f)
-    LegacyThemeBridge.techGlow = techBase.copy(alpha = 0.38f)
+    val (gridAlpha, glowAlpha) = when (themeKey) {
+        HeritageThemeKeys.PaperLight -> 0.14f to 0.22f
+        HeritageThemeKeys.NeonPurpleBlue -> 0.24f to 0.36f
+        HeritageThemeKeys.ForestGold -> 0.26f to 0.42f
+        else -> 0.22f to 0.38f
+    }
+    LegacyThemeBridge.techGridLine = techBase.copy(alpha = gridAlpha)
+    LegacyThemeBridge.techGlow = techBase.copy(alpha = glowAlpha)
 }

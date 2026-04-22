@@ -20,75 +20,75 @@ object HeritageThemeKeys {
 }
 
 private fun heritageDarkScheme(): ColorScheme = darkColorScheme(
-    primary = PrimaryTeal,
+    primary = Color(0xFF37E7FF),
     onPrimary = Color(0xFF031018),
-    primaryContainer = PrimaryTealDim,
-    secondary = AccentViolet,
+    primaryContainer = Color(0xFF0F5A67),
+    secondary = Color(0xFFA88BFF),
     onSecondary = Color(0xFFF5F0FF),
-    tertiary = AccentViolet,
+    tertiary = Color(0xFF9C7BFF),
     onTertiary = Color(0xFF1A1030),
-    background = Background,
-    onBackground = OnBackground,
-    surface = SurfaceDark,
-    onSurface = OnBackground,
-    surfaceVariant = SurfaceCard,
-    onSurfaceVariant = OnBackgroundMuted,
-    outline = PrimaryTeal.copy(alpha = 0.45f),
-    outlineVariant = OnBackgroundMuted.copy(alpha = 0.28f)
+    background = Color(0xFF050814),
+    onBackground = Color(0xFFEAF6FF),
+    surface = Color(0xFF0F182B),
+    onSurface = Color(0xFFEAF6FF),
+    surfaceVariant = Color(0xFF17243B),
+    onSurfaceVariant = Color(0xFFA9BED0),
+    outline = Color(0xFF4D8AA0),
+    outlineVariant = Color(0xFF355769)
 )
 
 private fun paperLightScheme(): ColorScheme = lightColorScheme(
-    primary = Color(0xFF2E4A6B),
+    primary = Color(0xFF2A496E),
     onPrimary = Color.White,
-    primaryContainer = Color(0xFFDDE8F5),
-    secondary = Color(0xFF8A5A2B),
+    primaryContainer = Color(0xFFCDDDF2),
+    secondary = Color(0xFF845A2A),
     onSecondary = Color.White,
-    tertiary = Color(0xFF5E6D45),
+    tertiary = Color(0xFF5B6A43),
     onTertiary = Color.White,
-    background = Color(0xFFF4EFE2),
-    onBackground = Color(0xFF2A2A2A),
-    surface = Color(0xFFFFFAF0),
-    onSurface = Color(0xFF2A2A2A),
-    surfaceVariant = Color(0xFFE9E1CF),
-    onSurfaceVariant = Color(0xFF5F594C),
-    outline = Color(0xFF867C67),
-    outlineVariant = Color(0xFFB4A98F)
+    background = Color(0xFFF7F2E8),
+    onBackground = Color(0xFF252525),
+    surface = Color(0xFFFFFCF4),
+    onSurface = Color(0xFF252525),
+    surfaceVariant = Color(0xFFE7DECB),
+    onSurfaceVariant = Color(0xFF4D473C),
+    outline = Color(0xFF726853),
+    outlineVariant = Color(0xFF9E9278)
 )
 
 private fun neonPurpleBlueScheme(): ColorScheme = darkColorScheme(
-    primary = Color(0xFF6CF0FF),
-    onPrimary = Color(0xFF002329),
-    primaryContainer = Color(0xFF00606D),
-    secondary = Color(0xFFB68CFF),
-    onSecondary = Color(0xFF220F4D),
-    tertiary = Color(0xFFFF5CD1),
+    primary = Color(0xFF67DFEC),
+    onPrimary = Color(0xFF00262C),
+    primaryContainer = Color(0xFF055B67),
+    secondary = Color(0xFFB28AF3),
+    onSecondary = Color(0xFF26124F),
+    tertiary = Color(0xFFF154C6),
     onTertiary = Color(0xFF4C0038),
-    background = Color(0xFF090012),
+    background = Color(0xFF0D0218),
     onBackground = Color(0xFFF2E9FF),
-    surface = Color(0xFF17002B),
+    surface = Color(0xFF1A042F),
     onSurface = Color(0xFFF2E9FF),
-    surfaceVariant = Color(0xFF23003D),
-    onSurfaceVariant = Color(0xFFCCB2EE),
-    outline = Color(0xFF8D5BDA),
-    outlineVariant = Color(0xFF5E3A90)
+    surfaceVariant = Color(0xFF260A40),
+    onSurfaceVariant = Color(0xFFD1B8EE),
+    outline = Color(0xFF865BCF),
+    outlineVariant = Color(0xFF593C86)
 )
 
 private fun forestGoldScheme(): ColorScheme = darkColorScheme(
-    primary = Color(0xFFD9B64A),
+    primary = Color(0xFFE8C867),
     onPrimary = Color(0xFF2B2100),
-    primaryContainer = Color(0xFF5C4700),
-    secondary = Color(0xFF54C77B),
+    primaryContainer = Color(0xFF725900),
+    secondary = Color(0xFF58CD80),
     onSecondary = Color(0xFF062D15),
-    tertiary = Color(0xFF89E0B0),
+    tertiary = Color(0xFF8FE6B6),
     onTertiary = Color(0xFF103321),
-    background = Color(0xFF0E1A14),
+    background = Color(0xFF101C16),
     onBackground = Color(0xFFE9F3EC),
-    surface = Color(0xFF15271D),
+    surface = Color(0xFF182C21),
     onSurface = Color(0xFFE9F3EC),
-    surfaceVariant = Color(0xFF1E3327),
-    onSurfaceVariant = Color(0xFFAFC6B8),
-    outline = Color(0xFF6B8F79),
-    outlineVariant = Color(0xFF3C5948)
+    surfaceVariant = Color(0xFF21382B),
+    onSurfaceVariant = Color(0xFFB4CBBB),
+    outline = Color(0xFF7CA389),
+    outlineVariant = Color(0xFF425E4C)
 )
 
 @Composable
