@@ -1,0 +1,76 @@
+.tab-lead {
+  padding: 16rpx 32rpx;
+  line-height: 1.5;
+}
+
+.comm-kw-row {
+  padding: 0 32rpx 16rpx;
+}
+
+.comm-kw {
+  width: 100%;
+  height: 72rpx;
+  padding: 0 24rpx;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--on-surface);
+  border: 1rpx solid var(--surface-variant);
+  font-size: 26rpx;
+  box-sizing: border-box;
+}
+
+.cat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  padding: 0 32rpx 20rpx;
+}
+
+.cat-chip {
+  padding: 10rpx 24rpx;
+  border-radius: 999rpx;
+  border: 1rpx solid var(--outline);
+  font-size: 24rpx;
+  color: var(--on-surface-variant);
+}
+
+.cat-chip.on {
+  border-color: var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.no-hit {
+  padding: 48rpx;
+  text-align: center;
+}
+
+.post-list {
+  padding: 0 32rpx 120rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.post-card {
+  padding: 28rpx;
+}
+
+.post-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--on-surface);
+  line-height: 1.4;
+}
+
+.post-sub {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  line-height: 1.45;
+}
+
+.post-cat {
+  margin-top: 16rpx;
+  font-size: 22rpx;
+  color: var(--primary);
+}

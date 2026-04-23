@@ -1,0 +1,19 @@
+<view class="page-root {{themeClass}}">
+  <view class="sub-hint muted">非遗音乐课程体系演示，点击封面进入课程详情并试听关联曲目。</view>
+  <view class="list">
+    <view
+      class="course-card card-surface"
+      wx:for="{{courses}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onCourseOpen"
+    >
+      <image class="course-cover" src="{{item.coverImageUrl}}" mode="aspectFill" />
+      <view class="course-body">
+        <view class="course-title">{{item.title}}</view>
+        <view class="course-meta muted">{{item.tutorName}} · {{item.levelLabel}} · {{item.lessons}} 课</view>
+        <view class="course-sum">{{item.summary}}</view>
+      </view>
+    </view>
+  </view>
+</view>

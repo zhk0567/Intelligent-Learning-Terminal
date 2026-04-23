@@ -1,0 +1,46 @@
+.lead {
+  padding: 24rpx 32rpx;
+  font-size: 26rpx;
+  line-height: 1.5;
+}
+
+.form {
+  margin: 0 32rpx 48rpx;
+  padding: 28rpx;
+}
+
+.field {
+  margin-bottom: 24rpx;
+}
+
+.label {
+  display: block;
+  font-size: 24rpx;
+  color: var(--on-surface-variant);
+  margin-bottom: 10rpx;
+}
+
+.inp {
+  width: 100%;
+  height: 72rpx;
+  padding: 0 20rpx;
+  border-radius: var(--radius-md);
+  background: var(--background);
+  color: var(--on-background);
+  border: 1rpx solid var(--surface-variant);
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.btn {
+  margin-top: 12rpx;
+  background: var(--surface-variant);
+  color: var(--primary);
+  font-size: 28rpx;
+}
+
+.foot {
+  margin-top: 20rpx;
+  font-size: 22rpx;
+  line-height: 1.45;
+}

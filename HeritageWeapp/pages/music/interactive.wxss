@@ -1,0 +1,46 @@
+.hub-title {
+  padding: 32rpx 32rpx 8rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.hub-sub {
+  padding: 0 32rpx 24rpx;
+  font-size: 26rpx;
+  line-height: 1.5;
+}
+
+.module-list {
+  padding: 0 32rpx 48rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.module-card {
+  padding: 28rpx;
+}
+
+.mod-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.mod-desc {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  line-height: 1.45;
+}
+
+.mod-hint {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+}
+
+.mod-btn {
+  margin-top: 20rpx;
+  background: var(--surface-variant);
+  color: var(--primary);
+}

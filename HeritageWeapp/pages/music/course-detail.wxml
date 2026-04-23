@@ -1,0 +1,16 @@
+<view class="page-root {{themeClass}}">
+  <block wx:if="{{course}}">
+    <image class="hero" src="{{course.coverImageUrl}}" mode="aspectFill" />
+    <view class="body card-surface">
+      <view class="badge">{{course.levelLabel}}</view>
+      <view class="t">{{course.title}}</view>
+      <view class="muted block">{{course.summary}}</view>
+      <view class="muted block">导师：{{course.tutorName}} · {{course.levelLabel}} · {{course.lessons}} 课时</view>
+      <view class="muted block small">版权：{{course.copyrightNote}}</view>
+      <view class="subh">课程目标</view>
+      <view class="goal" wx:for="{{course.goals}}" wx:for-item="g" wx:key="*this">· {{g}}</view>
+      <button class="btn" bindtap="onPlay">试听关联曲目</button>
+    </view>
+  </block>
+  <view wx:else class="empty muted">未找到该课程</view>
+</view>

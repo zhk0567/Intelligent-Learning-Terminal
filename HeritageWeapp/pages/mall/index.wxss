@@ -1,0 +1,115 @@
+.mall-hero {
+  margin: 16rpx 32rpx;
+  padding: 28rpx;
+}
+
+.mall-hero-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.mall-hero-desc {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  line-height: 1.5;
+}
+
+.mall-kw-row {
+  padding: 0 32rpx 16rpx;
+}
+
+.mall-kw {
+  width: 100%;
+  height: 72rpx;
+  padding: 0 24rpx;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--on-surface);
+  border: 1rpx solid var(--surface-variant);
+  font-size: 26rpx;
+  box-sizing: border-box;
+}
+
+.no-hit {
+  padding: 24rpx 32rpx 8rpx;
+  text-align: center;
+  font-size: 26rpx;
+}
+
+.zones {
+  padding: 0 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.zone-card {
+  padding: 24rpx;
+}
+
+.zone-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.zone-desc {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  line-height: 1.45;
+}
+
+.zone-more {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: var(--primary);
+}
+
+.prod-scroll {
+  width: 100%;
+  white-space: nowrap;
+  padding-bottom: 120rpx;
+}
+
+.prod-row {
+  display: inline-flex;
+  gap: 20rpx;
+  padding: 8rpx 32rpx 32rpx;
+}
+
+.prod-card {
+  width: 280rpx;
+  flex-shrink: 0;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.prod-img {
+  width: 280rpx;
+  height: 280rpx;
+  display: block;
+}
+
+.prod-info {
+  padding: 16rpx;
+  white-space: normal;
+}
+
+.prod-title {
+  font-size: 26rpx;
+  color: var(--on-surface);
+  line-height: 1.35;
+}
+
+.prod-price {
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.prod-meta {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+}

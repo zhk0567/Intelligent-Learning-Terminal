@@ -1,0 +1,21 @@
+<view class="page-root {{themeClass}}">
+  <view wx:if="{{!section}}" class="no-hit muted">未找到该分区</view>
+  <block wx:else>
+    <view class="sec-head card-surface">
+      <view class="sec-title">{{section.title}}</view>
+      <view class="sec-desc muted">{{section.description}}</view>
+    </view>
+    <view class="subhint muted">本分区共 {{products.length}} 件演示商品（未接入支付）。</view>
+    <view wx:if="{{!products.length}}" class="no-hit muted">该分区暂无商品（演示）</view>
+    <view wx:else class="grid">
+      <view class="cell card-surface" wx:for="{{products}}" wx:key="id">
+        <image class="cell-img" src="{{item.imageUrl}}" mode="aspectFill" />
+        <view class="cell-bd">
+          <view class="cell-t">{{item.title}}</view>
+          <view class="cell-p">¥{{item.priceYuan}}</view>
+          <view class="cell-m muted">{{item.rating}} 分</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,23 @@
+.card {
+  margin: 24rpx 32rpx 48rpx;
+  padding: 28rpx;
+}
+
+.h {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--on-surface);
+  margin-bottom: 20rpx;
+}
+
+.p {
+  font-size: 26rpx;
+  line-height: 1.6;
+  color: var(--on-background);
+  margin-bottom: 16rpx;
+}
+
+.p.muted {
+  color: var(--on-surface-variant);
+  margin-bottom: 0;
+}

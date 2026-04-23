@@ -1,0 +1,9 @@
+<view class="page-root {{themeClass}}">
+  <view wx:if="{{post}}" class="detail-wrap">
+    <view class="post-title">{{post.title}}</view>
+    <view class="post-sub muted">{{post.subtitle}}</view>
+    <view class="post-meta">分类：{{post.category}}</view>
+    <view class="post-body">{{post.body}}</view>
+  </view>
+  <view wx:else class="no-hit muted">未找到该帖子</view>
+</view>

@@ -1,0 +1,41 @@
+.sub-hint {
+  padding: 24rpx 32rpx;
+  font-size: 26rpx;
+  line-height: 1.5;
+}
+
+.list {
+  padding: 0 32rpx 48rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.list-card {
+  display: flex;
+  overflow: hidden;
+}
+
+.list-cover {
+  width: 200rpx;
+  height: 160rpx;
+  flex-shrink: 0;
+}
+
+.list-body {
+  flex: 1;
+  padding: 20rpx 24rpx;
+  min-width: 0;
+}
+
+.list-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--on-surface);
+  line-height: 1.35;
+}
+
+.list-meta {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+}

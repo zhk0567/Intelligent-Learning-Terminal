@@ -1,0 +1,37 @@
+.empty {
+  padding: 80rpx 40rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.rows {
+  padding: 24rpx 32rpx 48rpx;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+  padding: 20rpx 24rpx;
+}
+
+.row-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.row-title {
+  font-size: 28rpx;
+  color: var(--on-surface);
+}
+
+.row-sub {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+}
+
+.row-del {
+  padding: 12rpx 20rpx;
+  font-size: 24rpx;
+  color: var(--secondary);
+}

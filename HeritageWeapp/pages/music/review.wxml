@@ -1,0 +1,17 @@
+<view class="page-root {{themeClass}}">
+  <view class="lead muted">输入练习音频与关注维度，输出多维评分与改进建议（演示流程）。</view>
+  <view class="form card-surface">
+    <view class="field">
+      <text class="label">练习音频文件名</text>
+      <input class="inp" placeholder="如：practice_take_01.wav" bindinput="onFile" value="{{file}}" />
+    </view>
+    <view class="field">
+      <text class="label">关注维度</text>
+      <picker mode="selector" range="{{focusOpts}}" value="{{focusIdx}}" bindchange="onFocusPick">
+        <view class="picker-val">{{focusOpts[focusIdx]}}</view>
+      </picker>
+    </view>
+    <button class="btn" bindtap="onGen">生成点评</button>
+    <view class="foot muted">当前为规则引擎点评版本，结果用于演示流程。</view>
+  </view>
+</view>

@@ -1,0 +1,111 @@
+page {
+  --primary: #37e7ff;
+  --on-primary: #031018;
+  --secondary: #a88bff;
+  --background: #050814;
+  --on-background: #eaf6ff;
+  --surface: #0f182b;
+  --on-surface: #eaf6ff;
+  --surface-variant: #17243b;
+  --on-surface-variant: #a9bed0;
+  --outline: #4d8aa0;
+  --radius-lg: 32rpx;
+  --radius-md: 24rpx;
+  --nav-h: 112rpx;
+  --safe-bottom: env(safe-area-inset-bottom);
+  background: var(--background);
+  color: var(--on-background);
+  font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  box-sizing: border-box;
+}
+
+.theme-paper {
+  --primary: #2a496e;
+  --on-primary: #ffffff;
+  --secondary: #845a2a;
+  --background: #f7f2e8;
+  --on-background: #252525;
+  --surface: #fffcf4;
+  --on-surface: #252525;
+  --surface-variant: #e7decb;
+  --on-surface-variant: #4d473c;
+  --outline: #726853;
+}
+
+.theme-neon {
+  --primary: #67dfec;
+  --on-primary: #00262c;
+  --secondary: #b28af3;
+  --background: #0d0218;
+  --on-background: #f2e9ff;
+  --surface: #1a042f;
+  --on-surface: #f2e9ff;
+  --surface-variant: #260a40;
+  --on-surface-variant: #d1b8ee;
+  --outline: #865bcf;
+}
+
+.theme-forest {
+  --primary: #e8c867;
+  --on-primary: #2b2100;
+  --secondary: #58cd80;
+  --background: #101c16;
+  --on-background: #e9f3ec;
+  --surface: #182c21;
+  --on-surface: #e9f3ec;
+  --surface-variant: #21382b;
+  --on-surface-variant: #b4cbbb;
+  --outline: #7ca389;
+}
+
+.page-root {
+  min-height: 100vh;
+  padding-bottom: calc(112rpx + env(safe-area-inset-bottom));
+  background: var(--background);
+  color: var(--on-background);
+}
+
+.app-header {
+  padding: 24rpx 32rpx;
+  background: var(--surface);
+  border-bottom: 1rpx solid var(--surface-variant);
+}
+
+.app-header .title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.app-header .hint {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: var(--on-surface-variant);
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--on-surface);
+  margin: 24rpx 32rpx 16rpx;
+}
+
+.section-title .more {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: var(--on-surface-variant);
+}
+
+.card-surface {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  border: 1rpx solid var(--surface-variant);
+}
+
+.muted {
+  color: var(--on-surface-variant);
+  font-size: 24rpx;
+}

@@ -1,0 +1,12 @@
+<view class="page-root {{themeClass}}">
+  <view wx:if="{{!list.length}}" class="empty muted">暂无收藏，在音乐馆长按卡片可加入。</view>
+  <view wx:else class="rows">
+    <view class="row card-surface" wx:for="{{list}}" wx:key="id">
+      <view class="row-main" data-track="{{item.trackId}}" data-title="{{item.title}}" bindtap="onPlay">
+        <view class="row-title">{{item.title}}</view>
+        <view class="row-sub muted">{{item.trackId}}</view>
+      </view>
+      <view class="row-del" data-id="{{item.id}}" bindtap="onRemove">移除</view>
+    </view>
+  </view>
+</view>

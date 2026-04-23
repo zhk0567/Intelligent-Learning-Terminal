@@ -1,0 +1,8 @@
+<view class="page-root {{themeClass}}">
+  <view class="card card-surface">
+    <view class="h">图片与外链说明</view>
+    <view class="p">演示中的占位图来自 picsum.photos 等公开图床，仅用于布局与交互演示，不代表最终素材版权方案。</view>
+    <view class="p">试听音频使用外链 MP3 演示，正式产品请使用自有 CDN 并在微信小程序后台配置 downloadFile / 媒体合法域名。</view>
+    <view class="p muted">若需商用素材，请替换为已获授权的图片、音频与字体，并保留相应许可记录。</view>
+  </view>
+</view>

@@ -1,0 +1,70 @@
+.hero {
+  width: 100%;
+  height: 360rpx;
+  display: block;
+}
+
+.body {
+  margin: -40rpx 24rpx 48rpx;
+  padding: 28rpx;
+  position: relative;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
+  background: var(--surface-variant);
+  color: var(--primary);
+  font-size: 22rpx;
+}
+
+.t {
+  margin-top: 16rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.block {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  line-height: 1.45;
+}
+
+.accent {
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+.subh {
+  margin: 28rpx 0 12rpx;
+  font-size: 24rpx;
+  color: var(--primary);
+}
+
+.tl {
+  font-size: 24rpx;
+  color: var(--on-surface-variant);
+  padding: 8rpx 0;
+  border-bottom: 1rpx solid var(--surface-variant);
+}
+
+.btn {
+  margin-top: 28rpx;
+  background: var(--surface-variant);
+  color: var(--primary);
+  font-size: 28rpx;
+}
+
+.btn.ghost {
+  margin-top: 16rpx;
+  background: transparent;
+  border: 1rpx solid var(--outline);
+  color: var(--on-surface);
+}
+
+.empty {
+  padding: 80rpx 32rpx;
+  text-align: center;
+}

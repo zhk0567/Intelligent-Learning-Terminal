@@ -1,0 +1,51 @@
+<view class="page-root {{themeClass}}">
+  <view class="app-header">
+    <view class="title">非遗音乐</view>
+    <view class="hint">创作社区 · 离线演示数据（仅本小程序）</view>
+  </view>
+  <view class="tab-lead muted">分享创作、采风与编曲心得；以下为离线演示帖子。</view>
+  <view class="comm-kw-row">
+    <input
+      class="comm-kw"
+      placeholder="搜索帖子标题或正文…"
+      bindinput="onKwInput"
+      value="{{kw}}"
+    />
+  </view>
+  <view class="cat-row">
+    <view
+      class="cat-chip {{category === '' ? 'on' : ''}}"
+      data-cat="all"
+      bindtap="onCatTap"
+    >全部</view>
+    <view
+      class="cat-chip {{category === 'FolkInstrument' ? 'on' : ''}}"
+      data-cat="FolkInstrument"
+      bindtap="onCatTap"
+    >民乐</view>
+    <view
+      class="cat-chip {{category === 'Electronic' ? 'on' : ''}}"
+      data-cat="Electronic"
+      bindtap="onCatTap"
+    >电子</view>
+    <view
+      class="cat-chip {{category === 'Ai' ? 'on' : ''}}"
+      data-cat="Ai"
+      bindtap="onCatTap"
+    >AI</view>
+  </view>
+  <view wx:if="{{noHit}}" class="no-hit muted">无匹配帖子（演示）</view>
+  <view wx:else class="post-list">
+    <view
+      class="post-card card-surface"
+      wx:for="{{posts}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="openPost"
+    >
+      <view class="post-title">{{item.title}}</view>
+      <view class="post-sub muted">{{item.subtitle}}</view>
+      <view class="post-cat">{{item.category}}</view>
+    </view>
+  </view>
+</view>

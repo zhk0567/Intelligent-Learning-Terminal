@@ -1,0 +1,69 @@
+{
+  "pages": [
+    "pages/music/home",
+    "pages/stories/index",
+    "pages/community/index",
+    "pages/community/detail",
+    "pages/mall/index",
+    "pages/profile/index",
+    "pages/music/archive",
+    "pages/music/course",
+    "pages/music/interactive",
+    "pages/music/archive-detail",
+    "pages/music/course-detail",
+    "pages/music/compose",
+    "pages/music/review",
+    "pages/mall/section",
+    "pages/profile/fav",
+    "pages/profile/hist",
+    "pages/profile/about",
+    "pages/profile/licenses"
+  ],
+  "window": {
+    "navigationBarTitleText": "非遗音乐",
+    "navigationBarBackgroundColor": "#0f182b",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#050814",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#a9bed0",
+    "selectedColor": "#37e7ff",
+    "backgroundColor": "#0f182b",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/music/home",
+        "text": "音乐馆",
+        "iconPath": "assets/tab/music.png",
+        "selectedIconPath": "assets/tab/music-active.png"
+      },
+      {
+        "pagePath": "pages/stories/index",
+        "text": "故事",
+        "iconPath": "assets/tab/stories.png",
+        "selectedIconPath": "assets/tab/stories-active.png"
+      },
+      {
+        "pagePath": "pages/community/index",
+        "text": "创作社区",
+        "iconPath": "assets/tab/community.png",
+        "selectedIconPath": "assets/tab/community-active.png"
+      },
+      {
+        "pagePath": "pages/mall/index",
+        "text": "商城",
+        "iconPath": "assets/tab/mall.png",
+        "selectedIconPath": "assets/tab/mall-active.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "assets/tab/profile.png",
+        "selectedIconPath": "assets/tab/profile-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

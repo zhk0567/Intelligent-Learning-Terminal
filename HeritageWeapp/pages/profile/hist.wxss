@@ -1,0 +1,41 @@
+.toolbar {
+  padding: 16rpx 32rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.clear-btn {
+  background: var(--surface-variant);
+  color: var(--on-surface);
+  font-size: 24rpx;
+}
+
+.empty {
+  padding: 80rpx 40rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.rows {
+  padding: 0 32rpx 48rpx;
+}
+
+.row {
+  margin-bottom: 16rpx;
+  padding: 24rpx;
+}
+
+.row-title {
+  font-size: 28rpx;
+  color: var(--on-surface);
+}
+
+.row-sub {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+}
+
+.row-ts {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+}

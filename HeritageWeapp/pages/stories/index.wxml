@@ -1,0 +1,54 @@
+<view class="page-root {{themeClass}}">
+  <view class="app-header">
+    <view class="title">非遗音乐</view>
+    <view class="hint">故事 · 离线演示数据（仅本小程序）</view>
+  </view>
+  <view class="tab-lead muted">非遗音乐与地方风物相结合的灵感记录；瀑布流为演示数据。</view>
+  <view class="inner-tabs">
+    <view
+      class="inner-tab {{storyTab === 'recommend' ? 'active' : ''}}"
+      data-tab="recommend"
+      bindtap="onStoryTab"
+    >推荐</view>
+    <view
+      class="inner-tab {{storyTab === 'following' ? 'active' : ''}}"
+      data-tab="following"
+      bindtap="onStoryTab"
+    >关注</view>
+  </view>
+  <view class="story-kw-row">
+    <input
+      class="story-kw"
+      placeholder="筛选卡片（编号或浮层文案）"
+      bindinput="onKwInput"
+      value="{{kw}}"
+    />
+  </view>
+  <view wx:if="{{noHit}}" class="no-hit muted">无匹配卡片（演示）</view>
+  <view wx:else class="story-scroll">
+    <view class="story-masonry">
+      <view class="story-col">
+        <view
+          class="story-card card-surface"
+          wx:for="{{leftCol}}"
+          wx:key="id"
+          style="height: {{item.minHeight * 2}}rpx;"
+        >
+          <image class="story-img" src="{{item.imageUrl}}" mode="aspectFill" />
+          <view wx:if="{{item.overlay}}" class="story-overlay">{{item.overlay}}</view>
+        </view>
+      </view>
+      <view class="story-col">
+        <view
+          class="story-card card-surface"
+          wx:for="{{rightCol}}"
+          wx:key="id"
+          style="height: {{item.minHeight * 2}}rpx;"
+        >
+          <image class="story-img" src="{{item.imageUrl}}" mode="aspectFill" />
+          <view wx:if="{{item.overlay}}" class="story-overlay">{{item.overlay}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

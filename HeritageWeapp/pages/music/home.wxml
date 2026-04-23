@@ -1,0 +1,99 @@
+<view class="page-root {{themeClass}}">
+  <view class="app-header">
+    <view class="title">非遗音乐</view>
+    <view class="hint">音乐馆 · 离线演示数据（仅本小程序）· 长按卡片可收藏</view>
+  </view>
+  <view class="music-tools">
+    <input
+      class="music-search-input"
+      placeholder="搜索非遗音乐、乐器..."
+      confirm-type="search"
+      bindinput="onSearchInput"
+      value="{{keyword}}"
+    />
+    <view class="entry-chips">
+      <view class="entry-chip" data-entry="archive" bindtap="onEntryTap">资料库</view>
+      <view class="entry-chip" data-entry="course" bindtap="onEntryTap">课程</view>
+      <view class="entry-chip" data-entry="interactive" bindtap="onEntryTap">互动</view>
+    </view>
+  </view>
+  <view wx:if="{{noHit}}" class="no-hit muted">无匹配内容（演示）</view>
+  <block wx:else>
+    <view class="music-sec-wrap" wx:if="{{banners.length}}">
+      <swiper class="banner-swiper" indicator-dots circular autoplay interval="4800" duration="500">
+        <swiper-item wx:for="{{banners}}" wx:key="id">
+          <view
+            class="banner-slide"
+            data-id="{{item.id}}"
+            data-title="{{item.title}}"
+            data-track="{{item.audioTrackId}}"
+            bindtap="onBannerTap"
+            bindlongpress="onFavLong"
+          >
+            <image class="banner-img" src="{{item.imageUrl}}" mode="aspectFill" />
+            <view class="banner-cap">{{item.title}}</view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="music-sec-wrap" wx:if="{{hotTiles.length}}">
+      <view class="section-title">
+        <text>每日热门</text>
+        <text class="more">查看更多</text>
+      </view>
+      <scroll-view scroll-x class="tiles-scroll" show-scrollbar="{{false}}">
+        <view class="tiles-row">
+          <view
+            class="hot-tile card-surface"
+            wx:for="{{hotTiles}}"
+            wx:key="id"
+            data-track="{{item.audioTrackId}}"
+            data-title="{{item.title}}"
+            bindtap="onPlayTap"
+            bindlongpress="onFavLong"
+          >
+            <image class="hot-img" src="{{item.imageUrl}}" mode="aspectFill" />
+            <view class="hot-title">{{item.title}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="music-sec-wrap" wx:if="{{dailyPicks.length}}">
+      <view class="section-title">
+        <text>每日精选</text>
+        <text class="more">查看更多</text>
+      </view>
+      <view class="picks-grid">
+        <view
+          class="pick-card card-surface"
+          wx:for="{{dailyPicks}}"
+          wx:key="id"
+          data-track="{{item.audioTrackId}}"
+          data-title="{{item.title}}"
+          bindtap="onPlayTap"
+          bindlongpress="onFavLong"
+        >
+          <image class="pick-img" src="{{item.imageUrl}}" mode="aspectFill" />
+          <view class="pick-title">{{item.title}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="music-sec-wrap" wx:if="{{guessTags.length}}">
+      <view class="section-title">
+        <text>猜您喜欢</text>
+        <text class="more">查看更多</text>
+      </view>
+      <view class="tags">
+        <view class="tag-chip" wx:for="{{guessTags}}" wx:key="id">{{item.label}}</view>
+      </view>
+    </view>
+    <view class="music-sec-wrap" wx:if="{{bottomCards.length}}">
+      <view class="bottom-cards">
+        <view class="bottom-card card-surface" wx:for="{{bottomCards}}" wx:key="id">
+          <image class="bottom-img" src="{{item.imageUrl}}" mode="aspectFill" />
+          <view class="bottom-cap">{{item.title}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

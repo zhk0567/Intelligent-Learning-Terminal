@@ -1,0 +1,48 @@
+<view class="page-root {{themeClass}}">
+  <view class="app-header">
+    <view class="title">非遗音乐</view>
+    <view class="hint">我的 · 离线演示数据（仅本小程序）</view>
+  </view>
+  <view class="profile-banner card-surface">
+    <view class="nick">非遗旅人</view>
+    <view class="bio">感受音乐，感受世界</view>
+    <view class="hint2 muted">访客模式 · 点击编辑资料（演示）</view>
+  </view>
+  <view class="theme-strip card-surface">
+    <view class="theme-strip-title muted">界面主题（四套色板 · 仅演示，选择保存在本机）</view>
+    <view class="theme-chips">
+      <view
+        class="theme-chip {{activeTheme === 'tech' ? 'on' : ''}}"
+        data-theme="tech"
+        bindtap="onThemeTap"
+      >科技深色</view>
+      <view
+        class="theme-chip {{activeTheme === 'paper' ? 'on' : ''}}"
+        data-theme="paper"
+        bindtap="onThemeTap"
+      >纸墨浅色</view>
+      <view
+        class="theme-chip {{activeTheme === 'neon' ? 'on' : ''}}"
+        data-theme="neon"
+        bindtap="onThemeTap"
+      >霓虹紫蓝</view>
+      <view
+        class="theme-chip {{activeTheme === 'forest' ? 'on' : ''}}"
+        data-theme="forest"
+        bindtap="onThemeTap"
+      >森林绿金</view>
+    </view>
+  </view>
+  <view class="profile-list">
+    <view class="profile-row" data-pf="fav" bindtap="onProfileRow">我的收藏 <text class="chev">›</text></view>
+    <view class="profile-row" data-pf="hist" bindtap="onProfileRow">观看历史 <text class="chev">›</text></view>
+    <view class="profile-row" data-pf="notif" bindtap="onProfileRow">消息与通知 <text class="chev">›</text></view>
+    <view class="profile-row" data-pf="theme" bindtap="onProfileRow">主题设置 <text class="chev">›</text></view>
+    <view class="profile-row" data-pf="settings" bindtap="onProfileRow">设置 <text class="chev">›</text></view>
+    <view class="profile-row" data-pf="about" bindtap="onProfileRow">关于本站 <text class="chev">›</text></view>
+    <view class="profile-row" data-pf="licenses" bindtap="onProfileRow">图片致谢与许可 <text class="chev">›</text></view>
+  </view>
+  <view class="empty-hint muted">
+    提示：本小程序为独立演示，数据默认存于本机；与网页版无账号同步。正式环境请替换接口与素材。
+  </view>
+</view>

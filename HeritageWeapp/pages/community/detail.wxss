@@ -1,0 +1,34 @@
+.detail-wrap {
+  padding: 32rpx;
+  padding-bottom: 120rpx;
+}
+
+.post-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--on-surface);
+  line-height: 1.35;
+}
+
+.post-sub {
+  margin-top: 16rpx;
+  font-size: 28rpx;
+}
+
+.post-meta {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: var(--primary);
+}
+
+.post-body {
+  margin-top: 32rpx;
+  font-size: 28rpx;
+  line-height: 1.65;
+  color: var(--on-background);
+}
+
+.no-hit {
+  padding: 80rpx 32rpx;
+  text-align: center;
+}

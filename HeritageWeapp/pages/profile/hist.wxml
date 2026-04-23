@@ -1,0 +1,20 @@
+<view class="page-root {{themeClass}}">
+  <view class="toolbar" wx:if="{{list.length}}">
+    <button class="clear-btn" size="mini" bindtap="onClear">清空历史</button>
+  </view>
+  <view wx:if="{{!list.length}}" class="empty muted">暂无播放记录，在音乐馆试听后会出现在此。</view>
+  <view wx:else class="rows">
+    <view
+      class="row card-surface"
+      wx:for="{{list}}"
+      wx:key="id"
+      data-track="{{item.trackId}}"
+      data-title="{{item.title}}"
+      bindtap="onPlay"
+    >
+      <view class="row-title">{{item.title}}</view>
+      <view class="row-sub muted">{{item.sub}}</view>
+      <view class="row-ts muted">{{item.timeText}}</view>
+    </view>
+  </view>
+</view>

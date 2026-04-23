@@ -1,0 +1,8 @@
+<view class="page-root {{themeClass}}">
+  <view class="card card-surface">
+    <view class="h">非遗音乐（小程序演示版）</view>
+    <view class="p">本小程序为独立前端工程，内置离线演示数据，用于展示信息架构与界面风格；与网页版 HeritageWeb 无账号与数据同步。</view>
+    <view class="p">正式环境请替换为自有 HTTPS 接口、合法域名内的图片与音频，并接入用户与权限体系。</view>
+    <view class="p muted">版本：演示 0.2 · 数据存储于本机 wx.storage</view>
+  </view>
+</view>

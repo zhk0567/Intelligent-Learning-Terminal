@@ -1,0 +1,18 @@
+<view class="page-root {{themeClass}}">
+  <view class="sub-hint muted">田野与馆藏资料演示列表，点击条目查看详情；详情页可试听关联曲目。</view>
+  <view class="list">
+    <view
+      class="list-card card-surface"
+      wx:for="{{items}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onItemOpen"
+    >
+      <image class="list-cover" src="{{item.coverImageUrl}}" mode="aspectFill" />
+      <view class="list-body">
+        <view class="list-title">{{item.title}}</view>
+        <view class="list-meta muted">{{item.region}} · {{item.typeLabel}}</view>
+      </view>
+    </view>
+  </view>
+</view>

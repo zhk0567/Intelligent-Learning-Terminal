@@ -1,0 +1,84 @@
+.profile-banner {
+  margin: 16rpx 32rpx;
+  padding: 36rpx 32rpx;
+}
+
+.nick {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.bio {
+  margin-top: 12rpx;
+  font-size: 28rpx;
+  color: var(--on-surface-variant);
+}
+
+.hint2 {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+}
+
+.theme-strip {
+  margin: 0 32rpx 24rpx;
+  padding: 24rpx;
+}
+
+.theme-strip-title {
+  font-size: 24rpx;
+  line-height: 1.45;
+}
+
+.theme-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 20rpx;
+}
+
+.theme-chip {
+  padding: 12rpx 24rpx;
+  border-radius: 999rpx;
+  border: 1rpx solid var(--outline);
+  font-size: 24rpx;
+  color: var(--on-surface-variant);
+}
+
+.theme-chip.on {
+  border-color: var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.profile-list {
+  padding: 0 32rpx;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28rpx 24rpx;
+  margin-bottom: 12rpx;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--on-surface);
+  font-size: 28rpx;
+  border: 1rpx solid var(--surface-variant);
+}
+
+.chev {
+  color: var(--on-surface-variant);
+  font-size: 32rpx;
+}
+
+.empty-hint {
+  margin: 28rpx 32rpx 48rpx;
+  padding: 20rpx;
+  line-height: 1.55;
+  font-size: 24rpx;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1rpx solid var(--surface-variant);
+}

@@ -1,0 +1,67 @@
+.sec-head {
+  margin: 16rpx 32rpx;
+  padding: 24rpx;
+}
+
+.sec-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.sec-desc {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  line-height: 1.45;
+}
+
+.subhint {
+  padding: 0 32rpx 16rpx;
+  font-size: 24rpx;
+}
+
+.no-hit {
+  padding: 48rpx 32rpx;
+  text-align: center;
+  font-size: 26rpx;
+}
+
+.grid {
+  padding: 0 24rpx 48rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.cell {
+  width: calc(50% - 10rpx);
+  overflow: hidden;
+}
+
+.cell-img {
+  width: 100%;
+  height: 280rpx;
+  display: block;
+}
+
+.cell-bd {
+  padding: 16rpx;
+}
+
+.cell-t {
+  font-size: 26rpx;
+  color: var(--on-surface);
+  line-height: 1.35;
+}
+
+.cell-p {
+  margin-top: 8rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.cell-m {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+}

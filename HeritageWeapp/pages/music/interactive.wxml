@@ -1,0 +1,12 @@
+<view class="page-root {{themeClass}}">
+  <view class="hub-title">{{hub.title}}</view>
+  <view class="hub-sub muted">{{hub.subtitle}}</view>
+  <view class="module-list">
+    <view class="module-card card-surface" wx:for="{{hub.modules}}" wx:key="id">
+      <view class="mod-title">{{item.title}}</view>
+      <view class="mod-desc muted">{{item.description}}</view>
+      <view class="mod-hint muted">{{item.hint}}</view>
+      <button class="mod-btn" size="mini" data-id="{{item.id}}" bindtap="onModuleTap">{{item.actionLabel}}</button>
+    </view>
+  </view>
+</view>

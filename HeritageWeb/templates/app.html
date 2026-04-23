@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta id="meta-theme-color" name="theme-color" content="#050814" />
+  <title>{{ page_title }}</title>
+  <link rel="stylesheet" href="/static/heritage.css" />
+</head>
+<body data-page="{{ page }}">
+  <header class="app-header">
+    <h1>非遗音乐</h1>
+    <p class="hint"><span id="header-tab-label">{{ header_label }}</span> · 离线演示数据（仅本站）</p>
+  </header>
+  <main>
+    <section id="tab-music" class="panel{% if page == 'music' %} active{% endif %}" aria-label="音乐馆">
+      <p class="loading" id="music-loading">加载中…</p>
+      <div id="music-content" style="display:none">
+        <div class="music-tools">
+          <input type="search" class="music-search-input" id="music-search" placeholder="搜索非遗音乐、乐器..." autocomplete="off" />
+          <p class="loading" id="music-no-hit" style="display:none">无匹配内容（演示）</p>
+          <div class="entry-chips">
+            <button type="button" class="entry-chip" data-entry="archive">资料库</button>
+            <button type="button" class="entry-chip" data-entry="course">课程</button>
+            <button type="button" class="entry-chip" data-entry="interactive">互动</button>
+          </div>
+        </div>
+        <div id="music-wrap-banners" class="music-sec-wrap">
+        <div class="banner-scroll" id="banners"></div>
+        </div>
+        <div id="music-wrap-hot" class="music-sec-wrap">
+        <h2 class="section-title">每日热门<span class="more">查看更多</span></h2>
+        <div class="tiles-row" id="hots"></div>
+        </div>
+        <div id="music-wrap-picks" class="music-sec-wrap">
+        <h2 class="section-title">每日精选<span class="more">查看更多</span></h2>
+        <div class="picks-grid" id="picks"></div>
+        </div>
+        <div id="music-wrap-tags" class="music-sec-wrap">
+        <h2 class="section-title">猜您喜欢<span class="more">查看更多</span></h2>
+        <div class="tags" id="tags"></div>
+        </div>
+        <div id="music-wrap-bottoms" class="music-sec-wrap">
+        <div id="bottoms"></div>
+        </div>
+      </div>
+      <p class="error" id="music-error" style="display:none"></p>
+    </section>
+    <section id="tab-stories" class="panel{% if page == 'stories' %} active{% endif %}" aria-label="故事">
+      <p class="tab-lead">非遗音乐与地方风物相结合的灵感记录；瀑布流为演示数据，详情与多媒体可在接入接口后扩展。</p>
+      <div class="inner-tabs" role="tablist">
+        <button type="button" class="inner-tab active" data-st="recommend" role="tab" aria-selected="true">推荐</button>
+        <button type="button" class="inner-tab" data-st="following" role="tab" aria-selected="false">关注</button>
+      </div>
+      <div class="story-kw-row" id="story-kw-row">
+        <input type="search" id="story-kw" placeholder="筛选卡片（编号或浮层文案）" autocomplete="off" />
+      </div>
+      <p class="loading" id="story-no-hit" style="display:none">无匹配卡片（演示）</p>
+      <p class="loading" id="stories-loading">加载中…</p>
+      <div class="story-masonry" id="story-grid" style="display:none" aria-live="polite"></div>
+      <p class="error" id="stories-error" style="display:none"></p>
+    </section>
+    <section id="tab-community" class="panel{% if page == 'community' %} active{% endif %}" aria-label="创作社区">
+      <p class="tab-lead">分享创作、采风与编曲心得；以下为离线演示帖子，可按分类与关键词筛选。</p>
+      <div class="comm-kw-row" id="comm-kw-row">
+        <input type="search" id="community-kw" placeholder="搜索帖子标题或正文…" autocomplete="off" />
+      </div>
+      <div class="community-filters" id="community-filters" style="display:none"></div>
+      <p class="loading" id="community-loading">加载中…</p>
+      <div class="post-list" id="posts" style="display:none"></div>
+      <p class="error" id="community-error" style="display:none"></p>
+    </section>
+    <section id="tab-mall" class="panel{% if page == 'mall' %} active{% endif %}" aria-label="商城">
+      <div class="mall-hero">
+        <h2>精选好物</h2>
+        <p>四分区商城，每区可进入独立列表并筛选排序（演示）。本站未接入支付与订单。</p>
+      </div>
+      <div class="mall-kw-row" id="mall-kw-row" style="display:none">
+        <input type="search" id="mall-kw-filter" placeholder="筛选商品（标题关键词）" autocomplete="off" />
+      </div>
+      <div id="mall-zones"></div>
+      <h2 class="section-title" style="margin-top:4px">推荐商品</h2>
+      <p class="loading" id="mall-loading">加载中…</p>
+      <div class="product-scroll" id="mall-products" style="display:none"></div>
+      <p class="error" id="mall-error" style="display:none"></p>
+    </section>
+    <section id="tab-profile" class="panel{% if page == 'profile' %} active{% endif %}" aria-label="我的">
+      <div class="profile-banner">
+        <div class="nick">非遗旅人</div>
+        <div class="bio">感受音乐，感受世界</div>
+        <div class="hint2">访客模式 · 点击编辑资料（演示）</div>
+      </div>
+      <div class="theme-strip" aria-label="主题预览">
+        <p class="theme-strip-title">界面主题（四套色板 · 仅本站演示，选择会保存在浏览器）</p>
+        <div class="theme-chips">
+          <button type="button" class="theme-chip on" data-theme="tech">科技深色</button>
+          <button type="button" class="theme-chip" data-theme="paper">纸墨浅色</button>
+          <button type="button" class="theme-chip" data-theme="neon">霓虹紫蓝</button>
+          <button type="button" class="theme-chip" data-theme="forest">森林绿金</button>
+        </div>
+      </div>
+      <div class="profile-list">
+        <button type="button" class="profile-row" data-pf="fav">我的收藏 <span class="chev">›</span></button>
+        <button type="button" class="profile-row" data-pf="hist">观看历史 <span class="chev">›</span></button>
+        <button type="button" class="profile-row" data-pf="notif">消息与通知 <span class="chev">›</span></button>
+        <button type="button" class="profile-row" data-pf="theme">主题设置 <span class="chev">›</span></button>
+        <button type="button" class="profile-row" data-pf="settings">设置 <span class="chev">›</span></button>
+        <button type="button" class="profile-row" data-pf="about">关于本站 <span class="chev">›</span></button>
+        <button type="button" class="profile-row" data-pf="licenses">图片致谢与许可 <span class="chev">›</span></button>
+      </div>
+      <div class="empty-hint" style="margin-top:14px">
+        <strong>提示</strong>：本站为独立网页演示，数据默认存于浏览器本地；与任何桌面或移动客户端无账号同步。正式环境请替换接口与素材。
+      </div>
+    </section>
+  </main>
+  <nav class="bottom-nav" aria-label="主导航">
+    <a href="/music" class="{% if page == 'music' %}active {% endif %}nav-tab" data-tab="music"><span class="ic" aria-hidden="true">♪</span>音乐馆</a>
+    <a href="/stories" class="{% if page == 'stories' %}active {% endif %}nav-tab" data-tab="stories"><span class="ic" aria-hidden="true">📖</span>故事</a>
+    <a href="/community" class="{% if page == 'community' %}active {% endif %}nav-tab" data-tab="community"><span class="ic" aria-hidden="true">✎</span>创作社区</a>
+    <a href="/mall" class="{% if page == 'mall' %}active {% endif %}nav-tab" data-tab="mall"><span class="ic" aria-hidden="true">🛒</span>商城</a>
+    <a href="/profile" class="{% if page == 'profile' %}active {% endif %}nav-tab" data-tab="profile"><span class="ic" aria-hidden="true">👤</span>我的</a>
+  </nav>
+  <div id="snackbar" role="status"></div>
+  <audio id="demo-audio" preload="none"></audio>
+  <div id="app-subpage" aria-hidden="true">
+    <div class="sub-toolbar">
+      <button type="button" id="subpage-back">← 返回</button>
+      <span id="subpage-title"></span>
+    </div>
+    <div class="sub-body" id="subpage-body"></div>
+  </div>
+  <script>var AUDIO_DEMO = {{ audio_demo_json | safe }};</script>
+  <script src="/static/heritage.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<view class="page-root {{themeClass}}">
+  <view class="app-header">
+    <view class="title">非遗音乐</view>
+    <view class="hint">商城 · 离线演示数据（未接入支付）</view>
+  </view>
+  <view class="mall-hero card-surface">
+    <view class="mall-hero-title">精选好物</view>
+    <view class="mall-hero-desc muted">四分区商城，点击分区进入商品列表；支持关键词筛选（演示）。</view>
+  </view>
+  <view class="mall-kw-row">
+    <input
+      class="mall-kw"
+      placeholder="筛选商品（标题关键词）"
+      bindinput="onKwInput"
+      value="{{kw}}"
+    />
+  </view>
+  <view class="zones">
+    <view
+      class="zone-card card-surface"
+      wx:for="{{sections}}"
+      wx:key="id"
+      data-section="{{item.id}}"
+      bindtap="onZoneTap"
+    >
+      <view class="zone-title">{{item.title}}</view>
+      <view class="zone-desc muted">{{item.description}}</view>
+      <view class="zone-more">进入分区 ›</view>
+    </view>
+  </view>
+  <view class="section-title">
+    <text>推荐商品</text>
+    <text class="more">{{filteredCount}} 件</text>
+  </view>
+  <view wx:if="{{!displayProducts.length}}" class="no-hit muted">无匹配商品（演示）</view>
+  <scroll-view wx:else scroll-x class="prod-scroll" show-scrollbar="{{false}}">
+    <view class="prod-row">
+      <view class="prod-card card-surface" wx:for="{{displayProducts}}" wx:key="id">
+        <image class="prod-img" src="{{item.imageUrl}}" mode="aspectFill" />
+        <view class="prod-info">
+          <view class="prod-title">{{item.title}}</view>
+          <view class="prod-price">¥{{item.priceYuan}}</view>
+          <view class="prod-meta muted">{{item.rating}} 分 · {{item.reviewCount}} 评</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

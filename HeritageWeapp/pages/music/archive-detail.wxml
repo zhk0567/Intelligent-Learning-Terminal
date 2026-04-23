@@ -1,0 +1,19 @@
+<view class="page-root {{themeClass}}">
+  <block wx:if="{{item}}">
+    <image class="hero" src="{{item.coverImageUrl}}" mode="aspectFill" />
+    <view class="body card-surface">
+      <view class="badge">{{item.typeLabel}}</view>
+      <view class="t">{{item.title}}</view>
+      <view class="muted block">{{item.region}} · {{item.genre}} · {{item.era}}</view>
+      <view class="muted block">传承人：{{item.inheritor}}</view>
+      <view class="muted block">来源链路：{{item.sourcePath}}</view>
+      <view class="muted block">版权：{{item.copyrightStatus}}</view>
+      <view class="muted block">可信度：<text class="accent">{{item.credibilityScore}}</text></view>
+      <view class="subh">来源时间轴</view>
+      <view class="tl" wx:for="{{item.sourceTimeline}}" wx:for-item="line" wx:key="*this">{{line}}</view>
+      <button class="btn" bindtap="onPlay">播放关联曲目</button>
+      <button class="btn ghost" bindtap="onStory">关联故事（演示）</button>
+    </view>
+  </block>
+  <view wx:else class="empty muted">未找到该资料</view>
+</view>
