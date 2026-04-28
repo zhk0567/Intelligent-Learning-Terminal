@@ -14,8 +14,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("boolean", "USE_REMOTE_API", "false")
-        buildConfigField("String", "API_BASE_URL", "\"https://example.com/\"")
+        buildConfigField("boolean", "USE_REMOTE_API", "true")
+        buildConfigField("String", "API_BASE_URL", "\"http://39.106.117.118:8000/\"")
         buildConfigField("boolean", "ENABLE_NETWORK_LOGGING", "false")
         buildConfigField("boolean", "ENABLE_FAKE_DELAY", "false")
     }
