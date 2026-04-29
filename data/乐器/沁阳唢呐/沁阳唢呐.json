@@ -1,0 +1,134 @@
+{
+  "id": "qinyang_suona",
+  "name": "沁阳唢呐",
+  "aliases": [
+    "沁阳唢呐艺术"
+  ],
+  "category": "传统音乐",
+  "region": [
+    "河南省焦作市沁阳市"
+  ],
+  "language": "中原官话（地方口语场景）",
+  "national_ich": {
+    "is_listed": true,
+    "batch": "第二批（项目：唢呐艺术）",
+    "year": null
+  },
+  "history": {
+    "origin_period": "可追溯至明代",
+    "formed_period": null,
+    "source_forms": [],
+    "summary": "明代沁阳人朱载堉对相关吹奏与律学有重要影响，地方吹奏传统沿沁河形成南北分派。"
+  },
+  "performance": {
+    "forms": [
+      "独奏",
+      "合奏"
+    ],
+    "accompaniment": [
+      "唢呐"
+    ],
+    "singing_styles": [],
+    "features": [
+      "可见多把同吹等高难技巧",
+      "风格刚柔并济、热烈激情"
+    ]
+  },
+  "style_schools": [
+    {
+      "name": "贾派",
+      "region": [
+        "沁阳"
+      ],
+      "style": "直"
+    },
+    {
+      "name": "马派",
+      "region": [
+        "沁阳"
+      ],
+      "style": "柔"
+    },
+    {
+      "name": "张派",
+      "region": [
+        "沁阳"
+      ],
+      "style": "巧"
+    },
+    {
+      "name": "贺派",
+      "region": [
+        "沁阳"
+      ],
+      "style": "暴"
+    }
+  ],
+  "representative_inheritors": [
+    {
+      "name": "李金海",
+      "level": "国家级",
+      "batch": "第二批（唢呐艺术）",
+      "year": null,
+      "identity": [
+        "河南沁阳人",
+        "沁阳唢呐代表性传承人"
+      ],
+      "profile": "1948年生，兼采贾、马、贺等流派特长，擅长“大还气”与三眼管吹奏技法。"
+    }
+  ],
+  "works": [
+    {
+      "title": "《抬花轿》",
+      "type": "器乐合奏",
+      "theme": "民俗场景吹打",
+      "media_file": "李金海唢呐合奏《抬花轿》.mp3"
+    },
+    {
+      "title": "《沁韵》",
+      "type": "器乐曲",
+      "theme": "代表曲目（文献提及）",
+      "media_file": null
+    },
+    {
+      "title": "《九峰情》",
+      "type": "器乐曲",
+      "theme": "代表曲目（文献提及）",
+      "media_file": null
+    },
+    {
+      "title": "《沁阳春》",
+      "type": "器乐曲",
+      "theme": "代表曲目（文献提及）",
+      "media_file": null
+    }
+  ],
+  "assets": {
+    "videos": [],
+    "audios": [
+      "李金海唢呐合奏《抬花轿》.mp3"
+    ],
+    "docs": [],
+    "images": [
+      "图片1.png"
+    ],
+    "presentations": []
+  },
+  "inheritance_status": {
+    "value": "仍用于民俗礼仪场合，但青年受众和应用场景收缩，存在传承压力。",
+    "current_actions": [
+      "地方展演",
+      "口述教学",
+      "多流派融合传播"
+    ]
+  },
+  "data_quality": {
+    "source_files": [
+      "李金海唢呐合奏《抬花轿》.mp3",
+      "图片1.png"
+    ],
+    "confidence": "medium",
+    "notes": "当前目录仅保留音频与图片，文字背景来自前次整理结果。",
+    "needs_ocr": false
+  }
+}

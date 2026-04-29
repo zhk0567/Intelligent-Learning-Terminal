@@ -179,7 +179,7 @@
     <string name="compose_fab_cd">发帖</string>
 
     <!-- Mall -->
-    <string name="product_dunhuang_magnet">敦煌乐器木制冰箱贴</string>
+    <string name="product_dunhuang_magnet">敦煌海报明信片</string>
     <string name="product_desc_dunhuang">精选敦煌壁画乐器形象，手工木质，可作收藏与家居点缀。</string>
     <string name="currency_yuan">元</string>
     <string name="reviews_count">%1$d次评价</string>
@@ -233,25 +233,25 @@
     <string name="nav_invalid_mall_section_title">分区无效</string>
     <string name="nav_invalid_mall_section_message">未找到该商城分区，请从商城首页重新进入。</string>
     <string name="product_spec_generic">规格与参数以商品页说明为准（演示占位数据）。</string>
-    <string name="product_story_shadow">皮影纹样挂件</string>
+    <string name="product_story_shadow">文创插画明信片</string>
     <string name="product_desc_story_shadow">非遗皮影剪影元素亚克力挂件，轻巧便携。</string>
-    <string name="product_story_canvas">非遗故事帆布画</string>
+    <string name="product_story_canvas">文化中国主题海报</string>
     <string name="product_desc_story_canvas">绢布微喷装裱，适合书房与展示墙。</string>
-    <string name="product_cultural_bookmarks">纹样书签礼盒</string>
+    <string name="product_cultural_bookmarks">日历书签套装</string>
     <string name="product_desc_cultural_bookmarks">四枚入礼盒，乐器纹样烫金。</string>
-    <string name="product_cultural_lantern">竹骨纸艺小宫灯</string>
+    <string name="product_cultural_lantern">文创主视觉海报</string>
     <string name="product_desc_cultural_lantern">手工拼接，暖光氛围摆件。</string>
-    <string name="product_cross_tote">纹样双面帆布包</string>
+    <string name="product_cross_tote">敦煌海报明信片</string>
     <string name="product_desc_cross_tote">大容量通勤款，印花耐磨。</string>
-    <string name="product_cross_badge">城市联名徽章组</string>
+    <string name="product_cross_badge">文创钥匙扣（单只）</string>
     <string name="product_desc_cross_badge">三枚胸针套装，收藏与搭配皆宜。</string>
-    <string name="product_inst_score">古琴减字谱笔记本</string>
+    <string name="product_inst_score">文创插画卡片</string>
     <string name="product_desc_inst_score">线装便签，摘录练习要点。</string>
-    <string name="product_inst_clip_tuner">调音夹式校音器</string>
+    <string name="product_inst_clip_tuner">文创周边样机</string>
     <string name="product_desc_inst_clip_tuner">夹具稳固，适合多件弦乐器（演示）。</string>
-    <string name="product_bronze_bells">青铜编钟摆件</string>
-    <string name="product_silk_scarf">丝路纹样丝巾</string>
-    <string name="product_pipa_model">琵琶造型书签</string>
+    <string name="product_bronze_bells">文创周边样机</string>
+    <string name="product_silk_scarf">黑金主题海报</string>
+    <string name="product_pipa_model">文创周边样机</string>
     <string name="product_desc_bronze">仿古青铜质感，书桌上的国风点缀。</string>
     <string name="product_desc_silk">敦煌色系纹样，轻薄亲肤。</string>
     <string name="product_desc_pipa">金属镂空琵琶轮廓，阅读好伴侣。</string>

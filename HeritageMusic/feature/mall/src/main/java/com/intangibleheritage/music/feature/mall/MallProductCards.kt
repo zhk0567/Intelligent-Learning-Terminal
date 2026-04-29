@@ -40,7 +40,7 @@ internal fun MallProductCard(
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
             AsyncImage(
-                model = product.imageUrl?.takeIf { it.isNotBlank() } ?: product.imageRes,
+                model = product.imageUrl?.takeIf { it.isNotBlank() },
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()

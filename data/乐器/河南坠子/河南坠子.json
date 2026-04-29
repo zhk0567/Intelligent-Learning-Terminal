@@ -1,0 +1,148 @@
+{
+  "id": "henan_zhuizi",
+  "name": "河南坠子",
+  "aliases": [
+    "坠子书",
+    "简板书",
+    "响板书"
+  ],
+  "category": "传统曲艺",
+  "region": [
+    "河南（开封）",
+    "山东",
+    "安徽",
+    "天津",
+    "北京"
+  ],
+  "language": "河南方言",
+  "national_ich": {
+    "is_listed": true,
+    "batch": "第一批",
+    "year": 2006
+  },
+  "history": {
+    "origin_period": "清代道光年间",
+    "formed_period": "清末民初",
+    "source_forms": [
+      "道情",
+      "莺歌柳",
+      "三弦书"
+    ],
+    "summary": "由多种中原传统曲艺融合演变，后逐步定型为独立曲种。"
+  },
+  "performance": {
+    "forms": [
+      "单口",
+      "对口",
+      "群口"
+    ],
+    "accompaniment": [
+      "坠胡（坠琴）",
+      "简板",
+      "脚梆",
+      "书鼓",
+      "小钹"
+    ],
+    "singing_styles": [
+      "平腔",
+      "快扎板",
+      "武板",
+      "垛板"
+    ],
+    "features": [
+      "说唱结合",
+      "唱中夹说",
+      "唱词多为七字句",
+      "通俗易懂"
+    ]
+  },
+  "style_schools": [
+    {
+      "name": "西路",
+      "region": [
+        "郑州",
+        "洛阳"
+      ],
+      "style": "高亢粗犷、大气豪放"
+    },
+    {
+      "name": "中路",
+      "region": [
+        "开封"
+      ],
+      "style": "婉转柔美、细腻圆润"
+    },
+    {
+      "name": "东路",
+      "region": [
+        "商丘",
+        "周口"
+      ],
+      "style": "明快泼辣、兼容南北曲艺特色"
+    }
+  ],
+  "representative_inheritors": [
+    {
+      "name": "陈胜利",
+      "level": "国家级",
+      "batch": "第五批",
+      "year": 2018,
+      "identity": [
+        "河南歌舞演艺集团曲艺团主弦",
+        "中国曲协河南坠子艺委会理事",
+        "河南省曲协理事"
+      ],
+      "profile": "兼长坠子演唱、坠胡演奏与曲目创编，长期参与传统书目整理与青年传承培养。"
+    }
+  ],
+  "works": [
+    {
+      "title": "《包公案》",
+      "type": "长篇",
+      "theme": "秉公断案、惩恶扬善",
+      "media_file": "《包公案》.mp4"
+    },
+    {
+      "title": "《杨家将》",
+      "type": "长篇",
+      "theme": "忠勇抗辽、家国悲壮",
+      "media_file": "《杨家将》.mp4"
+    },
+    {
+      "title": "《小黑驴》",
+      "type": "短篇",
+      "theme": "民间生活趣事",
+      "media_file": "《小黑驴》.mp4"
+    }
+  ],
+  "assets": {
+    "videos": [
+      "《包公案》.mp4",
+      "《杨家将》.mp4",
+      "《小黑驴》.mp4"
+    ],
+    "audios": [],
+    "docs": [],
+    "images": [],
+    "presentations": []
+  },
+  "inheritance_status": {
+    "value": "群众基础深厚，但面临受众老龄化与青年传承人不足。",
+    "current_actions": [
+      "非遗进校园",
+      "文旅融合展演",
+      "短视频传播",
+      "文创开发"
+    ]
+  },
+  "data_quality": {
+    "source_files": [
+      "《包公案》.mp4",
+      "《杨家将》.mp4",
+      "《小黑驴》.mp4"
+    ],
+    "confidence": "high",
+    "notes": "基于前次文档抽取结果已完成结构化；目录中仅保留媒体与结构化数据文件。",
+    "needs_ocr": false
+  }
+}

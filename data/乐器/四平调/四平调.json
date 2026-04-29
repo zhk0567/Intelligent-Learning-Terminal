@@ -1,0 +1,100 @@
+{
+  "id": "sipingdiao",
+  "name": "四平调",
+  "aliases": [],
+  "category": "地方戏曲",
+  "region": [
+    "河南省商丘市及周边"
+  ],
+  "language": "中原方言唱念（待补）",
+  "national_ich": {
+    "is_listed": true,
+    "batch": "国家级非遗（批次待补）",
+    "year": null
+  },
+  "history": {
+    "origin_period": null,
+    "formed_period": null,
+    "source_forms": [],
+    "summary": "现有资料以传承人简介与代表剧目为主，源流细节待补充。"
+  },
+  "performance": {
+    "forms": [
+      "折子戏",
+      "本戏（待补）"
+    ],
+    "accompaniment": [],
+    "singing_styles": [],
+    "features": [
+      "地方戏曲叙事性强",
+      "以传统剧目传承为核心"
+    ]
+  },
+  "style_schools": [],
+  "representative_inheritors": [
+    {
+      "name": "付梅",
+      "level": "国家级",
+      "batch": null,
+      "year": null,
+      "identity": [
+        "中国戏剧家协会会员",
+        "河南省戏剧家协会理事",
+        "商丘戏曲传承保护中心主任"
+      ],
+      "profile": "长期从事四平调演出与传承，代表剧目包括《陈三两爬堂》《哑女告状》《小包公》。"
+    }
+  ],
+  "works": [
+    {
+      "title": "《哑女告状》",
+      "type": "传统戏曲剧目",
+      "theme": "公案题材",
+      "media_file": "《哑女告状》.mp3"
+    },
+    {
+      "title": "《陈三两爬堂》",
+      "type": "传统戏曲剧目",
+      "theme": "公案题材",
+      "media_file": "《陈三两爬堂》.mp4"
+    },
+    {
+      "title": "《小包公》",
+      "type": "传统戏曲剧目",
+      "theme": "清官题材",
+      "media_file": "《小包公》.mp4"
+    }
+  ],
+  "assets": {
+    "videos": [
+      "《陈三两爬堂》.mp4",
+      "《小包公》.mp4"
+    ],
+    "audios": [
+      "《哑女告状》.mp3"
+    ],
+    "docs": [],
+    "images": [
+      "图片1.png"
+    ],
+    "presentations": []
+  },
+  "inheritance_status": {
+    "value": "已有机构化传承基础，但基础资料结构化程度不足。",
+    "current_actions": [
+      "传承人示范演出",
+      "地方保护中心推广"
+    ]
+  },
+  "data_quality": {
+    "source_files": [
+      "《哑女告状》.mp3",
+      "《陈三两爬堂》.mp4",
+      "《小包公》.mp4",
+      "图片1.png"
+    ],
+    "confidence": "medium",
+    "notes": "当前目录保留核心音视频与配图，文字背景基于前次整理结果。",
+    "needs_ocr": false
+  }
+}

@@ -753,6 +753,7 @@
       line-height: 1;
     }
     #snackbar {
+      display: none;
       position: fixed;
       left: 50%;
       bottom: calc(var(--nav-h) + var(--safe-bottom) + 16px);
@@ -768,7 +769,10 @@
       transition: transform 0.25s ease;
       pointer-events: none;
     }
-    #snackbar.show { transform: translateX(-50%) translateY(0); }
+    #snackbar.show {
+      display: block;
+      transform: translateX(-50%) translateY(0);
+    }
     .loading { color: var(--on-surface-variant); font-size: 0.85rem; }
     .error { color: #ffb4a9; font-size: 0.85rem; }
     #app-subpage {
@@ -892,4 +896,4 @@
     .ix-card .ix-t { font-size: 0.95rem; font-weight: 600; color: var(--on-surface); }
     .ix-card .ix-d { font-size: 0.8rem; color: var(--on-surface-variant); margin-top: 6px; line-height: 1.45; }
     .ix-card .ix-go { margin-top: 10px; align-self: flex-start; }
-    audio#demo-audio { width: 0; height: 0; opacity: 0; position: absolute; pointer-events: none; }
+    audio#demo-audio { display: none !important; width: 0; height: 0; opacity: 0; position: absolute; pointer-events: none; }

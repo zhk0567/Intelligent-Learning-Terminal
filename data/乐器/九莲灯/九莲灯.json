@@ -1,0 +1,65 @@
+{
+  "id": "jiuliandeng",
+  "name": "九莲灯",
+  "aliases": [],
+  "category": "传统表演艺术（待复核）",
+  "region": [
+    "河南（待复核）"
+  ],
+  "language": "待补充",
+  "national_ich": {
+    "is_listed": null,
+    "batch": null,
+    "year": null
+  },
+  "history": {
+    "origin_period": null,
+    "formed_period": null,
+    "source_forms": [],
+    "summary": "当前仅有扫描型文档，暂无法直接提取正文信息。"
+  },
+  "performance": {
+    "forms": [],
+    "accompaniment": [],
+    "singing_styles": [],
+    "features": []
+  },
+  "style_schools": [],
+  "representative_inheritors": [],
+  "works": [],
+  "assets": {
+    "videos": [
+      "1.mp4",
+      "2.mp4",
+      "3.mp4"
+    ],
+    "audios": [
+      "九莲灯.mp3",
+      "醉美玉见.mp3"
+    ],
+    "docs": [],
+    "images": [
+      "图片1.png"
+    ],
+    "presentations": []
+  },
+  "inheritance_status": {
+    "value": "资料待 OCR 清洗后补全。",
+    "current_actions": [
+      "待补充"
+    ]
+  },
+  "data_quality": {
+    "source_files": [
+      "1.mp4",
+      "2.mp4",
+      "3.mp4",
+      "九莲灯.mp3",
+      "醉美玉见.mp3",
+      "图片1.png"
+    ],
+    "confidence": "medium",
+    "notes": "当前仅保留音视频与图片素材，缺少文字资料，后续需人工补录背景信息。",
+    "needs_ocr": false
+  }
+}
