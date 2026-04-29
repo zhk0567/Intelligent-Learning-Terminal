@@ -14,7 +14,7 @@ class FakeMallRepository : MallRepository {
             rating = 4.9f,
             reviewCount = 12,
             descriptionRes = R.string.product_desc_dunhuang,
-            imageRes = R.drawable.product_dunhuang,
+            imageRes = R.drawable.mall_wc_poster_02,
             section = MallSection.Story
         ),
         Product(
@@ -24,7 +24,7 @@ class FakeMallRepository : MallRepository {
             rating = 4.8f,
             reviewCount = 9,
             descriptionRes = R.string.product_desc_story_shadow,
-            imageRes = R.drawable.product_dunhuang,
+            imageRes = R.drawable.mall_wc_chuang_04,
             section = MallSection.Story
         ),
         Product(
@@ -34,7 +34,7 @@ class FakeMallRepository : MallRepository {
             rating = 4.7f,
             reviewCount = 6,
             descriptionRes = R.string.product_desc_story_canvas,
-            imageRes = R.drawable.product_silk_scarf,
+            imageRes = R.drawable.mall_wc_culture_2,
             section = MallSection.Story
         ),
         Product(
@@ -44,7 +44,7 @@ class FakeMallRepository : MallRepository {
             rating = 4.8f,
             reviewCount = 21,
             descriptionRes = R.string.product_desc_silk,
-            imageRes = R.drawable.product_silk_scarf,
+            imageRes = R.drawable.mall_wc_black_02,
             section = MallSection.Cultural
         ),
         Product(
@@ -54,7 +54,7 @@ class FakeMallRepository : MallRepository {
             rating = 4.6f,
             reviewCount = 11,
             descriptionRes = R.string.product_desc_cultural_bookmarks,
-            imageRes = R.drawable.product_pipa_bookmark,
+            imageRes = R.drawable.mall_wc_cal_02,
             section = MallSection.Cultural
         ),
         Product(
@@ -64,7 +64,7 @@ class FakeMallRepository : MallRepository {
             rating = 4.7f,
             reviewCount = 7,
             descriptionRes = R.string.product_desc_cultural_lantern,
-            imageRes = R.drawable.product_bronze_bells,
+            imageRes = R.drawable.mall_wc_chuang_06,
             section = MallSection.Cultural
         ),
         Product(
@@ -74,7 +74,7 @@ class FakeMallRepository : MallRepository {
             rating = 4.7f,
             reviewCount = 8,
             descriptionRes = R.string.product_desc_bronze,
-            imageRes = R.drawable.product_bronze_bells,
+            imageRes = R.drawable.mall_photo_mockup_06,
             section = MallSection.Cross
         ),
         Product(
@@ -84,7 +84,7 @@ class FakeMallRepository : MallRepository {
             rating = 4.5f,
             reviewCount = 18,
             descriptionRes = R.string.product_desc_cross_tote,
-            imageRes = R.drawable.product_silk_scarf,
+            imageRes = R.drawable.mall_wc_poster_05,
             section = MallSection.Cross
         ),
         Product(
@@ -94,7 +94,7 @@ class FakeMallRepository : MallRepository {
             rating = 4.6f,
             reviewCount = 24,
             descriptionRes = R.string.product_desc_cross_badge,
-            imageRes = R.drawable.product_dunhuang,
+            imageRes = R.drawable.mall_photo_keychain_01,
             section = MallSection.Cross
         ),
         Product(
@@ -104,7 +104,7 @@ class FakeMallRepository : MallRepository {
             rating = 4.6f,
             reviewCount = 15,
             descriptionRes = R.string.product_desc_pipa,
-            imageRes = R.drawable.product_pipa_bookmark,
+            imageRes = R.drawable.mall_photo_mockup_08,
             section = MallSection.Instrument
         ),
         Product(
@@ -114,7 +114,7 @@ class FakeMallRepository : MallRepository {
             rating = 4.7f,
             reviewCount = 10,
             descriptionRes = R.string.product_desc_inst_score,
-            imageRes = R.drawable.product_dunhuang,
+            imageRes = R.drawable.mall_wc_chuang_05,
             section = MallSection.Instrument
         ),
         Product(
@@ -124,7 +124,7 @@ class FakeMallRepository : MallRepository {
             rating = 4.8f,
             reviewCount = 33,
             descriptionRes = R.string.product_desc_inst_clip_tuner,
-            imageRes = R.drawable.product_bronze_bells,
+            imageRes = R.drawable.mall_photo_mockup_02,
             section = MallSection.Instrument
         )
     )

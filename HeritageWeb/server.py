@@ -206,7 +206,7 @@ MALL_CATALOG_DATA = {
             "rating": 4.9,
             "reviewCount": 12,
             "section": "Story",
-            "imageUrl": "https://picsum.photos/seed/prod_dunhuang_magnet/360/360",
+            "imageUrl": "/static/mall/mall_wc_poster_02.jpg",
         },
         {
             "id": "story_shadow_charm",
@@ -216,7 +216,7 @@ MALL_CATALOG_DATA = {
             "rating": 4.8,
             "reviewCount": 9,
             "section": "Story",
-            "imageUrl": "https://picsum.photos/seed/prod_story_shadow/360/360",
+            "imageUrl": "/static/mall/mall_wc_chuang_04.jpg",
         },
         {
             "id": "story_canvas_print",
@@ -226,7 +226,7 @@ MALL_CATALOG_DATA = {
             "rating": 4.7,
             "reviewCount": 6,
             "section": "Story",
-            "imageUrl": "https://picsum.photos/seed/prod_story_canvas/360/360",
+            "imageUrl": "/static/mall/mall_wc_culture_2.jpg",
         },
         {
             "id": "silk_scarf",
@@ -236,7 +236,7 @@ MALL_CATALOG_DATA = {
             "rating": 4.8,
             "reviewCount": 21,
             "section": "Cultural",
-            "imageUrl": "https://picsum.photos/seed/prod_silk_scarf/360/360",
+            "imageUrl": "/static/mall/mall_wc_black_02.jpg",
         },
         {
             "id": "cultural_bookmark_set",
@@ -246,7 +246,7 @@ MALL_CATALOG_DATA = {
             "rating": 4.6,
             "reviewCount": 11,
             "section": "Cultural",
-            "imageUrl": "https://picsum.photos/seed/prod_bookmarks/360/360",
+            "imageUrl": "/static/mall/mall_wc_cal_02.jpg",
         },
         {
             "id": "cultural_palace_lantern",
@@ -256,7 +256,7 @@ MALL_CATALOG_DATA = {
             "rating": 4.7,
             "reviewCount": 7,
             "section": "Cultural",
-            "imageUrl": "https://picsum.photos/seed/prod_lantern/360/360",
+            "imageUrl": "/static/mall/mall_wc_chuang_06.jpg",
         },
         {
             "id": "bronze_bells",
@@ -266,7 +266,7 @@ MALL_CATALOG_DATA = {
             "rating": 4.7,
             "reviewCount": 8,
             "section": "Cross",
-            "imageUrl": "https://picsum.photos/seed/prod_bronze/360/360",
+            "imageUrl": "/static/mall/mall_photo_mockup_06.png",
         },
         {
             "id": "cross_tote_bag",
@@ -276,7 +276,7 @@ MALL_CATALOG_DATA = {
             "rating": 4.5,
             "reviewCount": 18,
             "section": "Cross",
-            "imageUrl": "https://picsum.photos/seed/prod_tote/360/360",
+            "imageUrl": "/static/mall/mall_wc_poster_05.jpg",
         },
         {
             "id": "cross_badge_set",
@@ -286,7 +286,7 @@ MALL_CATALOG_DATA = {
             "rating": 4.6,
             "reviewCount": 24,
             "section": "Cross",
-            "imageUrl": "https://picsum.photos/seed/prod_badge/360/360",
+            "imageUrl": "/static/mall/mall_photo_keychain_01.png",
         },
         {
             "id": "pipa_bookmark",
@@ -296,7 +296,7 @@ MALL_CATALOG_DATA = {
             "rating": 4.6,
             "reviewCount": 15,
             "section": "Instrument",
-            "imageUrl": "https://picsum.photos/seed/prod_pipa/360/360",
+            "imageUrl": "/static/mall/mall_photo_mockup_08.jpg",
         },
         {
             "id": "inst_score_notebook",
@@ -306,7 +306,7 @@ MALL_CATALOG_DATA = {
             "rating": 4.7,
             "reviewCount": 10,
             "section": "Instrument",
-            "imageUrl": "https://picsum.photos/seed/prod_score_nb/360/360",
+            "imageUrl": "/static/mall/mall_wc_chuang_05.jpg",
         },
         {
             "id": "inst_clip_tuner",
@@ -316,7 +316,7 @@ MALL_CATALOG_DATA = {
             "rating": 4.8,
             "reviewCount": 33,
             "section": "Instrument",
-            "imageUrl": "https://picsum.photos/seed/prod_tuner/360/360",
+            "imageUrl": "/static/mall/mall_photo_mockup_02.png",
         },
     ],
 }

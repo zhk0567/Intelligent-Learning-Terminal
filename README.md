@@ -64,6 +64,7 @@ Intelligent_learning_terminal/
 │  │  ├─ profile/                  # 我的、设置、隐私、通知等
 │  │  └─ player/                   # 播放器页面与播放控制
 │  └─ settings.gradle.kts          # 模块声明
+├─ HeritageWeb/                    # 网页 + 演示 API（FastAPI，可部署到服务器）
 └─ docs/
    └─ 子页面后续开发计划单.md       # 计划与阶段验收记录
 ```
@@ -297,6 +298,56 @@ cd .\HeritageMusic
 
 ---
 
-## 16. 许可证与说明
+## 16. 服务端部署与更新（如何更新服务器信息）
+
+后端示例工程在仓库 **`HeritageWeb/`**（FastAPI + 静态资源）。Android 端通过 `HeritageMusic/app/build.gradle.kts` 中的 **`API_BASE_URL`**、**`USE_REMOTE_API`** 指向服务器；若使用 **`http://`** 明文地址，需保留 **`AndroidManifest.xml`** 里 `android:usesCleartextTraffic="true"`（或使用 HTTPS + 域名后关闭明文）。
+
+### 16.1 修改 App 指向的服务器地址
+
+1. 打开 `HeritageMusic/app/build.gradle.kts`。
+2. 在 `defaultConfig` 中调整：
+   - **`API_BASE_URL`**：必须以 **`/`** 结尾，例如 `http://<公网IP>:8000/` 或 `http://<域名>/`。
+   - **`USE_REMOTE_API`**：联调远端接口时为 `true`；纯本地假数据为 `false`。
+3. Sync / 重新编译安装应用后生效。
+
+### 16.2 服务器上更新代码并重启后端（Linux，示例路径）
+
+假设代码部署在 **`/opt/heritageweb/intelligent-learning-terminal`**，虚拟环境在 **`/opt/heritageweb/.venv`**（Python 建议 **3.11+**）：
+
+```bash
+cd /opt/heritageweb/intelligent-learning-terminal
+git pull
+
+# 若 requirements 有变更：
+# source /opt/heritageweb/.venv/bin/activate
+# pip install -r HeritageWeb/requirements.txt
+
+pkill -f "gunicorn.*server:app" || true
+nohup /opt/heritageweb/.venv/bin/gunicorn \
+  --chdir /opt/heritageweb/intelligent-learning-terminal/HeritageWeb \
+  server:app -k uvicorn.workers.UvicornWorker -w 2 -b 0.0.0.0:8000 \
+  > /opt/heritageweb/heritageweb.log 2>&1 &
+
+sleep 2
+tail -n 30 /opt/heritageweb/heritageweb.log
+```
+
+说明：
+
+- 应用入口模块为 **`HeritageWeb/server.py`** 中的 **`app`**，工作目录必须为 **`HeritageWeb`**（否则静态页与 `/static` 资源路径会异常）。
+- 商城等接口返回的图片若使用 **`/static/mall/...`**，文件位于 **`HeritageWeb/static/mall/`**，随 `git pull` 一并更新，**无需单独改配置**，重启进程即可。
+
+### 16.3 云安全组与端口
+
+- 直连 Gunicorn：入方向放行 **TCP 8000**（来源按需要收紧，不建议长期 `0.0.0.0/0` 若可改为固定办公网）。
+- 若前面加 **Nginx** 反代：对外放行 **80 / 443**，Gunicorn 可只监听 **`127.0.0.1:8000`**，此时 App 的 **`API_BASE_URL`** 改为 `http://<域名或IP>/`（无端口或 443）。
+
+### 16.4 推荐后续：systemd 保活（可选）
+
+将 Gunicorn 注册为 `systemd` 服务后，可避免 SSH 断开后进程退出，并在开机时自动拉起。具体单元文件中 **`WorkingDirectory`** 与 **`ExecStart`** 的 `--chdir` 需与上文 **`HeritageWeb`** 路径一致。
+
+---
+
+## 17. 许可证与说明
 
 本项目用于学习与演示。若引入第三方素材/图标，请在发布前补充版权与许可证信息，并在应用内或仓库中保留必要声明。

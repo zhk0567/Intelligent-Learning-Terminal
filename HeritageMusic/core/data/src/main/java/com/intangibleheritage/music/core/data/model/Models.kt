@@ -9,7 +9,9 @@ import androidx.annotation.StringRes
  * - music_hot_* ：每日热门小方图
  * - music_pick_* ：每日精选竖卡
  * - story_feed_* ：故事瀑布流
- * - product_* ：商城商品
+ * - product_* ：商城占位矢量（可选）
+ * - mall_wc_* ：商城封面（来自 data/文创/图片）
+ * - mall_photo_* ：商城实物图（来自 data/文创/样机、钥匙扣）
  * - profile_grid_* ：我的宫格
  */
 data class BannerSlide(

@@ -10,6 +10,7 @@ core/resources/src/main/res/drawable/ 下的矢量图（XML）：透明背景 + 
 此前若使用 Unsplash 摄影图作为占位，其许可说明见各文件旁注释；若仅保留 .xml  drawable，
 则以本节「一」为准。
 
-三、产品占位
-product_bronze_bells / product_silk_scarf / product_pipa_bookmark 等为渐变 shape 矢量，
-与科技风主题一致。
+三、商城商品图
+mall_wc_*（封面类）来自仓库 data/文创/图片；mall_photo_*（实物）来自 data/文创/样机、
+data/文创/钥匙扣，已复制入 drawable 供 App 使用。
+历史 product_*.xml 矢量仍可保留作备用占位。
