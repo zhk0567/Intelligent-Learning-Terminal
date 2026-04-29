@@ -92,7 +92,6 @@
     } catch (eHist) {}
   }
   var _archiveItems = [];
-  var _archiveQuickLoaded = false;
   var _courseItems = [];
   var _mallCatalog = null;
   var _mallCtx = { fromSection: false, sectionId: '', sectionTitle: '', sectionDesc: '', sort: 'default' };
@@ -208,42 +207,29 @@
       subpageHide();
     });
   }
-  function renderMusicRealEntries(items) {
-    var root = document.getElementById('music-real-list');
-    if (!root) return;
-    root.innerHTML = '';
-    (items || []).slice(0, 6).forEach(function(it) {
-      var card = document.createElement('div');
-      card.className = 'product-card';
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.innerHTML = '<img src="' + escapeHtml(it.coverImageUrl || '') + '" alt="" loading="lazy" decoding="async"/>' +
-        '<div class="pd"><div class="pt">' + escapeHtml(it.title || '') + '</div>' +
-        '<div class="pr">' + escapeHtml(it.typeLabel || '') + ' · ' + escapeHtml(it.region || '') + '</div></div>';
-      btn.addEventListener('click', function() {
-        subState = { kind: 'archive', screen: 'detail' };
-        subpageShow('资料详情');
-        renderArchiveDetail(it);
-      });
-      card.appendChild(btn);
-      root.appendChild(card);
-    });
-  }
-  function ensureArchiveQuickLoaded() {
-    if (_archiveQuickLoaded) {
-      renderMusicRealEntries(_archiveItems);
+  function openArchiveDetailFromMusic(archiveId, fallbackTitle) {
+    function openWith(items) {
+      var it = (items || []).find(function(x) { return x.id === archiveId; });
+      if (!it) {
+        toast('未找到资料：' + (fallbackTitle || archiveId || ''));
+        return;
+      }
+      subState = { kind: 'archive', screen: 'detail' };
+      subpageShow('资料详情');
+      renderArchiveDetail(it);
+    }
+    if (_archiveItems && _archiveItems.length) {
+      openWith(_archiveItems);
       return;
     }
-    _archiveQuickLoaded = true;
     fetch('/archive/assets').then(function(r) {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
     }).then(function(d) {
       _archiveItems = d.items || [];
-      renderMusicRealEntries(_archiveItems);
+      openWith(_archiveItems);
     }).catch(function() {
-      var root = document.getElementById('music-real-list');
-      if (root) root.innerHTML = '<p class="loading" style="padding:10px 8px">真实资料加载失败</p>';
+      toast('资料加载失败，请稍后重试');
     });
   }
   function openCoursesFlow() {
@@ -965,7 +951,6 @@
   }
   function renderMusic(d) {
     _musicCache = d;
-    ensureArchiveQuickLoaded();
     document.getElementById('music-loading').style.display = 'none';
     document.getElementById('music-content').style.display = 'block';
     var searchEl = document.getElementById('music-search');
@@ -1082,7 +1067,8 @@
         '<div class="meta"><div class="t1">' + escapeHtml(c.title) + '</div>' +
         '<div class="t2">点击查看详情（演示）</div></div>';
       btn.addEventListener('click', function() {
-        openMusicHighlightDetail(c.title, c.id);
+        if (c.id && c.id.indexOf('archive_') === 0) openArchiveDetailFromMusic(c.id, c.title);
+        else openMusicHighlightDetail(c.title, c.id);
       });
       row.appendChild(btn);
       bt.appendChild(row);

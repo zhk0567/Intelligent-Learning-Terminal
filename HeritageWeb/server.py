@@ -93,14 +93,24 @@ MUSIC_HOME_DATA = {
     ],
     "bottomCards": [
         {
-            "id": "x1",
-            "title": "非遗跨界",
-            "imageUrl": "https://picsum.photos/seed/heritage_x1/520/280",
+            "id": "archive_henan_zhuizi_001",
+            "title": "河南坠子《包公案》",
+            "imageUrl": "https://picsum.photos/seed/henan_zhuizi_baogongan/520/280",
         },
         {
-            "id": "x2",
-            "title": "基础学习",
-            "imageUrl": "https://picsum.photos/seed/heritage_x2/520/280",
+            "id": "archive_qinyang_suona_001",
+            "title": "沁阳唢呐《抬花轿》",
+            "imageUrl": "https://picsum.photos/seed/qinyang_suona_taihuajiao/520/280",
+        },
+        {
+            "id": "archive_sipingdiao_001",
+            "title": "四平调《陈三两爬堂》",
+            "imageUrl": "https://picsum.photos/seed/sipingdiao_chensanliang/520/280",
+        },
+        {
+            "id": "archive_jiuliandeng_001",
+            "title": "九莲灯现场资料",
+            "imageUrl": "https://picsum.photos/seed/jiuliandeng_media_pack/520/280",
         },
     ],
 }
