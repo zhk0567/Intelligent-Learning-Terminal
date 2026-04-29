@@ -109,6 +109,8 @@ data class Product(
     val reviewCount: Int,
     @StringRes val descriptionRes: Int,
     @DrawableRes val imageRes: Int,
+    /** 远程商品图 URL；非空时 UI 优先加载该地址。 */
+    val imageUrl: String? = null,
     /** 所属商城分区，用于分区列表与首页预览。 */
     val section: MallSection,
     @StringRes val shortSubtitleRes: Int? = null

@@ -173,6 +173,14 @@ cd .\HeritageMusic
 .\gradlew :app:assembleDebug
 ```
 
+### 9.1 构建加速（日常开发）
+
+- **不要每次 `clean`**：无资源/ABI 异常时，直接 `assembleDebug` 或 `compileDebugKotlin` 即可；`clean` 会清空缓存导致全量重编。
+- **优先用真机 + USB 3**：比冷启动模拟器快得多；日常改 UI 可用 Apply Changes / Live Edit（视 AS 版本而定）。
+- **Gradle 已开启**：`HeritageMusic/gradle.properties` 中的 **`org.gradle.parallel=true`**、**`org.gradle.caching=true`**、**`org.gradle.vfs.watch=true`**（Windows），并去掉了过低的 **`workers.max=2`** 与 **`kotlin.compiler.execution.strategy=in-process`**，以缩短多模块 Kotlin/Compose 编译时间。
+- **IDE**：Android Studio 设置里确认 **Gradle JDK** 为 **JDK 17**，并启用 **Gradle 离线模式**（依赖已下载稳定后）可再省解析时间。
+- **Release 才慢属正常**：`release` 开启 R8/资源压缩，耗时远大于 `debug`；日常联调只用 `debug`。
+
 ---
 
 ## 10. 关键运行配置（性能相关）

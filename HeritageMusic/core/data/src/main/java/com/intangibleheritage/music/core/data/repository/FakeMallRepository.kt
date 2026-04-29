@@ -6,6 +6,8 @@ import com.intangibleheritage.music.core.resources.R
 
 class FakeMallRepository : MallRepository {
 
+    private val mallImageBaseUrl = "http://39.106.117.118:8000/static/mall/"
+
     private val items: List<Product> = listOf(
         Product(
             id = "dunhuang_magnet",
@@ -14,7 +16,8 @@ class FakeMallRepository : MallRepository {
             rating = 4.9f,
             reviewCount = 12,
             descriptionRes = R.string.product_desc_dunhuang,
-            imageRes = R.drawable.mall_wc_poster_02,
+            imageRes = R.drawable.placeholder_product,
+            imageUrl = mallImageBaseUrl + "mall_wc_poster_02.jpg",
             section = MallSection.Story
         ),
         Product(
@@ -24,7 +27,8 @@ class FakeMallRepository : MallRepository {
             rating = 4.8f,
             reviewCount = 9,
             descriptionRes = R.string.product_desc_story_shadow,
-            imageRes = R.drawable.mall_wc_chuang_04,
+            imageRes = R.drawable.placeholder_product,
+            imageUrl = mallImageBaseUrl + "mall_wc_chuang_04.jpg",
             section = MallSection.Story
         ),
         Product(
@@ -34,7 +38,8 @@ class FakeMallRepository : MallRepository {
             rating = 4.7f,
             reviewCount = 6,
             descriptionRes = R.string.product_desc_story_canvas,
-            imageRes = R.drawable.mall_wc_culture_2,
+            imageRes = R.drawable.placeholder_product,
+            imageUrl = mallImageBaseUrl + "mall_wc_culture_2.jpg",
             section = MallSection.Story
         ),
         Product(
@@ -44,7 +49,8 @@ class FakeMallRepository : MallRepository {
             rating = 4.8f,
             reviewCount = 21,
             descriptionRes = R.string.product_desc_silk,
-            imageRes = R.drawable.mall_wc_black_02,
+            imageRes = R.drawable.placeholder_product,
+            imageUrl = mallImageBaseUrl + "mall_wc_black_02.jpg",
             section = MallSection.Cultural
         ),
         Product(
@@ -54,7 +60,8 @@ class FakeMallRepository : MallRepository {
             rating = 4.6f,
             reviewCount = 11,
             descriptionRes = R.string.product_desc_cultural_bookmarks,
-            imageRes = R.drawable.mall_wc_cal_02,
+            imageRes = R.drawable.placeholder_product,
+            imageUrl = mallImageBaseUrl + "mall_wc_cal_02.jpg",
             section = MallSection.Cultural
         ),
         Product(
@@ -64,7 +71,8 @@ class FakeMallRepository : MallRepository {
             rating = 4.7f,
             reviewCount = 7,
             descriptionRes = R.string.product_desc_cultural_lantern,
-            imageRes = R.drawable.mall_wc_chuang_06,
+            imageRes = R.drawable.placeholder_product,
+            imageUrl = mallImageBaseUrl + "mall_wc_chuang_06.jpg",
             section = MallSection.Cultural
         ),
         Product(
@@ -74,7 +82,8 @@ class FakeMallRepository : MallRepository {
             rating = 4.7f,
             reviewCount = 8,
             descriptionRes = R.string.product_desc_bronze,
-            imageRes = R.drawable.mall_photo_mockup_06,
+            imageRes = R.drawable.placeholder_product,
+            imageUrl = mallImageBaseUrl + "mall_photo_mockup_06.png",
             section = MallSection.Cross
         ),
         Product(
@@ -84,7 +93,8 @@ class FakeMallRepository : MallRepository {
             rating = 4.5f,
             reviewCount = 18,
             descriptionRes = R.string.product_desc_cross_tote,
-            imageRes = R.drawable.mall_wc_poster_05,
+            imageRes = R.drawable.placeholder_product,
+            imageUrl = mallImageBaseUrl + "mall_wc_poster_05.jpg",
             section = MallSection.Cross
         ),
         Product(
@@ -94,7 +104,8 @@ class FakeMallRepository : MallRepository {
             rating = 4.6f,
             reviewCount = 24,
             descriptionRes = R.string.product_desc_cross_badge,
-            imageRes = R.drawable.mall_photo_keychain_01,
+            imageRes = R.drawable.placeholder_product,
+            imageUrl = mallImageBaseUrl + "mall_photo_keychain_01.png",
             section = MallSection.Cross
         ),
         Product(
@@ -104,7 +115,8 @@ class FakeMallRepository : MallRepository {
             rating = 4.6f,
             reviewCount = 15,
             descriptionRes = R.string.product_desc_pipa,
-            imageRes = R.drawable.mall_photo_mockup_08,
+            imageRes = R.drawable.placeholder_product,
+            imageUrl = mallImageBaseUrl + "mall_photo_mockup_08.jpg",
             section = MallSection.Instrument
         ),
         Product(
@@ -114,7 +126,8 @@ class FakeMallRepository : MallRepository {
             rating = 4.7f,
             reviewCount = 10,
             descriptionRes = R.string.product_desc_inst_score,
-            imageRes = R.drawable.mall_wc_chuang_05,
+            imageRes = R.drawable.placeholder_product,
+            imageUrl = mallImageBaseUrl + "mall_wc_chuang_05.jpg",
             section = MallSection.Instrument
         ),
         Product(
@@ -124,7 +137,8 @@ class FakeMallRepository : MallRepository {
             rating = 4.8f,
             reviewCount = 33,
             descriptionRes = R.string.product_desc_inst_clip_tuner,
-            imageRes = R.drawable.mall_photo_mockup_02,
+            imageRes = R.drawable.placeholder_product,
+            imageUrl = mallImageBaseUrl + "mall_photo_mockup_02.png",
             section = MallSection.Instrument
         )
     )

@@ -25,10 +25,7 @@ object ProfileVisuals {
         "track_echoes_east" -> R.drawable.music_pick_1
         "track_wall_rhymes" -> R.drawable.music_pick_2
         "track_ladies_music" -> R.drawable.music_pick_3
-        "dunhuang_magnet" -> R.drawable.mall_wc_poster_02
-        "bronze_bells" -> R.drawable.mall_photo_mockup_06
-        "silk_scarf" -> R.drawable.mall_wc_black_02
-        "pipa_bookmark" -> R.drawable.mall_photo_mockup_08
+        "dunhuang_magnet", "bronze_bells", "silk_scarf", "pipa_bookmark" -> R.drawable.placeholder_card
         else -> R.drawable.placeholder_card
     }
 }

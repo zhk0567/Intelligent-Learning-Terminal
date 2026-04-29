@@ -225,7 +225,7 @@ private fun ProductDetailContent(
             .padding(bottom = 8.dp)
     ) {
         AsyncImage(
-            model = product.imageRes,
+            model = product.imageUrl?.takeIf { it.isNotBlank() } ?: product.imageRes,
             contentDescription = stringResource(product.titleRes),
             modifier = Modifier
                 .fillMaxWidth()
