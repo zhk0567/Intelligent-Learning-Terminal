@@ -7,6 +7,8 @@
   var LS_FAV = 'heritageWebFav';
   var LS_HIST = 'heritageWebHist';
   var LS_SET = 'heritageWebSettings';
+  var LS_STORY = 'heritageWebStoryState';
+  var LS_COMM = 'heritageWebCommunityState';
   var THEME_META = { tech: '#050814', paper: '#f7f2e8', neon: '#0d0218', forest: '#101c16' };
   function applyTheme(name) {
     var h = document.documentElement;
@@ -90,6 +92,7 @@
     } catch (eHist) {}
   }
   var _archiveItems = [];
+  var _archiveQuickLoaded = false;
   var _courseItems = [];
   var _mallCatalog = null;
   var _mallCtx = { fromSection: false, sectionId: '', sectionTitle: '', sectionDesc: '', sort: 'default' };
@@ -203,6 +206,44 @@
     }).catch(function() {
       toast('资料库加载失败');
       subpageHide();
+    });
+  }
+  function renderMusicRealEntries(items) {
+    var root = document.getElementById('music-real-list');
+    if (!root) return;
+    root.innerHTML = '';
+    (items || []).slice(0, 6).forEach(function(it) {
+      var card = document.createElement('div');
+      card.className = 'product-card';
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.innerHTML = '<img src="' + escapeHtml(it.coverImageUrl || '') + '" alt="" loading="lazy" decoding="async"/>' +
+        '<div class="pd"><div class="pt">' + escapeHtml(it.title || '') + '</div>' +
+        '<div class="pr">' + escapeHtml(it.typeLabel || '') + ' · ' + escapeHtml(it.region || '') + '</div></div>';
+      btn.addEventListener('click', function() {
+        subState = { kind: 'archive', screen: 'detail' };
+        subpageShow('资料详情');
+        renderArchiveDetail(it);
+      });
+      card.appendChild(btn);
+      root.appendChild(card);
+    });
+  }
+  function ensureArchiveQuickLoaded() {
+    if (_archiveQuickLoaded) {
+      renderMusicRealEntries(_archiveItems);
+      return;
+    }
+    _archiveQuickLoaded = true;
+    fetch('/archive/assets').then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function(d) {
+      _archiveItems = d.items || [];
+      renderMusicRealEntries(_archiveItems);
+    }).catch(function() {
+      var root = document.getElementById('music-real-list');
+      if (root) root.innerHTML = '<p class="loading" style="padding:10px 8px">真实资料加载失败</p>';
     });
   }
   function openCoursesFlow() {
@@ -793,6 +834,7 @@
   }
   function loadStories(tab) {
     var tabKey = tab || 'recommend';
+    writeJsonLs(LS_STORY, { tab: tabKey, kw: storyKw || '' });
     document.getElementById('stories-loading').style.display = 'block';
     document.getElementById('story-grid').style.display = 'none';
     document.getElementById('stories-error').style.display = 'none';
@@ -812,6 +854,9 @@
           clearTimeout(_storyKwTimer);
           _storyKwTimer = setTimeout(function() {
             storyKw = String(skw.value || '').trim().toLowerCase();
+            var a = document.querySelector('.inner-tab.active');
+            var at = a ? (a.getAttribute('data-st') || 'recommend') : 'recommend';
+            writeJsonLs(LS_STORY, { tab: at, kw: storyKw });
             renderStoryMasonry(_lastStoryItems);
           }, 200);
         });
@@ -832,6 +877,7 @@
       });
       b.classList.add('active');
       b.setAttribute('aria-selected', 'true');
+      writeJsonLs(LS_STORY, { tab: b.getAttribute('data-st') || 'recommend', kw: storyKw || '' });
       loadStories(b.getAttribute('data-st'));
     });
   });
@@ -919,6 +965,7 @@
   }
   function renderMusic(d) {
     _musicCache = d;
+    ensureArchiveQuickLoaded();
     document.getElementById('music-loading').style.display = 'none';
     document.getElementById('music-content').style.display = 'block';
     var searchEl = document.getElementById('music-search');
@@ -1089,15 +1136,20 @@
   function renderCommunity(d) {
     document.getElementById('community-loading').style.display = 'none';
     communityAllPosts = d.posts || [];
+    var cs = readJsonLs(LS_COMM, { filter: 'all', kw: '' });
+    if (cs && typeof cs.kw === 'string') communityKw = String(cs.kw).trim().toLowerCase();
+    if (cs && typeof cs.filter === 'string') communityFilter = cs.filter;
     var ckr = document.getElementById('comm-kw-row');
     if (ckr) ckr.classList.add('visible');
     var ckw = document.getElementById('community-kw');
+    if (ckw) ckw.value = communityKw || '';
     if (ckw && !ckw._bound) {
       ckw._bound = true;
       ckw.addEventListener('input', function() {
         clearTimeout(_commKwTimer);
         _commKwTimer = setTimeout(function() {
           communityKw = String(ckw.value || '').trim().toLowerCase();
+          writeJsonLs(LS_COMM, { filter: communityFilter, kw: communityKw });
           applyCommunityFilter();
         }, 200);
       });
@@ -1116,9 +1168,10 @@
       b.type = 'button';
       b.textContent = c.label;
       b.setAttribute('data-cat', c.id);
-      b.className = c.id === 'all' ? 'on' : '';
+      b.className = c.id === communityFilter ? 'on' : '';
       b.addEventListener('click', function() {
         communityFilter = c.id;
+        writeJsonLs(LS_COMM, { filter: communityFilter, kw: communityKw });
         filt.querySelectorAll('button').forEach(function(x) {
           x.classList.toggle('on', x.getAttribute('data-cat') === c.id);
         });
@@ -1128,7 +1181,7 @@
     });
     var list = document.getElementById('posts');
     list.style.display = 'flex';
-    communityFilter = 'all';
+    if (!chips.some(function(x) { return x.id === communityFilter; })) communityFilter = 'all';
     applyCommunityFilter();
   }
   var bootPage = document.body.getAttribute('data-page') || 'music';
@@ -1144,7 +1197,15 @@
     });
   } else if (bootPage === 'stories') {
     _loadedStories = true;
-    loadStories('recommend');
+    var ss = readJsonLs(LS_STORY, { tab: 'recommend', kw: '' });
+    var stab = ss && ss.tab === 'following' ? 'following' : 'recommend';
+    storyKw = ss && typeof ss.kw === 'string' ? String(ss.kw).trim().toLowerCase() : '';
+    document.querySelectorAll('.inner-tab').forEach(function(x) {
+      var hit = x.getAttribute('data-st') === stab;
+      x.classList.toggle('active', hit);
+      x.setAttribute('aria-selected', hit ? 'true' : 'false');
+    });
+    loadStories(stab);
   } else if (bootPage === 'community') {
     _loadedCommunity = true;
     fetch('/community/posts').then(function(r) {

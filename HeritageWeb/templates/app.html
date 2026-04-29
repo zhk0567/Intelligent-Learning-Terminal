@@ -10,7 +10,7 @@
 <body data-page="{{ page }}">
   <header class="app-header">
     <h1>非遗音乐</h1>
-    <p class="hint"><span id="header-tab-label">{{ header_label }}</span> · 离线演示数据（仅本站）</p>
+    <p class="hint" id="header-tab-label">{{ header_label }}</p>
   </header>
   <main>
     <section id="tab-music" class="panel{% if page == 'music' %} active{% endif %}" aria-label="音乐馆">
@@ -24,6 +24,10 @@
             <button type="button" class="entry-chip" data-entry="course">课程</button>
             <button type="button" class="entry-chip" data-entry="interactive">互动</button>
           </div>
+        </div>
+        <div id="music-wrap-real" class="music-sec-wrap">
+          <h2 class="section-title">真实资料入口<span class="more">点击卡片直达详情</span></h2>
+          <div class="product-scroll" id="music-real-list"></div>
         </div>
         <div id="music-wrap-banners" class="music-sec-wrap">
         <div class="banner-scroll" id="banners"></div>
