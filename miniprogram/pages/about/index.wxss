@@ -1,0 +1,56 @@
+.page-root { min-height: 100vh; background: var(--bg-primary); }
+.ab-body {
+  padding-left: 48rpx;
+  padding-right: 48rpx;
+  padding-top: 16rpx;
+  padding-bottom: 60rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.ab-hero { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.ab-seal { margin-bottom: 24rpx; }
+.ab-title { font-size: 34rpx; font-weight: 700; color: var(--text-primary); letter-spacing: 4rpx; }
+.ab-eyebrow { margin-top: 8rpx; font-size: 18rpx; letter-spacing: 0.32em; color: rgba(165,124,44,0.85); }
+.ab-version { margin-top: 8rpx; font-size: 22rpx; color: var(--text-hint); }
+
+.ab-divider {
+  margin: 32rpx auto;
+  width: 70%;
+  height: 2rpx;
+  background: linear-gradient(to right, transparent, rgba(165,124,44,0.5), transparent);
+}
+
+.ab-card {
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 22rpx;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+.ab-text {
+  font-size: 26rpx;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.ab-row { display: flex; justify-content: space-between; font-size: 22rpx; }
+.ab-row-l { color: var(--text-hint); }
+.ab-row-r { color: var(--text-primary); }
+
+.ab-pattern {
+  margin-top: 32rpx;
+  height: 20rpx;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(165,124,44,0.3) 0,
+    rgba(165,124,44,0.3) 4rpx,
+    transparent 4rpx,
+    transparent 12rpx
+  );
+  border-radius: 6rpx;
+  opacity: 0.6;
+}

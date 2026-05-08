@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Ancient Tech Neon Border Effect
+    Standalone neon border with glow effect
+    Can be layered over other backgrounds for neon border effect
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <!-- Transparent fill - only border will be visible -->
+    <solid android:color="@android:color/transparent" />
+    
+    <!-- Rounded corners -->
+    <corners android:radius="@dimen/card_corner_radius_large" />
+    
+    <!-- Thick neon cyan border with outer glow effect -->
+    <stroke
+        android:width="@dimen/card_border_width_thick"
+        android:color="@color/tech_blue" />
+    
+    <!-- Outer shadow to create glow effect -->
+    <padding
+        android:left="@dimen/spacing_small"
+        android:top="@dimen/spacing_small"
+        android:right="@dimen/spacing_small"
+        android:bottom="@dimen/spacing_small" />
+    
+</shape>

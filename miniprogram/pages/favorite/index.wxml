@@ -1,0 +1,43 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="我的收藏" />
+
+  <view class="fav-body">
+    <view class="tab-row">
+      <view wx:for="{{tabs}}" wx:key="*this"
+            class="tab-chip {{tab === item ? 'on' : ''}}"
+            data-t="{{item}}" bindtap="pickTab">{{item}}</view>
+    </view>
+
+    <view wx:if="{{tab === '音乐'}}" class="fav-list">
+      <view wx:for="{{musicList}}" wx:key="id" class="fav-row" data-id="{{item.id}}" bindtap="goPlayer">
+        <cover extra-class="fav-cover" seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}"
+               aspect="square" rounded="lg" ornate="{{false}}" />
+        <view class="fav-info">
+          <view class="fav-title">{{item.title}}</view>
+          <view class="fav-sub">{{item.artist}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{tab === '商品'}}" class="fav-grid">
+      <view wx:for="{{prodList}}" wx:key="id" class="fav-card" data-id="{{item.id}}" bindtap="goShop">
+        <cover seed="{{item.id}}" src="{{item.imageSrc}}" alt="{{item.name}}" aspect="square" rounded="md" ornate="{{false}}" />
+        <view class="fav-card-body">
+          <view class="fav-card-name">{{item.name}}</view>
+          <view class="fav-card-price">¥{{item.price}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{tab === '故事'}}" class="fav-list">
+      <view wx:for="{{storyList}}" wx:key="id" class="fav-row" data-id="{{item.id}}" bindtap="goStory">
+        <cover extra-class="fav-cover" seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}"
+               aspect="square" rounded="lg" ornate="{{false}}" />
+        <view class="fav-info">
+          <view class="fav-title">{{item.title}}</view>
+          <view class="fav-sub fav-sub-clip">{{item.excerpt}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

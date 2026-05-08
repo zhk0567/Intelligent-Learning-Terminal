@@ -1,0 +1,82 @@
+<view class="page-root player-root {{__themeClass}}">
+  <view class="player-top">
+    <view class="player-back" bindtap="goBack">
+      <icon name="arrow-left" size="48" color="var(--text-primary)" />
+    </view>
+    <view class="player-titles">
+      <view class="player-title">{{track.title}}</view>
+      <view class="player-sub">{{track.artist}} · {{track.album}}</view>
+    </view>
+    <view class="player-list-btn" bindtap="openList">
+      <icon name="list" size="48" color="var(--text-primary)" />
+    </view>
+  </view>
+
+  <view class="player-body">
+    <cover extra-class="player-cover" seed="{{track.id}}" src="{{track.coverSrc}}" alt="{{track.title}}"
+           aspect="square" rounded="full" ornate="{{false}}" />
+    <view class="player-meta">
+      <view class="player-meta-title">{{track.title}}</view>
+      <view class="player-meta-sub">{{track.artist}} · {{track.album}}</view>
+    </view>
+
+    <view class="player-progress">
+      <slider class="player-slider" min="0" max="{{track.durationSec}}" value="{{positionSec}}"
+              activeColor="var(--ancient-cinnabar)" backgroundColor="var(--divider-color)"
+              block-size="16" bindchange="onSeek" />
+      <view class="player-time">
+        <text>{{positionStr}}</text>
+        <text>{{durationStr}}</text>
+      </view>
+    </view>
+
+    <view class="player-controls">
+      <view class="player-ctrl">
+        <icon name="shuffle" size="46" color="var(--text-secondary)" />
+      </view>
+      <view class="player-ctrl" bindtap="prev">
+        <icon name="skip-back" size="58" color="var(--text-primary)" />
+      </view>
+      <view class="player-toggle" bindtap="toggle">
+        <icon name="{{isPlaying ? 'pause' : 'play'}}" size="64" color="#ffffff" />
+      </view>
+      <view class="player-ctrl" bindtap="next">
+        <icon name="skip-forward" size="58" color="var(--text-primary)" />
+      </view>
+      <view class="player-ctrl">
+        <icon name="repeat" size="46" color="var(--text-secondary)" />
+      </view>
+    </view>
+
+    <view class="player-bottom">
+      <view class="player-action" bindtap="toggleFav">
+        <icon name="{{fav ? 'heart-filled' : 'heart'}}" size="46"
+              color="{{fav ? 'var(--ancient-cinnabar)' : 'var(--text-primary)'}}" />
+        <text>{{fav ? '已收藏' : '收藏'}}</text>
+      </view>
+      <view class="player-action" bindtap="onDownload">
+        <icon name="download" size="46" color="var(--text-primary)" />
+        <text>下载</text>
+      </view>
+      <view class="player-action" bindtap="onShare">
+        <icon name="share" size="46" color="var(--text-primary)" />
+        <text>分享</text>
+      </view>
+    </view>
+  </view>
+
+  <sheet open="{{listOpen}}" title="当前播放列表" bind:close="closeList">
+    <view class="play-list">
+      <view wx:for="{{tracks}}" wx:key="id"
+            class="play-item {{index === currentIndex ? 'active' : ''}}"
+            data-i="{{index}}" bindtap="pickTrack">
+        <text class="play-no">{{index + 1}}</text>
+        <view class="play-info">
+          <view class="play-title">{{item.title}}</view>
+          <view class="play-artist">{{item.artist}}</view>
+        </view>
+        <text class="play-dur">{{item.durationStr}}</text>
+      </view>
+    </view>
+  </sheet>
+</view>

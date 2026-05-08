@@ -1,0 +1,82 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="{{product.name}}">
+    <view slot="right" class="icon-btn" bindtap="onShare">
+      <icon name="share" size="36" color="var(--text-primary)" />
+    </view>
+  </top-bar>
+
+  <cover extra-class="sd-hero" seed="{{product.id}}" src="{{product.detailHeroSrc || product.imageSrc}}" alt="{{product.name}}"
+         aspect="square" rounded="md" ornate="{{false}}" bindtap="previewMain" />
+
+  <view class="sd-body">
+    <view class="sd-price-row">
+      <text class="sd-price">¥{{product.price}}</text>
+      <text wx:if="{{product.originalPrice}}" class="sd-orig">¥{{product.originalPrice}}</text>
+      <view wx:if="{{product.isNew}}" class="sd-tag">新品</view>
+    </view>
+    <view class="sd-name">{{product.name}}</view>
+    <view class="sd-desc">{{product.description}}</view>
+    <view class="sd-meta">
+      <text class="bronze">★ {{product.rating}}</text>
+      <text>已售 {{product.salesCount}}</text>
+      <text>{{product.category}}</text>
+    </view>
+
+    <view class="sd-row-card">
+      <view class="sd-row"><text class="sd-row-label">发货</text><text class="sd-row-value">48 小时内 · 国内包邮</text></view>
+      <view class="sd-row"><text class="sd-row-label">服务</text><text class="sd-row-value">7 天无理由 · 假一赔三</text></view>
+      <view class="sd-row"><text class="sd-row-label">材质</text><text class="sd-row-value">{{tagsText}}</text></view>
+    </view>
+
+    <view class="sd-detail-card">
+      <view class="sd-section-head">
+        <view class="section-bar"></view>
+        <text class="sd-section-title">商品详情</text>
+      </view>
+      <view class="sd-detail-text">本商品由非遗传承人参与设计，融合传统工艺与现代审美。每件均为手工/小批量生产，可能存在轻微色差，敬请理解。</view>
+      <view class="sd-detail-grid">
+        <cover seed="{{product.id}}-d1" src="{{product.detailSrc1}}" alt="工艺" aspect="square" rounded="lg" ornate="{{false}}" bindtap="previewDetail1" />
+        <cover seed="{{product.id}}-d2" src="{{product.detailSrc2}}" alt="细节" aspect="square" rounded="lg" ornate="{{false}}" bindtap="previewDetail2" />
+      </view>
+    </view>
+  </view>
+
+  <view class="sd-bar">
+    <view class="sd-bar-icon" bindtap="toggleFav">
+      <icon name="{{fav ? 'heart-filled' : 'heart'}}" size="40"
+            color="{{fav ? 'var(--ancient-cinnabar)' : 'var(--text-primary)'}}" />
+    </view>
+    <view class="sd-bar-icon" bindtap="goCart">
+      <icon name="cart" size="40" color="var(--text-primary)" />
+    </view>
+    <view class="btn btn-ghost sd-cta" bindtap="openCart">加入购物车</view>
+    <view class="btn btn-stamp sd-cta" bindtap="openBuy">立即购买</view>
+  </view>
+
+  <sheet open="{{sheetOpen}}" title="{{sheetTitle}}" bind:close="closeSheet">
+    <view class="sd-sheet-row">
+      <cover extra-class="sd-sheet-cover" seed="{{product.id}}" src="{{product.imageSrc}}" alt="{{product.name}}"
+             aspect="square" rounded="lg" ornate="{{false}}" />
+      <view class="sd-sheet-info">
+        <view class="sd-sheet-name">{{product.name}}</view>
+        <view class="sd-sheet-price">¥{{product.price}}</view>
+        <view class="sd-sheet-meta">已选：{{spec}} × {{count}}</view>
+      </view>
+    </view>
+    <view class="sd-sheet-section">规格</view>
+    <view class="chip-row">
+      <view wx:for="{{specs}}" wx:key="*this"
+            class="form-chip {{spec === item ? 'on' : ''}}"
+            data-s="{{item}}" bindtap="pickSpec">{{item}}</view>
+    </view>
+    <view class="sd-sheet-row-end">
+      <text class="sd-sheet-section">数量</text>
+      <view class="sd-counter">
+        <view class="sd-counter-btn" bindtap="dec"><icon name="minus" size="32" color="var(--text-primary)" /></view>
+        <text class="sd-counter-num">{{count}}</text>
+        <view class="sd-counter-btn" bindtap="inc"><icon name="plus" size="32" color="var(--text-primary)" /></view>
+      </view>
+    </view>
+    <view class="btn btn-stamp sd-submit" bindtap="submit">{{sheetMode === 'buy' ? '去结算' : '加入购物车'}}</view>
+  </sheet>
+</view>

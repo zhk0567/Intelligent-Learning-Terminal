@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Ancient Tech Neon Border with Gradient
+    Border with gradient from neon cyan to neon purple
+    Creates a more dynamic and colorful border effect
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <!-- Transparent fill -->
+    <solid android:color="@android:color/transparent" />
+    
+    <!-- Rounded corners -->
+    <corners android:radius="@dimen/card_corner_radius_large" />
+    
+    <!-- Gradient border from cyan to purple -->
+    <stroke
+        android:width="@dimen/card_border_width_medium"
+        android:color="@color/tech_blue">
+        <!-- Note: Android doesn't support gradient borders directly in shape drawables
+             This would need to be implemented as a layer-list or custom view
+             For now, using solid neon cyan -->
+    </stroke>
+    
+</shape>

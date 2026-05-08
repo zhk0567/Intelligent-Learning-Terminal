@@ -1,0 +1,60 @@
+<view class="page-root tab-page {{__themeClass}}">
+  <view class="shop-top">
+    <view class="shop-search" bindtap="goSearch">
+      <icon name="search" size="36" color="var(--text-secondary)" />
+      <text class="shop-search-text">搜索商品</text>
+    </view>
+    <view class="cart-btn" bindtap="goCart">
+      <icon name="cart" size="40" color="var(--text-primary)" />
+      <view wx:if="{{cart > 0}}" class="cart-badge">{{cart > 99 ? '99+' : cart}}</view>
+    </view>
+  </view>
+
+  <view class="shop-banner">
+    <swiper class="shop-banner-swiper" autoplay interval="4000" circular indicator-dots="{{false}}" current="{{bannerIdx}}" bindchange="onBannerChange">
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <cover seed="{{item.id}}" src="{{item.imageSrc}}" alt="{{item.title}}" aspect="16/7" rounded="2xl" ornate="{{false}}" />
+      </swiper-item>
+    </swiper>
+    <view class="shop-banner-sub">{{banners[bannerIdx].subtitle}}</view>
+    <view class="shop-banner-dots">
+      <view wx:for="{{banners}}" wx:key="id" class="shop-banner-dot {{index === bannerIdx ? 'on' : ''}}"></view>
+    </view>
+  </view>
+
+  <scroll-view scroll-x="{{true}}" class="shop-tabs no-scrollbar" enhanced show-scrollbar="{{false}}">
+    <view wx:for="{{categoryTabs}}" wx:key="id"
+          class="shop-chip {{active === item.id ? 'on' : ''}}"
+          data-id="{{item.id}}" bindtap="onPickCat">{{item.label}}</view>
+  </scroll-view>
+
+  <view wx:if="{{skeletonOn}}" class="product-grid">
+    <view wx:for="{{[1,2,3,4,5,6]}}" wx:key="*this" class="product-card">
+      <skeleton shape="square" />
+      <skeleton shape="line" width="80%" />
+      <skeleton shape="line" width="60%" />
+    </view>
+  </view>
+  <view wx:else class="product-grid">
+    <view wx:for="{{list}}" wx:key="id" class="product-card">
+      <view class="product-cover" data-id="{{item.id}}" bindtap="goDetail">
+        <cover seed="{{item.id}}" src="{{item.imageSrc}}" alt="{{item.name}}" aspect="square" rounded="lg" ornate="{{false}}" />
+      </view>
+      <view class="product-info" data-id="{{item.id}}" bindtap="goDetail">
+        <view class="product-name">{{item.name}}</view>
+        <view class="product-price-row">
+          <text class="product-price">¥{{item.price}}</text>
+          <text wx:if="{{item.originalPrice}}" class="product-orig">¥{{item.originalPrice}}</text>
+        </view>
+        <view class="product-meta">
+          <text class="product-rating">★ {{item.rating}}</text>
+          <text>已售 {{item.salesCount}}</text>
+        </view>
+      </view>
+      <view class="product-add" bindtap="addCart">+ 加入购物车</view>
+    </view>
+  </view>
+
+  <view wx:if="{{!skeletonOn && hasMore}}" class="loadmore-btn" bindtap="loadMore">加载更多</view>
+  <view wx:if="{{!skeletonOn && !hasMore}}" class="loadmore-end">— 全部加载完成 —</view>
+</view>

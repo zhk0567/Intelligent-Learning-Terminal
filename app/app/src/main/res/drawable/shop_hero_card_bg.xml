@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="135"
+                android:startColor="@color/shop_hero_grad_outer"
+                android:centerColor="@color/shop_hero_grad_mid"
+                android:endColor="@color/shop_hero_grad_inner" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="0"
+                android:startColor="@color/shop_hero_glare_start"
+                android:endColor="@color/shop_hero_glare_end" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+</layer-list>

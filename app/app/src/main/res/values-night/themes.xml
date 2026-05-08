@@ -1,0 +1,41 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:navigationBarColor">@color/bg_primary</item>
+        <item name="android:windowBackground">@color/bg_primary</item>
+        <item name="android:colorBackground">@color/bg_primary</item>
+        
+        <!-- Ancient Tech Typography System Integration for Night Theme -->
+        <!-- These text appearances will be used by default throughout the app in dark mode -->
+        <item name="textAppearanceHeadline6">@style/TextAppearance.AncientTech.Heading1</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.AncientTech.Heading2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.AncientTech.Body</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.AncientTech.BodySmall</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.AncientTech.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.AncientTech.Button</item>
+        
+        <!-- Card text appearances -->
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.AncientTech.CardTitle</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.AncientTech.Heading3</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.AncientTech.Label</item>
+        
+        <!-- Label text appearances -->
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.AncientTech.Label</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.AncientTech.Caption</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.AncientTech.Tag</item>
+    </style>
+
+    <!-- 启动页：深色模式下状态栏图标为浅色 -->
+    <style name="Theme.MyApplication.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@color/bg_primary</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+</resources>

@@ -1,0 +1,65 @@
+<view class="page-root tab-page {{__themeClass}}">
+  <view class="create-top">
+    <text class="create-title">创作广场</text>
+    <view class="create-publish-btn" bindtap="goPublish">
+      <icon name="plus" size="32" color="#ffffff" />
+      <text>发布</text>
+    </view>
+  </view>
+
+  <view class="quick-grid">
+    <view class="quick-cell" bindtap="goPublish">
+      <view class="quick-icon">
+        <icon name="edit" size="40" color="var(--ancient-cinnabar)" />
+      </view>
+      <text class="quick-label">发布作品</text>
+    </view>
+    <view class="quick-cell" bindtap="goChallenge">
+      <view class="quick-icon">
+        <icon name="trophy" size="40" color="var(--ancient-cinnabar)" />
+      </view>
+      <text class="quick-label">挑战赛</text>
+    </view>
+    <view class="quick-cell" bindtap="goCreator">
+      <view class="quick-icon">
+        <icon name="compass" size="40" color="var(--ancient-cinnabar)" />
+      </view>
+      <text class="quick-label">找创作者</text>
+    </view>
+  </view>
+
+  <section title="进行中的挑战" eyebrow="ACTIVE CHALLENGES" framed="{{false}}">
+    <scroll-view scroll-x="{{true}}" class="challenge-row no-scrollbar" enhanced show-scrollbar="{{false}}">
+      <view wx:for="{{challenges}}" wx:key="id" class="challenge-card" bindtap="goChallenge">
+        <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="16/9" rounded="lg" ornate="{{false}}" />
+        <view class="challenge-info">
+          <view class="challenge-title">{{item.title}}</view>
+          <view class="challenge-desc">{{item.desc}}</view>
+          <view class="progress-track">
+            <view class="progress-bar" style="width: {{item.progress*100/item.total}}%; background: var(--neon-teal);"></view>
+          </view>
+          <view class="challenge-meta">
+            <text>奖励：{{item.rewardLabel}}</text>
+            <text>{{item.progress}}/{{item.total}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </section>
+
+  <section title="社区作品" eyebrow="COMMUNITY WORKS" framed="{{false}}">
+    <view class="post-list">
+      <view wx:for="{{posts}}" wx:key="id" class="post-card" data-id="{{item.id}}" bindtap="goWork">
+        <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="16/9" rounded="lg" ornate="{{false}}" />
+        <view class="post-info">
+          <view class="post-title">{{item.title}}</view>
+          <view class="post-content">{{item.content}}</view>
+          <view class="post-meta">
+            <text>{{item.author}} · {{item.timeText}}</text>
+            <text>♥ {{item.likeCount}} · 评论 {{item.commentCount}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </section>
+</view>

@@ -1,0 +1,98 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="设置" />
+
+  <view class="setting-body">
+    <view class="setting-group">
+      <view class="setting-head">
+        <view class="section-bar"></view>
+        <view>
+          <view class="setting-title">账号</view>
+          <view class="setting-eyebrow">ACCOUNT</view>
+        </view>
+      </view>
+      <view class="setting-row" bindtap="goEdit">
+        <view class="setting-row-icon"><icon name="user" size="32" color="var(--ancient-cinnabar)" /></view>
+        <text class="setting-row-label">编辑个人信息</text>
+        <text class="setting-row-arrow">›</text>
+      </view>
+      <view class="setting-row" bindtap="goChangePwd">
+        <view class="setting-row-icon"><icon name="lock" size="32" color="var(--ancient-cinnabar)" /></view>
+        <text class="setting-row-label">修改密码</text>
+        <text class="setting-row-arrow">›</text>
+      </view>
+    </view>
+
+    <view class="setting-group">
+      <view class="setting-head">
+        <view class="section-bar"></view>
+        <view>
+          <view class="setting-title">外观</view>
+          <view class="setting-eyebrow">APPEARANCE</view>
+        </view>
+      </view>
+      <view class="setting-row" bindtap="openTheme">
+        <view class="setting-row-icon"><icon name="settings" size="32" color="var(--ancient-cinnabar)" /></view>
+        <text class="setting-row-label">主题模式</text>
+        <text class="setting-row-value">{{themeLabel}}</text>
+        <text class="setting-row-arrow">›</text>
+      </view>
+    </view>
+
+    <view class="setting-group">
+      <view class="setting-head">
+        <view class="section-bar"></view>
+        <view>
+          <view class="setting-title">通用</view>
+          <view class="setting-eyebrow">GENERAL</view>
+        </view>
+      </view>
+      <view class="setting-row" bindtap="onNotifyTip">
+        <view class="setting-row-icon"><icon name="bell" size="32" color="var(--ancient-cinnabar)" /></view>
+        <text class="setting-row-label">通知设置</text>
+        <text class="setting-row-arrow">›</text>
+      </view>
+      <view class="setting-row" bindtap="onLangTip">
+        <view class="setting-row-icon"><icon name="globe" size="32" color="var(--ancient-cinnabar)" /></view>
+        <text class="setting-row-label">语言</text>
+        <text class="setting-row-value">简体中文</text>
+        <text class="setting-row-arrow">›</text>
+      </view>
+      <view class="setting-row" bindtap="goAgreement">
+        <text class="setting-row-label setting-row-label-only">用户协议</text>
+        <text class="setting-row-arrow">›</text>
+      </view>
+      <view class="setting-row" bindtap="goPrivacy">
+        <text class="setting-row-label setting-row-label-only">隐私政策</text>
+        <text class="setting-row-arrow">›</text>
+      </view>
+      <view class="setting-row" bindtap="goAbout">
+        <text class="setting-row-label setting-row-label-only">关于古韵薪传</text>
+        <text class="setting-row-value">v0.1.0</text>
+        <text class="setting-row-arrow">›</text>
+      </view>
+    </view>
+
+    <view class="logout-btn" bindtap="onLogout">退出登录</view>
+  </view>
+
+  <view wx:if="{{themeOpen}}" class="dlg-mask" bindtap="closeTheme">
+    <view class="dlg" catchtap="noop">
+      <view class="dlg-title">主题模式</view>
+      <view class="dlg-body">
+        <view wx:for="{{themeOptions}}" wx:key="id"
+              class="theme-opt {{tempMode === item.id ? 'on' : ''}}" data-id="{{item.id}}" bindtap="pickTheme">
+          <view class="check {{tempMode === item.id ? 'on' : ''}}"></view>
+          <view class="theme-icon">{{item.id === 'dark' ? '☾' : '☀'}}</view>
+          <view class="theme-info">
+            <view class="theme-label">{{item.label}}</view>
+            <view class="theme-desc">{{item.desc}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="dlg-actions">
+        <view class="dlg-btn" bindtap="closeTheme">取消</view>
+        <view class="dlg-btn confirm" bindtap="confirmTheme">确认</view>
+      </view>
+    </view>
+  </view>
+</view>

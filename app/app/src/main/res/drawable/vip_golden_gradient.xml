@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- VIP标签金色渐变：低饱和度金色 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:startColor="@color/vip_gradient_start"
+        android:endColor="@color/vip_gradient_end"
+        android:angle="135"/>
+    <corners android:radius="12dp"/>
+</shape>

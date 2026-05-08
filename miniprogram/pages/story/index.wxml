@@ -1,0 +1,41 @@
+<view class="page-root tab-page {{__themeClass}}">
+  <view class="story-top">
+    <text class="story-title">非遗故事</text>
+    <view class="icon-btn" bindtap="goList">
+      <icon name="filter" size="36" color="var(--text-primary)" />
+    </view>
+    <view class="icon-btn" bindtap="goSearch">
+      <icon name="search" size="36" color="var(--text-primary)" />
+    </view>
+  </view>
+
+  <scroll-view scroll-x="{{true}}" class="story-tabs no-scrollbar" enhanced show-scrollbar="{{false}}">
+    <view wx:for="{{tabs}}" wx:key="*this"
+          class="story-chip {{index === activeIdx ? 'on' : ''}}"
+          data-i="{{index}}" bindtap="onPickTab">{{item}}</view>
+  </scroll-view>
+
+  <section title="精选阅读" eyebrow="FEATURED STORIES" framed="{{false}}">
+    <view class="story-feature-list">
+      <view wx:for="{{features}}" wx:key="id" class="story-feature-card" data-id="{{item.id}}" bindtap="goDetail">
+        <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="16/9" rounded="2xl" ornate="{{false}}" />
+        <view class="story-feature-title">{{item.title}}</view>
+        <view class="story-feature-excerpt">{{item.excerpt}}</view>
+        <view class="story-feature-meta">{{item.author}} · {{item.publishTime}} · {{item.readCount}} 阅读</view>
+      </view>
+    </view>
+  </section>
+
+  <section title="更多故事" eyebrow="MORE INSPIRATION" framed="{{false}}">
+    <view class="story-row-list">
+      <view wx:for="{{rest}}" wx:key="id" class="story-row" data-id="{{item.id}}" bindtap="goDetail">
+        <cover extra-class="story-row-cover" seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="square" rounded="lg" ornate="{{false}}" />
+        <view class="story-row-info">
+          <view class="story-row-title">{{item.title}}</view>
+          <view class="story-row-excerpt">{{item.excerpt}}</view>
+          <view class="story-row-meta">{{item.author}} · {{item.publishTime}}</view>
+        </view>
+      </view>
+    </view>
+  </section>
+</view>

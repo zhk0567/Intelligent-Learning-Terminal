@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Ancient Tech Card State Selector
+    Provides different backgrounds for cards in normal, pressed, and selected states
+    Used for product cards, story cards, and post cards
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- Selected state - brighter gradient with thick neon border -->
+    <item android:state_selected="true" android:state_pressed="false">
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="@color/card_gradient_start"
+                android:endColor="@color/tech_blue_dim"
+                android:angle="270" />
+            <corners android:radius="@dimen/card_corner_radius_large" />
+            <stroke
+                android:width="@dimen/card_border_width_thick"
+                android:color="@color/tech_blue" />
+        </shape>
+    </item>
+    
+    <!-- Pressed state - darker gradient with glowing border -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="@color/bg_primary"
+                android:endColor="@color/card_gradient_end"
+                android:angle="270" />
+            <corners android:radius="@dimen/card_corner_radius_large" />
+            <stroke
+                android:width="@dimen/card_border_width_medium"
+                android:color="@color/tech_blue" />
+        </shape>
+    </item>
+    
+    <!-- Normal state - default gradient with subtle border -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="@color/card_gradient_start"
+                android:endColor="@color/card_gradient_end"
+                android:angle="270" />
+            <corners android:radius="@dimen/card_corner_radius_large" />
+            <stroke
+                android:width="@dimen/card_border_width_thin"
+                android:color="@color/divider_light" />
+        </shape>
+    </item>
+    
+</selector>

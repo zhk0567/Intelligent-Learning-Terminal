@@ -1,0 +1,96 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- 浅色默认：状态栏图标深色（适配浅色背景）；深色由 values-night/themes 覆盖 -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- 内容延伸到状态栏下方 -->
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:navigationBarColor">@color/bg_primary</item>
+        
+        <!-- 全局背景色 -->
+        <item name="android:windowBackground">@color/bg_primary</item>
+        <item name="android:colorBackground">@color/bg_primary</item>
+        
+        <!-- 全局字体设置为华文行楷 -->
+        <item name="android:fontFamily">@font/stxingkai_font</item>
+        
+        <!-- Ancient Tech Typography System Integration -->
+        <!-- These text appearances will be used by default throughout the app -->
+        <item name="textAppearanceHeadline6">@style/TextAppearance.AncientTech.Heading1</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.AncientTech.Heading2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.AncientTech.Body</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.AncientTech.BodySmall</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.AncientTech.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.AncientTech.Button</item>
+        
+        <!-- Card text appearances -->
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.AncientTech.CardTitle</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.AncientTech.Heading3</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.AncientTech.Label</item>
+        
+        <!-- Label text appearances -->
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.AncientTech.Label</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.AncientTech.Caption</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.AncientTech.Tag</item>
+    </style>
+
+    <style name="Theme.MyApplication" parent="Base.Theme.MyApplication"/>
+
+    <!-- Splash Activity主题 - 完全全屏，无状态栏 -->
+    <style name="Theme.MyApplication.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@color/bg_primary</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <!-- BottomSheetDialog主题 -->
+    <style name="LoginBottomSheetDialog" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="bottomSheetStyle">@style/LoginBottomSheetStyle</item>
+        <item name="android:windowAnimationStyle">@style/BottomSheetAnimation</item>
+    </style>
+
+    <style name="LoginBottomSheetStyle" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_background</item>
+        <item name="behavior_peekHeight">320dp</item>
+        <item name="behavior_hideable">true</item>
+        <item name="behavior_skipCollapsed">true</item>
+    </style>
+    
+    <!-- BottomSheet弹出/关闭动画 -->
+    <style name="BottomSheetAnimation" parent="Animation.Design.BottomSheetDialog">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+
+    <!-- 商城链路 Activity：无切换动画 -->
+    <style name="Animation.Activity.MallNone" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/no_anim</item>
+        <item name="android:activityOpenExitAnimation">@anim/no_anim</item>
+        <item name="android:activityCloseEnterAnimation">@anim/no_anim</item>
+        <item name="android:activityCloseExitAnimation">@anim/no_anim</item>
+    </style>
+    <style name="Theme.MyApplication.Mall.NoActivityTransition" parent="Theme.MyApplication">
+        <item name="android:windowAnimationStyle">@style/Animation.Activity.MallNone</item>
+    </style>
+
+    <!-- 设置页「主题外观」Material3 弹窗 -->
+    <style name="ShapeAppearanceOverlay.MyApplication.AlertDialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">22dp</item>
+    </style>
+    <style name="ThemeOverlay.MyApplication.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorSurface">@color/bg_card</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
+        <item name="android:colorBackground">@color/bg_card</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApplication.AlertDialog</item>
+    </style>
+</resources>

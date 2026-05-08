@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 淘宝式信息层级：上图下文，价格与加购同一行，避免与标题/销量重叠 -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_marginStart="6dp"
+    android:layout_marginEnd="6dp"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/bg_card_elevated"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="176dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/shopProductImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="商品图片"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/ShapeImageRounded12"
+                tools:src="@drawable/banner1_img" />
+
+            <TextView
+                android:id="@+id/shopProductNewTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|top"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/shop_new_tag_bg"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="3dp"
+                android:text="上新"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/shopProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lineSpacingMultiplier="1.22"
+                android:maxLines="2"
+                android:minHeight="40dp"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="敦煌乐器冰箱贴 博物馆联名款" />
+
+            <LinearLayout
+                android:id="@+id/shopPriceRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/shopProductPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/neon_teal"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    tools:text="¥30.00" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/shopAddCartButton"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/shop_cart_icon_bg"
+                    android:contentDescription="加入购物车"
+                    android:padding="7dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_cart"
+                    app:tint="@color/neon_teal" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/shopProductMeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/mall_meta_readable"
+                android:textSize="12sp"
+                tools:text="4.9分 · 1280人收货" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

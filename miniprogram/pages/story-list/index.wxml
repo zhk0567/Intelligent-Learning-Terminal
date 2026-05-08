@@ -1,0 +1,19 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="故事列表" subtitle="共 {{stories.length}} 篇"></top-bar>
+  <view class="story-list-body">
+    <view wx:for="{{stories}}" wx:key="id" class="story-card" data-id="{{item.id}}" bindtap="goDetail">
+      <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="16/9" rounded="2xl" ornate="{{false}}" />
+      <view class="story-card-info">
+        <view class="story-card-title">{{item.title}}</view>
+        <view class="story-card-excerpt">{{item.excerpt}}</view>
+        <view class="story-card-meta">
+          <text>{{item.author}} · {{item.publishTime}}</text>
+          <text class="cinnabar">♥ {{item.likeCount}} · 评论 {{item.commentCount}}</text>
+        </view>
+        <view class="story-card-tags">
+          <view wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this" class="story-tag">{{t}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

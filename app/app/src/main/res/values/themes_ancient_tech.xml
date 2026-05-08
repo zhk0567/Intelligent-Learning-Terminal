@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- 古风科技主题 -->
+    <style name="Theme.AncientTech" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- 主色调 -->
+        <item name="colorPrimary">@color/neon_cyan</item>
+        <item name="colorPrimaryVariant">@color/neon_cyan_dim</item>
+        <item name="colorOnPrimary">@color/black</item>
+        
+        <!-- 次要色调 -->
+        <item name="colorSecondary">@color/neon_purple</item>
+        <item name="colorSecondaryVariant">@color/neon_purple_dim</item>
+        <item name="colorOnSecondary">@color/white</item>
+        
+        <!-- 背景色 -->
+        <item name="android:colorBackground">@color/bg_primary</item>
+        <item name="android:statusBarColor">@color/bg_secondary</item>
+        <item name="android:navigationBarColor">@color/bg_secondary</item>
+        
+        <!-- 表面色 -->
+        <item name="colorSurface">@color/bg_card_elevated</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        
+        <!-- 错误色 -->
+        <item name="colorError">@color/ancient_red</item>
+        <item name="colorOnError">@color/white</item>
+        
+        <!-- 文字颜色 -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        
+        <!-- 控件样式 -->
+        <item name="buttonStyle">@style/Widget.AncientTech.Button.Primary</item>
+        <item name="materialButtonStyle">@style/Widget.AncientTech.Button.Primary</item>
+        
+        <!-- 卡片样式 -->
+        <item name="materialCardViewStyle">@style/Widget.AncientTech.Card</item>
+        
+        <!-- 裸 EditText 默认样式（勿用 TextInputLayout 作 parent，会导致垂直留白异常） -->
+        <item name="editTextStyle">@style/Widget.AncientTech.EditText</item>
+        
+        <!-- 字体 -->
+        <item name="android:fontFamily">sans-serif</item>
+        
+
+        <!-- 阴影 -->
+        <item name="elevation">8dp</item>
+    </style>
+
+    <!-- 主题默认 EditText：OutlinedBox 只能用在 TextInputLayout 上，不能作 editTextStyle 的 parent -->
+    <style name="Widget.AncientTech.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+    </style>
+
+    <!-- 搜索条内无边框输入：零 padding，避免在固定高度条里上下不齐 -->
+    <style name="Widget.AncientTech.EditText.BorderlessSearch" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@null</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/text_secondary</item>
+    </style>
+
+    <!-- 带描边的输入容器：给显式使用 TextInputLayout 的页面引用（可选） -->
+    <style name="Widget.AncientTech.TextInputLayout.Outlined" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/border_color</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="hintTextColor">@color/text_hint</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+    </style>
+
+    <!-- 对话框主题 -->
+    <style name="Theme.AncientTech.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="android:windowBackground">@color/bg_card_elevated</item>
+        <item name="android:colorBackground">@color/bg_card_elevated</item>
+        <item name="colorSurface">@color/bg_card_elevated</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+    </style>
+
+    <!-- 底部导航栏主题 -->
+    <style name="Widget.AncientTech.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemBackground">@android:color/transparent</item>
+        <item name="itemIconTint">@color/bottom_navigation_tint</item>
+        <item name="itemTextColor">@color/bottom_navigation_tint</item>
+        <item name="android:background">@color/bg_secondary</item>
+        <item name="elevation">12dp</item>
+    </style>
+
+    <!-- 进度条样式 -->
+    <style name="Widget.AncientTech.ProgressBar" parent="Widget.MaterialComponents.ProgressIndicator">
+        <item name="trackColor">@color/bg_secondary</item>
+        <item name="indicatorColor">@color/neon_cyan</item>
+        <item name="trackThickness">4dp</item>
+    </style>
+
+    <!-- 开关样式 -->
+    <style name="Widget.AncientTech.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="trackColor">@color/bg_secondary</item>
+        <item name="thumbColor">@color/neon_cyan</item>
+        <item name="android:trackTint">@color/bg_secondary</item>
+        <item name="android:thumbTint">@color/neon_cyan</item>
+    </style>
+
+    <!-- 文本外观样式 -->
+    <style name="TextAppearance.AncientTech" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Widget 基础样式 -->
+    <style name="Widget.AncientTech" parent="android:Widget">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <!-- 按钮样式 -->
+    <style name="Widget.AncientTech.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="backgroundTint">@color/neon_cyan</item>
+    </style>
+
+    <!-- 标签样式 -->
+    <style name="Widget.AncientTech.Tag" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipBackgroundColor">@color/bg_secondary</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="chipCornerRadius">8dp</item>
+    </style>
+</resources>

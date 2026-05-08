@@ -1,0 +1,28 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="我的作品">
+    <view slot="right" class="mw-add" bindtap="goPublish">
+      <icon name="plus" size="28" color="var(--ancient-cinnabar)" /><text>新建</text>
+    </view>
+  </top-bar>
+
+  <view class="mw-body">
+    <view class="tab-row">
+      <view wx:for="{{tabs}}" wx:key="*this"
+            class="tab-chip {{tab === item ? 'on' : ''}}"
+            data-t="{{item}}" bindtap="pickTab">{{item}}</view>
+    </view>
+
+    <view class="mw-grid">
+      <view wx:for="{{posts}}" wx:key="id" class="mw-card" data-id="{{item.id}}" bindtap="goWork">
+        <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="square" rounded="md" ornate="{{false}}" />
+        <view class="mw-card-body">
+          <view class="mw-card-title">{{item.title}}</view>
+          <view class="mw-card-meta">
+            <text class="mw-card-heart">♥</text>
+            <text>{{item.likeCount}} · 评论 {{item.commentCount}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 用户信息卡片渐变背景：低饱和度青色调 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 底层：微妙的渐变背景 -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="@color/bg_card"
+                android:endColor="@color/profile_card_gradient_end"
+                android:angle="135"/>
+            <corners android:radius="16dp"/>
+        </shape>
+    </item>
+    <!-- 顶层：半透明边框效果 -->
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="1dp"
+                android:color="@color/ripple_primary_mask"/>
+            <corners android:radius="16dp"/>
+        </shape>
+    </item>
+</layer-list>

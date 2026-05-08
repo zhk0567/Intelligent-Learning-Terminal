@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 音符：单茎 + 倾斜音符头，对照参考图 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- 竖茎 -->
+    <path
+        android:pathData="M13,5 L13,17"
+        android:strokeColor="@color/icon_stroke_muted"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"/>
+    <!-- 横旗（向右上弯） -->
+    <path
+        android:pathData="M13,5 C16,4.5 18,5.5 18,7"
+        android:strokeColor="@color/icon_stroke_muted"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"/>
+    <!-- 音符头（倾斜椭圆） -->
+    <path
+        android:pathData="M13,17 C11,17.8 8.5,17.2 8.5,15.8 C8.5,14.4 11,13.8 13,14.6 C15,15.4 15,16.2 13,17 Z"
+        android:strokeColor="@color/icon_stroke_muted"
+        android:strokeWidth="1.6"
+        android:fillColor="@android:color/transparent"/>
+</vector>

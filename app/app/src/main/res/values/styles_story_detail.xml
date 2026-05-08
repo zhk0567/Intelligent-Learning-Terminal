@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主内容卡：上大圆角与头图衔接，下圆角与页面统一 -->
+    <style name="ShapeStoryDetailMainCard">
+        <item name="cornerFamily">rounded</item>
+        <!-- 四角统一半径，与底部视觉一致 -->
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <!-- 头图相框：统一圆角 -->
+    <style name="ShapeStoryDetailHeroFrame">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/story_detail_hero_corner</item>
+    </style>
+
+    <style name="ShapeStoryDetailRelatedCard">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+</resources>

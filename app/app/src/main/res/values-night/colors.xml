@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 基础色 -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Ancient Tech Color Scheme -->
+    <!-- Traditional Chinese Colors -->
+    <color name="ancient_gold">#D4AF37</color>
+    <color name="ancient_red">#C91F37</color>
+    <color name="jade">#00A86B</color>
+    
+    <!-- Modern Tech Colors -->
+    <color name="neon_cyan">#00FFFF</color>
+    <!-- 霓虹青绿：主强调色（创作社区、与青绿 Tab 体系一致） -->
+    <color name="neon_teal">#2EC4B6</color>
+    <color name="neon_teal_dim">#26A89C</color>
+    <color name="neon_teal_soft">#332EC4B6</color>
+    <color name="neon_cyan_light">#5AB8B8</color>
+    <color name="purple">#800080</color>
+    
+    <!-- Derived Colors for Gradients and Borders -->
+    <color name="card_gradient_start">#1A1A2E</color>
+    <color name="card_gradient_end">#16213E</color>
+    <color name="neon_border">#40D4D4D4</color>
+    <color name="login_panel_border">#6694A3B8</color>
+    
+    <!-- Text Colors (WCAG 2.1 AA Compliant) -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0B0B0</color>
+    <color name="text_hint">#6B7A8D</color>
+    <!-- 商城列表副文案：比 text_hint 略亮，深色底上可读 -->
+    <color name="mall_meta_readable">#A8B5C8</color>
+    <!-- 深色卡片上的输入框占位符，需明显高于背景 -->
+    <color name="input_hint_readable">#9DB0C8</color>
+    
+    <!-- Background Colors -->
+    <color name="bg_primary">#0A0E17</color>
+    <color name="bg_secondary">#111827</color>
+    <color name="bg_card">#1A2332</color>
+    <color name="bg_card_elevated">#1F2B3D</color>
+    
+    <!-- Derived Neon Colors -->
+    <color name="neon_cyan_dim">#009BA3</color>
+    <color name="neon_cyan_glow">#00FFFF33</color>
+    
+    <!-- Derived Purple Colors -->
+    <color name="neon_purple">#B829DD</color>
+    <color name="neon_purple_dim">#9A1FB8</color>
+    
+    <!-- Tech Blue Colors -->
+    <color name="tech_blue">#3B82F6</color>
+    <color name="tech_blue_dim">#2563EB</color>
+    <color name="tech_blue_glow">#3B82F633</color>
+    
+    <!-- Navigation Colors -->
+    <color name="nav_background">#0A0E17</color>
+    <color name="nav_active">@color/neon_teal</color>
+    <color name="nav_inactive">#6B7A8D</color>
+    
+    <!-- Border and Divider Colors -->
+    <color name="border_color">#40D4D4D4</color>
+    <color name="divider_color">#1E293B</color>
+    <color name="divider_light">#334155</color>
+    
+    <!-- Button State Colors -->
+    <color name="button_bg">#1A2332</color>
+    <color name="button_border">#40D4D4D4</color>
+    <color name="button_pressed">#009BA3</color>
+    
+    <!-- Gradient Colors -->
+    <color name="gradient_start">#00FFFF</color>
+    <color name="gradient_end">#B829DD</color>
+    
+    <!-- Additional Colors -->
+    <color name="teal_700">#00FFFF</color>
+    
+    <!-- Alias colors for compatibility -->
+    <color name="background_color">@color/bg_primary</color>
+    <color name="primary_color">@color/neon_cyan</color>
+    
+    <!-- Category Button Background -->
+    <color name="category_button_bg">#111827</color>
+    <color name="search_bar_fill">#1A2332</color>
+    <color name="search_bar_icon_tint">#7DD3C0</color>
+    <color name="search_input_surface">#1A2332</color>
+    
+    <!-- Tag Colors -->
+    <color name="tag_bg">#1E293B</color>
+    <color name="tag_selected">#5AB8B820</color>
+    
+    <!-- Shadow and Glow Effects -->
+    <color name="shadow_dark">#00000080</color>
+    <color name="glow_cyan">#00FFFF40</color>
+    
+    <!-- Accessibility Compliant Color Combinations -->
+    <!-- High contrast combinations for WCAG 2.1 AA compliance -->
+    <color name="text_on_ancient_gold">#000000</color> <!-- 7.2:1 contrast ratio -->
+    <color name="text_on_ancient_red">#FFFFFF</color> <!-- 4.5:1 contrast ratio -->
+    <color name="text_on_jade">#000000</color> <!-- 3.8:1 contrast ratio (AA Large compliant) -->
+    <color name="text_on_neon_cyan">#000000</color> <!-- For borders only, not for text -->
+    <color name="text_on_purple">#FFFFFF</color> <!-- 8.6:1 contrast ratio -->
+    
+    <!-- Login Page Colors -->
+    <color name="gold_accent">#D4AF37</color>
+    <color name="version_text">#707080</color>
+
+    <!-- 商城页：古韵 + 科技 -->
+    <color name="shop_bar_bg">#0F0F1A</color>
+    <color name="shop_page_bg">#0F0F1A</color>
+    <color name="shop_card_bg">#161D2A</color>
+    <color name="shop_chip_bg">#1A1A2E</color>
+    <color name="shop_chip_border">#303040</color>
+    <color name="shop_text_muted">#A0A0B0</color>
+    <color name="shop_stone_blue">#3A86FF</color>
+    <color name="shop_indigo">#6A0DAD</color>
+    <color name="shop_cream_text">#F5F5DC</color>
+    <color name="shop_price_blue">#3A86FF</color>
+    <color name="shop_cart_badge">#FF4D4F</color>
+    <color name="shop_original_gray">#707080</color>
+
+    <!-- 登录等页面：半透明卡片蒙层、进度条（随主题由 SkinManager 覆盖） -->
+    <color name="login_card_overlay">#CC1A2332</color>
+    <color name="login_progress_tint">#3A86FF</color>
+
+    <!-- Logo / 装饰环：径向阴影与淡色填充（随主题覆盖） -->
+    <color name="logo_inner_shadow">#33000000</color>
+    <color name="logo_oval_fill_soft">#10D4AF37</color>
+
+    <!-- 列表行涟漪、微阴影（主色半透明随主题覆盖） -->
+    <color name="ripple_primary_mask">#2000FFFF</color>
+    <color name="press_overlay_shadow">#08000000</color>
+    <!-- 次按钮玻璃底 -->
+    <color name="login_secondary_surface">#0FFFFFFF</color>
+
+    <!-- 描边按钮填充：半透明底（随主题） -->
+    <color name="button_outlined_fill">#0D1A1A2E</color>
+
+    <!-- 古卷/纸张高光渐变（浅色半透明，随主题微调） -->
+    <color name="paper_overlay_highlight_start">#0DFFFFFF</color>
+    <color name="paper_overlay_highlight_end">#05FFFFFF</color>
+
+    <!-- ========== Drawable 语义色（除国旗、theme_preview 外全局引用）========== -->
+    <color name="overlay_black_06">#10000000</color>
+    <color name="overlay_black_09">#15000000</color>
+    <color name="overlay_black_12">#20000000</color>
+    <color name="overlay_black_69">#B0000000</color>
+    <color name="ripple_white_mask">#33FFFFFF</color>
+    <color name="ripple_drawer_neon">#3300FFFF</color>
+    <color name="ripple_checkout_light">#55FFFFFF</color>
+    <color name="icon_stroke_muted">#6B7280</color>
+    <color name="icon_tertiary">#8A7A6A</color>
+    <color name="icon_favorite_off">#757575</color>
+    <color name="control_highlight_grad_start">#66CFCF</color>
+    <color name="control_highlight_grad_end">#4DA8A8</color>
+    <color name="card_stroke_subtle">#2A3447</color>
+    <color name="surface_chip_deep">#1E2A3D</color>
+    <color name="mall_header_gradient_end">#151D2E</color>
+    <color name="shop_banner_scrim">#CC0A0E17</color>
+    <color name="banner_dot_frost">#40FFFFFF</color>
+    <color name="neon_teal_glass_09">#142EC4B6</color>
+    <color name="neon_teal_glass_16">#282EC4B6</color>
+    <color name="neon_teal_glass_19">#302EC4B6</color>
+    <color name="neon_teal_glass_25">#402EC4B6</color>
+    <color name="neon_teal_border_strong">#552EC4B6</color>
+    <color name="neon_teal_ripple_26">#442EC4B6</color>
+    <color name="neon_cyan_border_ultrasoft">#1500FFFF</color>
+    <color name="neon_cyan_thumb_soft">#3300FFFF</color>
+    <color name="seekbar_progress_tint">#253A4B63</color>
+    <color name="player_frame_neon_inner">#1A00FFFF</color>
+    <color name="player_frame_base">#0A101F</color>
+    <color name="player_screen_background">#0A101F</color>
+    <color name="player_album_chip_fill">#1A2332</color>
+    <color name="player_control_tint">#D4AF37</color>
+    <color name="player_scrim_top">#091223</color>
+    <color name="player_scrim_mid">#08182E</color>
+    <color name="player_scrim_bottom">#050D1C</color>
+    <color name="surface_mini_player">#1E1E1E</color>
+    <color name="mini_player_bar_surface">#1A2332</color>
+    <color name="on_dark_bar_title">#F8FAFC</color>
+    <color name="on_dark_bar_subtitle">#B8C5D6</color>
+    <color name="progress_track_muted">#333333</color>
+    <color name="shop_hero_grad_outer">#2A1A3A</color>
+    <color name="shop_hero_grad_mid">#1A2A3E</color>
+    <color name="shop_hero_grad_inner">#0F1A28</color>
+    <color name="shop_hero_glare_start">#55D4AF37</color>
+    <color name="shop_hero_glare_end">#08D4AF37</color>
+    <color name="shop_zone_grad_start">#1A2838</color>
+    <color name="shop_zone_grad_end">#121A28</color>
+    <color name="shop_zone_border_gold">#33D4AF37</color>
+    <color name="shop_sales_pill_bg">#151C28</color>
+    <color name="shop_rating_pill_bg">#1A2436</color>
+    <color name="story_hero_scrim_top">#800A0E17</color>
+    <color name="story_hero_blend_mid">#601A2332</color>
+    <color name="story_hero_blend_end">#FF1A2332</color>
+    <color name="pill_teal_soft_bg">#1A2EC4B6</color>
+    <color name="tab_selected_fill_soft">#1A3A86FF</color>
+    <color name="vip_gradient_start">#E6D5A8</color>
+    <color name="vip_gradient_end">#C4A86A</color>
+    <color name="loading_ring_glow">#AA00FFFF</color>
+    <!-- 个人资料卡渐变底端 -->
+    <color name="profile_card_gradient_end">#0F1623</color>
+
+    <!-- 浅色侧栏「卷轴」纸色与字色（随主题微调） -->
+    <color name="drawer_parchment_bg">#F5F0E8</color>
+    <color name="drawer_parchment_header">#E8E0D0</color>
+    <color name="drawer_parchment_divider">#D8CFC0</color>
+    <color name="drawer_text_primary">#3A2E1E</color>
+    <color name="drawer_text_secondary">#5A4A3A</color>
+    <color name="drawer_cream_on_ink">#F5F0E8</color>
+    <!-- 浅色表面上的主字色 / 统计数字 -->
+    <color name="text_on_light_primary">#121212</color>
+    <color name="text_on_light_surface">#1A1A1A</color>
+    <!-- 金底上的浓墨字（登录选项等） -->
+    <color name="text_ink_on_gold">#0F0F1A</color>
+    <!-- 访客条半透明底 -->
+    <color name="guest_hint_scrim">#E0A0A0B0</color>
+
+    <!-- 故事流 mock 无封面占位（参与 SkinManager） -->
+    <color name="story_mock_tile_1">#D4C4A8</color>
+    <color name="story_mock_tile_2">#C8B89A</color>
+    <color name="story_mock_tile_3">#B8C9A8</color>
+    <color name="story_mock_tile_4">#AFC6C8</color>
+    <color name="story_mock_tile_5">#D8C4B8</color>
+    <color name="story_mock_tile_6">#E8DCC8</color>
+    <color name="story_mock_tile_7">#CCB090</color>
+    <color name="story_mock_tile_8">#B4C4A0</color>
+
+    <!-- 设置页「主题预览」小圆标：固定示意色，不参与 SkinManager 换肤 -->
+    <color name="theme_preview_swipe_handle">#40FFFFFF</color>
+    <color name="theme_preview_default_start">#2EC4B6</color>
+    <color name="theme_preview_default_end">#0A0E17</color>
+    <color name="theme_preview_cinnabar_start">#FF6B4A</color>
+    <color name="theme_preview_cinnabar_end">#14080A</color>
+    <color name="theme_preview_gold_start">#E8C547</color>
+    <color name="theme_preview_gold_end">#100D06</color>
+    <color name="theme_preview_ink_start">#3AF0D0</color>
+    <color name="theme_preview_ink_end">#050A0E</color>
+
+    <!-- 国旗矢量：标准色，不参与换肤 -->
+    <color name="flag_china_red">#DE2910</color>
+    <color name="flag_china_gold">#FFDE00</color>
+</resources>

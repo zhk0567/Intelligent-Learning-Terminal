@@ -1,0 +1,105 @@
+.page-root { min-height: 100vh; background: var(--bg-primary); padding-bottom: 80rpx; }
+.cp-hero-wrap { position: relative; }
+.cp-hero { width: 100%; }
+.cp-avatar-wrap {
+  position: absolute;
+  left: 32rpx;
+  bottom: -80rpx;
+  display: flex;
+  align-items: flex-end;
+  gap: 16rpx;
+}
+.cp-avatar {
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 9999rpx;
+  background: var(--bg-card);
+  border: 4rpx solid rgba(165,124,44,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: var(--ancient-bronze);
+}
+.cp-name-wrap { padding-bottom: 12rpx; }
+.cp-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.cp-tag {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: var(--text-secondary);
+}
+
+.cp-body {
+  margin-top: 100rpx;
+  padding: 0 32rpx;
+}
+.cp-stats {
+  display: flex;
+  justify-content: space-around;
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 28rpx;
+  padding: 24rpx 0;
+}
+.cp-stat { text-align: center; }
+.cp-stat-value {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.cp-stat-label {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: var(--text-secondary);
+}
+
+.cp-actions {
+  margin-top: 24rpx;
+  display: flex;
+  gap: 16rpx;
+}
+.cp-action { flex: 1; padding: 16rpx 0; border-radius: 9999rpx; }
+
+.cp-section-head {
+  margin-top: 32rpx;
+  display: flex;
+  align-items: center;
+}
+.cp-section-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.cp-grid {
+  margin-top: 16rpx;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24rpx;
+}
+.cp-card {
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 22rpx;
+  overflow: hidden;
+}
+.cp-card-info { padding: 16rpx; }
+.cp-card-title {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.cp-card-meta {
+  margin-top: 4rpx;
+  font-size: 20rpx;
+  color: var(--text-hint);
+}
+.cp-card-meta.cinnabar { color: var(--ancient-cinnabar); }

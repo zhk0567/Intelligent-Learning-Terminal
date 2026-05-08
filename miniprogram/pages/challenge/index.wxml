@@ -1,0 +1,25 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="挑战赛" subtitle="完成挑战 · 解锁限定奖励"></top-bar>
+  <view class="challenge-body">
+    <view wx:for="{{challenges}}" wx:key="id" class="challenge-card">
+      <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="16/7" rounded="2xl" ornate="{{false}}" />
+      <view class="challenge-info">
+        <view class="challenge-head">
+          <text class="challenge-title">{{item.title}}</text>
+          <view class="challenge-reward">
+            <icon name="trophy" size="22" color="var(--ancient-bronze)" />
+            <text>{{item.rewardLabel}}</text>
+          </view>
+        </view>
+        <view class="challenge-desc">{{item.desc}}</view>
+        <view class="progress-track">
+          <view class="progress-bar" style="width: {{item.progress*100/item.total}}%;"></view>
+        </view>
+        <view class="challenge-meta">
+          <text>已完成 {{item.progress}} / {{item.total}}</text>
+          <view class="btn btn-stamp" bindtap="join">立即参与</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

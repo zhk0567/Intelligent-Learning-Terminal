@@ -1,0 +1,50 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="创作者主页"></top-bar>
+  <view class="cp-hero-wrap">
+    <cover extra-class="cp-hero" seed="{{seed}}-bg" src="{{bannerSrc}}" alt="创作者封面"
+           aspect="2/1" rounded="md" ornate="{{false}}" />
+    <view class="cp-avatar-wrap">
+      <view class="cp-avatar">{{initial}}</view>
+      <view class="cp-name-wrap">
+        <view class="cp-name">非遗创作人 #{{seed}}</view>
+        <view class="cp-tag">古琴 / 古筝 / 改编</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cp-body">
+    <view class="cp-stats">
+      <view class="cp-stat">
+        <view class="cp-stat-value">42</view>
+        <view class="cp-stat-label">作品</view>
+      </view>
+      <view class="cp-stat">
+        <view class="cp-stat-value">1.2 万</view>
+        <view class="cp-stat-label">粉丝</view>
+      </view>
+      <view class="cp-stat">
+        <view class="cp-stat-value">8.5 万</view>
+        <view class="cp-stat-label">点赞</view>
+      </view>
+    </view>
+
+    <view class="cp-actions">
+      <view class="btn btn-stamp cp-action" bindtap="follow">关注</view>
+      <view class="btn btn-ghost cp-action" bindtap="message">私信</view>
+    </view>
+
+    <view class="cp-section-head">
+      <view class="section-bar"></view>
+      <text class="cp-section-title">作品</text>
+    </view>
+    <view class="cp-grid">
+      <view wx:for="{{works}}" wx:key="id" class="cp-card" data-id="{{item.id}}" bindtap="goWork">
+        <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="square" rounded="md" ornate="{{false}}" />
+        <view class="cp-card-info">
+          <view class="cp-card-title">{{item.title}}</view>
+          <view class="cp-card-meta cinnabar">♥ {{item.likeCount}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

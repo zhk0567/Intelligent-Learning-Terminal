@@ -1,0 +1,15 @@
+<view class="splash {{__themeClass}}">
+  <view class="splash-logo-wrap">
+    <view class="splash-logo">
+      <image class="splash-logo-img" src="/images/logo.jpg" mode="aspectFit" />
+    </view>
+    <view class="splash-ring"></view>
+    <seal-stamp text="韵" size="72" extra-class="splash-seal" />
+  </view>
+  <view class="splash-title">古 韵 薪 传</view>
+  <view class="splash-eyebrow">HERITAGE · LIVING</view>
+  <view class="splash-subtitle">科技赋能 · 让非遗触手可及</view>
+  <view class="splash-progress">
+    <view class="splash-progress-bar"></view>
+  </view>
+</view>

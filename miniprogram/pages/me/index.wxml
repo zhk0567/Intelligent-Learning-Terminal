@@ -1,0 +1,107 @@
+<view class="page-root tab-page {{__themeClass}}">
+  <view class="me-head">
+    <view class="me-head-top">
+      <text class="me-title">我的</text>
+      <view class="me-actions">
+        <view class="icon-btn" bindtap="goSetting">
+          <icon name="settings" size="36" color="var(--text-primary)" />
+        </view>
+        <view class="icon-btn">
+          <icon name="bell" size="36" color="var(--text-primary)" />
+        </view>
+      </view>
+    </view>
+    <view class="me-user">
+      <view class="me-avatar-wrap">
+        <cover extra-class="me-avatar"
+               seed="{{user.name}}" src="{{avatar}}" alt="{{user.name}}"
+               aspect="square" rounded="full" ornate="{{false}}" />
+        <seal-stamp wx:if="{{user.vip}}" text="VIP" size="40" extra-class="me-vip" />
+      </view>
+      <view class="me-user-info">
+        <view class="me-user-name">{{user.name}}</view>
+        <view class="me-user-bio">{{user.bio}}</view>
+        <view class="me-user-phone">{{user.phone}}</view>
+      </view>
+      <view class="me-edit-btn" bindtap="goEdit">编辑资料</view>
+    </view>
+  </view>
+
+  <view class="me-stats">
+    <view class="me-stat" bindtap="goFav">
+      <icon name="heart" size="40" color="var(--ancient-bronze)" />
+      <text class="me-stat-num">23</text>
+      <text class="me-stat-label">收藏</text>
+    </view>
+    <view class="me-stat" bindtap="goHistory">
+      <icon name="footprint" size="40" color="var(--ancient-bronze)" />
+      <text class="me-stat-num">86</text>
+      <text class="me-stat-label">足迹</text>
+    </view>
+    <view class="me-stat" bindtap="goWorks">
+      <icon name="edit" size="40" color="var(--ancient-bronze)" />
+      <text class="me-stat-num">9</text>
+      <text class="me-stat-label">创作</text>
+    </view>
+  </view>
+
+  <view class="me-functions">
+    <view class="me-functions-head">
+      <view class="section-bar"></view>
+      <view>
+        <view class="me-functions-title">常用功能</view>
+        <view class="me-functions-eyebrow">QUICK ACCESS</view>
+      </view>
+    </view>
+    <view class="me-func-list">
+      <view class="me-func" bindtap="goLearning">
+        <view class="me-func-icon"><icon name="book-open" size="32" color="var(--ancient-cinnabar)" /></view>
+        <view class="me-func-info">
+          <text class="me-func-label">我的学习</text>
+          <text class="me-func-desc">持续学习中</text>
+        </view>
+        <text class="me-func-arrow">›</text>
+      </view>
+      <view class="me-func" bindtap="goWorks">
+        <view class="me-func-icon"><icon name="trophy" size="32" color="var(--ancient-cinnabar)" /></view>
+        <view class="me-func-info">
+          <text class="me-func-label">我的作品</text>
+          <text class="me-func-desc">已发布 9 件</text>
+        </view>
+        <text class="me-func-arrow">›</text>
+      </view>
+      <view class="me-func" bindtap="goFav">
+        <view class="me-func-icon"><icon name="heart" size="32" color="var(--ancient-cinnabar)" /></view>
+        <view class="me-func-info">
+          <text class="me-func-label">我的收藏</text>
+          <text class="me-func-desc">23 个内容</text>
+        </view>
+        <text class="me-func-arrow">›</text>
+      </view>
+      <view class="me-func" bindtap="goHistory">
+        <view class="me-func-icon"><icon name="clock" size="32" color="var(--ancient-cinnabar)" /></view>
+        <view class="me-func-info">
+          <text class="me-func-label">浏览历史</text>
+          <text class="me-func-desc">近 7 天 86 条</text>
+        </view>
+        <text class="me-func-arrow">›</text>
+      </view>
+      <view class="me-func" bindtap="goEdit">
+        <view class="me-func-icon"><icon name="user" size="32" color="var(--ancient-cinnabar)" /></view>
+        <view class="me-func-info">
+          <text class="me-func-label">编辑资料</text>
+          <text class="me-func-desc">更新个人信息</text>
+        </view>
+        <text class="me-func-arrow">›</text>
+      </view>
+      <view class="me-func" bindtap="goSetting">
+        <view class="me-func-icon"><icon name="settings" size="32" color="var(--ancient-cinnabar)" /></view>
+        <view class="me-func-info">
+          <text class="me-func-label">系统设置</text>
+          <text class="me-func-desc">主题 · 安全 · 关于</text>
+        </view>
+        <text class="me-func-arrow">›</text>
+      </view>
+    </view>
+  </view>
+</view>

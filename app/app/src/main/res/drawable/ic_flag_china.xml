@@ -1,0 +1,30 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="20dp"
+    android:height="20dp"
+    android:viewportWidth="20"
+    android:viewportHeight="20">
+    <!-- 红色背景 -->
+    <path
+        android:pathData="M0,0h20v20H0z"
+        android:fillColor="@color/flag_china_red"/>
+    <!-- 大五角星 -->
+    <path
+        android:pathData="M5,3.5l0.6,1.8h1.9l-1.5,1.1 0.6,1.8 -1.5,-1.1 -1.5,1.1 0.6,-1.8 -1.5,-1.1h1.9z"
+        android:fillColor="@color/flag_china_gold"/>
+    <!-- 小五角星1 -->
+    <path
+        android:pathData="M8,2l0.3,0.9h0.9l-0.7,0.5 0.3,0.9 -0.7,-0.5 -0.7,0.5 0.3,-0.9 -0.7,-0.5h0.9z"
+        android:fillColor="@color/flag_china_gold"/>
+    <!-- 小五角星2 -->
+    <path
+        android:pathData="M9,4l0.3,0.9h0.9l-0.7,0.5 0.3,0.9 -0.7,-0.5 -0.7,0.5 0.3,-0.9 -0.7,-0.5h0.9z"
+        android:fillColor="@color/flag_china_gold"/>
+    <!-- 小五角星3 -->
+    <path
+        android:pathData="M9,6l0.3,0.9h0.9l-0.7,0.5 0.3,0.9 -0.7,-0.5 -0.7,0.5 0.3,-0.9 -0.7,-0.5h0.9z"
+        android:fillColor="@color/flag_china_gold"/>
+    <!-- 小五角星4 -->
+    <path
+        android:pathData="M8,7.5l0.3,0.9h0.9l-0.7,0.5 0.3,0.9 -0.7,-0.5 -0.7,0.5 0.3,-0.9 -0.7,-0.5h0.9z"
+        android:fillColor="@color/flag_china_gold"/>
+</vector>

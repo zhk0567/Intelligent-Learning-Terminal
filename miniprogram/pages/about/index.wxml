@@ -1,0 +1,27 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="关于古韵薪传" />
+
+  <view class="ab-body">
+    <view class="ab-hero">
+      <seal-stamp text="古韵" size="176" extra-class="ab-seal" />
+      <view class="ab-title">古韵薪传 · 科技赋能</view>
+      <view class="ab-eyebrow">HERITAGE · LIVING</view>
+      <view class="ab-version">小程序版 · v0.1.0</view>
+    </view>
+
+    <view class="ab-divider"></view>
+
+    <view class="ab-card">
+      <text class="ab-text">「古韵薪传」致力于让非遗文化以现代方式流动：通过音乐、故事、社区与商城，让更多人遇见、理解并参与这份属于华夏的文化遗产。</text>
+      <text class="ab-text">本小程序版本与 Web、Android 端共享同一套设计系统与数据结构，所有内容均为演示数据，可作为产品评审与设计走查使用。</text>
+    </view>
+
+    <view class="ab-card">
+      <view class="ab-row"><text class="ab-row-l">版权</text><text class="ab-row-r">© 古韵薪传 团队</text></view>
+      <view class="ab-row"><text class="ab-row-l">官网</text><text class="ab-row-r">https://example.com</text></view>
+      <view class="ab-row"><text class="ab-row-l">反馈</text><text class="ab-row-r">feedback@example.com</text></view>
+    </view>
+
+    <view class="ab-pattern"></view>
+  </view>
+</view>

@@ -1,0 +1,100 @@
+.page-root { min-height: 100vh; background: var(--bg-primary); }
+
+.result-tabs {
+  display: flex;
+  gap: 16rpx;
+  white-space: nowrap;
+  padding: 16rpx 32rpx;
+  background: var(--bg-primary);
+}
+.result-chip {
+  padding: 12rpx 28rpx;
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  color: var(--text-secondary);
+  border-radius: 9999rpx;
+  font-size: 26rpx;
+}
+.result-chip.on {
+  background: var(--ancient-cinnabar);
+  border-color: var(--ancient-cinnabar);
+  color: #ffffff;
+  box-shadow: inset 0 -4rpx 0 rgba(0,0,0,0.2);
+}
+
+.result-body { padding: 0 32rpx 80rpx; }
+
+.result-section-head {
+  display: flex;
+  align-items: center;
+  margin: 24rpx 0 16rpx;
+}
+.result-section-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.result-row-list { display: flex; flex-direction: column; gap: 16rpx; }
+.result-row {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 16rpx;
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 22rpx;
+}
+.result-row-cover { width: 96rpx; height: 96rpx; flex-shrink: 0; }
+.result-row-info { flex: 1; min-width: 0; }
+.result-row-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.result-row-sub {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: var(--text-secondary);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.result-row-sub.line2 {
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24rpx;
+}
+.result-card {
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 22rpx;
+  overflow: hidden;
+}
+.result-card-info { padding: 16rpx; }
+.result-card-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.result-card-price {
+  margin-top: 8rpx;
+  color: var(--ancient-cinnabar);
+  font-weight: 700;
+  font-size: 28rpx;
+}
+
+.empty-text { padding: 96rpx 0; text-align: center; color: var(--text-hint); font-size: 24rpx; }

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    
+    <!-- 
+        Ancient Tech Typography System
+        ==============================
+        
+        This file defines the typography styles for the Ancient Tech UI Enhancement.
+        All text styles follow WCAG 2.1 AA compliance guidelines and support
+        text scaling up to 200% for accessibility.
+        
+        Font Families:
+        - Noto Sans SC variants (Regular, Medium, Bold)
+        - Uses sp units for text scaling support
+        - Proper letter spacing and line height values
+    -->
+    
+    <!-- ==================== HEADINGS ==================== -->
+    
+    <!-- Heading 1: Main page titles and major sections -->
+    <style name="TextAppearance.AncientTech.Heading1">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:lineHeight">32sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- Heading 2: Section titles and important headings -->
+    <style name="TextAppearance.AncientTech.Heading2">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0.015</item>
+        <item name="android:lineHeight">28sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- Heading 3: Subsection titles and minor headings -->
+    <style name="TextAppearance.AncientTech.Heading3">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineHeight">24sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- ==================== BODY TEXT ==================== -->
+    
+    <!-- Body: Primary body text for paragraphs and content -->
+    <style name="TextAppearance.AncientTech.Body">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">24sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- BodySmall: Secondary body text, captions, and smaller content -->
+    <style name="TextAppearance.AncientTech.BodySmall">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- ==================== LABELS ==================== -->
+    
+    <!-- Label: Form labels, field labels, and descriptive text -->
+    <style name="TextAppearance.AncientTech.Label">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineHeight">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- Caption: Small captions, metadata, and fine print -->
+    <style name="TextAppearance.AncientTech.Caption">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_hint</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineHeight">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- ==================== BUTTONS ==================== -->
+    
+    <!-- Button: Primary action button text -->
+    <style name="TextAppearance.AncientTech.Button">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:lineHeight">24sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    
+    <!-- ButtonSmall: Secondary or small action button text -->
+    <style name="TextAppearance.AncientTech.ButtonSmall">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0.015</item>
+        <item name="android:lineHeight">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    
+    <!-- ==================== SPECIAL TEXT STYLES ==================== -->
+    
+    <!-- Error: Text for error messages and validation errors -->
+    <style name="TextAppearance.AncientTech.Error">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/ancient_red</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- Success: Text for success messages and confirmations -->
+    <style name="TextAppearance.AncientTech.Success">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/jade</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- Link: Text for hyperlinks and interactive text -->
+    <style name="TextAppearance.AncientTech.Link">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/neon_cyan</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">24sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- ==================== CARD SPECIFIC TEXT ==================== -->
+    
+    <!-- CardTitle: Title text for cards (products, stories, posts) -->
+    <style name="TextAppearance.AncientTech.CardTitle">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineHeight">24sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- CardSubtitle: Subtitle text for cards -->
+    <style name="TextAppearance.AncientTech.CardSubtitle">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- CardDescription: Description text for cards -->
+    <style name="TextAppearance.AncientTech.CardDescription">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- CardPrice: Price text for product cards -->
+    <style name="TextAppearance.AncientTech.CardPrice">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/ancient_gold</item>
+        <item name="android:letterSpacing">0.015</item>
+        <item name="android:lineHeight">28sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- ==================== NAVIGATION TEXT ==================== -->
+    
+    <!-- NavItem: Bottom navigation item text -->
+    <style name="TextAppearance.AncientTech.NavItem">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/nav_inactive</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineHeight">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- NavItemActive: Active bottom navigation item text -->
+    <style name="TextAppearance.AncientTech.NavItemActive">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/nav_active</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineHeight">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- ==================== TAG TEXT ==================== -->
+    
+    <!-- Tag: Text for tags and categories -->
+    <style name="TextAppearance.AncientTech.Tag">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineHeight">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- TagSelected: Selected tag text -->
+    <style name="TextAppearance.AncientTech.TagSelected">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/neon_cyan</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:lineHeight">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+    <!-- ==================== ACCESSIBILITY TEXT ==================== -->
+    
+    <!-- AccessibilityNote: Text for accessibility notes and hints -->
+    <style name="TextAppearance.AncientTech.AccessibilityNote">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_hint</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineHeight">16sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    
+</resources>

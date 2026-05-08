@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Ancient Tech Bottom Navigation Background
+    Gradient background for bottom navigation with neon top border
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <!-- Dark gradient background -->
+    <gradient
+        android:startColor="@color/bg_primary"
+        android:endColor="@color/bg_secondary"
+        android:angle="0" />
+    
+    <!-- Only top border for navigation separation -->
+    <stroke
+        android:width="@dimen/divider_thickness_medium"
+        android:color="@color/tech_blue"
+        android:dashWidth="8dp"
+        android:dashGap="4dp" />
+    
+    <!-- Rounded top corners -->
+    <corners
+        android:topLeftRadius="@dimen/card_corner_radius_medium"
+        android:topRightRadius="@dimen/card_corner_radius_medium"
+        android:bottomLeftRadius="0dp"
+        android:bottomRightRadius="0dp" />
+    
+</shape>

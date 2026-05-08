@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  InsetDrawable + launcher_icon_logo.png：四边留白由 @dimen/launcher_adaptive_logo_inset 控制，
+  避免系统圆形/圆角遮罩裁掉「古韵薪传」四字与主图形边缘。
+-->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/launcher_icon_logo"
+    android:insetLeft="@dimen/launcher_adaptive_logo_inset"
+    android:insetTop="@dimen/launcher_adaptive_logo_inset"
+    android:insetRight="@dimen/launcher_adaptive_logo_inset"
+    android:insetBottom="@dimen/launcher_adaptive_logo_inset" />

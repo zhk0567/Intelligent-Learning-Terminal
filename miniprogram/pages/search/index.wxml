@@ -1,0 +1,36 @@
+<view class="page-root {{__themeClass}}">
+  <view class="search-top">
+    <view class="search-back" bindtap="goBack">
+      <icon name="arrow-left" size="40" color="var(--text-primary)" />
+    </view>
+    <view class="search-input-wrap">
+      <icon name="search" size="32" color="var(--text-hint)" />
+      <input class="search-input" focus="{{true}}" placeholder="搜索曲目、艺人或关键词"
+             placeholder-class="search-placeholder" value="{{q}}"
+             bindinput="onInput" bindconfirm="submit" confirm-type="search" />
+    </view>
+    <view class="search-cta" bindtap="submit">搜索</view>
+  </view>
+
+  <view class="search-body">
+    <view class="search-section-head">
+      <view class="section-bar"></view>
+      <text class="search-section-title">热门搜索</text>
+    </view>
+    <view class="search-chip-row">
+      <view wx:for="{{hotKeywords}}" wx:key="*this" class="search-chip" data-kw="{{item}}" bindtap="pickHot">{{item}}</view>
+    </view>
+
+    <view class="search-section-head" style="margin-top:48rpx;">
+      <view class="section-bar"></view>
+      <text class="search-section-title">最近搜索</text>
+      <view wx:if="{{hist.length}}" class="search-clear" bindtap="clearHist">
+        <icon name="trash" size="28" color="var(--text-hint)" /> 清空
+      </view>
+    </view>
+    <view wx:if="{{hist.length}}" class="search-chip-row">
+      <view wx:for="{{hist}}" wx:key="*this" class="search-chip dim" data-kw="{{item}}" bindtap="pickHot">{{item}}</view>
+    </view>
+    <view wx:else class="empty-text">暂无搜索记录，试试热门关键词</view>
+  </view>
+</view>

@@ -1,0 +1,44 @@
+<view class="login-root {{__themeClass}}">
+  <view class="login-main">
+    <view class="login-head">
+      <view class="login-bar"></view>
+      <view>
+        <view class="login-eyebrow">WELCOME BACK</view>
+        <view class="login-title">欢迎回来</view>
+      </view>
+    </view>
+    <view class="login-tip">登录古韵薪传，继续你的非遗之旅</view>
+
+    <view class="login-card">
+    <view class="login-field">
+      <icon name="user" size="36" color="var(--text-hint)" />
+      <input class="login-input" placeholder="账号 / 手机号 / 邮箱" placeholder-class="login-placeholder"
+             value="{{account}}" bindinput="onAccount" />
+    </view>
+    <view class="login-field">
+      <icon name="lock" size="36" color="var(--text-hint)" />
+      <input class="login-input" placeholder="密码" placeholder-class="login-placeholder"
+             password="{{!show}}" value="{{pwd}}" bindinput="onPwd" />
+      <view class="login-eye" bindtap="toggleEye">
+        <icon name="eye" size="36" color="var(--text-hint)" />
+      </view>
+    </view>
+
+    <view class="login-row">
+      <view class="login-link strong" bindtap="goForgot">忘记密码？</view>
+      <view class="login-link" bindtap="goRegister">新账号注册</view>
+    </view>
+
+    <button class="btn btn-primary login-cta" bindtap="submit">登录</button>
+    <button class="btn btn-ghost login-cta-ghost" bindtap="goPhone">
+      <icon name="phone" size="34" color="var(--text-primary)" /> 手机验证码登录
+    </button>
+    </view>
+  </view>
+
+  <view class="login-foot">
+    <view class="login-link" bindtap="loginGuest">游客访问</view>
+    <text class="login-foot-dot">·</text>
+    <view class="login-link" bindtap="goAbout">关于古韵薪传</view>
+  </view>
+</view>

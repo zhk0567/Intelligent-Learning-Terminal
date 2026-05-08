@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Ancient Tech Tag State Selector
+    Provides different backgrounds for tags in normal and selected states
+    Used for category tags, filter tags, etc.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- Selected tag - filled with neon cyan glow -->
+    <item android:state_selected="true" android:state_pressed="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/tag_selected" />
+            <corners android:radius="@dimen/button_corner_radius_round" />
+            <stroke
+                android:width="@dimen/button_border_width_thin"
+                android:color="@color/tech_blue" />
+        </shape>
+    </item>
+    
+    <!-- Pressed tag (selected) - brighter glow -->
+    <item android:state_selected="true" android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/tech_blue_glow" />
+            <corners android:radius="@dimen/button_corner_radius_round" />
+            <stroke
+                android:width="@dimen/button_border_width_medium"
+                android:color="@color/tech_blue" />
+        </shape>
+    </item>
+    
+    <!-- Pressed tag (not selected) - subtle highlight -->
+    <item android:state_pressed="true" android:state_selected="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/bg_card" />
+            <corners android:radius="@dimen/button_corner_radius_round" />
+            <stroke
+                android:width="@dimen/button_border_width_thin"
+                android:color="@color/divider_light" />
+        </shape>
+    </item>
+    
+    <!-- Normal tag - subtle background -->
+    <item android:state_selected="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/tag_bg" />
+            <corners android:radius="@dimen/button_corner_radius_round" />
+            <stroke
+                android:width="@dimen/button_border_width_thin"
+                android:color="@color/divider_light" />
+        </shape>
+    </item>
+    
+</selector>

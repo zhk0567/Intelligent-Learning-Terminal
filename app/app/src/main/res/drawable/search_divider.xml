@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    分割线 - 深色科技风
+    - 霓虹青绿半透明，与主题协调
+    - 高度固定 1dp
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/tag_bg"/>
+    <size android:height="1dp"/>
+</shape>

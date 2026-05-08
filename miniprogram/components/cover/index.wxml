@@ -1,0 +1,15 @@
+<view class="cover {{aspectClass}} {{roundedClass}} {{extraClass}}" style="{{computedStyle}}">
+  <block wx:if="{{src}}">
+    <image class="cover-img" src="{{src}}" mode="aspectFill" />
+  </block>
+  <block wx:else>
+    <text class="cover-text">{{label}}</text>
+  </block>
+  <icon
+    wx:if="{{ornate}}"
+    class="cover-corner {{src ? 'cover-corner-on-img' : 'cover-corner-on-bg'}}"
+    name="corner-pattern"
+    size="60"
+    color="{{src ? 'rgba(255,255,255,0.85)' : 'rgba(165,124,44,0.55)'}}"
+  />
+</view>

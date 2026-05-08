@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    右侧滑出侧边栏
+    layout_gravity="end" 表示从右侧滑出
+    宽度 280dp，背景米黄色，古风素雅风格
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_drawer"
+    android:layout_width="280dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/drawer_parchment_bg"
+    android:layout_gravity="end">
+
+    <!-- 顶部用户信息区：稍深米色背景 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/drawer_parchment_header"
+        android:paddingTop="56dp"
+        android:paddingBottom="24dp"
+        android:paddingHorizontal="24dp">
+
+        <!-- 圆形头像（文字占位） -->
+        <TextView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:text="用户"
+            android:textSize="26sp"
+            android:textColor="@color/drawer_cream_on_ink"
+            android:gravity="center"
+            android:background="@drawable/profile_avatar_bg"/>
+
+        <!-- 用户名 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:textSize="17sp"
+            android:textColor="@color/drawer_text_primary"
+            
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"/>
+
+        <!-- 个人简介 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="感受音乐，感受世界"
+            android:textSize="13sp"
+            android:textColor="@color/icon_tertiary"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+    <!-- 分割线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/drawer_parchment_divider"/>
+
+    <!-- 菜单项：修改个人信息 -->
+    <LinearLayout
+        android:id="@+id/drawer_edit_profile"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/drawer_item_bg">
+        <TextView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:text="编"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="@color/drawer_text_secondary"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改个人信息"
+            android:textSize="14sp"
+            android:textColor="@color/drawer_text_primary"
+            android:layout_marginStart="14dp"/>
+    </LinearLayout>
+
+    <!-- 菜单项：切换账号 -->
+    <LinearLayout
+        android:id="@+id/drawer_switch_account"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/drawer_item_bg">
+        <TextView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:text="切换"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="@color/drawer_text_secondary"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="切换账号"
+            android:textSize="14sp"
+            android:textColor="@color/drawer_text_primary"
+            android:layout_marginStart="14dp"/>
+    </LinearLayout>
+
+    <!-- 菜单项：设置 -->
+    <LinearLayout
+        android:id="@+id/drawer_settings"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/drawer_item_bg">
+        <TextView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:text="设置"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="@color/drawer_text_secondary"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置"
+            android:textSize="14sp"
+            android:textColor="@color/drawer_text_primary"
+            android:layout_marginStart="14dp"/>
+    </LinearLayout>
+
+    <!-- 分割线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/drawer_parchment_divider"
+        android:layout_marginTop="4dp"/>
+
+    <!-- 菜单项：退出登录（红色警示） -->
+    <LinearLayout
+        android:id="@+id/drawer_logout"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/drawer_item_bg">
+        <TextView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:text="退出"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="@color/ancient_red"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="退出登录"
+            android:textSize="14sp"
+            android:textColor="@color/ancient_red"
+            android:layout_marginStart="14dp"/>
+    </LinearLayout>
+
+</LinearLayout>

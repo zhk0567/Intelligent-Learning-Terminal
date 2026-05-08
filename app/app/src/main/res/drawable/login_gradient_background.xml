@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 底层：渐变背景 -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/shop_page_bg"
+                android:endColor="@color/card_gradient_end"
+                android:type="linear" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+    
+    <!-- 古卷纹理层（透明度3%） -->
+    <item android:top="10dp" android:bottom="10dp" android:left="10dp" android:right="10dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="@color/glow_cyan"
+                android:endColor="@color/neon_teal_soft"
+                android:type="linear" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+    
+    <!-- 边框层：淡金色，透明度20% -->
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="2dp"
+                android:color="@color/login_panel_border" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+</layer-list>

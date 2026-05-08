@@ -1,0 +1,32 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="编辑资料">
+    <view slot="right" class="ep-save" bindtap="save">保存</view>
+  </top-bar>
+
+  <view class="ep-body">
+    <view class="ep-avatar-row">
+      <view class="ep-avatar-wrap">
+        <cover extra-class="ep-avatar"
+               seed="{{form.name}}" src="{{avatar}}" alt="{{form.name}}"
+               aspect="square" rounded="full" ornate="{{false}}" />
+        <view class="ep-avatar-edit" bindtap="onChangeAvatar">
+          <icon name="camera" size="28" color="#ffffff" />
+        </view>
+      </view>
+      <view class="ep-avatar-tip">点击右下角更换头像</view>
+    </view>
+
+    <view class="ep-field">
+      <view class="ep-label">昵称</view>
+      <input class="ep-input" value="{{form.name}}" data-k="name" bindinput="onInput" />
+    </view>
+    <view class="ep-field">
+      <view class="ep-label">手机号</view>
+      <input class="ep-input" value="{{form.phone}}" data-k="phone" bindinput="onInput" />
+    </view>
+    <view class="ep-field">
+      <view class="ep-label">个人简介</view>
+      <textarea class="ep-input ep-textarea" value="{{form.bio}}" data-k="bio" bindinput="onInput" />
+    </view>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/guestModeHint"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/guest_hint_scrim"
+    android:gravity="center"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:text="游客模式可浏览部分内容，登录解锁完整功能"
+    android:textColor="@color/shop_cream_text"
+    android:textSize="14sp"
+    android:fontFamily="sans-serif"
+    android:visibility="gone" />

@@ -1,0 +1,54 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="收货地址">
+    <view slot="right" class="addr-add" bindtap="startCreate">
+      <icon name="plus" size="32" color="var(--ancient-cinnabar)" /><text>新增</text>
+    </view>
+  </top-bar>
+
+  <view class="addr-list">
+    <view wx:for="{{list}}" wx:key="id" class="addr-card">
+      <view class="pin"><icon name="map-pin" size="40" color="var(--ancient-cinnabar)" /></view>
+      <view class="addr-info">
+        <view class="addr-row">
+          <text class="addr-name">{{item.name}}</text>
+          <text class="addr-phone">{{item.phone}}</text>
+          <text wx:if="{{item.isDefault}}" class="addr-tag">默认</text>
+        </view>
+        <view class="addr-detail">{{item.detail}}</view>
+        <view class="addr-actions">
+          <view class="addr-act" data-id="{{item.id}}" bindtap="startEdit">
+            <icon name="edit" size="24" color="var(--text-hint)" /><text>编辑</text>
+          </view>
+          <view class="addr-act" data-id="{{item.id}}" bindtap="del">
+            <icon name="trash" size="24" color="var(--text-hint)" /><text>删除</text>
+          </view>
+          <view wx:if="{{!item.isDefault}}" class="addr-act default" data-id="{{item.id}}" bindtap="setDefault">
+            <text>设为默认</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <sheet open="{{open}}" title="{{sheetTitle}}" bind:close="onCloseSheet">
+    <view wx:if="{{editing}}" class="form">
+      <view class="form-field">
+        <view class="form-label">收货人</view>
+        <input class="form-input" value="{{editing.name}}" data-k="name" bindinput="onInput" />
+      </view>
+      <view class="form-field">
+        <view class="form-label">手机号</view>
+        <input class="form-input" value="{{editing.phone}}" data-k="phone" type="number" bindinput="onInput" />
+      </view>
+      <view class="form-field">
+        <view class="form-label">详细地址</view>
+        <textarea class="form-input form-area" value="{{editing.detail}}" data-k="detail" bindinput="onInput" />
+      </view>
+      <view class="form-checkbox" bindtap="toggleDefault">
+        <view class="check {{editing.isDefault ? 'on' : ''}}"></view>
+        <text>设为默认地址</text>
+      </view>
+      <view class="btn btn-primary form-submit" bindtap="save">保存</view>
+    </view>
+  </sheet>
+</view>

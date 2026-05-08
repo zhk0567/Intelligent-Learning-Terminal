@@ -1,0 +1,40 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="我的学习" subtitle="进行中 {{courses.length}} 门" />
+
+  <view class="ml-body">
+    <view class="ml-list">
+      <view wx:for="{{courses}}" wx:key="id" class="ml-card">
+        <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="16/9" rounded="md" ornate="{{false}}" />
+        <view class="ml-card-body">
+          <view class="ml-card-title">{{item.title}}</view>
+          <view class="ml-card-teacher">主讲：{{item.teacher}}</view>
+          <view class="progress-track ml-progress">
+            <view class="progress-bar" style="width: {{item.percent}}%;"></view>
+          </view>
+          <view class="ml-card-foot">
+            <text class="ml-card-meta">已学 {{item.progress}} / {{item.total}} 课</text>
+            <view class="btn btn-stamp ml-card-btn" data-id="{{item.id}}" bindtap="onContinue">继续学习</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="ml-section">
+      <view class="section-bar"></view>
+      <view>
+        <view class="ml-section-title">推荐课程</view>
+        <view class="ml-section-eyebrow">RECOMMENDED</view>
+      </view>
+    </view>
+
+    <view class="ml-grid">
+      <view wx:for="{{recommends}}" wx:key="id" class="ml-rec">
+        <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="square" rounded="md" ornate="{{false}}" />
+        <view class="ml-rec-body">
+          <view class="ml-rec-title">{{item.title}}</view>
+          <view class="ml-rec-desc">{{item.desc}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+.page-root { min-height: 100vh; background: var(--bg-primary); }
+.webview-body { padding: 24rpx 40rpx 80rpx; }
+.webview-url {
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 16rpx;
+  padding: 16rpx 20rpx;
+  font-size: 22rpx;
+  color: var(--text-hint);
+  word-break: break-all;
+  margin-bottom: 16rpx;
+}
+.webview-article {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  font-size: 28rpx;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+.webview-p {
+  text-indent: 2em;
+}

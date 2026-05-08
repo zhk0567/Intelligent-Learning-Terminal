@@ -1,0 +1,59 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="作品详情">
+    <view slot="right" class="icon-btn" bindtap="onShare">
+      <icon name="share" size="36" color="var(--text-primary)" />
+    </view>
+  </top-bar>
+  <cover extra-class="work-hero" seed="{{post.id}}" src="{{post.coverSrc}}" alt="{{post.title}}"
+         aspect="square" rounded="md" ornate="{{false}}" bindtap="previewCover" />
+
+  <view class="work-body">
+    <view class="work-author" bindtap="goCreator">
+      <view class="work-avatar">{{post.author[0]}}</view>
+      <view>
+        <view class="work-author-name">{{post.author}}</view>
+        <view class="work-author-meta">{{post.timeText}} · {{post.category}}</view>
+      </view>
+    </view>
+
+    <view class="work-title">{{post.title}}</view>
+    <view class="work-content">{{post.content}}</view>
+
+    <view class="work-stats">
+      <text class="cinnabar">♥ {{likeTotal}}</text>
+      <text>评论 {{commentTotal}}</text>
+    </view>
+
+    <view class="comments-card">
+      <view class="comments-head">
+        <view class="section-bar"></view>
+        <text class="comments-title">评论</text>
+      </view>
+      <view class="comments-list">
+        <view wx:for="{{comments}}" wx:key="i" class="comment-row">
+          <view class="comment-avatar">{{item.name[0]}}</view>
+          <view class="comment-info">
+            <view class="comment-name">{{item.name}}</view>
+            <view class="comment-text">{{item.text}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="story-input-bar">
+    <view class="story-input-action" bindtap="toggleLike">
+      <icon name="{{liked ? 'heart-filled' : 'heart'}}" size="36"
+            color="{{liked ? 'var(--ancient-cinnabar)' : 'var(--text-primary)'}}" />
+    </view>
+    <view class="story-input-action" bindtap="toggleSave">
+      <icon name="star" size="36"
+            color="{{saved ? 'var(--ancient-bronze)' : 'var(--text-hint)'}}" />
+    </view>
+    <input class="story-input" placeholder="写下你的想法…" placeholder-class="auth-placeholder"
+           value="{{comment}}" bindinput="onInput" bindconfirm="submitComment" confirm-type="send" />
+    <view class="story-input-send" bindtap="submitComment">
+      <icon name="send" size="32" color="#ffffff" />
+    </view>
+  </view>
+</view>

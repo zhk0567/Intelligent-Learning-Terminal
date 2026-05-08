@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    搜索页
+    - fitsSystemWindows="true" 让根布局自动留出状态栏高度，内容不被遮挡
+    - 标签区用 ConstraintLayout + Flow 实现流式自动换行
+      Flow 用 app:flow_wrapMode="chain" 让标签自动折行，不固定每行数量
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_primary"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical">
+
+    <!-- ══ 顶部搜索栏：透明背景，与古风水墨背景融为一体 ══ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:baselineAligned="false">
+
+        <!-- 返回：与其它页统一的箭头图标 -->
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="42dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="返回"
+            android:padding="9dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_back"
+            app:tint="@color/neon_teal" />
+
+        <!-- 圆角框 + 内部一行：整行在 42dp 内垂直居中，避免 EditText 拉满高度时 hint 画偏上 -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/search_input_bg"
+            android:paddingStart="10dp"
+            android:paddingEnd="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:baselineAligned="false">
+
+                <ImageView
+                    android:id="@+id/search_mag_icon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_search"
+                    android:scaleType="fitCenter"
+                    app:tint="@color/search_bar_icon_tint"
+                    android:contentDescription="搜索" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/search_input"
+                    style="@style/Widget.AncientTech.EditText.BorderlessSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:hint="搜音乐、乐器、非遗故事"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical|start"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true" />
+
+                <TextView
+                    android:id="@+id/btn_clear"
+                    android:layout_width="36dp"
+                    android:layout_height="match_parent"
+                    android:text="×"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_hint"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:includeFontPadding="false"
+                    android:background="?attr/selectableItemBackgroundBorderless" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:layout_gravity="center_vertical"
+            android:text="搜索"
+            android:textSize="14sp"
+            android:textColor="@color/neon_cyan"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:layout_marginStart="8dp"
+            android:paddingHorizontal="2dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+    </LinearLayout>
+
+    <!-- 分割线（透明顶栏下不显示） -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/search_divider"/>
+
+    <!-- ══ 内容区 ══ -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="24dp">
+
+            <!-- ── 搜索历史标题区 ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="14dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="搜索历史"
+                    android:textColor="@color/text_primary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+                <ImageView
+                    android:id="@+id/btn_clear_history"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_trash"
+                    android:scaleType="fitCenter"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="2dp"
+                    android:contentDescription="清空历史"/>
+            </LinearLayout>
+
+            <!--
+                搜索历史标签：ConstraintLayout + Flow 流式布局
+                flow_wrapMode="chain"：超出宽度自动换行
+                flow_horizontalGap / flow_verticalGap：标签间距
+                每个标签设id 后在 Flow 的 constraint_referenced_ids 里引用
+            -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp">
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/flow_history"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:flow_wrapMode="chain"
+                    app:flow_horizontalGap="8dp"
+                    app:flow_verticalGap="10dp"
+                    app:flow_horizontalStyle="packed"
+                    app:flow_horizontalBias="0"
+                    app:constraint_referenced_ids="
+                        tag_h1,tag_h2,tag_h3,tag_h4,
+                        tag_h5,tag_h6,tag_h7,tag_h8,
+                        tag_h9,tag_h10,tag_h11,tag_h12"/>
+
+                <TextView android:id="@+id/tag_h1"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="昆曲" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_h2"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="古筝演奏" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_h3"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="敦煌乐舞" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_h4"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="非遗传承" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_h5"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="编钟" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_h6"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="江南丝竹" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_h7"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="古琴" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_h8"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="昆曲牡丹亭" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_h9"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="纳西古乐" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_h10"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="蒙古长调" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_h11"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="皮影戏" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_h12"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="苗族芦笙" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 分割线 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/search_divider"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- ── 热门搜索标题区 ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="14dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="热门搜索"
+                    android:textColor="@color/text_primary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:id="@+id/btn_refresh_hot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:paddingVertical="4dp">
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_refresh"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="刷新"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 换一批"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 热门搜索标签：同样用 Flow 流式布局 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/flow_hot"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:flow_wrapMode="chain"
+                    app:flow_horizontalGap="8dp"
+                    app:flow_verticalGap="10dp"
+                    app:flow_horizontalStyle="packed"
+                    app:flow_horizontalBias="0"
+                    app:constraint_referenced_ids="
+                        tag_t1,tag_t2,tag_t3,
+                        tag_t4,tag_t5,tag_t6,
+                        tag_t7,tag_t8,tag_t9,
+                        tag_t10,tag_t11,tag_t12"/>
+
+                <!-- 高亮标签：深绿背景 + 白色文字 -->
+                <TextView android:id="@+id/tag_t1"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="🔥 敦煌乐舞" android:textColor="#FFFFFF" android:textSize="13sp"
+                    android:fontFamily="sans-serif"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_hot"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_t2"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="非遗音乐库" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_t3"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="古筝入门" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_t4"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="昆曲牡丹亭" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_t5"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="🔥 编钟演奏" android:textColor="#FFFFFF" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_hot"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_t6"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="丝路音乐" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_t7"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="苗族芦笙" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_t8"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="水墨音韵" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_t9"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="🔥 古琴流水" android:textColor="#FFFFFF" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_hot"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_t10"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="纳西古乐" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_t11"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="蒙古长调" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+                <TextView android:id="@+id/tag_t12"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="皮影戏" android:textColor="@color/text_primary" android:textSize="14sp"
+                    android:singleLine="true"
+                    android:includeFontPadding="false"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/search_tag_normal"
+                    android:paddingHorizontal="14dp" android:paddingVertical="8dp"
+                    android:clickable="true" android:focusable="true"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,27 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="修改密码"></top-bar>
+  <view class="auth-body">
+    <view class="auth-card">
+      <view class="auth-field">
+        <icon name="lock" size="36" color="var(--text-hint)" />
+        <input class="auth-input" password="{{!show}}" placeholder="旧密码"
+               placeholder-class="auth-placeholder" value="{{oldP}}" bindinput="onOld" />
+        <view class="auth-eye" bindtap="toggleEye">
+          <icon name="eye" size="36" color="var(--text-hint)" />
+        </view>
+      </view>
+      <view class="auth-field">
+        <icon name="lock" size="36" color="var(--text-hint)" />
+        <input class="auth-input" password="{{!show}}" placeholder="新密码"
+               placeholder-class="auth-placeholder" value="{{newP}}" bindinput="onNew" />
+      </view>
+      <view class="auth-field">
+        <icon name="lock" size="36" color="var(--text-hint)" />
+        <input class="auth-input" password="{{!show}}" placeholder="确认新密码"
+               placeholder-class="auth-placeholder" value="{{confirm}}" bindinput="onConfirm" />
+      </view>
+      <button class="btn btn-primary auth-cta" bindtap="submit">提交</button>
+    </view>
+    <view class="auth-tip">安全提示：建议使用 8 位以上、包含大小写字母与数字的密码。</view>
+  </view>
+</view>

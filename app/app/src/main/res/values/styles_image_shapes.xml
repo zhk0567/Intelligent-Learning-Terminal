@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 列表封面、缩略图等与卡片圆角对齐 -->
+    <style name="ShapeImageRounded12">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/card_corner_radius_medium</item>
+    </style>
+
+    <style name="ShapeImageRounded16">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/card_corner_radius_large</item>
+    </style>
+
+    <!-- 与 player_cover_frame 内框圆角一致 -->
+    <style name="ShapeImageRounded18">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">18dp</item>
+    </style>
+
+    <style name="ShapeImageRounded20">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/card_corner_radius_xlarge</item>
+    </style>
+
+    <!-- 头像：圆形裁剪 -->
+    <style name="ShapeImageCircle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- 商品卡顶部图：与 CardView 上圆角一致 -->
+    <style name="ShapeImageProductTop">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">14dp</item>
+        <item name="cornerSizeTopRight">14dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!-- 商城商品卡顶部 16dp 圆角 -->
+    <style name="ShapeImageShopProductTop">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+</resources>

@@ -1,0 +1,15 @@
+<view class="section {{framed ? 'section-framed' : ''}} {{extraClass}}">
+  <view wx:if="{{title || hasAction}}" class="section-head">
+    <view class="section-head-left">
+      <view wx:if="{{title}}" class="section-bar"></view>
+      <view class="section-titles">
+        <view wx:if="{{title}}" class="section-title">{{title}}</view>
+        <view wx:if="{{eyebrow}}" class="section-eyebrow">{{eyebrow}}</view>
+      </view>
+    </view>
+    <view wx:if="{{hasAction}}" class="section-action">
+      <slot name="action"></slot>
+    </view>
+  </view>
+  <slot></slot>
+</view>

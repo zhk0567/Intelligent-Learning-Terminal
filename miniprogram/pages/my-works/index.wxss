@@ -1,0 +1,47 @@
+.page-root { min-height: 100vh; background: var(--bg-primary); padding-bottom: 60rpx; }
+.mw-add { display: flex; align-items: center; gap: 6rpx; padding: 0 16rpx; color: var(--ancient-cinnabar); font-size: 26rpx; font-weight: 600; }
+
+.mw-body { padding: 16rpx 24rpx; }
+.tab-row { display: flex; gap: 16rpx; }
+.tab-chip {
+  padding: 12rpx 24rpx;
+  border-radius: 9999rpx;
+  font-size: 24rpx;
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  color: var(--text-secondary);
+}
+.tab-chip.on {
+  background: var(--ancient-cinnabar);
+  border-color: var(--ancient-cinnabar);
+  color: #ffffff;
+  box-shadow: inset 0 -3rpx 0 rgba(0,0,0,0.2);
+}
+
+.mw-grid {
+  margin-top: 24rpx;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16rpx;
+}
+.mw-card {
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 18rpx;
+  overflow: hidden;
+}
+.mw-card-body { padding: 16rpx; }
+.mw-card-title {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.mw-card-meta {
+  margin-top: 8rpx;
+  font-size: 20rpx;
+  color: var(--text-hint);
+}
+.mw-card-heart { color: var(--ancient-cinnabar); margin-right: 4rpx; }

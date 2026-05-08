@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外阴影 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+    
+    <!-- 内阴影效果（模拟古画框） -->
+    <item android:top="2dp" android:left="2dp" android:right="2dp" android:bottom="2dp">
+        <shape android:shape="oval">
+            <gradient
+                android:angle="270"
+                android:startColor="@color/logo_inner_shadow"
+                android:endColor="@android:color/transparent"
+                android:type="radial"
+                android:gradientRadius="60dp" />
+        </shape>
+    </item>
+    
+    <!-- 淡金描边 -->
+    <item>
+        <shape android:shape="oval">
+            <stroke
+                android:width="2dp"
+                android:color="@color/gold_accent" />
+            <solid android:color="@color/logo_oval_fill_soft" />
+        </shape>
+    </item>
+</layer-list>

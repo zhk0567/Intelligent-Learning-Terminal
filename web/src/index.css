@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* 浅色主题（宣纸米黄底盘 + 陶土灰褐边） */
+  --bg-primary: #f4efe6;
+  --bg-secondary: #ebe3d3;
+  --bg-card: #ffffff;
+  --bg-card-elevated: #fbf7ee;
+
+  --text-primary: #1f1b16;
+  --text-secondary: #5c5346;
+  --text-hint: #8c7e6a;
+
+  --border-color: #b5a99a;
+  --divider-color: #d6cdb8;
+
+  --player-screen: #ebe3d3;
+  --player-control: #1f1b16;
+  --player-chip: #ffffff;
+  --player-frame: #fbf7ee;
+  --mini-surface: #ffffff;
+}
+
+[data-theme="dark"] {
+  /* 深色主题（夜窑底盘） */
+  --bg-primary: #0a0e17;
+  --bg-secondary: #111827;
+  --bg-card: #1a2332;
+  --bg-card-elevated: #222e3f;
+
+  --text-primary: #f2efea;
+  --text-secondary: #b7b0a4;
+  --text-hint: #7a8290;
+
+  --border-color: rgba(212, 212, 212, 0.22);
+  --divider-color: rgba(212, 212, 212, 0.12);
+
+  --player-screen: #0a101f;
+  --player-control: #c2933c;
+  --player-chip: #1a2332;
+  --player-frame: #0a101f;
+  --mini-surface: #1a2332;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+/* 移动端「手机壳」 */
+.phone-shell {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100dvh;
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  body {
+    background: var(--bg-secondary);
+  }
+  .phone-shell {
+    background: var(--bg-card);
+  }
+}
+
+/* 桌面壳 */
+.desktop-frame {
+  width: 100%;
+  min-height: 100dvh;
+  background: var(--bg-primary);
+}
+
+/* 滚动条：古铜金低饱 */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(165, 124, 44, 0.45);
+  border-radius: 3px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(165, 124, 44, 0.65);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  background: transparent;
+}
+
+/* —— 非遗按钮三件套 —— */
+@layer components {
+  .btn-base {
+    @apply inline-flex items-center justify-center gap-1.5 select-none transition-all duration-150;
+    will-change: transform;
+  }
+  .btn-primary {
+    @apply btn-base bg-neon-teal text-white shadow-primaryInset hover:-translate-y-[1px] active:translate-y-0 hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-stamp {
+    @apply btn-base bg-ancient-cinnabar text-white shadow-stampInset hover:-translate-y-[1px] active:translate-y-0 hover:bg-ancient-cinnabarSoft disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply btn-base border border-border bg-transparent text-text-primary hover:text-ancient-bronze active:translate-y-0;
+  }
+  .btn-ghost:hover {
+    border-color: rgba(165, 124, 44, 0.6);
+  }
+  .btn-bronze {
+    @apply btn-base bg-ancient-bronze text-white hover:-translate-y-[1px] active:translate-y-0 hover:bg-ancient-bronzeSoft;
+  }
+  /* hover 时浮起的卡片 */
+  .card-hover {
+    @apply transition-all duration-200;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    border-color: rgba(165, 124, 44, 0.55);
+    box-shadow: 0 2px 12px rgba(31, 27, 22, 0.08);
+  }
+}

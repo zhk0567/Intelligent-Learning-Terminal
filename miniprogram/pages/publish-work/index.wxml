@@ -1,0 +1,50 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="发布作品">
+    <view slot="right" class="publish-cta" bindtap="submit">发布</view>
+  </top-bar>
+  <view class="publish-body">
+    <view class="picker-card">
+      <view class="picker-cell" bindtap="pickImage">
+        <icon name="image" size="40" color="var(--text-hint)" />
+        <text class="picker-label">图片</text>
+        <icon name="plus" size="24" color="var(--text-hint)" />
+      </view>
+      <view class="picker-cell" bindtap="pickVideo">
+        <icon name="camera" size="40" color="var(--text-hint)" />
+        <text class="picker-label">视频</text>
+        <icon name="plus" size="24" color="var(--text-hint)" />
+      </view>
+      <view class="picker-cell" bindtap="pickAudio">
+        <icon name="music" size="40" color="var(--text-hint)" />
+        <text class="picker-label">音频</text>
+        <icon name="plus" size="24" color="var(--text-hint)" />
+      </view>
+    </view>
+
+    <input class="form-input" placeholder="给作品起个标题" placeholder-class="auth-placeholder"
+           value="{{title}}" bindinput="onTitle" />
+    <textarea class="form-textarea" placeholder="说说你的创作灵感、过程或感受…"
+              placeholder-class="auth-placeholder" value="{{content}}" bindinput="onContent"></textarea>
+
+    <view class="form-section">
+      <view class="form-section-title">分类</view>
+      <view class="chip-row">
+        <view wx:for="{{cats}}" wx:key="*this"
+              class="form-chip {{cat === item ? 'on' : ''}}"
+              data-c="{{item}}" bindtap="pickCat">{{item}}</view>
+      </view>
+    </view>
+
+    <view class="form-section">
+      <view class="form-section-title">标签</view>
+      <view class="chip-row">
+        <view wx:for="{{tags}}" wx:key="*this" class="tag-chip" data-t="{{item}}" bindtap="removeTag">#{{item}} ✕</view>
+        <view class="tag-input-wrap">
+          <icon name="tag" size="24" color="var(--text-hint)" />
+          <input class="tag-input" placeholder="添加并回车" placeholder-class="auth-placeholder"
+                 value="{{tagText}}" bindinput="onTagInput" bindconfirm="addTag" confirm-type="done" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

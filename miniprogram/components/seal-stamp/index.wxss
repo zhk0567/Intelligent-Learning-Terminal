@@ -1,0 +1,26 @@
+.seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+
+.seal.solid {
+  background: var(--ancient-cinnabar);
+  box-shadow: inset 0 -4rpx 0 rgba(0, 0, 0, 0.22);
+}
+.seal.solid .seal-text { color: #ffffff; }
+
+.seal.outline {
+  background: transparent;
+  border: 2rpx solid var(--ancient-cinnabar);
+}
+.seal.outline .seal-text { color: var(--ancient-cinnabar); }
+
+.seal-text {
+  font-weight: 700;
+  letter-spacing: -1rpx;
+  line-height: 1;
+}

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/create_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_primary"
+    android:fitsSystemWindows="false">
+
+    <LinearLayout
+        android:id="@+id/create_main_column"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:fitsSystemWindows="false">
+
+        <ScrollView
+            android:id="@+id/create_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingStart="0dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp">
+
+                <!-- 标题行：居中标题 + 右侧轻量「挑战活动」（非主按钮形态） -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/titleTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:paddingStart="88dp"
+                        android:paddingEnd="88dp"
+                        android:text="创作社区"
+                        android:textColor="@color/text_primary"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        android:ellipsize="none" />
+
+                    <TextView
+                        android:id="@+id/challengeLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|end"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="8dp"
+                        android:text="挑战活动"
+                        android:textColor="@color/neon_teal"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:clickable="true"
+                        android:focusable="true" />
+                </FrameLayout>
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="2dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/neon_teal" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/tagsContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp">
+
+                        <TextView
+                            android:id="@+id/tagString"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="弦乐器"
+                            android:textColor="@color/text_on_neon_cyan"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:background="@drawable/create_tag_selected"
+                            android:paddingHorizontal="20dp"
+                            android:paddingVertical="10dp"
+                            android:layout_marginEnd="12dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <TextView
+                            android:id="@+id/tagElectronic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="电子乐"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14sp"
+                            android:background="@drawable/create_tag_normal"
+                            android:paddingHorizontal="20dp"
+                            android:paddingVertical="10dp"
+                            android:layout_marginEnd="12dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <TextView
+                            android:id="@+id/tagAI"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="AI 创作"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14sp"
+                            android:background="@drawable/create_tag_normal"
+                            android:paddingHorizontal="20dp"
+                            android:paddingVertical="10dp"
+                            android:layout_marginEnd="12dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <TextView
+                            android:id="@+id/tagWind"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="管乐"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14sp"
+                            android:background="@drawable/create_tag_normal"
+                            android:paddingHorizontal="20dp"
+                            android:paddingVertical="10dp"
+                            android:layout_marginEnd="12dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+
+                        <TextView
+                            android:id="@+id/tagPercussion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="打击乐"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14sp"
+                            android:background="@drawable/create_tag_normal"
+                            android:paddingHorizontal="20dp"
+                            android:paddingVertical="10dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/postsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:clipToPadding="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_post" />
+            </LinearLayout>
+        </ScrollView>
+
+        <include layout="@layout/bottom_navigation" />
+    </LinearLayout>
+
+    <!-- 发布入口：悬浮按钮，不占顶部主视觉（类似抖音发布在独立强入口） -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabPublishWork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="124dp"
+        android:contentDescription="发布作品"
+        app:srcCompat="@drawable/ic_fab_add"
+        app:tint="@color/bg_primary"
+        app:backgroundTint="@color/neon_teal"
+        app:borderWidth="0dp"
+        app:fabSize="normal"
+        app:elevation="6dp"
+        app:pressedTranslationZ="8dp" />
+</FrameLayout>

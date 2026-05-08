@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- NFC 权限 -->
+    <uses-permission android:name="android.permission.NFC"/>
+    <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 声明设备需要 NFC 功能（可选，去掉则无 NFC 设备也能安装） -->
+    <uses-feature android:name="android.hardware.nfc" android:required="false"/>
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication">
+
+        <!--
+            启动页：SplashActivity
+            显示logo和动画，2秒后自动跳转到登录页
+        -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.NoActionBar"
+            android:launchMode="singleTop">
+
+            <!-- 正常启动 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!--
+            主入口 Activity：MusicLibActivity
+            同时作为 NFC 碰卡的响应入口
+            支持三种 NFC 触发方式：
+              1. NDEF_DISCOVERED：读取到 NDEF 消息（最常用，写入 app 包名或 URL）
+              2. TECH_DISCOVERED：任意 NFC 标签技术
+              3. TAG_DISCOVERED：兜底，任何 NFC 标签都能触发
+        -->
+        <activity
+            android:name=".MusicLibActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+
+            <!--
+                NFC NDEF 触发：碰到写有 AAR（Android Application Record）
+                或 MIME 类型为 application/com.guyunxinchuan.heritage.music 的卡片时启动
+            -->
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="application/com.guyunxinchuan.heritage.music"/>
+            </intent-filter>
+
+            <!-- NFC 任意技术标签触发（兜底） -->
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+            <!-- NFC 任意标签触发（最低优先级兜底） -->
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <!-- 与底部主导航平级：singleTop 便于将来 onNewIntent / 深链复用同一实例 -->
+        <activity
+            android:name=".StoryActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".CreateActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".ShopActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.MyApplication.Mall.NoActivityTransition" />
+        <activity
+            android:name=".ProfileActivity"
+            android:launchMode="singleTop" />
+        <activity android:name=".DetailActivity"/>
+        <activity android:name=".SearchActivity"/>
+        <activity android:name=".SearchResultActivity"/>
+        <activity
+            android:name=".ShopDetailActivity"
+            android:theme="@style/Theme.MyApplication.Mall.NoActivityTransition" />
+        
+        <!-- 新增核心页面 -->
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PhoneLoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".SettingActivity"/>
+        <activity android:name=".AboutActivity"/>
+        <activity android:name=".ChangePasswordActivity"/>
+        <activity android:name=".WebViewActivity"/>
+        <activity android:name=".EditProfileActivity"/>
+        
+        <!-- 创作社区功能页面 -->
+        <activity android:name=".PublishWorkActivity"/>
+        <activity android:name=".CreatorProfileActivity"/>
+        <activity android:name=".ChallengeActivity"/>
+        <activity android:name=".WorkDetailActivity"/>
+        
+        <!-- 新增音乐和商城功能页面 -->
+        <activity android:name=".PlayerActivity"/>
+        <activity android:name=".FavoriteActivity"/>
+        <activity
+            android:name=".CartActivity"
+            android:theme="@style/Theme.MyApplication.Mall.NoActivityTransition" />
+        <activity
+            android:name=".OrderActivity"
+            android:theme="@style/Theme.MyApplication.Mall.NoActivityTransition" />
+        <activity android:name=".HistoryActivity"/>
+        <activity
+            android:name=".AddressActivity"
+            android:theme="@style/Theme.MyApplication.Mall.NoActivityTransition" />
+        <activity android:name=".MyWorksActivity"/>
+        <activity android:name=".MyLearningActivity"/>
+        <activity android:name=".StoryListActivity"/>
+        <activity android:name=".StoryDetailActivity"/>
+    </application>
+
+</manifest>

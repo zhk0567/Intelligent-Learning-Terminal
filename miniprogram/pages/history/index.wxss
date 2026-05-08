@@ -1,0 +1,58 @@
+.page-root { min-height: 100vh; background: var(--bg-primary); }
+.hist-clear { display: flex; align-items: center; gap: 6rpx; padding: 0 16rpx; font-size: 22rpx; color: var(--text-hint); }
+.hist-body { padding: 16rpx 24rpx 60rpx; display: flex; flex-direction: column; gap: 32rpx; }
+
+.hist-group {}
+.hist-day { display: flex; align-items: center; padding-bottom: 12rpx; }
+.hist-day-bar {
+  display: inline-block;
+  width: 6rpx; height: 22rpx;
+  border-radius: 3rpx;
+  background: var(--ancient-bronze);
+  margin-right: 12rpx;
+}
+.hist-day-text { font-size: 22rpx; color: var(--text-secondary); font-weight: 600; }
+
+.hist-list { display: flex; flex-direction: column; gap: 16rpx; }
+.hist-card {
+  display: flex;
+  align-items: stretch;
+  gap: 16rpx;
+  padding: 16rpx;
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 18rpx;
+}
+.hist-cover { width: 96rpx; height: 96rpx; flex-shrink: 0; }
+.hist-info { flex: 1; min-width: 0; }
+.hist-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.hist-desc { font-size: 22rpx; color: var(--text-secondary); margin-top: 4rpx; }
+.hist-meta { font-size: 20rpx; color: var(--text-hint); margin-top: 4rpx; }
+
+.empty-state {
+  padding: 120rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+}
+.empty-icon {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 9999rpx;
+  background: rgba(165,124,44,0.15);
+  color: var(--ancient-bronze);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+}
+.empty-title { font-size: 28rpx; color: var(--text-primary); }
+.empty-hint { font-size: 22rpx; color: var(--text-hint); }

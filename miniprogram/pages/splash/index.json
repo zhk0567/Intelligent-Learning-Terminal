@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "seal-stamp": "/components/seal-stamp/index"
+  }
+}

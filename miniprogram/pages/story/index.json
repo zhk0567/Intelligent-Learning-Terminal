@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "icon": "/components/icon/index",
+    "cover": "/components/cover/index",
+    "section": "/components/section/index"
+  }
+}

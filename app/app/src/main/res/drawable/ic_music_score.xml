@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 乐谱赏析图标：书本和音符 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    
+    <!-- 书本 -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="@color/tech_blue"
+        android:strokeWidth="1"
+        android:pathData="M6,4L18,4L18,20L6,20Z" />
+    
+    <!-- 书脊 -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="@color/tech_blue"
+        android:strokeWidth="1"
+        android:pathData="M6,4L6,20" />
+    
+    <!-- 书页线 -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="@color/tech_blue"
+        android:strokeWidth="0.5"
+        android:pathData="M8,8L16,8" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="@color/tech_blue"
+        android:strokeWidth="0.5"
+        android:pathData="M8,12L16,12" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="@color/tech_blue"
+        android:strokeWidth="0.5"
+        android:pathData="M8,16L16,16" />
+    
+    <!-- 音符 -->
+    <path
+        android:fillColor="@color/tech_blue"
+        android:strokeColor="@color/tech_blue"
+        android:strokeWidth="0.5"
+        android:pathData="M10,6C10,6 12,5 14,6C16,7 16,9 14,10C12,11 10,10 10,8C10,6 10,6 10,6Z" />
+</vector>

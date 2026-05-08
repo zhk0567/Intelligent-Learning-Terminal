@@ -1,0 +1,66 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="搜索：{{q || '全部'}}" subtitle="共 {{total}} 条结果"></top-bar>
+
+  <view class="result-tabs no-scrollbar">
+    <view wx:for="{{tabs}}" wx:key="*this"
+          class="result-chip {{tab === item ? 'on' : ''}}"
+          data-t="{{item}}" bindtap="pickTab">{{item}}</view>
+  </view>
+
+  <view class="result-body">
+    <block wx:if="{{(tab === '全部' || tab === '音乐') && music.length}}">
+      <view class="result-section-head">
+        <view class="section-bar"></view>
+        <text class="result-section-title">音乐</text>
+      </view>
+      <view class="result-row-list">
+        <view wx:for="{{music}}" wx:for-item="m" wx:key="id"
+              class="result-row" data-id="{{m.id}}" bindtap="playTrack">
+          <cover extra-class="result-row-cover" seed="{{m.id}}" src="{{m.coverSrc}}" alt="{{m.title}}"
+                 aspect="square" rounded="lg" ornate="{{false}}" />
+          <view class="result-row-info">
+            <view class="result-row-title">{{m.title}}</view>
+            <view class="result-row-sub">{{m.artist}} · {{m.album}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <block wx:if="{{(tab === '全部' || tab === '故事') && story.length}}">
+      <view class="result-section-head">
+        <view class="section-bar"></view>
+        <text class="result-section-title">故事</text>
+      </view>
+      <view class="result-row-list">
+        <view wx:for="{{story}}" wx:for-item="s" wx:key="id"
+              class="result-row" data-id="{{s.id}}" bindtap="goStory">
+          <cover extra-class="result-row-cover" seed="{{s.id}}" src="{{s.coverSrc}}" alt="{{s.title}}"
+                 aspect="square" rounded="lg" ornate="{{false}}" />
+          <view class="result-row-info">
+            <view class="result-row-title">{{s.title}}</view>
+            <view class="result-row-sub line2">{{s.excerpt}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <block wx:if="{{(tab === '全部' || tab === '商品') && goods.length}}">
+      <view class="result-section-head">
+        <view class="section-bar"></view>
+        <text class="result-section-title">商品</text>
+      </view>
+      <view class="result-grid">
+        <view wx:for="{{goods}}" wx:for-item="g" wx:key="id"
+              class="result-card" data-id="{{g.id}}" bindtap="goShop">
+          <cover seed="{{g.id}}" src="{{g.imageSrc}}" alt="{{g.name}}" aspect="square" rounded="lg" ornate="{{false}}" />
+          <view class="result-card-info">
+            <view class="result-card-title">{{g.name}}</view>
+            <view class="result-card-price">¥{{g.price}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view wx:if="{{total === 0}}" class="empty-text">未找到相关内容，换个关键词试试吧。</view>
+  </view>
+</view>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 与 ic_cart 同形，线色霓虹青，用于顶栏 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M2,3 L4.5,3 L6.5,14 L18,14"
+        android:strokeWidth="1.7"
+        android:strokeColor="@color/neon_teal"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M5.5,7 L19,7 L18,14"
+        android:strokeWidth="1.7"
+        android:strokeColor="@color/neon_teal"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M8,17 m-1.5,0 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0"
+        android:strokeWidth="1.6"
+        android:strokeColor="@color/neon_teal" />
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M16,17 m-1.5,0 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0"
+        android:strokeWidth="1.6"
+        android:strokeColor="@color/neon_teal" />
+</vector>

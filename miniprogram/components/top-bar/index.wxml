@@ -1,0 +1,12 @@
+<view class="top-bar {{transparent ? 'top-bar-transparent' : 'top-bar-solid'}}" style="padding-top: {{statusBarPadding}}rpx;">
+  <view wx:if="{{back}}" class="top-bar-back" bindtap="goBack">
+    <icon name="arrow-left" size="40" color="var(--text-primary)" />
+  </view>
+  <view class="top-bar-title">
+    <view wx:if="{{title}}" class="top-bar-title-text">{{title}}</view>
+    <view wx:if="{{subtitle}}" class="top-bar-subtitle">{{subtitle}}</view>
+  </view>
+  <view class="top-bar-right">
+    <slot name="right"></slot>
+  </view>
+</view>

@@ -1,0 +1,54 @@
+.page-root { min-height: 100vh; background: var(--bg-primary); padding-bottom: 60rpx; }
+.ml-body { padding: 16rpx 24rpx; display: flex; flex-direction: column; gap: 24rpx; }
+
+.ml-list { display: flex; flex-direction: column; gap: 24rpx; }
+.ml-card {
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 22rpx;
+  overflow: hidden;
+}
+.ml-card-body { padding: 24rpx; }
+.ml-card-title { font-size: 26rpx; font-weight: 600; color: var(--text-primary); }
+.ml-card-teacher { margin-top: 4rpx; font-size: 22rpx; color: var(--text-secondary); }
+.ml-progress { margin-top: 16rpx; }
+.ml-card-foot {
+  margin-top: 12rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ml-card-meta { font-size: 20rpx; color: var(--text-hint); }
+.ml-card-btn { padding: 10rpx 24rpx; font-size: 22rpx; }
+
+.ml-section { display: flex; align-items: center; padding: 0 8rpx; }
+.ml-section-title { font-size: 26rpx; font-weight: 700; color: var(--text-primary); }
+.ml-section-eyebrow { font-size: 18rpx; letter-spacing: 0.18em; color: rgba(165,124,44,0.85); }
+
+.ml-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16rpx;
+}
+.ml-rec {
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 18rpx;
+  overflow: hidden;
+}
+.ml-rec-body { padding: 16rpx; }
+.ml-rec-title {
+  font-size: 24rpx;
+  color: var(--text-primary);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.ml-rec-desc {
+  margin-top: 4rpx;
+  font-size: 20rpx;
+  color: var(--text-secondary);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

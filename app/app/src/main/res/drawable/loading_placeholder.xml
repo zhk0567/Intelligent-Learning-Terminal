@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Ancient Tech Loading Placeholder
+    XML drawable for loading states with potential for animation
+    Shows pulsing Ancient Tech pattern
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    
+    <!-- Animated gradient background -->
+    <path
+        android:fillColor="@color/card_gradient_start"
+        android:pathData="M0,0 L120,0 L120,120 L0,120 Z" />
+    
+    <!-- Pulsing Ancient Tech pattern -->
+    <group
+        android:pivotX="60"
+        android:pivotY="60">
+        <path
+            android:name="outerSquare"
+            android:strokeColor="@color/tech_blue"
+            android:strokeWidth="2"
+            android:pathData="M30,30 L90,30 L90,90 L30,90 Z" />
+        
+        <path
+            android:name="middleSquare"
+            android:strokeColor="@color/ancient_gold"
+            android:strokeWidth="1.5"
+            android:pathData="M40,40 L80,40 L80,80 L40,80 Z" />
+        
+        <path
+            android:name="innerSquare"
+            android:strokeColor="@color/ancient_red"
+            android:strokeWidth="1"
+            android:pathData="M50,50 L70,50 L70,70 L50,70 Z" />
+    </group>
+    
+    <!-- Loading dots -->
+    <path
+        android:name="dot1"
+        android:fillColor="@color/tech_blue"
+        android:pathData="M45,100 A5,5 0 1,1 45,110 A5,5 0 1,1 45,100" />
+    
+    <path
+        android:name="dot2"
+        android:fillColor="@color/ancient_gold"
+        android:pathData="M60,100 A5,5 0 1,1 60,110 A5,5 0 1,1 60,100" />
+    
+    <path
+        android:name="dot3"
+        android:fillColor="@color/ancient_red"
+        android:pathData="M75,100 A5,5 0 1,1 75,110 A5,5 0 1,1 75,100" />
+    
+</vector>

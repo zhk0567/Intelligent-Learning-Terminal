@@ -1,0 +1,71 @@
+<view class="page-root tab-page {{__themeClass}}">
+  <view class="music-top">
+    <view class="music-search" bindtap="goSearch">
+      <icon name="search" size="36" color="var(--text-secondary)" />
+      <text class="music-search-text">搜索曲目、艺人或专辑</text>
+    </view>
+    <view class="icon-btn">
+      <icon name="bell" size="40" color="var(--text-primary)" />
+    </view>
+  </view>
+
+  <view class="music-banner">
+    <swiper class="music-banner-swiper" autoplay interval="4000" circular indicator-dots="{{false}}" current="{{bannerIdx}}" bindchange="onBannerChange">
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <cover seed="{{item.id}}" src="{{item.imageSrc}}" alt="{{item.title}}" aspect="16/9" rounded="2xl" ornate="{{false}}" />
+      </swiper-item>
+    </swiper>
+    <view class="music-banner-sub">{{banners[bannerIdx].subtitle}}</view>
+    <view class="music-banner-dots">
+      <view wx:for="{{banners}}" wx:key="id"
+            class="music-banner-dot {{index === bannerIdx ? 'on' : ''}}"></view>
+    </view>
+  </view>
+
+  <section title="每日热门" eyebrow="TRENDING TODAY" has-action="{{true}}">
+    <view slot="action" class="more-link" data-cat="hot" bindtap="goDetail">查看更多 ›</view>
+    <view class="album-grid">
+      <view wx:for="{{hot}}" wx:key="id" class="album-card" data-id="{{item.id}}" data-cat="hot" bindtap="playAlbum">
+        <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="square" rounded="xl" ornate="{{false}}" />
+        <view class="album-card-title">{{item.title}}</view>
+        <view class="album-card-desc">{{item.desc}}</view>
+      </view>
+    </view>
+  </section>
+
+  <section title="每日精选" eyebrow="EDITOR'S PICKS" has-action="{{true}}">
+    <view slot="action" class="more-link" data-cat="select" bindtap="goDetail">查看更多 ›</view>
+    <view class="album-grid">
+      <view wx:for="{{select}}" wx:key="id" class="album-card" data-id="{{item.id}}" data-cat="select" bindtap="playAlbum">
+        <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="square" rounded="xl" ornate="{{false}}" />
+        <view class="album-card-title">{{item.title}}</view>
+        <view class="album-card-desc">{{item.desc}}</view>
+      </view>
+    </view>
+  </section>
+
+  <section title="猜你喜欢" eyebrow="FOR YOU" has-action="{{true}}">
+    <view slot="action" class="more-link" data-cat="guess" bindtap="goDetail">查看更多 ›</view>
+    <view class="album-row-list">
+      <view wx:for="{{guess}}" wx:key="id" class="album-row" data-id="{{item.id}}" data-cat="guess" bindtap="playAlbum">
+        <cover extra-class="album-row-cover" seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="square" rounded="lg" ornate="{{false}}" />
+        <view class="album-row-info">
+          <view class="album-row-title">{{item.title}}</view>
+          <view class="album-row-desc">{{item.desc}}</view>
+        </view>
+        <text class="album-row-cta">立即播放</text>
+      </view>
+    </view>
+  </section>
+
+  <section title="基础学习" eyebrow="LEARN THE BASICS" has-action="{{true}}">
+    <view slot="action" class="more-link" data-cat="basic" bindtap="goDetail">查看更多 ›</view>
+    <view class="album-grid">
+      <view wx:for="{{basic}}" wx:key="id" class="album-card" data-id="{{item.id}}" data-cat="basic" bindtap="playAlbum">
+        <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="square" rounded="xl" ornate="{{false}}" />
+        <view class="album-card-title">{{item.title}}</view>
+        <view class="album-card-desc">{{item.desc}}</view>
+      </view>
+    </view>
+  </section>
+</view>

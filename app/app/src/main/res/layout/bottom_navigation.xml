@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_navigation"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="58dp"
+    android:orientation="horizontal"
+    android:background="@color/nav_background"
+    android:paddingTop="8dp"
+    android:paddingBottom="2dp"
+    android:layout_gravity="bottom">
+
+        <!-- 音乐库 -->
+        <LinearLayout
+            android:id="@+id/nav_music"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:id="@+id/nav_music_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_music"
+                android:scaleType="fitCenter"
+                app:tint="@color/nav_inactive"
+                android:contentDescription="音乐库" />
+            <TextView
+                android:id="@+id/nav_music_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:text="音乐库"
+                android:textColor="@color/nav_inactive"
+                android:textSize="10sp" />
+            <View
+                android:id="@+id/nav_music_indicator"
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/nav_indicator"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <!-- 故事 -->
+        <LinearLayout
+            android:id="@+id/nav_story"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:id="@+id/nav_story_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_story"
+                android:scaleType="fitCenter"
+                app:tint="@color/nav_inactive"
+                android:contentDescription="故事"/>
+            <TextView
+                android:id="@+id/nav_story_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:text="故事"
+                android:textColor="@color/nav_inactive"
+                android:textSize="10sp" />
+            <View
+                android:id="@+id/nav_story_indicator"
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/nav_indicator"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <!-- 创作社区 -->
+        <LinearLayout
+            android:id="@+id/nav_create"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:id="@+id/nav_create_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_create"
+                android:scaleType="fitCenter"
+                app:tint="@color/nav_inactive"
+                android:contentDescription="创作社区"/>
+            <TextView
+                android:id="@+id/nav_create_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:text="创作社区"
+                android:textColor="@color/nav_inactive"
+                android:textSize="10sp" />
+            <View
+                android:id="@+id/nav_create_indicator"
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/nav_indicator"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <!-- 商城 -->
+        <LinearLayout
+            android:id="@+id/nav_shop"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:id="@+id/nav_shop_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_shop"
+                android:scaleType="fitCenter"
+                app:tint="@color/nav_inactive"
+                android:contentDescription="商城"/>
+            <TextView
+                android:id="@+id/nav_shop_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:text="商城"
+                android:textColor="@color/nav_inactive"
+                android:textSize="10sp" />
+            <View
+                android:id="@+id/nav_shop_indicator"
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/nav_indicator"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <!-- 我的 -->
+        <LinearLayout
+            android:id="@+id/nav_profile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:id="@+id/nav_profile_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_profile"
+                android:scaleType="fitCenter"
+                app:tint="@color/nav_inactive"
+                android:contentDescription="我的"/>
+            <TextView
+                android:id="@+id/nav_profile_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:text="我的"
+                android:textColor="@color/nav_inactive"
+                android:textSize="10sp" />
+            <View
+                android:id="@+id/nav_profile_indicator"
+                android:layout_width="20dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/nav_indicator"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+</LinearLayout>

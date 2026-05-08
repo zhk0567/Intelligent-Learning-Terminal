@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    热门标签高亮背景 - 霓虹渐变效果
+    - 青紫渐变填充
+    - 圆角 8dp
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:startColor="@color/neon_cyan"
+        android:endColor="@color/neon_purple"
+        android:angle="135"/>
+    <corners android:radius="8dp"/>
+</shape>

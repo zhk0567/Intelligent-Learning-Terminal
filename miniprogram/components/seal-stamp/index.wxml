@@ -1,0 +1,3 @@
+<view class="seal {{tone}} {{extraClass}}" style="width:{{size}}rpx;height:{{size}}rpx;">
+  <text class="seal-text" style="font-size:{{fontSize}}rpx;">{{text}}</text>
+</view>

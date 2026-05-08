@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    搜索放大镜 — 线性简笔画风格
+    圆形镜框：strokeWidth 1.6，无填充
+    镜柄：右下 45° 斜线，strokeLineCap round 收尾
+    整体轻盈，与古风素雅风格一致
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="20dp"
+    android:height="20dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- 镜框（空心圆） -->
+    <path
+        android:pathData="M11,5 A6,6 0 1,0 11,17 A6,6 0 1,0 11,5 Z"
+        android:strokeColor="@color/icon_tertiary"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"/>
+
+    <!-- 镜柄（右下斜线） -->
+    <path
+        android:pathData="M15.8,15.8 L20,20"
+        android:strokeColor="@color/icon_tertiary"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"/>
+
+</vector>

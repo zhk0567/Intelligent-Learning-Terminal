@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Typography Scale for Ancient Tech UI
+    
+    Based on Material Design typography scale with Chinese readability optimization.
+    All text sizes follow a consistent hierarchy for better visual organization.
+-->
+<resources>
+    
+    <!-- ==================== DISPLAY TEXT (超大标题) ==================== -->
+    <!-- Used for: Splash screen, hero sections, major announcements -->
+    <dimen name="text_display_large">32sp</dimen>
+    <dimen name="text_display_medium">28sp</dimen>
+    <dimen name="text_display_small">24sp</dimen>
+    
+    <!-- Display Text Line Height -->
+    <dimen name="text_display_line_height_large">40dp</dimen>
+    <dimen name="text_display_line_height_medium">36dp</dimen>
+    <dimen name="text_display_line_height_small">32dp</dimen>
+    
+    <!-- Display Text Letter Spacing -->
+    <dimen name="text_display_letter_spacing">-0.5sp</dimen>
+    
+    <!-- ==================== HEADLINE TEXT (大标题) ==================== -->
+    <!-- Used for: Page titles, section headers, card titles -->
+    <dimen name="text_headline_large">22sp</dimen>
+    <dimen name="text_headline_medium">20sp</dimen>
+    <dimen name="text_headline_small">18sp</dimen>
+    
+    <!-- Headline Text Line Height -->
+    <dimen name="text_headline_line_height_large">28dp</dimen>
+    <dimen name="text_headline_line_height_medium">26dp</dimen>
+    <dimen name="text_headline_line_height_small">24dp</dimen>
+    
+    <!-- Headline Text Letter Spacing -->
+    <dimen name="text_headline_letter_spacing">-0.25sp</dimen>
+    
+    <!-- ==================== TITLE TEXT (中标题) ==================== -->
+    <!-- Used for: Card titles, list item titles, button text -->
+    <dimen name="text_title_large">17sp</dimen>
+    <dimen name="text_title_medium">16sp</dimen>
+    <dimen name="text_title_small">15sp</dimen>
+    
+    <!-- Title Text Line Height -->
+    <dimen name="text_title_line_height_large">24dp</dimen>
+    <dimen name="text_title_line_height_medium">22dp</dimen>
+    <dimen name="text_title_line_height_small">20dp</dimen>
+    
+    <!-- Title Text Letter Spacing -->
+    <dimen name="text_title_letter_spacing">0sp</dimen>
+    
+    <!-- ==================== BODY TEXT (正文) ==================== -->
+    <!-- Used for: Paragraphs, descriptions, content text -->
+    <dimen name="text_body_large">16sp</dimen>
+    <dimen name="text_body_medium">14sp</dimen>
+    <dimen name="text_body_small">13sp</dimen>
+    
+    <!-- Body Text Line Height -->
+    <dimen name="text_body_line_height_large">24dp</dimen>
+    <dimen name="text_body_line_height_medium">20dp</dimen>
+    <dimen name="text_body_line_height_small">18dp</dimen>
+    
+    <!-- Body Text Letter Spacing -->
+    <dimen name="text_body_letter_spacing">0.25sp</dimen>
+    
+    <!-- ==================== LABEL TEXT (标签/辅助文字) ==================== -->
+    <!-- Used for: Captions, tags, metadata, secondary info -->
+    <dimen name="text_label_large">14sp</dimen>
+    <dimen name="text_label_medium">13sp</dimen>
+    <dimen name="text_label_small">12sp</dimen>
+    
+    <!-- Label Text Line Height -->
+    <dimen name="text_label_line_height_large">20dp</dimen>
+    <dimen name="text_label_line_height_medium">18dp</dimen>
+    <dimen name="text_label_line_height_small">16dp</dimen>
+    
+    <!-- Label Text Letter Spacing -->
+    <dimen name="text_label_letter_spacing">0.4sp</dimen>
+    
+    <!-- ==================== CAPTION TEXT (说明文字) ==================== -->
+    <!-- Used for: Hints, timestamps, very small labels -->
+    <dimen name="text_caption_large">13sp</dimen>
+    <dimen name="text_caption_medium">12sp</dimen>
+    <dimen name="text_caption_small">11sp</dimen>
+    
+    <!-- Caption Text Line Height -->
+    <dimen name="text_caption_line_height_large">18dp</dimen>
+    <dimen name="text_caption_line_height_medium">16dp</dimen>
+    <dimen name="text_caption_line_height_small">14dp</dimen>
+    
+    <!-- Caption Text Letter Spacing -->
+    <dimen name="text_caption_letter_spacing">0.5sp</dimen>
+    
+    <!-- ==================== BUTTON TEXT (按钮文字) ==================== -->
+    <!-- Used for: All button types -->
+    <dimen name="text_button_large">16sp</dimen>
+    <dimen name="text_button_medium">15sp</dimen>
+    <dimen name="text_button_small">14sp</dimen>
+    
+    <!-- Button Text Line Height -->
+    <dimen name="text_button_line_height_large">24dp</dimen>
+    <dimen name="text_button_line_height_medium">22dp</dimen>
+    <dimen name="text_button_line_height_small">20dp</dimen>
+    
+    <!-- Button Text Letter Spacing -->
+    <dimen name="text_button_letter_spacing">1.25sp</dimen>
+    
+    <!-- ==================== NAVIGATION TEXT (导航文字) ==================== -->
+    <!-- Used for: Bottom navigation, tab labels -->
+    <dimen name="text_nav_active">13sp</dimen>
+    <dimen name="text_nav_inactive">12sp</dimen>
+    
+    <!-- Navigation Text Line Height -->
+    <dimen name="text_nav_line_height">16dp</dimen>
+    
+    <!-- ==================== INPUT TEXT (输入框文字) ==================== -->
+    <!-- Used for: Text fields, search bars -->
+    <dimen name="text_input_large">16sp</dimen>
+    <dimen name="text_input_medium">15sp</dimen>
+    <dimen name="text_input_small">14sp</dimen>
+    
+    <!-- Input Text Line Height -->
+    <dimen name="text_input_line_height_large">24dp</dimen>
+    <dimen name="text_input_line_height_medium">22dp</dimen>
+    <dimen name="text_input_line_height_small">20dp</dimen>
+    
+    <!-- ==================== PRICE TEXT (价格文字) ==================== -->
+    <!-- Used for: Product prices, amounts -->
+    <dimen name="text_price_large">20sp</dimen>
+    <dimen name="text_price_medium">17sp</dimen>
+    <dimen name="text_price_small">15sp</dimen>
+    
+    <!-- Price Text Line Height -->
+    <dimen name="text_price_line_height_large">28dp</dimen>
+    <dimen name="text_price_line_height_medium">24dp</dimen>
+    <dimen name="text_price_line_height_small">20dp</dimen>
+    
+    <!-- Price Text Letter Spacing -->
+    <dimen name="text_price_letter_spacing">-0.5sp</dimen>
+    
+    <!-- ==================== STATISTICS TEXT (统计数据) ==================== -->
+    <!-- Used for: Numbers in stats cards, counters -->
+    <dimen name="text_stat_large">24sp</dimen>
+    <dimen name="text_stat_medium">22sp</dimen>
+    <dimen name="text_stat_small">20sp</dimen>
+    
+    <!-- Statistics Text Line Height -->
+    <dimen name="text_stat_line_height_large">32dp</dimen>
+    <dimen name="text_stat_line_height_medium">28dp</dimen>
+    <dimen name="text_stat_line_height_small">24dp</dimen>
+    
+    <!-- ==================== ACCESSIBILITY TEXT (无障碍文字) ==================== -->
+    <!-- Larger text sizes for accessibility mode -->
+    <dimen name="text_accessibility_body">18sp</dimen>
+    <dimen name="text_accessibility_title">20sp</dimen>
+    <dimen name="text_accessibility_headline">24sp</dimen>
+    
+    <!-- Accessibility Line Height -->
+    <dimen name="text_accessibility_line_height">28dp</dimen>
+    
+    <!-- ==================== USAGE EXAMPLES ==================== -->
+    
+    <!-- 
+        Usage Guidelines:
+        
+        1. Page Titles: Use text_headline_large (22sp)
+        2. Section Headers: Use text_headline_medium (20sp)
+        3. Card Titles: Use text_title_large (17sp) or text_title_medium (16sp)
+        4. Body Content: Use text_body_medium (14sp)
+        5. Labels/Metadata: Use text_label_medium (13sp)
+        6. Captions/Hints: Use text_caption_medium (12sp)
+        7. Button Text: Use text_button_medium (15sp)
+        8. Prices: Use text_price_medium (17sp)
+        9. Statistics: Use text_stat_medium (22sp)
+        10. Navigation: Use text_nav_active (13sp)
+        
+        Example Usage:
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_title_large"
+            android:lineHeight="@dimen/text_title_line_height_large"
+            android:letterSpacing="@dimen/text_title_letter_spacing"
+            android:textColor="@color/text_primary" />
+            
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_body_medium"
+            android:lineHeight="@dimen/text_body_line_height_medium"
+            android:letterSpacing="@dimen/text_body_letter_spacing"
+            android:textColor="@color/text_secondary" />
+    -->
+    
+    <!-- ==================== FONT WEIGHT MAPPINGS ==================== -->
+    
+    <!-- 
+        Font Weight Recommendations:
+        
+        Light (300): Rarely used, only for decorative large text
+        Regular (400): Default for body text and labels
+        Medium (500): For emphasis in body text
+        SemiBold (600): For titles and important labels
+        Bold (700): For headlines and statistics
+        ExtraBold (800): For display text and major numbers
+    -->
+    
+</resources>

@@ -1,0 +1,32 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="浏览历史">
+    <view slot="right" class="hist-clear" bindtap="clearAll">
+      <icon name="trash" size="24" color="var(--text-hint)" /><text>清空</text>
+    </view>
+  </top-bar>
+
+  <view class="hist-body">
+    <view wx:if="{{groups.length === 0}}" class="empty-state">
+      <view class="empty-icon">卷</view>
+      <view class="empty-title">还没有浏览记录</view>
+      <view class="empty-hint">去逛逛感兴趣的内容吧</view>
+    </view>
+    <view wx:for="{{groups}}" wx:key="day" wx:for-item="g" class="hist-group">
+      <view class="hist-day">
+        <view class="hist-day-bar"></view>
+        <text class="hist-day-text">{{g.day}}</text>
+      </view>
+      <view class="hist-list">
+        <view wx:for="{{g.items}}" wx:key="id" class="hist-card">
+          <cover extra-class="hist-cover" seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}"
+                 aspect="square" rounded="lg" ornate="{{false}}" />
+          <view class="hist-info">
+            <view class="hist-title">{{item.title}}</view>
+            <view class="hist-desc">{{item.desc}}</view>
+            <view class="hist-meta">{{item.type}} · {{item.browseTime}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

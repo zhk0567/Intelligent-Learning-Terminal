@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    
+    <!-- 
+        Ancient Tech Typography System - Night/Dark Theme
+        ================================================
+        
+        This file defines the typography styles for the Ancient Tech UI Enhancement
+        in dark/night mode. Text colors are adjusted for better contrast and
+        readability in dark environments.
+        
+        Note: Most text styles inherit from the base styles.xml in values directory.
+        Only override items that need to change for dark theme.
+    -->
+    
+    <!-- ==================== HEADINGS ==================== -->
+    
+    <!-- Heading 1: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.Heading1">
+        <item name="android:textColor">@color/text_primary</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- Heading 2: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.Heading2">
+        <item name="android:textColor">@color/text_primary</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- Heading 3: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.Heading3">
+        <item name="android:textColor">@color/text_primary</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- ==================== BODY TEXT ==================== -->
+    
+    <!-- Body: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.Body">
+        <item name="android:textColor">@color/text_primary</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- BodySmall: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.BodySmall">
+        <item name="android:textColor">@color/text_secondary</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- ==================== LABELS ==================== -->
+    
+    <!-- Label: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.Label">
+        <item name="android:textColor">@color/text_secondary</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- Caption: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.Caption">
+        <item name="android:textColor">@color/text_hint</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- ==================== BUTTONS ==================== -->
+    
+    <!-- Button: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.Button">
+        <item name="android:textColor">@color/text_primary</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- ButtonSmall: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.ButtonSmall">
+        <item name="android:textColor">@color/text_primary</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- ==================== SPECIAL TEXT STYLES ==================== -->
+    
+    <!-- Error: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.Error">
+        <item name="android:textColor">@color/ancient_red</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- Success: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.Success">
+        <item name="android:textColor">@color/jade</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- Link: Adjusted for dark theme - brighter for dark background -->
+    <style name="TextAppearance.AncientTech.Link">
+        <item name="android:textColor">@color/neon_cyan</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- ==================== CARD SPECIFIC TEXT ==================== -->
+    
+    <!-- CardTitle: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.CardTitle">
+        <item name="android:textColor">@color/text_primary</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- CardSubtitle: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.CardSubtitle">
+        <item name="android:textColor">@color/text_secondary</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- CardDescription: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.CardDescription">
+        <item name="android:textColor">@color/text_secondary</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- CardPrice: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.CardPrice">
+        <item name="android:textColor">@color/ancient_gold</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- ==================== NAVIGATION TEXT ==================== -->
+    
+    <!-- NavItem: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.NavItem">
+        <item name="android:textColor">@color/nav_inactive</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- NavItemActive: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.NavItemActive">
+        <item name="android:textColor">@color/nav_active</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- ==================== TAG TEXT ==================== -->
+    
+    <!-- Tag: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.Tag">
+        <item name="android:textColor">@color/text_secondary</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- TagSelected: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.TagSelected">
+        <item name="android:textColor">@color/neon_cyan</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+    <!-- ==================== ACCESSIBILITY TEXT ==================== -->
+    
+    <!-- AccessibilityNote: Adjusted for dark theme -->
+    <style name="TextAppearance.AncientTech.AccessibilityNote">
+        <item name="android:textColor">@color/text_hint</item>
+        <!-- Other properties inherited from base -->
+    </style>
+    
+</resources>

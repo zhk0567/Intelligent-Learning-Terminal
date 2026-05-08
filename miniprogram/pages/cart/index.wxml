@@ -1,0 +1,40 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="购物车" subtitle="{{items.length}} 件商品" />
+
+  <view class="cart-list">
+    <block wx:if="{{items.length === 0}}">
+      <view class="empty-state">
+        <view class="empty-icon">扇</view>
+        <view class="empty-title">购物车空空如也</view>
+        <view class="empty-hint">去逛逛非遗好物</view>
+      </view>
+    </block>
+    <view wx:for="{{items}}" wx:key="productId" class="cart-row">
+      <view class="check {{item.selected ? 'on' : ''}}" data-id="{{item.productId}}" bindtap="toggleSel"></view>
+      <cover extra-class="cart-cover" seed="{{item.product.id}}" src="{{item.product.imageSrc}}"
+             alt="{{item.product.name}}" aspect="square" rounded="lg" ornate="{{false}}" />
+      <view class="cart-info">
+        <view class="cart-name">{{item.product.name}}</view>
+        <view class="cart-desc">{{item.product.description}}</view>
+        <view class="cart-bottom">
+          <text class="cart-price">¥{{item.product.price}}</text>
+          <view class="cart-counter">
+            <view class="counter-btn" data-id="{{item.productId}}" bindtap="dec"><icon name="minus" size="28" color="var(--text-primary)" /></view>
+            <text class="counter-num">{{item.count}}</text>
+            <view class="counter-btn" data-id="{{item.productId}}" bindtap="inc"><icon name="plus" size="28" color="var(--text-primary)" /></view>
+          </view>
+        </view>
+      </view>
+      <view class="cart-trash" data-id="{{item.productId}}" bindtap="remove">
+        <icon name="trash" size="32" color="var(--text-hint)" />
+      </view>
+    </view>
+  </view>
+
+  <view class="cart-bar">
+    <view class="check {{allSel ? 'on' : ''}}" bindtap="toggleAll"></view>
+    <text class="cart-bar-all">全选</text>
+    <view class="cart-bar-total">合计：<text class="cart-bar-num">¥{{totalText}}</text></view>
+    <view class="btn btn-stamp cart-bar-cta" bindtap="checkout">去结算</view>
+  </view>
+</view>

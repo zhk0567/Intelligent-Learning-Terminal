@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    <!-- Shopping cart outline -->
+    <path
+        android:strokeColor="@color/text_secondary"
+        android:strokeWidth="3"
+        android:pathData="M30,40 L90,40 L85,80 L35,80 Z"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="@android:color/transparent" />
+    
+    <!-- Cart handle -->
+    <path
+        android:strokeColor="@color/text_secondary"
+        android:strokeWidth="2"
+        android:pathData="M40,40 L30,30 L20,40"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="@android:color/transparent" />
+    
+    <!-- Empty indicator -->
+    <path
+        android:strokeColor="@color/text_hint"
+        android:strokeWidth="2"
+        android:pathData="M60,50 L60,70 M50,60 L70,60"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent" />
+</vector>

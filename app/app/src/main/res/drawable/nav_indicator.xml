@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 选中态底部短横线：霓虹青绿发光效果 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:startColor="@color/neon_cyan"
+        android:endColor="@color/neon_cyan_dim"
+        android:angle="0"/>
+    <corners android:radius="2dp"/>
+    <size android:width="24dp" android:height="3dp"/>
+</shape>

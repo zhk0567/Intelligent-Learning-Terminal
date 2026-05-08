@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Ancient Tech Icon Button State Selector
+    Provides different backgrounds for icon buttons in normal, pressed, and selected states
+    Used for favorite, like, share, and other icon-based actions
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- Selected state - filled with ancient red -->
+    <item android:state_selected="true" android:state_pressed="false">
+        <shape android:shape="oval">
+            <solid android:color="@color/ancient_red" />
+            <stroke
+                android:width="@dimen/button_border_width_thin"
+                android:color="@color/tech_blue" />
+        </shape>
+    </item>
+    
+    <!-- Pressed state (selected) - darker red -->
+    <item android:state_selected="true" android:state_pressed="true">
+        <shape android:shape="oval">
+            <solid android:color="@color/purple" />
+            <stroke
+                android:width="@dimen/button_border_width_medium"
+                android:color="@color/tech_blue" />
+        </shape>
+    </item>
+    
+    <!-- Pressed state (not selected) - subtle highlight -->
+    <item android:state_pressed="true" android:state_selected="false">
+        <shape android:shape="oval">
+            <solid android:color="@color/tag_selected" />
+            <stroke
+                android:width="@dimen/button_border_width_thin"
+                android:color="@color/divider_light" />
+        </shape>
+    </item>
+    
+    <!-- Normal state (not selected) - transparent with border -->
+    <item android:state_selected="false">
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="@dimen/button_border_width_thin"
+                android:color="@color/text_secondary" />
+        </shape>
+    </item>
+    
+</selector>

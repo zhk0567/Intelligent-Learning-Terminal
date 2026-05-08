@@ -1,0 +1,31 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="{{title}}"></top-bar>
+  <view class="detail-body">
+    <view class="detail-card">
+      <cover seed="{{cover.id}}" src="{{cover.coverSrc}}" alt="{{title}}" aspect="16/9" rounded="2xl" ornate="{{false}}" />
+      <view class="detail-card-info">
+        <view class="detail-card-title">{{title}}</view>
+        <view class="detail-card-sub">古韵薪传 · 编辑精选</view>
+      </view>
+      <view class="detail-card-foot">
+        <text class="detail-foot-text">{{list.length}} 张专辑 · {{trackTotal}} 首</text>
+        <view class="btn btn-stamp detail-play-btn" bindtap="playAll">
+          <icon name="play" size="28" color="#ffffff" /> 播放全部
+        </view>
+      </view>
+    </view>
+
+    <view class="detail-track-list">
+      <view wx:for="{{trackList}}" wx:key="key"
+            class="detail-track" data-i="{{item.idx}}" bindtap="playTrack">
+        <cover extra-class="detail-track-cover" seed="{{item.id}}" src="{{item.coverSrc}}"
+               alt="{{item.title}}" aspect="square" rounded="lg" ornate="{{false}}" />
+        <view class="detail-track-info">
+          <view class="detail-track-title">{{item.title}}</view>
+          <view class="detail-track-sub">{{item.artist}} · {{item.albumTitle}}</view>
+        </view>
+        <icon name="play" size="32" color="var(--ancient-cinnabar)" />
+      </view>
+    </view>
+  </view>
+</view>

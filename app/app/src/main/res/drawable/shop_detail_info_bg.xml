@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 详情信息区背景：深色科技风，顶部圆角覆盖在图片上 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/bg_primary"/>
+    <corners android:topLeftRadius="16dp" android:topRightRadius="16dp"/>
+</shape>

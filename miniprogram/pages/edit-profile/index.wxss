@@ -1,0 +1,34 @@
+.page-root { min-height: 100vh; background: var(--bg-primary); }
+.ep-save { color: var(--ancient-cinnabar); font-size: 26rpx; font-weight: 600; padding: 0 16rpx; }
+
+.ep-body { padding: 16rpx 32rpx 60rpx; display: flex; flex-direction: column; gap: 32rpx; }
+
+.ep-avatar-row { display: flex; align-items: flex-start; gap: 24rpx; }
+.ep-avatar-wrap { position: relative; flex-shrink: 0; }
+.ep-avatar {
+  width: 160rpx; height: 160rpx;
+  border: 4rpx solid rgba(165,124,44,0.55);
+  border-radius: 9999rpx;
+}
+.ep-avatar-edit {
+  position: absolute; right: -8rpx; bottom: -8rpx;
+  width: 56rpx; height: 56rpx;
+  border-radius: 9999rpx;
+  background: var(--ancient-cinnabar);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: inset 0 -4rpx 0 rgba(0,0,0,0.22);
+}
+.ep-avatar-tip { font-size: 22rpx; color: var(--text-hint); margin-top: 8rpx; }
+
+.ep-field {}
+.ep-label { font-size: 22rpx; color: var(--text-secondary); margin-bottom: 8rpx; }
+.ep-input {
+  width: 100%;
+  padding: 18rpx 24rpx;
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 18rpx;
+  font-size: 26rpx;
+  color: var(--text-primary);
+}
+.ep-textarea { min-height: 160rpx; }

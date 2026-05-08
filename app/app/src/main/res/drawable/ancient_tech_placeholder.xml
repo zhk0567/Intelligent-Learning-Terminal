@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Ancient Tech Placeholder Image
+    XML drawable representing a placeholder for loading images
+    Shows Ancient Tech pattern with gradient background
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    
+    <!-- Background gradient -->
+    <path
+        android:fillColor="@color/card_gradient_start"
+        android:pathData="M0,0 L120,0 L120,120 L0,120 Z" />
+    
+    <!-- Ancient Tech pattern - simplified Chinese-inspired design -->
+    <path
+        android:strokeColor="@color/tech_blue"
+        android:strokeWidth="2"
+        android:pathData="M30,30 L90,30 L90,90 L30,90 Z" />
+    
+    <path
+        android:strokeColor="@color/ancient_gold"
+        android:strokeWidth="1.5"
+        android:pathData="M40,40 L80,40 L80,80 L40,80 Z" />
+    
+    <path
+        android:strokeColor="@color/ancient_red"
+        android:strokeWidth="1"
+        android:pathData="M50,50 L70,50 L70,70 L50,70 Z" />
+    
+    <!-- Loading indicator circle -->
+    <path
+        android:strokeColor="@color/tech_blue"
+        android:strokeWidth="3"
+        android:pathData="M60,20 A40,40 0 1,1 60,100 A40,40 0 1,1 60,20"
+        android:strokeLineCap="round" />
+    
+</vector>

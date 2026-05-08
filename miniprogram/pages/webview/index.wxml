@@ -1,0 +1,9 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="{{title}}"></top-bar>
+  <view class="webview-body">
+    <view wx:if="{{url}}" class="webview-url">外链：{{url}}</view>
+    <view class="webview-article">
+      <view wx:for="{{paragraphs}}" wx:key="*this" class="webview-p">{{item}}</view>
+    </view>
+  </view>
+</view>

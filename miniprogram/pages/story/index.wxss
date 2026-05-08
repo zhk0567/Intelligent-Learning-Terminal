@@ -1,0 +1,106 @@
+.page-root {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  padding: 24rpx 32rpx 0;
+}
+.tab-page { padding-bottom: calc(env(safe-area-inset-bottom) + 240rpx); }
+
+.story-top {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding-top: max(96rpx, calc(constant(safe-area-inset-top) + 32rpx));
+  padding-top: max(96rpx, calc(env(safe-area-inset-top) + 32rpx));
+  margin-bottom: 16rpx;
+  box-sizing: border-box;
+}
+.story-title {
+  font-size: 42rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.story-tabs {
+  display: flex;
+  gap: 16rpx;
+  white-space: nowrap;
+  padding: 8rpx 0;
+}
+.story-chip {
+  display: inline-block;
+  padding: 12rpx 28rpx;
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  color: var(--text-secondary);
+  border-radius: 9999rpx;
+  font-size: 30rpx;
+  margin-right: 16rpx;
+}
+.story-chip.on {
+  background: var(--neon-teal);
+  border-color: var(--neon-teal);
+  color: #ffffff;
+}
+
+.story-feature-list { display: flex; flex-direction: column; gap: 24rpx; }
+.story-feature-card {}
+.story-feature-title {
+  margin-top: 16rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.story-feature-excerpt {
+  margin-top: 8rpx;
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.story-feature-meta {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  color: var(--text-hint);
+}
+
+.story-row-list { display: flex; flex-direction: column; gap: 24rpx; }
+.story-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 24rpx;
+  padding: 24rpx;
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 22rpx;
+}
+.story-row-cover {
+  width: 160rpx;
+  height: 160rpx;
+  flex-shrink: 0;
+}
+.story-row-info { flex: 1; min-width: 0; }
+.story-row-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.story-row-excerpt {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.story-row-meta {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: var(--text-hint);
+}

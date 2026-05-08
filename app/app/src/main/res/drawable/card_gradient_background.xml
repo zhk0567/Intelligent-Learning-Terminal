@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Ancient Tech Card Gradient Background
+    Vertical gradient from card_gradient_start to card_gradient_end
+    Used for product cards, story cards, and post cards
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <!-- Vertical gradient from dark blue to darker blue -->
+    <gradient
+        android:startColor="@color/card_gradient_start"
+        android:endColor="@color/card_gradient_end"
+        android:angle="270" />
+    
+    <!-- Rounded corners for modern card look -->
+    <corners android:radius="@dimen/card_corner_radius_large" />
+    
+    <!-- Thin border for definition -->
+    <stroke
+        android:width="@dimen/card_border_width_thin"
+        android:color="@color/divider_light" />
+    
+</shape>
