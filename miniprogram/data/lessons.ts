@@ -5,9 +5,9 @@
  * - 文案：依据国家级非遗资料整理（首批国家级非遗名录 2006）。
  *
  * 视频文件较大（约 50–90MB），不内嵌进小程序与 Android 包；
- * 通过 `LESSON_VIDEO_BASE` 引用 Web 静态资源；上线时改为 CDN 即可。
+ * 通过 [assetUrl] 与图片同源域名访问 ECS/CDN 上的 `/video/...`。
  */
-export const LESSON_VIDEO_BASE = "http://localhost:5173"; // dev: vite
+import { assetUrl } from "../utils/assetUrl";
 
 export interface BasicLesson {
   id: string;
@@ -20,18 +20,18 @@ export interface BasicLesson {
   longDesc: string;
   durationSec: number;
   coverSrc: string;
-  /** 视频相对路径（拼接 `LESSON_VIDEO_BASE` 得到完整 URL）。 */
+  /** 视频路径（经 [lessonVideo] 已为可访问 URL，含 STATIC_ORIGIN）。 */
   videoSrc: string;
 }
 
 function lessonCover(slot: 0 | 1): string {
   const n = slot + 1;
-  return `/images/basic_lesson/basic_lesson_cover_${n < 10 ? `0${n}` : `${n}`}.jpg`;
+  return assetUrl(`/images/basic_lesson/basic_lesson_cover_${n < 10 ? `0${n}` : `${n}`}.jpg`);
 }
 
 function lessonVideo(slot: 0 | 1): string {
   const n = slot + 1;
-  return `/video/basic_lesson/basic_lesson_${n < 10 ? `0${n}` : `${n}`}.mp4`;
+  return assetUrl(`/video/basic_lesson/basic_lesson_${n < 10 ? `0${n}` : `${n}`}.mp4`);
 }
 
 export const BASIC_LESSONS: BasicLesson[] = [
@@ -71,5 +71,5 @@ export function lessonById(id: string): BasicLesson | undefined {
 }
 
 export function lessonVideoUrl(lesson: BasicLesson): string {
-  return `${LESSON_VIDEO_BASE}${lesson.videoSrc}`;
+  return assetUrl(lesson.videoSrc);
 }

@@ -1,10 +1,9 @@
 /**
- * 小程序 `images/` 下资源路径。
- * - `homeSwiper*`：仅首页（音乐 Tab）顶部轮播，源图见 `data/图片/首页轮播图`，`tools/sync_home_carousel.py`。
- * - `shopSwiper*`：仅商城 Tab 顶栏轮播，源图见 `data/图片/商城页轮播图`，`tools/sync_shop_carousel.py`。
- * - `banner*`：历史占位，与 Android 布局/旧数据一致，对应 `banner*_img.jpg`（与 p_1~3 同图，勿再当轮播用）。
+ * 小程序 `images/` 下资源路径；经 [assetUrl] 拼接 `config/staticOrigin.ts` 的 STATIC_ORIGIN。
  */
-export const APP_IMAGES = {
+import { assetUrl } from "../utils/assetUrl";
+
+const PATHS = {
   homeSwiper1: "/images/home_swiper_1.jpg",
   homeSwiper2: "/images/home_swiper_2.jpg",
   homeSwiper3: "/images/home_swiper_3.jpg",
@@ -23,6 +22,10 @@ export const APP_IMAGES = {
   p6: "/images/p_6.jpg",
   p7: "/images/p_7.jpg",
 } as const;
+
+export const APP_IMAGES = Object.fromEntries(
+  (Object.entries(PATHS) as [keyof typeof PATHS, string][]).map(([k, v]) => [k, assetUrl(v)]),
+) as { [K in keyof typeof PATHS]: string };
 
 const SHOP_POOL: (keyof typeof APP_IMAGES | null)[] = [
   "banner1",

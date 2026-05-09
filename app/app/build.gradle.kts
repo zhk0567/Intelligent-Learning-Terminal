@@ -14,9 +14,15 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // 与 Web `VITE_STATIC_ORIGIN`、小程序 `STATIC_ORIGIN` 一致（勿尾斜杠）；在 `gradle.properties` 里设 STATIC_ASSET_ORIGIN
+        val staticOrigin = (project.findProperty("STATIC_ASSET_ORIGIN") as? String)?.trim().orEmpty()
+        val escaped = staticOrigin.replace("\\", "\\\\").replace("\"", "\\\"")
+        buildConfigField("String", "STATIC_ASSET_ORIGIN", "\"$escaped\"")
     }
 
     buildFeatures {
+        buildConfig = true
         viewBinding = true
         // 未使用 <layout> 表达式，关闭后可少跑 data binding 管线，加快增量构建
         dataBinding = false

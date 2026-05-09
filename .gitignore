@@ -35,3 +35,6 @@ miniprogram/project.private.config.json
 .DS_Store
 Thumbs.db
 *.log
+
+# Local-only debug output (do not commit)
+ssh_test_log.txt

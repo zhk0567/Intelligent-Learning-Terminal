@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { APP_IMAGES } from "../assets/appImages";
+import { assetUrl } from "../lib/assetUrl";
 
 export interface Track {
   id: string;
@@ -19,19 +20,19 @@ const tc = (i: number) => B[i % 3];
 /** `data/图片/每日热门` → `tools/sync_daily_hot_covers.py` */
 export function dailyHotCoverPath(slot: 0 | 1 | 2 | 3): string {
   const n = slot + 1;
-  return `/images/daily_hot/daily_hot_cover_${n < 10 ? `0${n}` : `${n}`}.jpg`;
+  return assetUrl(`/images/daily_hot/daily_hot_cover_${n < 10 ? `0${n}` : `${n}`}.jpg`);
 }
 
 /** `data/图片/每日精选` → `tools/sync_daily_select_covers.py` */
 export function dailySelectCoverPath(slot: 0 | 1 | 2): string {
   const n = slot + 1;
-  return `/images/daily_select/daily_select_cover_${n < 10 ? `0${n}` : `${n}`}.jpg`;
+  return assetUrl(`/images/daily_select/daily_select_cover_${n < 10 ? `0${n}` : `${n}`}.jpg`);
 }
 
 /** `data/图片/猜你喜欢` → `tools/sync_daily_guess_covers.py` */
 export function dailyGuessCoverPath(slot: 0 | 1 | 2): string {
   const n = slot + 1;
-  return `/images/daily_guess/daily_guess_cover_${n < 10 ? `0${n}` : `${n}`}.jpg`;
+  return assetUrl(`/images/daily_guess/daily_guess_cover_${n < 10 ? `0${n}` : `${n}`}.jpg`);
 }
 
 export const TRACKS: Track[] = [
@@ -82,7 +83,7 @@ export const TRACKS: Track[] = [
     album: "每日热门",
     durationSec: 240,
     coverSrc: dailyHotCoverPath(0),
-    audioSrc: "/audio/daily_hot/daily_hot_01.mp3",
+    audioSrc: assetUrl("/audio/daily_hot/daily_hot_01.mp3"),
   },
   {
     id: "hot_t2",
@@ -91,7 +92,7 @@ export const TRACKS: Track[] = [
     album: "每日热门",
     durationSec: 240,
     coverSrc: dailyHotCoverPath(1),
-    audioSrc: "/audio/daily_hot/daily_hot_02.mp3",
+    audioSrc: assetUrl("/audio/daily_hot/daily_hot_02.mp3"),
   },
   {
     id: "hot_t3",
@@ -100,7 +101,7 @@ export const TRACKS: Track[] = [
     album: "每日热门",
     durationSec: 240,
     coverSrc: dailyHotCoverPath(2),
-    audioSrc: "/audio/daily_hot/daily_hot_03.mp3",
+    audioSrc: assetUrl("/audio/daily_hot/daily_hot_03.mp3"),
   },
   {
     id: "hot_t4",
@@ -109,7 +110,7 @@ export const TRACKS: Track[] = [
     album: "每日热门",
     durationSec: 240,
     coverSrc: dailyHotCoverPath(3),
-    audioSrc: "/audio/daily_hot/daily_hot_04.mp3",
+    audioSrc: assetUrl("/audio/daily_hot/daily_hot_04.mp3"),
   },
   {
     id: "select_t1",
@@ -118,7 +119,7 @@ export const TRACKS: Track[] = [
     album: "每日精选",
     durationSec: 69,
     coverSrc: dailySelectCoverPath(0),
-    audioSrc: "/audio/daily_select/daily_select_01.mp3",
+    audioSrc: assetUrl("/audio/daily_select/daily_select_01.mp3"),
   },
   {
     id: "select_t2",
@@ -127,7 +128,7 @@ export const TRACKS: Track[] = [
     album: "每日精选",
     durationSec: 147,
     coverSrc: dailySelectCoverPath(1),
-    audioSrc: "/audio/daily_select/daily_select_02.mp3",
+    audioSrc: assetUrl("/audio/daily_select/daily_select_02.mp3"),
   },
   {
     id: "select_t3",
@@ -136,7 +137,7 @@ export const TRACKS: Track[] = [
     album: "每日精选",
     durationSec: 93,
     coverSrc: dailySelectCoverPath(2),
-    audioSrc: "/audio/daily_select/daily_select_03.mp3",
+    audioSrc: assetUrl("/audio/daily_select/daily_select_03.mp3"),
   },
   {
     id: "guess_t1",
@@ -145,7 +146,7 @@ export const TRACKS: Track[] = [
     album: "猜你喜欢",
     durationSec: 217,
     coverSrc: dailyGuessCoverPath(0),
-    audioSrc: "/audio/daily_guess/daily_guess_01.mp3",
+    audioSrc: assetUrl("/audio/daily_guess/daily_guess_01.mp3"),
   },
   {
     id: "guess_t2",
@@ -154,7 +155,7 @@ export const TRACKS: Track[] = [
     album: "猜你喜欢",
     durationSec: 175,
     coverSrc: dailyGuessCoverPath(1),
-    audioSrc: "/audio/daily_guess/daily_guess_02.mp3",
+    audioSrc: assetUrl("/audio/daily_guess/daily_guess_02.mp3"),
   },
   {
     id: "guess_t3",
@@ -163,7 +164,7 @@ export const TRACKS: Track[] = [
     album: "猜你喜欢",
     durationSec: 162,
     coverSrc: dailyGuessCoverPath(2),
-    audioSrc: "/audio/daily_guess/daily_guess_03.mp3",
+    audioSrc: assetUrl("/audio/daily_guess/daily_guess_03.mp3"),
   },
 ];
 

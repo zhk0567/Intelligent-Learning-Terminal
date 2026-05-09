@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { APP_IMAGES } from "../assets/appImages";
 import SealStamp from "../components/SealStamp";
 
 export default function Splash() {
@@ -13,7 +14,7 @@ export default function Splash() {
     <div className="min-h-[100dvh] flex flex-col items-center justify-center px-8 text-center bg-bg-primary md:max-w-[420px] md:mx-auto">
       <div className="relative">
         <div className="h-32 w-32 rounded-full bg-bg-card grid place-items-center border-2 border-ancient-bronze/60 shadow-card overflow-hidden p-2">
-          <img src="/images/logo.png" alt="古韵薪传" className="h-full w-full object-contain" />
+          <img src={APP_IMAGES.logo} alt="古韵薪传" className="h-full w-full object-contain" />
         </div>
         <div className="absolute -inset-3 rounded-full border border-ancient-bronze/30 animate-pulseSoft" />
         <SealStamp

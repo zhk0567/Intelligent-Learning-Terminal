@@ -16,6 +16,7 @@ import {
 } from "../components/Icon";
 import Cover from "../components/Cover";
 import Sheet from "../components/Sheet";
+import { assetUrl } from "../lib/assetUrl";
 import { TRACKS, usePlayerStore } from "../store/playerStore";
 import { toast } from "../components/Toast";
 
@@ -54,7 +55,7 @@ export default function Player() {
     }
     const prev = audioRef.current;
     prev?.pause();
-    const a = new Audio(tr.audioSrc);
+    const a = new Audio(assetUrl(tr.audioSrc));
     audioRef.current = a;
     const onTime = () => usePlayerStore.getState().setPositionSec(Math.floor(a.currentTime));
     const onEnded = () => usePlayerStore.getState().next();

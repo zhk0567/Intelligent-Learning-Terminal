@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    允许在开发期通过 HTTP 访问本机 Vite Dev（小程序 / Web 与 Android 共用同一份基础学习视频）。
-    上线时把视频 base 切成 HTTPS CDN，可以删掉对应 domain。
+    允许在开发期通过 HTTP 访问本机 Vite Dev；并允许访问 ECS 公网 39.106.117.118 上的 http 静态资源。
+    换公网 IP 时同步改下方 <domain>39.106.117.118</domain>。上线 HTTPS 域名后可删该 IP 行。
 -->
 <network-security-config>
     <base-config cleartextTrafficPermitted="false" />
@@ -9,5 +9,6 @@
         <domain includeSubdomains="true">10.0.2.2</domain>
         <domain includeSubdomains="true">localhost</domain>
         <domain includeSubdomains="true">127.0.0.1</domain>
+        <domain includeSubdomains="false">39.106.117.118</domain>
     </domain-config>
 </network-security-config>

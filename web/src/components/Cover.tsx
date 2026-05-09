@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+import { assetUrl } from "../lib/assetUrl";
 import { CornerPattern } from "./Ornament";
 import { useThemeStore } from "../store/themeStore";
 
@@ -54,7 +55,9 @@ export default function Cover({
   const p = PALETTES[idx];
   const bg = mode === "dark" ? p.bgDark : p.bg;
   const fg = mode === "dark" ? p.textDark : p.text;
-  const hasImg = Boolean(src);
+  const rawSrc = src?.trim() ?? "";
+  const imgSrc = rawSrc ? assetUrl(rawSrc) : "";
+  const hasImg = Boolean(rawSrc);
   const label = alt ?? text ?? seed;
   const useIntrinsic =
     hasImg &&
@@ -83,7 +86,7 @@ export default function Cover({
     >
       {hasImg && (
         <img
-          src={src}
+          src={imgSrc}
           alt={label}
           className="absolute inset-0 z-0 h-full w-full object-cover"
           loading="lazy"

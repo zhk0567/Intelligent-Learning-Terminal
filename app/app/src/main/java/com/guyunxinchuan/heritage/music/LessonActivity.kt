@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 /**
  * 「基础学习」视频课页：使用 [VideoView] + [MediaController] 播放远程 mp4。
- * 视频通过 [BasicLessons.LESSON_VIDEO_BASE] 拼接 URL；上线时把基址改为 CDN 即可。
+ * 视频 URL 由 [BasicLessons.videoUrl] 拼接：`gradle.properties` 中 `STATIC_ASSET_ORIGIN` 非空时用 CDN，否则用 [BasicLessons.LESSON_VIDEO_BASE]（开发机 Vite）。
  */
 class LessonActivity : AppCompatActivity() {
 
@@ -62,7 +62,7 @@ class LessonActivity : AppCompatActivity() {
             loading.visibility = View.GONE
             Toast.makeText(
                 this,
-                "视频加载失败，请确认 ${BasicLessons.LESSON_VIDEO_BASE} 可达",
+                "视频加载失败，请确认 ${BasicLessons.currentVideoBase()} 可达且文件已部署",
                 Toast.LENGTH_LONG,
             ).show()
             true

@@ -5,7 +5,8 @@ package com.guyunxinchuan.heritage.music
  * - 与小程序 / Web 的 `BASIC_LESSONS`（`miniprogram/data/lessons.ts`、`web/src/data/lessons.ts`）字段一致。
  * - 视频较大（约 50–90MB），未拷入 `res/raw`；通过 [LESSON_VIDEO_BASE] 引用同一 Web 静态/CDN URL。
  *   开发期默认指向本机 Vite Dev（`http://10.0.2.2:5173` 在 Android 模拟器内对应宿主 `localhost:5173`）。
- *   上线时把 [LESSON_VIDEO_BASE] 改为正式 CDN 即可。
+ *   上线：在工程根 `gradle.properties` 设置 `STATIC_ASSET_ORIGIN=https://你的静态域名`，
+ *   与 Web/小程序同源；非空时 [videoUrl] 使用 [BuildConfig.STATIC_ASSET_ORIGIN] + [videoPath]。
  */
 data class BasicLesson(
     val id: String,
@@ -56,5 +57,11 @@ object BasicLessons {
 
     fun byId(id: String): BasicLesson? = ALL.firstOrNull { it.id == id }
 
-    fun videoUrl(lesson: BasicLesson): String = LESSON_VIDEO_BASE + lesson.videoPath
+    /** 当前用于拼接 [videoPath] 的基址（供错误提示等）。 */
+    fun currentVideoBase(): String {
+        val cdn = BuildConfig.STATIC_ASSET_ORIGIN.trim().trimEnd('/')
+        return if (cdn.isNotEmpty()) cdn else LESSON_VIDEO_BASE
+    }
+
+    fun videoUrl(lesson: BasicLesson): String = currentVideoBase() + lesson.videoPath
 }

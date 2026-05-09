@@ -1,7 +1,7 @@
 <view class="splash {{__themeClass}}">
   <view class="splash-logo-wrap">
     <view class="splash-logo">
-      <image class="splash-logo-img" src="/images/logo.jpg" mode="aspectFit" />
+      <image class="splash-logo-img" src="{{logoUrl}}" mode="aspectFit" />
     </view>
     <view class="splash-ring"></view>
     <seal-stamp text="韵" size="72" extra-class="splash-seal" />

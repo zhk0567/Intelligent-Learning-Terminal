@@ -1,4 +1,5 @@
 import { applyTheme } from "../../utils/theme";
+import { assetUrl } from "../../utils/assetUrl";
 import { TRACKS } from "../../data/tracks";
 import { playerStore } from "../../stores/playerStore";
 import { fmtTime } from "../../utils/format";
@@ -80,7 +81,7 @@ Page({
       this._audioLastIdx = s.currentIndex;
       return;
     }
-    const src = t.audioSrc;
+    const src = t.audioSrc ? assetUrl(t.audioSrc) : "";
     if (src !== this._audioLastSrc || s.currentIndex !== this._audioLastIdx) {
       this._audioLastSrc = src;
       this._audioLastIdx = s.currentIndex;

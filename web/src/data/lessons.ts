@@ -1,3 +1,5 @@
+import { assetUrl } from "../lib/assetUrl";
+
 /**
  * 「基础学习」视频课。
  * - 源视频：`data/视频/基础学习/*.mp4`，由 `tools/sync_basic_lesson_videos.py` 拷到 `web/public/video/basic_lesson/`。
@@ -17,12 +19,12 @@ export interface BasicLesson {
 
 function lessonCover(slot: 0 | 1): string {
   const n = slot + 1;
-  return `/images/basic_lesson/basic_lesson_cover_${n < 10 ? `0${n}` : `${n}`}.jpg`;
+  return assetUrl(`/images/basic_lesson/basic_lesson_cover_${n < 10 ? `0${n}` : `${n}`}.jpg`);
 }
 
 function lessonVideo(slot: 0 | 1): string {
   const n = slot + 1;
-  return `/video/basic_lesson/basic_lesson_${n < 10 ? `0${n}` : `${n}`}.mp4`;
+  return assetUrl(`/video/basic_lesson/basic_lesson_${n < 10 ? `0${n}` : `${n}`}.mp4`);
 }
 
 export const BASIC_LESSONS: BasicLesson[] = [

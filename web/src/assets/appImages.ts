@@ -1,8 +1,11 @@
 /**
  * 与 Android `res/drawable`、小程序 `images/` 中位图一致。
  * `homeSwiper*` 仅音乐首页轮播；`shopSwiper*` 仅商城顶栏轮播；`banner*` 为通用占位（与 p_1~3 同图）。
+ * 路径经 [assetUrl] 拼接 `VITE_STATIC_ORIGIN`，便于把 `public/` 迁到 ECS/CDN。
  */
-export const APP_IMAGES = {
+import { assetUrl } from "../lib/assetUrl";
+
+const PATHS = {
   homeSwiper1: "/images/home_swiper_1.jpg",
   homeSwiper2: "/images/home_swiper_2.jpg",
   homeSwiper3: "/images/home_swiper_3.jpg",
@@ -21,6 +24,10 @@ export const APP_IMAGES = {
   p6: "/images/p_6.jpg",
   p7: "/images/p_7.jpg",
 } as const;
+
+export const APP_IMAGES = Object.fromEntries(
+  (Object.entries(PATHS) as [keyof typeof PATHS, string][]).map(([k, v]) => [k, assetUrl(v)]),
+) as { [K in keyof typeof PATHS]: string };
 
 /** 与 `ShopCatalog.shopListImagePool` 顺序一致：三 banner + 三个占位（Android 为 vector）。 */
 const SHOP_POOL: (keyof typeof APP_IMAGES | null)[] = [

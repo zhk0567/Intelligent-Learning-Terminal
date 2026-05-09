@@ -1,6 +1,7 @@
 import { Navigate, useParams } from "react-router-dom";
 import TopBar from "../components/TopBar";
 import { lessonById } from "../data/lessons";
+import { assetUrl } from "../lib/assetUrl";
 
 function fmtDur(sec: number) {
   const m = Math.floor(sec / 60);
@@ -23,8 +24,8 @@ export default function Lesson() {
             controls
             playsInline
             preload="metadata"
-            poster={lesson.coverSrc}
-            src={lesson.videoSrc}
+            poster={assetUrl(lesson.coverSrc)}
+            src={assetUrl(lesson.videoSrc)}
           />
         </div>
 

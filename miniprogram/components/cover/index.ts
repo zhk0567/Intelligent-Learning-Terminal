@@ -1,5 +1,6 @@
 import { COVER_PALETTES, hash } from "../../utils/format";
 import { getTheme, subscribeTheme } from "../../utils/theme";
+import { assetUrl } from "../../utils/assetUrl";
 
 const ASPECT_MAP: Record<string, string> = {
   square: "cover-aspect-square",
@@ -82,7 +83,8 @@ Component({
         const pb = ((ch / cw) * 100).toFixed(6);
         style = style ? `${style};--cover-pb:${pb}%;` : `--cover-pb:${pb}%;`;
       }
-      this.setData({ aspectClass, roundedClass, label, computedStyle: style });
+      const resolvedSrc = src ? assetUrl(String(src)) : "";
+      this.setData({ aspectClass, roundedClass, label, computedStyle: style, resolvedSrc });
     },
   },
 });
