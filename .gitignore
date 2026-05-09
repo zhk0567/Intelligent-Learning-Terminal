@@ -1,6 +1,5 @@
-# Assets over GitHub single-file limit (~100 MB); add via Git LFS or host elsewhere if needed
-data/未整理/河洛大鼓/四班王恩沫 张怀生——河洛大鼓.pptx
-data/未整理/箜篌艺术/VID_20260429_162408_1.mp4
+# Unsorted local assets under data/未整理 — do not commit (per project policy)
+data/未整理/
 
 # Android (Gradle root: app/)
 app/.gradle/
