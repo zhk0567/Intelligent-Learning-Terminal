@@ -66,26 +66,29 @@ class DetailActivity : AppCompatActivity() {
             commentCountValue += 1
             binding.commentCountMeta.text = commentCountValue.toString()
             syncEngagementFromUi()
-            UiFeedback.toast(this, "???+1????")
+            UiFeedback.toast(this, "评论 +1（示例）")
         }
     }
 
     private fun loadContent() {
-        val title = intent.getStringExtra("title") ?: "??"
+        val postTitleExtra = intent.getStringExtra("post_title")
+        val postCategoryExtra = intent.getStringExtra("post_category")
+        val title = intent.getStringExtra("title")
+            ?: postCategoryExtra?.let { "$it · 帖子详情" }
+            ?: "帖子详情"
         val contentTitle = intent.getStringExtra("content_title")
-            ?: intent.getStringExtra("post_title")
-            ?: "??????"
+            ?: postTitleExtra
+            ?: "作品详情"
         val contentText = intent.getStringExtra("content_text")
             ?: intent.getStringExtra("post_content")
-            ?: "??????????"
+            ?: "作者还没有补充更多介绍。"
         val metaInfo = intent.getStringExtra("meta_info")
-            ?: intent.getStringExtra("post_author")?.let { author -> "$author � ??" }
-            ?: "?? � 2???"
-        val imageUrl = intent.getStringExtra("image_url")
+            ?: intent.getStringExtra("post_author")?.let { author -> "$author · 刚刚发布" }
+            ?: "佚名 · 2 小时前"
         val imageResId = intent.getIntExtra("image_res_id", R.drawable.banner1_img)
         val likeCount = intent.getIntExtra("like_count", 0)
         val commentFromIntent = intent.getIntExtra(EXTRA_COMMENT_COUNT, 0)
-        val actionButtonText = intent.getStringExtra("action_button_text") ?: "????"
+        val actionButtonText = intent.getStringExtra("action_button_text") ?: "查看作品"
 
         val rawId = intent.getIntExtra(EXTRA_POST_ID, NO_POST_ID)
         postId = if (rawId != NO_POST_ID) rawId else null
@@ -143,7 +146,7 @@ class DetailActivity : AppCompatActivity() {
         syncEngagementFromUi()
         UiFeedback.toast(
             this,
-            if (liked) "???" else "?????"
+            if (liked) "已点赞" else "已取消点赞"
         )
     }
 
@@ -163,7 +166,7 @@ class DetailActivity : AppCompatActivity() {
         syncEngagementFromUi()
         UiFeedback.toast(
             this,
-            if (favorited) "???" else "?????"
+            if (favorited) "已收藏" else "已取消收藏"
         )
     }
 
@@ -190,25 +193,25 @@ class DetailActivity : AppCompatActivity() {
         }
 
         try {
-            startActivity(Intent.createChooser(shareIntent, "????"))
+            startActivity(Intent.createChooser(shareIntent, "分享到"))
         } catch (e: Exception) {
-            UiFeedback.toast(this, "????")
+            UiFeedback.toast(this, "分享失败")
         }
     }
 
     private fun showMoreOptions() {
-        val options = arrayOf("??", "????", "????")
+        val options = arrayOf("举报", "不感兴趣", "复制链接")
         android.app.AlertDialog.Builder(this)
-            .setTitle("????")
+            .setTitle("更多操作")
             .setItems(options) { _, which ->
                 when (which) {
-                    0 -> UiFeedback.toast(this, "???????")
-                    1 -> UiFeedback.toast(this, "????????")
+                    0 -> UiFeedback.toast(this, "举报已提交，谢谢反馈")
+                    1 -> UiFeedback.toast(this, "已减少类似内容推荐")
                     2 -> {
                         val clipboard = getSystemService(CLIPBOARD_SERVICE) as android.content.ClipboardManager
-                        val clip = android.content.ClipData.newPlainText("??", "https://example.com/detail")
+                        val clip = android.content.ClipData.newPlainText("帖子链接", "https://example.com/detail")
                         clipboard.setPrimaryClip(clip)
-                        UiFeedback.toast(this, "?????")
+                        UiFeedback.toast(this, "链接已复制")
                     }
                 }
             }
@@ -217,8 +220,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun performMainAction() {
         val actionText = binding.btnAction.text.toString()
-        // 旧数据中存在多条相同字面量的分支（编码丢失后均退化成 "????"），保留通用提示即可。
-        UiFeedback.toast(this, "??: $actionText")
+        // 旧数据中存在多条相同字面量的分支（编码丢失后均退化成同一占位字符串），保留通用提示即可。
+        UiFeedback.toast(this, "操作：$actionText")
     }
 
     override fun onSupportNavigateUp(): Boolean {

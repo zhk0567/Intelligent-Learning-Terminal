@@ -101,7 +101,7 @@
                 android:letterSpacing="0.04"
                 android:stateListAnimator="@null"
                 android:text="开始探索"
-                android:textColor="@color/text_primary"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

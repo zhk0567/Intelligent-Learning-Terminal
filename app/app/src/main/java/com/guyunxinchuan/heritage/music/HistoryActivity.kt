@@ -13,12 +13,12 @@ class HistoryActivity : AppCompatActivity() {
     private lateinit var historyAdapter: HistoryAdapter
 
     private val historyList = mutableListOf(
-        HistoryItem("1", "????????", "??", R.drawable.banner2_img, "2024-01-15 14:30"),
-        HistoryItem("2", "???????????", "??", R.drawable.banner1_img, "2024-01-15 13:20"),
-        HistoryItem("3", "??????", "??", R.drawable.banner3_img, "2024-01-15 12:10"),
-        HistoryItem("4", "????????????", "??", R.drawable.banner2_img, "2024-01-14 16:45"),
-        HistoryItem("5", "???????", "??", R.drawable.banner1_img, "2024-01-14 15:30"),
-        HistoryItem("6", "AI??????????", "??", R.drawable.banner3_img, "2024-01-14 10:20")
+        HistoryItem("1", "古琴名曲：广陵散全本赏析", "音乐", R.drawable.banner2_img, "2024-01-15 14:30"),
+        HistoryItem("2", "祥云纹刺绣书签（礼盒）", "商品", R.drawable.banner1_img, "2024-01-15 13:20"),
+        HistoryItem("3", "走近河南坠子的传承故事", "故事", R.drawable.banner3_img, "2024-01-15 12:10"),
+        HistoryItem("4", "古筝入门：认弦与基本指法", "课程", R.drawable.banner2_img, "2024-01-14 16:45"),
+        HistoryItem("5", "青瓷茶盏 · 非遗联名款", "商品", R.drawable.banner1_img, "2024-01-14 15:30"),
+        HistoryItem("6", "AI 与传统乐器的跨界融合", "作品", R.drawable.banner3_img, "2024-01-14 10:20")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,12 +58,12 @@ class HistoryActivity : AppCompatActivity() {
 
     private fun showClearConfirmDialog() {
         AlertDialog.Builder(this)
-            .setTitle("??????")
-            .setMessage("???????????????")
-            .setPositiveButton("??") { _, _ ->
+            .setTitle("清空浏览历史")
+            .setMessage("确定要清空全部浏览历史吗？此操作不可恢复。")
+            .setPositiveButton("清空") { _, _ ->
                 clearAllHistory()
             }
-            .setNegativeButton("??", null)
+            .setNegativeButton("取消", null)
             .show()
     }
 
@@ -71,7 +71,7 @@ class HistoryActivity : AppCompatActivity() {
         historyList.clear()
         historyAdapter.notifyDataSetChanged()
         updateEmptyState()
-        UiFeedback.toast(this, "???????")
+        UiFeedback.toast(this, "浏览历史已清空")
     }
 
     private fun deleteItem(position: Int) {
@@ -79,7 +79,7 @@ class HistoryActivity : AppCompatActivity() {
             historyList.removeAt(position)
             historyAdapter.notifyItemRemoved(position)
             updateEmptyState()
-            UiFeedback.toast(this, "???")
+            UiFeedback.toast(this, "已删除")
         }
     }
 
@@ -94,11 +94,9 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private fun navigateToDetail(item: HistoryItem) {
-        // 历史数据中 type 字面量已退化为同一占位字符串，无法再做差异化路由，
-        // 这里统一跳到作品详情即可，避免无意义的重复 when 分支。
         startActivity(Intent(this, WorkDetailActivity::class.java).apply {
             putExtra("work_title", item.title)
-            putExtra("work_author", "???")
+            putExtra("work_author", "非遗文创")
         })
     }
 

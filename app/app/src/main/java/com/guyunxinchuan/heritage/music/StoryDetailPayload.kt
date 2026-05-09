@@ -30,25 +30,43 @@ data class StoryDetailPayload(
             val publishedAt = intent.getStringExtra(Extras.PUBLISHED_AT).orEmpty()
             val body = intent.getStringExtra(Extras.BODY).orEmpty()
             val summaryExtra = intent.getStringExtra(Extras.SUMMARY)?.trim()?.takeIf { it.isNotEmpty() }
-            val cover = intent.getIntExtra(Extras.COVER, R.drawable.p_1)
+            val hasCoverExtra = intent.hasExtra(Extras.COVER)
+            val coverRaw = if (hasCoverExtra) intent.getIntExtra(Extras.COVER, 0) else 0
             val tags = intent.getStringExtra(Extras.TAGS)
                 ?.split("|||")
                 ?.map { it.trim() }
                 ?.filter { it.isNotEmpty() }
                 .orEmpty()
+            val catalog = StoriesData.ALL.firstOrNull { it.id == id }
+            val bodyFinal = body.ifBlank { catalog?.body.orEmpty() }
+            val titleFinal = title.ifBlank { catalog?.title.orEmpty() }
+            val authorFinal = author.ifBlank { catalog?.author.orEmpty() }
+            val catFinal = category.ifBlank { catalog?.category.orEmpty() }
+            val publishedFinal = publishedAt.ifBlank { catalog?.publishTime.orEmpty() }
+            val coverFinal = when {
+                coverRaw != 0 -> coverRaw
+                catalog != null -> catalog.coverResId
+                else -> R.drawable.p_1
+            }
+            val tagsFinal = if (tags.isNotEmpty()) tags else (catalog?.tags ?: emptyList())
+            val readFinal = if (intent.hasExtra(Extras.READ_COUNT)) intent.getIntExtra(Extras.READ_COUNT, 0) else catalog?.readCount ?: 0
+            val likeFinal = if (intent.hasExtra(Extras.LIKE_COUNT)) intent.getIntExtra(Extras.LIKE_COUNT, 0) else catalog?.likeCount ?: 0
+            val commentFinal =
+                if (intent.hasExtra(Extras.COMMENT_COUNT)) intent.getIntExtra(Extras.COMMENT_COUNT, 0) else catalog?.commentCount ?: 0
+            val summaryFinal = summaryExtra ?: catalog?.excerpt?.trim()?.takeIf { it.isNotEmpty() && it != bodyFinal.trim() }
             return StoryDetailPayload(
                 id = id,
-                title = title,
-                category = category,
-                author = author,
-                publishedAt = publishedAt,
-                body = body,
-                summary = summaryExtra,
-                coverResId = if (cover != 0) cover else R.drawable.p_1,
-                tags = tags,
-                readCount = intent.getIntExtra(Extras.READ_COUNT, 0),
-                likeCount = intent.getIntExtra(Extras.LIKE_COUNT, 0),
-                commentCount = intent.getIntExtra(Extras.COMMENT_COUNT, 0),
+                title = titleFinal,
+                category = catFinal,
+                author = authorFinal,
+                publishedAt = publishedFinal,
+                body = bodyFinal,
+                summary = summaryFinal,
+                coverResId = if (coverFinal != 0) coverFinal else R.drawable.p_1,
+                tags = tagsFinal,
+                readCount = readFinal,
+                likeCount = likeFinal,
+                commentCount = commentFinal,
             )
         }
     }

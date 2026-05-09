@@ -28,6 +28,8 @@ export default function StoryList() {
               alt={s.title}
               text={s.title}
               aspect="aspect-[16/9]"
+              coverWidth={s.coverWidth}
+              coverHeight={s.coverHeight}
               rounded="rounded-none"
               ornate={false}
             />

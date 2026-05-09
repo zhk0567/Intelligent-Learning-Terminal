@@ -73,7 +73,7 @@ class SearchResultActivity : AppCompatActivity() {
     private fun performSearch() {
         val keyword = binding.searchInput.text.toString().trim()
         if (keyword.isEmpty()) {
-            UiFeedback.toast(this, "????????")
+            UiFeedback.toast(this, "请输入搜索关键词")
             return
         }
 
@@ -100,8 +100,8 @@ class SearchResultActivity : AppCompatActivity() {
         allResults.add(
             SearchResult(
                 type = SearchResultType.MUSIC,
-                title = "$keyword - ????",
-                subtitle = "???? ? 3:45",
+                title = "$keyword · 精选合辑",
+                subtitle = "国风雅集 · 3:45",
                 imageResId = R.drawable.banner1_img,
                 id = "music_1"
             )
@@ -110,18 +110,18 @@ class SearchResultActivity : AppCompatActivity() {
         allResults.add(
             SearchResult(
                 type = SearchResultType.STORY,
-                title = "???$keyword????",
-                subtitle = "???? ? 2????",
+                title = "走近「$keyword」的非遗故事",
+                subtitle = "非遗故事集 · 2 小时前",
                 imageResId = R.drawable.banner2_img,
-                id = "story_1"
+                id = "story_henan_zhuizi",
             )
         )
 
         allResults.add(
             SearchResult(
                 type = SearchResultType.COURSE,
-                title = "${keyword} ????",
-                subtitle = "12?? ? ??300+",
+                title = "$keyword 入门精讲",
+                subtitle = "12 节课 · 已学 300+",
                 imageResId = R.drawable.banner3_img,
                 id = "course_1"
             )
@@ -177,17 +177,35 @@ class SearchResultActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             SearchResultType.STORY -> {
-                val intent = Intent(this, StoryDetailActivity::class.java)
-                intent.putExtra("story_id", result.id)
-                intent.putExtra("story_title", result.title)
-                startActivity(intent)
+                val entry = StoriesData.ALL.find { it.id == result.id }
+                startActivity(Intent(this, StoryDetailActivity::class.java).apply {
+                    putExtra(StoryDetailPayload.Extras.ID, result.id)
+                    if (entry != null) {
+                        putExtra(StoryDetailPayload.Extras.TITLE, entry.title)
+                        putExtra(StoryDetailPayload.Extras.AUTHOR, entry.author)
+                        putExtra(StoryDetailPayload.Extras.PUBLISHED_AT, entry.publishTime)
+                        putExtra(StoryDetailPayload.Extras.BODY, entry.body)
+                        putExtra(StoryDetailPayload.Extras.SUMMARY, entry.excerpt)
+                        putExtra(StoryDetailPayload.Extras.COVER, entry.coverResId)
+                        putExtra(StoryDetailPayload.Extras.CATEGORY, entry.category)
+                        putExtra(StoryDetailPayload.Extras.TAGS, entry.tags.joinToString("|||"))
+                        putExtra(StoryDetailPayload.Extras.READ_COUNT, entry.readCount)
+                        putExtra(StoryDetailPayload.Extras.LIKE_COUNT, entry.likeCount)
+                        putExtra(StoryDetailPayload.Extras.COMMENT_COUNT, entry.commentCount)
+                    } else {
+                        putExtra(StoryDetailPayload.Extras.TITLE, result.title)
+                    }
+                })
             }
             SearchResultType.COURSE -> {
                 val intent = Intent(this, DetailActivity::class.java)
                 intent.putExtra("title", result.title)
                 intent.putExtra("content_title", result.title)
-                intent.putExtra("content_text", "????${result.title}?????????")
-                intent.putExtra("action_button_text", "????")
+                intent.putExtra(
+                    "content_text",
+                    "本课程围绕「${result.title}」展开，包含基础知识、技法演练与作业点评，适合零基础学员系统入门。",
+                )
+                intent.putExtra("action_button_text", "立即学习")
                 startActivity(intent)
             }
             SearchResultType.PRODUCT -> {

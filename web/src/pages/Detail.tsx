@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import TopBar from "../components/TopBar";
 import { ALBUMS } from "../data/music";
-import { TRACKS, usePlayerStore } from "../store/playerStore";
+import { TRACKS, trackIndexById, usePlayerStore } from "../store/playerStore";
 import Cover from "../components/Cover";
 import { Play } from "../components/Icon";
 
@@ -9,7 +9,6 @@ const CATEGORY_LABEL: Record<string, string> = {
   hot: "每日热门",
   select: "每日精选",
   guess: "猜你喜欢",
-  basic: "基础学习",
 };
 
 export default function Detail() {
@@ -47,7 +46,8 @@ export default function Detail() {
             <div className="text-xs text-text-secondary">{list.length} 张专辑 · {list.reduce((n, a) => n + a.trackIds.length, 0)} 首</div>
             <button
               onClick={() => {
-                setIndex(0);
+                const tid = list[0]?.trackIds[0];
+                setIndex(tid ? trackIndexById(tid) : 0);
                 navigate("/player");
               }}
               className="btn-stamp rounded-full px-3 py-1.5 text-xs gap-1"

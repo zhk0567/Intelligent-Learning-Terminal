@@ -43,7 +43,7 @@ class FavoriteActivity : AppCompatActivity() {
             Product(
                 "1",
                 getString(R.string.fav_m1_title),
-                0.0,
+                18.0,
                 4.8f,
                 getString(R.string.fav_m1_desc),
                 "",
@@ -53,7 +53,7 @@ class FavoriteActivity : AppCompatActivity() {
             Product(
                 "2",
                 getString(R.string.fav_m2_title),
-                0.0,
+                22.0,
                 4.9f,
                 getString(R.string.fav_m2_desc),
                 "",

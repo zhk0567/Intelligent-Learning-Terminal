@@ -54,6 +54,17 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // 顶部三个统计卡片：与下方功能菜单的「我的收藏 / 浏览历史 / 我的作品」跳转一致
+        findViewById<LinearLayout>(R.id.profile_stat_favorite).setOnClickListener {
+            startActivity(Intent(this, FavoriteActivity::class.java))
+        }
+        findViewById<LinearLayout>(R.id.profile_stat_footprint).setOnClickListener {
+            startActivity(Intent(this, HistoryActivity::class.java))
+        }
+        findViewById<LinearLayout>(R.id.profile_stat_works).setOnClickListener {
+            startActivity(Intent(this, MyWorksActivity::class.java))
+        }
+
         setupDrawerActions()
 
         val bottomNav = findViewById<LinearLayout>(R.id.bottom_navigation)

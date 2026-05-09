@@ -21,28 +21,6 @@
   flex: 1;
 }
 
-.story-tabs {
-  display: flex;
-  gap: 16rpx;
-  white-space: nowrap;
-  padding: 8rpx 0;
-}
-.story-chip {
-  display: inline-block;
-  padding: 12rpx 28rpx;
-  background: var(--bg-card);
-  border: 1rpx solid var(--divider-color);
-  color: var(--text-secondary);
-  border-radius: 9999rpx;
-  font-size: 30rpx;
-  margin-right: 16rpx;
-}
-.story-chip.on {
-  background: var(--neon-teal);
-  border-color: var(--neon-teal);
-  color: #ffffff;
-}
-
 .story-feature-list { display: flex; flex-direction: column; gap: 24rpx; }
 .story-feature-card {}
 .story-feature-title {
@@ -78,7 +56,6 @@
 }
 .story-row-cover {
   width: 160rpx;
-  height: 160rpx;
   flex-shrink: 0;
 }
 .story-row-info { flex: 1; min-width: 0; }

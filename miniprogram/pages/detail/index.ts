@@ -7,7 +7,6 @@ const CATEGORY_LABEL: Record<string, string> = {
   hot: "每日热门",
   select: "每日精选",
   guess: "猜你喜欢",
-  basic: "基础学习",
 };
 
 Page({
@@ -54,7 +53,9 @@ Page({
   },
   onShow() { applyTheme(this); },
   playAll() {
-    playerStore.actions.setIndex(0);
+    const first = this.data.trackList[0];
+    const idx = first != null ? first.idx : 0;
+    playerStore.actions.setIndex(idx);
     wx.navigateTo({ url: "/pages/player/index" });
   },
   playTrack(e: any) {

@@ -1,4 +1,4 @@
-import { APP_IMAGES } from "../assets/appImages";
+import { shopSwiperBySlot } from "../assets/appImages";
 import { wcCoverPath, wcMockPath } from "./shopMedia";
 
 export type ShopCategoryId =
@@ -77,7 +77,7 @@ export function filterByCategory(list: Product[], id: ShopCategoryId): Product[]
 }
 
 export const SHOP_BANNERS = [
-  { id: "b1", title: "敦煌系列联名上线", subtitle: "非遗匠心 · 限量发售", imageSrc: APP_IMAGES.p4 },
-  { id: "b2", title: "新品·苏绣团扇", subtitle: "双面绣 / 檀木扇柄", imageSrc: APP_IMAGES.p5 },
-  { id: "b3", title: "夏夜香薰雅集", subtitle: "买二赠一 · 限时折扣", imageSrc: APP_IMAGES.p6 },
+  { id: "b1", title: "敦煌系列联名上线", subtitle: "非遗匠心 · 限量发售", imageSrc: shopSwiperBySlot(0) },
+  { id: "b2", title: "新品·苏绣团扇", subtitle: "双面绣 / 檀木扇柄", imageSrc: shopSwiperBySlot(1) },
+  { id: "b3", title: "夏夜香薰雅集", subtitle: "买二赠一 · 限时折扣", imageSrc: shopSwiperBySlot(2) },
 ];

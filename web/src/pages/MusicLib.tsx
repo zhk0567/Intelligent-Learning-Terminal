@@ -1,10 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { Bell, Search } from "../components/Icon";
+import { Bell, Play, Search } from "../components/Icon";
 import Cover from "../components/Cover";
 import Section from "../components/Section";
 import { ALBUMS, HOT_BANNERS } from "../data/music";
+import { BASIC_LESSONS, type BasicLesson } from "../data/lessons";
 import { useEffect, useState } from "react";
-import { usePlayerStore } from "../store/playerStore";
+import { trackIndexById, usePlayerStore } from "../store/playerStore";
+
+function fmtDur(sec: number) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
 
 export default function MusicLib() {
   const navigate = useNavigate();
@@ -22,7 +29,12 @@ export default function MusicLib() {
   const hot = ALBUMS.filter((a) => a.category === "hot");
   const select = ALBUMS.filter((a) => a.category === "select");
   const guess = ALBUMS.filter((a) => a.category === "guess");
-  const basic = ALBUMS.filter((a) => a.category === "basic");
+
+  const playAlbumStart = (album: (typeof ALBUMS)[number]) => {
+    const tid = album.trackIds[0];
+    setIndex(tid ? trackIndexById(tid) : 0);
+    navigate("/player");
+  };
 
   return (
     <div className="px-3 pt-2 md:px-0 md:pt-0">
@@ -71,32 +83,63 @@ export default function MusicLib() {
       <Section title="每日热门" eyebrow="Trending Today" action={<More onClick={() => navigate("/detail/hot")} />}>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
           {hot.map((a) => (
-            <AlbumCard key={a.id} album={a} onPlay={() => { setIndex(0); navigate("/player"); }} />
+            <AlbumCard key={a.id} album={a} onPlay={() => playAlbumStart(a)} showDesc={false} />
           ))}
         </div>
       </Section>
       <Section title="每日精选" eyebrow="Editor's Picks" action={<More onClick={() => navigate("/detail/select")} />}>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
           {select.map((a) => (
-            <AlbumCard key={a.id} album={a} onPlay={() => { setIndex(1); navigate("/player"); }} />
+            <AlbumCard key={a.id} album={a} onPlay={() => playAlbumStart(a)} />
           ))}
         </div>
       </Section>
       <Section title="猜你喜欢" eyebrow="For You" action={<More onClick={() => navigate("/detail/guess")} />}>
         <div className="space-y-2 md:grid md:grid-cols-2 md:gap-3 md:space-y-0">
           {guess.map((a) => (
-            <AlbumRow key={a.id} album={a} onPlay={() => { setIndex(2); navigate("/player"); }} />
+            <AlbumRow key={a.id} album={a} onPlay={() => playAlbumStart(a)} />
           ))}
         </div>
       </Section>
-      <Section title="基础学习" eyebrow="Learn the Basics" action={<More onClick={() => navigate("/detail/basic")} />}>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-          {basic.map((a) => (
-            <AlbumCard key={a.id} album={a} onPlay={() => { setIndex(0); navigate("/player"); }} />
+      <Section title="基础学习" eyebrow="Learn the Basics">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+          {BASIC_LESSONS.map((l) => (
+            <LessonCard key={l.id} lesson={l} onOpen={() => navigate(`/lesson/${l.id}`)} />
           ))}
         </div>
       </Section>
     </div>
+  );
+}
+
+function LessonCard({ lesson, onOpen }: { lesson: BasicLesson; onOpen: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      className="flex w-full min-w-0 items-stretch gap-3 rounded-xl bg-bg-cardElevated/60 border border-border/40 p-2 text-left card-hover"
+    >
+      <div className="relative w-32 md:w-40 shrink-0 overflow-hidden rounded-lg">
+        <Cover
+          seed={lesson.id}
+          src={lesson.coverSrc}
+          alt={lesson.title}
+          aspect="aspect-video"
+          rounded="rounded-lg"
+          className="w-full"
+          ornate={false}
+        />
+        <span className="absolute right-1.5 bottom-1.5 inline-flex items-center gap-1 rounded-full bg-black/60 text-white text-[11px] px-2 py-0.5">
+          <Play size={10} />
+          {fmtDur(lesson.durationSec)}
+        </span>
+      </div>
+      <div className="flex-1 min-w-0 self-stretch flex flex-col gap-1">
+        <div className="truncate text-sm font-semibold text-text-primary">{lesson.title}</div>
+        <div className="truncate text-xs text-text-secondary">{lesson.artist}</div>
+        <div className="text-xs text-text-secondary line-clamp-2">{lesson.desc}</div>
+      </div>
+    </button>
   );
 }
 
@@ -106,7 +149,16 @@ function More({ onClick }: { onClick: () => void }) {
   );
 }
 
-function AlbumCard({ album, onPlay }: { album: (typeof ALBUMS)[number]; onPlay: () => void }) {
+function AlbumCard({
+  album,
+  onPlay,
+  showDesc = true,
+}: {
+  album: (typeof ALBUMS)[number];
+  onPlay: () => void;
+  /** 「每日热门」首页只展示曲名；其他位置默认带乐器/流派副标题。 */
+  showDesc?: boolean;
+}) {
   return (
     <button
       className="group flex flex-col gap-2 text-left transition-transform hover:-translate-y-[2px]"
@@ -124,7 +176,9 @@ function AlbumCard({ album, onPlay }: { album: (typeof ALBUMS)[number]; onPlay: 
       />
       <div>
         <div className="truncate text-sm font-semibold text-text-primary group-hover:text-ancient-bronze transition-colors">{album.title}</div>
-        <div className="truncate text-xs text-text-secondary">{album.desc}</div>
+        {showDesc && (
+          <div className="truncate text-xs text-text-secondary">{album.desc}</div>
+        )}
       </div>
     </button>
   );

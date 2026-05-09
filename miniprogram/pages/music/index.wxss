@@ -142,3 +142,62 @@
   flex-shrink: 0;
   align-self: center;
 }
+
+.lesson-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+.lesson-row {
+  display: flex;
+  gap: 20rpx;
+  padding: 16rpx;
+  background: var(--bg-card-elevated);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 22rpx;
+}
+.lesson-thumb {
+  position: relative;
+  width: 240rpx;
+  flex-shrink: 0;
+}
+.lesson-thumb-cover {
+  width: 100%;
+}
+.lesson-thumb-badge {
+  position: absolute;
+  right: 8rpx;
+  bottom: 8rpx;
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 9999rpx;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 22rpx;
+}
+.lesson-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+  padding: 4rpx 0;
+}
+.lesson-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.lesson-sub {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

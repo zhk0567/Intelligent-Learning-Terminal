@@ -34,6 +34,8 @@ Component({
     rounded: { type: String, value: "xl" },
     ornate: { type: Boolean, value: true },
     extraClass: { type: String, value: "" },
+    coverWidth: { type: Number, value: 0 },
+    coverHeight: { type: Number, value: 0 },
   },
   data: {
     aspectClass: "cover-aspect-square",
@@ -51,14 +53,19 @@ Component({
     },
   },
   observers: {
-    "seed, text, src, alt, aspect, rounded": function () {
+    "seed, text, src, alt, aspect, rounded, coverWidth, coverHeight": function () {
       this.recompute();
     },
   },
   methods: {
     recompute() {
-      const { seed, text, src, alt, aspect, rounded } = this.data as any;
-      const aspectClass = ASPECT_MAP[aspect] || "cover-aspect-square";
+      const { seed, text, src, alt, aspect, rounded, coverWidth, coverHeight } = this.data as any;
+      const cw = Number(coverWidth);
+      const ch = Number(coverHeight);
+      const useIntrinsic = Boolean(src && cw > 0 && ch > 0);
+      const aspectClass = useIntrinsic
+        ? "cover-aspect-intrinsic"
+        : ASPECT_MAP[aspect] || "cover-aspect-square";
       const roundedClass = ROUNDED_MAP[rounded] || "cover-rounded-xl";
       const label = alt || text || seed || "";
 
@@ -70,6 +77,10 @@ Component({
         const bg = isDark ? p.bgDark : p.bg;
         const fg = isDark ? p.textDark : p.text;
         style = `background:${bg};color:${fg};`;
+      }
+      if (useIntrinsic) {
+        const pb = ((ch / cw) * 100).toFixed(6);
+        style = style ? `${style};--cover-pb:${pb}%;` : `--cover-pb:${pb}%;`;
       }
       this.setData({ aspectClass, roundedClass, label, computedStyle: style });
     },

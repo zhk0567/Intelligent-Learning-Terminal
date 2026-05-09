@@ -1,0 +1,20 @@
+<view class="page-root {{__themeClass}}">
+  <top-bar title="基础学习"></top-bar>
+  <view class="lesson-body" wx:if="{{lesson}}">
+    <view class="lesson-player-wrap">
+      <video class="lesson-player" src="{{videoUrl}}" controls show-fullscreen-btn enable-progress-gesture
+             poster="{{lesson.coverSrc}}" object-fit="contain" />
+    </view>
+
+    <view class="lesson-meta">
+      <view class="lesson-meta-title">{{lesson.title}}</view>
+      <view class="lesson-meta-sub">{{lesson.artist}} · 时长 {{durationStr}}</view>
+      <view class="lesson-meta-tag">{{lesson.desc}}</view>
+    </view>
+
+    <view class="lesson-section">
+      <view class="lesson-section-title">课程介绍</view>
+      <view class="lesson-section-body">{{lesson.longDesc}}</view>
+    </view>
+  </view>
+</view>

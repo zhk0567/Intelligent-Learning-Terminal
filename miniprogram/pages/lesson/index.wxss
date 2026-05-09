@@ -1,0 +1,60 @@
+.page-root { min-height: 100vh; background: var(--bg-primary); }
+.lesson-body { padding: 24rpx 32rpx 80rpx; }
+
+.lesson-player-wrap {
+  width: 100%;
+  border-radius: 24rpx;
+  overflow: hidden;
+  background: #000;
+  border: 1rpx solid var(--divider-color);
+}
+.lesson-player {
+  width: 100%;
+  height: 420rpx;
+}
+
+.lesson-meta {
+  margin-top: 24rpx;
+  padding: 24rpx;
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 22rpx;
+}
+.lesson-meta-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.lesson-meta-sub {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+.lesson-meta-tag {
+  display: inline-block;
+  margin-top: 16rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 9999rpx;
+  background: rgba(165,124,44,0.15);
+  color: var(--ancient-bronze);
+  font-size: 22rpx;
+}
+
+.lesson-section {
+  margin-top: 24rpx;
+  padding: 24rpx;
+  background: var(--bg-card);
+  border: 1rpx solid var(--divider-color);
+  border-radius: 22rpx;
+}
+.lesson-section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12rpx;
+}
+.lesson-section-body {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}

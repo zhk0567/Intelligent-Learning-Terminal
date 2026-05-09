@@ -17,9 +17,9 @@
   gap: 16rpx;
   padding: 12rpx;
   border-radius: 9999rpx;
-  background: var(--mini-surface);
-  border: 1rpx solid rgba(165,124,44,0.45);
-  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.08);
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 .mini-cover {
   width: 80rpx;

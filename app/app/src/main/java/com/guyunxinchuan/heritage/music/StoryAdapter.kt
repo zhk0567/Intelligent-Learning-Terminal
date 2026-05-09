@@ -41,12 +41,17 @@ class StoryAdapter(
         holder.viewCount.text = story.readCount.toString()
         holder.categoryTag.text = story.category
 
-        // 根据 aspectRatio 动态设置图片高度
+        // 优先按封面原图像素比（h/w）设高，与 `data/图片/故事` 一致；否则用 aspectRatio
         holder.image.post {
             val width = holder.image.width
             if (width > 0) {
                 val lp = holder.image.layoutParams
-                val newH = (width * story.aspectRatio).toInt()
+                val hw = if (story.coverWidth > 0 && story.coverHeight > 0) {
+                    story.coverHeight.toFloat() / story.coverWidth.toFloat()
+                } else {
+                    story.aspectRatio
+                }
+                val newH = (width * hw).toInt()
                 if (lp.height != newH) {
                     lp.height = newH
                     holder.image.layoutParams = lp

@@ -15,6 +15,7 @@
     "pages/search/index",
     "pages/search-result/index",
     "pages/player/index",
+    "pages/lesson/index",
     "pages/detail/index",
     "pages/story-list/index",
     "pages/story-detail/index",

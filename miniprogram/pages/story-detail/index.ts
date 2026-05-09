@@ -2,9 +2,9 @@ import { applyTheme } from "../../utils/theme";
 import { STORIES } from "../../data/story";
 import { toast } from "../../utils/toast";
 
-const PARAGRAPH = `非遗的魅力，并非陈列在博物馆里的标本，而是流淌在每一个还在使用这门技艺的人手心里。
-我们用现代的方式重新打开它——让它被听见、被看见、被分享、被延续。
-你也许不会成为传承人，但只要你愿意成为「知道的人」，就已经是它的延续。`;
+const PARAGRAPH = `非遗的魅力，并非只陈列在展柜里的标本，而是仍活跃在传承人、观众与一方水土之间的共同记忆。
+我们用记录与传播的方式重新打开它——让它被听见、被看见、被讨论、被续写。
+你也许不会成为传承人，但只要你愿意多了解一分，便已参与它的延续。`;
 
 Page({
   data: {
@@ -15,8 +15,8 @@ Page({
     saved: false,
     comment: "",
     comments: [
-      { name: "蓝栀", text: "看哭了，蜀绣大师那段写得太好。" },
-      { name: "白露", text: "已经把故事分享给妈妈了。" },
+      { name: "青禾", text: "史料与传承脉络写得很清楚，读完对这门非遗更有敬意。" },
+      { name: "白露", text: "已转发给家人，希望更多人能看到地方曲艺与古乐。" },
     ] as any[],
   },
   onLoad(query: any) {

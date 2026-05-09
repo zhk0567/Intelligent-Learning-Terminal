@@ -1,12 +1,16 @@
 /**
  * 小程序 `images/` 下资源路径。
- * - `homeSwiper*`：仅首页（音乐 Tab）顶部轮播，源图见 `data/图片/首页轮播图`，打包为 `home_swiper_*.jpg`。
+ * - `homeSwiper*`：仅首页（音乐 Tab）顶部轮播，源图见 `data/图片/首页轮播图`，`tools/sync_home_carousel.py`。
+ * - `shopSwiper*`：仅商城 Tab 顶栏轮播，源图见 `data/图片/商城页轮播图`，`tools/sync_shop_carousel.py`。
  * - `banner*`：历史占位，与 Android 布局/旧数据一致，对应 `banner*_img.jpg`（与 p_1~3 同图，勿再当轮播用）。
  */
 export const APP_IMAGES = {
   homeSwiper1: "/images/home_swiper_1.jpg",
   homeSwiper2: "/images/home_swiper_2.jpg",
   homeSwiper3: "/images/home_swiper_3.jpg",
+  shopSwiper1: "/images/shop_swiper_1.jpg",
+  shopSwiper2: "/images/shop_swiper_2.jpg",
+  shopSwiper3: "/images/shop_swiper_3.jpg",
   banner1: "/images/banner1_img.jpg",
   banner2: "/images/banner2_img.jpg",
   banner3: "/images/banner3_img.jpg",
@@ -41,4 +45,9 @@ export function bannerBySlot(slot: 0 | 1 | 2): string {
 /** 仅音乐首页顶部轮播三帧（勿用于商城/头像等）。 */
 export function homeSwiperBySlot(slot: 0 | 1 | 2): string {
   return [APP_IMAGES.homeSwiper1, APP_IMAGES.homeSwiper2, APP_IMAGES.homeSwiper3][slot];
+}
+
+/** 仅商城页顶栏轮播三帧。 */
+export function shopSwiperBySlot(slot: 0 | 1 | 2): string {
+  return [APP_IMAGES.shopSwiper1, APP_IMAGES.shopSwiper2, APP_IMAGES.shopSwiper3][slot];
 }

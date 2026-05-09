@@ -28,7 +28,6 @@
       <view wx:for="{{hot}}" wx:key="id" class="album-card" data-id="{{item.id}}" data-cat="hot" bindtap="playAlbum">
         <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="square" rounded="xl" ornate="{{false}}" />
         <view class="album-card-title">{{item.title}}</view>
-        <view class="album-card-desc">{{item.desc}}</view>
       </view>
     </view>
   </section>
@@ -58,13 +57,21 @@
     </view>
   </section>
 
-  <section title="基础学习" eyebrow="LEARN THE BASICS" has-action="{{true}}">
-    <view slot="action" class="more-link" data-cat="basic" bindtap="goDetail">查看更多 ›</view>
-    <view class="album-grid">
-      <view wx:for="{{basic}}" wx:key="id" class="album-card" data-id="{{item.id}}" data-cat="basic" bindtap="playAlbum">
-        <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="square" rounded="xl" ornate="{{false}}" />
-        <view class="album-card-title">{{item.title}}</view>
-        <view class="album-card-desc">{{item.desc}}</view>
+  <section title="基础学习" eyebrow="LEARN THE BASICS" has-action="{{false}}">
+    <view class="lesson-list">
+      <view wx:for="{{basic}}" wx:key="id" class="lesson-row" data-id="{{item.id}}" bindtap="openLesson">
+        <view class="lesson-thumb">
+          <cover extra-class="lesson-thumb-cover" seed="{{item.id}}" src="{{item.coverSrc}}"
+                 alt="{{item.title}}" aspect="16/9" rounded="lg" ornate="{{false}}" />
+          <view class="lesson-thumb-badge">
+            <icon name="play" size="22" color="#ffffff" />
+            <text>{{item.durationStr}}</text>
+          </view>
+        </view>
+        <view class="lesson-info">
+          <view class="lesson-title">{{item.title}}</view>
+          <view class="lesson-sub">{{item.artist}} · {{item.desc}}</view>
+        </view>
       </view>
     </view>
   </section>

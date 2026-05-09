@@ -15,6 +15,7 @@ export const playerStore = createStore<
     next: () => void;
     prev: () => void;
     seek: (sec: number) => void;
+    setPositionSec: (sec: number) => void;
     tick: () => void;
   }
 >({
@@ -41,10 +42,16 @@ export const playerStore = createStore<
     seek(sec) {
       set({ positionSec: Math.max(0, sec) });
     },
+    setPositionSec(sec) {
+      const t = TRACKS[get().currentIndex];
+      const max = t.durationSec;
+      set({ positionSec: Math.max(0, Math.min(sec, max)) });
+    },
     tick() {
       const { isPlaying, positionSec, currentIndex } = get();
       if (!isPlaying) return;
       const t = TRACKS[currentIndex];
+      if (t.audioSrc) return;
       if (positionSec + 1 >= t.durationSec) {
         this.next();
         return;

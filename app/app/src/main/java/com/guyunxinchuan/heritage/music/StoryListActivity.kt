@@ -235,12 +235,17 @@ class StoryListActivity : AppCompatActivity() {
     }
 
     private fun viewStoryDetail(story: Story) {
+        val entry = StoriesData.ALL.find { it.id == story.id }
+        val excerpt = entry?.excerpt?.trim().orEmpty()
         startActivity(Intent(this, StoryDetailActivity::class.java).apply {
             putExtra(StoryDetailPayload.Extras.ID, story.id)
             putExtra(StoryDetailPayload.Extras.TITLE, story.title)
             putExtra(StoryDetailPayload.Extras.AUTHOR, story.author)
             putExtra(StoryDetailPayload.Extras.PUBLISHED_AT, story.publishTime)
             putExtra(StoryDetailPayload.Extras.BODY, story.content)
+            if (excerpt.isNotEmpty() && excerpt != story.content.trim()) {
+                putExtra(StoryDetailPayload.Extras.SUMMARY, excerpt)
+            }
             putExtra(StoryDetailPayload.Extras.COVER, story.coverResId)
             putExtra(StoryDetailPayload.Extras.CATEGORY, story.category)
             putExtra(StoryDetailPayload.Extras.TAGS, story.tags.joinToString("|||"))
@@ -337,6 +342,8 @@ class StoryListActivity : AppCompatActivity() {
         val author: String,
         val publishTime: String,
         val content: String,
+        val coverWidth: Int = 0,
+        val coverHeight: Int = 0,
         val coverResId: Int,
         var likeCount: Int,
         var commentCount: Int,
@@ -356,112 +363,24 @@ class StoryListActivity : AppCompatActivity() {
     }
 }
 
-private fun buildDefaultStories(): MutableList<StoryListActivity.Story> = mutableListOf(
-    StoryListActivity.Story(
-        id = "1",
-        title = "古琴的千年传承",
-        author = "传统音乐协会",
-        publishTime = "2024-04-22",
-        content = "古琴，又称瑶琴、玉琴、七弦琴，是中国传统拨弦乐器，有三千年以上历史。其音清远和雅，为文人修身养性之器。",
-        coverResId = R.drawable.p_1,
-        likeCount = 128,
-        commentCount = 36,
-        readCount = 1024,
-        tags = listOf("古琴", "传统", "音乐", "文化"),
-        category = "传统音乐"
-    ),
-    StoryListActivity.Story(
-        id = "2",
-        title = "二胡的现代演变",
-        author = "现代音乐家",
-        publishTime = "2024-04-21",
-        content = "二胡始于唐朝，称「奚琴」，至今已有一千多年的历史，是中国传统拉弦乐器的代表之一。",
-        coverResId = R.drawable.p_2,
-        likeCount = 89,
-        commentCount = 24,
-        readCount = 768,
-        tags = listOf("二胡", "现代", "演奏", "创新"),
-        category = "传统音乐"
-    ),
-    StoryListActivity.Story(
-        id = "3",
-        title = "琵琶的历史变迁",
-        author = "历史研究者",
-        publishTime = "2024-04-20",
-        content = "琵琶是弹拨乐器首座，音箱呈半梨形，上装四弦，在汉唐乐舞与壁画乐伎中极为常见。",
-        coverResId = R.drawable.p_3,
-        likeCount = 156,
-        commentCount = 42,
-        readCount = 1256,
-        tags = listOf("琵琶", "历史", "乐器", "演变"),
-        category = "传统音乐"
-    ),
-    StoryListActivity.Story(
-        id = "4",
-        title = "笛子的民间故事",
-        author = "民间艺人",
-        publishTime = "2024-04-19",
-        content = "笛子是古老的汉族乐器，也是汉族乐器中最具代表性的吹奏乐器之一，音色明亮穿透。",
-        coverResId = R.drawable.p_4,
-        likeCount = 72,
-        commentCount = 18,
-        readCount = 512,
-        tags = listOf("笛子", "民间", "故事", "传统"),
-        category = "民间音乐"
-    ),
-    StoryListActivity.Story(
-        id = "5",
-        title = "古筝的现代创新",
-        author = "创新音乐家",
-        publishTime = "2024-04-18",
-        content = "古筝又名汉筝、秦筝，是中国汉民族传统乐器中的筝乐器，在当代创作与跨界合作中焕发新生。",
-        coverResId = R.drawable.p_5,
-        likeCount = 94,
-        commentCount = 31,
-        readCount = 896,
-        tags = listOf("古筝", "创新", "现代", "演奏"),
-        category = "传统音乐"
-    ),
-    StoryListActivity.Story(
-        id = "6",
-        title = "箫的禅意音乐",
-        author = "禅修音乐家",
-        publishTime = "2024-04-17",
-        content = "箫分为洞箫和琴箫，皆为单管竖吹，音色幽远，常用于文人雅集与禅意音乐创作。",
-        coverResId = R.drawable.p_6,
-        likeCount = 63,
-        commentCount = 15,
-        readCount = 384,
-        tags = listOf("箫", "禅意", "音乐", "冥想"),
-        category = "传统音乐"
-    ),
-    StoryListActivity.Story(
-        id = "7",
-        title = "唢呐的民间庆典",
-        author = "民间庆典专家",
-        publishTime = "2024-04-16",
-        content = "唢呐是中国民族吹管乐器之一，在各地民间庆典与仪式音乐中承担「领奏」与气氛烘托。",
-        coverResId = R.drawable.p_7,
-        likeCount = 108,
-        commentCount = 29,
-        readCount = 640,
-        tags = listOf("唢呐", "庆典", "民间", "喜庆"),
-        category = "民间音乐"
-    ),
-    StoryListActivity.Story(
-        id = "8",
-        title = "扬琴的东西方融合",
-        author = "融合音乐家",
-        publishTime = "2024-04-15",
-        content = "扬琴为击弦乐器，在丝绸之路文化交流中与西亚扬琴类乐器互鉴，形成今日中国扬琴的形制与演奏法。",
-        coverResId = R.drawable.banner1_img,
-        likeCount = 81,
-        commentCount = 22,
-        readCount = 576,
-        tags = listOf("扬琴", "融合", "东西方", "音乐"),
-        category = "传统音乐"
-    )
-)
+private fun buildDefaultStories(): MutableList<StoryListActivity.Story> =
+    StoriesData.ALL.map { e ->
+        StoryListActivity.Story(
+            id = e.id,
+            title = e.title,
+            author = e.author,
+            publishTime = e.publishTime,
+            content = e.body,
+            coverWidth = e.coverWidth,
+            coverHeight = e.coverHeight,
+            coverResId = e.coverResId,
+            likeCount = e.likeCount,
+            commentCount = e.commentCount,
+            readCount = e.readCount,
+            tags = e.tags,
+            category = e.category,
+        )
+    }.toMutableList()
 
 private fun buildMuralStories(): MutableList<StoryListActivity.Story> = mutableListOf(
     StoryListActivity.Story(

@@ -155,12 +155,16 @@
                         android:contentDescription="非遗音乐" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/hot1_title"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="非遗音乐"
-                        android:textSize="11sp"
+                        android:textSize="10sp"
                         android:textColor="@color/text_secondary"
                         android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:ellipsize="end"
                         android:fontFamily="sans-serif" />
                 </LinearLayout>
 
@@ -185,12 +189,16 @@
                         android:contentDescription="传统乐器" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/hot2_title"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="传统乐器"
-                        android:textSize="11sp"
+                        android:textSize="10sp"
                         android:textColor="@color/text_secondary"
                         android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:ellipsize="end"
                         android:fontFamily="sans-serif" />
                 </LinearLayout>
 
@@ -215,12 +223,16 @@
                         android:contentDescription="经典曲目" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/hot3_title"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="经典曲目"
-                        android:textSize="11sp"
+                        android:textSize="10sp"
                         android:textColor="@color/text_secondary"
                         android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:ellipsize="end"
                         android:fontFamily="sans-serif" />
                 </LinearLayout>
 
@@ -245,12 +257,16 @@
                         android:contentDescription="乐谱赏析" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/hot4_title"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="乐谱赏析"
-                        android:textSize="11sp"
+                        android:textSize="10sp"
                         android:textColor="@color/text_secondary"
                         android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:ellipsize="end"
                         android:fontFamily="sans-serif" />
                 </LinearLayout>
             </LinearLayout>
@@ -321,32 +337,38 @@
                     android:clickable="true"
                     android:focusable="true">
 
-                    <FrameLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="130dp">
+                        android:layout_height="wrap_content">
 
                         <com.google.android.material.imageview.ShapeableImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/banner1_img"
+                            android:id="@+id/select1_cover"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/daily_select_cover_01"
                             android:scaleType="centerCrop"
-                            android:contentDescription="雅韵国风"
-                            app:shapeAppearanceOverlay="@style/ShapeImageRounded12" />
+                            android:contentDescription="杨家将"
+                            app:shapeAppearanceOverlay="@style/ShapeImageRounded12"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
 
                         <ImageView
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:src="@drawable/ic_mini_play"
-                            android:layout_gravity="bottom|end"
                             android:layout_margin="4dp"
                             app:tint="@color/neon_cyan_light"
-                            android:contentDescription="播放" />
-                    </FrameLayout>
+                            android:contentDescription="播放"
+                            app:layout_constraintBottom_toBottomOf="@id/select1_cover"
+                            app:layout_constraintEnd_toEndOf="@id/select1_cover" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="东方乐器的回响"
+                        android:text="杨家将"
                         android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:textStyle="bold"
@@ -357,7 +379,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="传统乐器经典"
+                        android:text="河南坠子"
                         android:textColor="@color/text_hint"
                         android:textSize="12sp"
                         android:maxLines="1"
@@ -378,32 +400,38 @@
                     android:clickable="true"
                     android:focusable="true">
 
-                    <FrameLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="130dp">
+                        android:layout_height="wrap_content">
 
                         <com.google.android.material.imageview.ShapeableImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/banner2_img"
+                            android:id="@+id/select2_cover"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/daily_select_cover_02"
                             android:scaleType="centerCrop"
-                            android:contentDescription="雅韵"
-                            app:shapeAppearanceOverlay="@style/ShapeImageRounded12" />
+                            android:contentDescription="杨府挑将"
+                            app:shapeAppearanceOverlay="@style/ShapeImageRounded12"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
 
                         <ImageView
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:src="@drawable/ic_mini_play"
-                            android:layout_gravity="bottom|end"
                             android:layout_margin="4dp"
                             app:tint="@color/neon_cyan_light"
-                            android:contentDescription="播放" />
-                    </FrameLayout>
+                            android:contentDescription="播放"
+                            app:layout_constraintBottom_toBottomOf="@id/select2_cover"
+                            app:layout_constraintEnd_toEndOf="@id/select2_cover" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="绘壁遗韵"
+                        android:text="杨府挑将"
                         android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:textStyle="bold"
@@ -414,7 +442,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="壁画音乐故事"
+                        android:text="濮阳大弦戏"
                         android:textColor="@color/text_hint"
                         android:textSize="12sp"
                         android:maxLines="1"
@@ -435,32 +463,38 @@
                     android:clickable="true"
                     android:focusable="true">
 
-                    <FrameLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="130dp">
+                        android:layout_height="wrap_content">
 
                         <com.google.android.material.imageview.ShapeableImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/banner3_img"
+                            android:id="@+id/select3_cover"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:src="@drawable/daily_select_cover_03"
                             android:scaleType="centerCrop"
-                            android:contentDescription="弦韵中华"
-                            app:shapeAppearanceOverlay="@style/ShapeImageRounded12" />
+                            android:contentDescription="湖畔枫吟"
+                            app:shapeAppearanceOverlay="@style/ShapeImageRounded12"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
 
                         <ImageView
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:src="@drawable/ic_mini_play"
-                            android:layout_gravity="bottom|end"
                             android:layout_margin="4dp"
                             app:tint="@color/neon_cyan_light"
-                            android:contentDescription="播放" />
-                    </FrameLayout>
+                            android:contentDescription="播放"
+                            app:layout_constraintBottom_toBottomOf="@id/select3_cover"
+                            app:layout_constraintEnd_toEndOf="@id/select3_cover" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="仕女弄乐图"
+                        android:text="湖畔枫吟"
                         android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:textStyle="bold"
@@ -471,7 +505,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="民族乐器演奏"
+                        android:text="古琴"
                         android:textColor="@color/text_hint"
                         android:textSize="12sp"
                         android:maxLines="1"
@@ -538,7 +572,7 @@
                     android:id="@+id/tag1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="民俗节庆"
+                    android:text="箜篌艺术"
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp"
                     android:background="@drawable/tag_bg_normal"
@@ -552,7 +586,7 @@
                     android:id="@+id/tag2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="非遗跨界"
+                    android:text="濮阳大弦戏"
                     android:textColor="@color/text_primary"
                     android:textSize="13sp"
                     android:background="@drawable/tag_bg_selected"
@@ -566,7 +600,7 @@
                     android:id="@+id/tag3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="小众跨界"
+                    android:text="古琴"
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp"
                     android:background="@drawable/tag_bg_normal"
@@ -603,10 +637,10 @@
                         <ImageView
                             android:layout_width="52dp"
                             android:layout_height="52dp"
-                            android:src="@drawable/banner1_img"
+                            android:src="@drawable/daily_guess_cover_01"
                             android:scaleType="centerCrop"
                             android:background="@drawable/music_icon_thumb_bg"
-                            android:contentDescription="元宵灯会" />
+                            android:contentDescription="湘妃竹" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -618,7 +652,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="元宵灯会"
+                                android:text="湘妃竹"
                                 android:textColor="@color/text_primary"
                                 android:textSize="15sp"
                                 android:textStyle="bold"
@@ -627,7 +661,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="传统民俗音乐"
+                                android:text="箜篌艺术"
                                 android:textColor="@color/text_hint"
                                 android:textSize="12sp"
                                 android:layout_marginTop="3dp" />
@@ -655,10 +689,10 @@
                         <ImageView
                             android:layout_width="52dp"
                             android:layout_height="52dp"
-                            android:src="@drawable/banner2_img"
+                            android:src="@drawable/daily_guess_cover_02"
                             android:scaleType="centerCrop"
                             android:background="@drawable/music_icon_thumb_bg"
-                            android:contentDescription="昆曲·牡丹亭" />
+                            android:contentDescription="火龙阵" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -670,7 +704,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="昆曲・牡丹亭"
+                                android:text="火龙阵"
                                 android:textColor="@color/text_primary"
                                 android:textSize="15sp"
                                 android:textStyle="bold"
@@ -679,7 +713,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="传统戏曲经典曲目"
+                                android:text="濮阳大弦戏"
                                 android:textColor="@color/text_hint"
                                 android:textSize="12sp"
                                 android:layout_marginTop="3dp" />
@@ -708,10 +742,10 @@
                         <ImageView
                             android:layout_width="52dp"
                             android:layout_height="52dp"
-                            android:src="@drawable/banner3_img"
+                            android:src="@drawable/daily_guess_cover_03"
                             android:scaleType="centerCrop"
                             android:background="@drawable/music_icon_thumb_bg"
-                            android:contentDescription="古风电子 remix" />
+                            android:contentDescription="神人畅" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -723,7 +757,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="古风电子 remix"
+                                android:text="神人畅"
                                 android:textColor="@color/text_primary"
                                 android:textSize="15sp"
                                 android:textStyle="bold"
@@ -732,7 +766,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="非遗与现代电子乐融合"
+                                android:text="古琴"
                                 android:textColor="@color/text_hint"
                                 android:textSize="12sp"
                                 android:layout_marginTop="3dp" />
@@ -777,12 +811,13 @@
                 android:focusable="true">
 
                 <ImageView
-                    android:layout_width="52dp"
-                    android:layout_height="52dp"
-                    android:src="@drawable/banner1_img"
+                    android:id="@+id/learn1_cover"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/basic_lesson_cover_01"
                     android:scaleType="centerCrop"
                     android:background="@drawable/music_icon_thumb_bg"
-                    android:contentDescription="非遗乐器入门" />
+                    android:contentDescription="基础学习视频课" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -792,20 +827,24 @@
                     android:layout_marginStart="12dp">
 
                     <TextView
+                        android:id="@+id/learn1_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="非遗乐器入门"
+                        android:text="乡村振兴 福满人间"
                         android:textColor="@color/text_primary"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:fontFamily="sans-serif" />
 
                     <TextView
+                        android:id="@+id/learn1_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="从零开始的传统乐器学习"
+                        android:text="河洛大鼓 · 国家级非遗新编曲目"
                         android:textColor="@color/text_hint"
                         android:textSize="12sp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
                         android:layout_marginTop="3dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -824,12 +863,13 @@
                 android:focusable="true">
 
                 <ImageView
-                    android:layout_width="52dp"
-                    android:layout_height="52dp"
-                    android:src="@drawable/banner2_img"
+                    android:id="@+id/learn2_cover"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/basic_lesson_cover_02"
                     android:scaleType="centerCrop"
                     android:background="@drawable/music_icon_thumb_bg"
-                    android:contentDescription="乐理基础" />
+                    android:contentDescription="基础学习视频课" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -839,20 +879,24 @@
                     android:layout_marginStart="12dp">
 
                     <TextView
+                        android:id="@+id/learn2_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="乐理基础"
+                        android:text="小包公"
                         android:textColor="@color/text_primary"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:fontFamily="sans-serif" />
 
                     <TextView
+                        android:id="@+id/learn2_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="非遗音乐理论知识讲解"
+                        android:text="四平调 · 商丘代表剧目"
                         android:textColor="@color/text_hint"
                         android:textSize="12sp"
+                        android:maxLines="2"
+                        android:ellipsize="end"
                         android:layout_marginTop="3dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -871,7 +915,6 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="6dp"
         android:layout_marginBottom="6dp"
-        android:background="@drawable/mini_player_bg"
         android:clickable="true"
         android:focusable="true">
 

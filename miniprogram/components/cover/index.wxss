@@ -37,6 +37,14 @@
   padding-bottom: 75%;
 }
 
+/* 与源图 coverWidth/coverHeight 一致；padding 百分比相对组件宽度 */
+.cover-aspect-intrinsic::before {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-bottom: var(--cover-pb, 100%);
+}
+
 .cover-rounded-md  { border-radius: 12rpx; }
 .cover-rounded-lg  { border-radius: 16rpx; }
 .cover-rounded-xl  { border-radius: 22rpx; }

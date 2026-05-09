@@ -1,24 +1,24 @@
 import { applyTheme } from "../../utils/theme";
-import { ALBUMS } from "../../data/music";
+import { BASIC_LESSONS } from "../../data/lessons";
 import { APP_IMAGES } from "../../data/appImages";
 import { toast } from "../../utils/toast";
 
 const COURSES = [
   {
     id: "c1",
-    title: "古琴入门 7 课",
-    teacher: "王慕之",
+    title: BASIC_LESSONS[0].title,
+    teacher: BASIC_LESSONS[0].artist,
     progress: 4,
     total: 7,
-    coverSrc: ALBUMS.find((a) => a.id === "a7")!.coverSrc,
+    coverSrc: BASIC_LESSONS[0].coverSrc,
   },
   {
     id: "c2",
-    title: "古筝乐理速成",
-    teacher: "周月明",
+    title: BASIC_LESSONS[1].title,
+    teacher: BASIC_LESSONS[1].artist,
     progress: 2,
     total: 6,
-    coverSrc: ALBUMS.find((a) => a.id === "a8")!.coverSrc,
+    coverSrc: BASIC_LESSONS[1].coverSrc,
   },
   {
     id: "c3",
@@ -34,7 +34,7 @@ Page({
   data: {
     __themeClass: "theme-dark",
     courses: COURSES,
-    recommends: ALBUMS.filter((a) => a.category === "basic"),
+    recommends: BASIC_LESSONS,
   },
   onLoad() { applyTheme(this); },
   onShow() { applyTheme(this); },

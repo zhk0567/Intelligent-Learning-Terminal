@@ -4,8 +4,6 @@ import { STORIES } from "../data/story";
 import Cover from "../components/Cover";
 import Section from "../components/Section";
 
-const TABS = ["推荐", "古琴", "敦煌", "刺绣", "皮影", "技艺"];
-
 export default function StoryTab() {
   const navigate = useNavigate();
   return (
@@ -26,21 +24,6 @@ export default function StoryTab() {
         </button>
       </div>
 
-      <div className="mt-3 md:mt-0 flex gap-2 overflow-x-auto no-scrollbar md:flex-wrap md:overflow-visible">
-        {TABS.map((t, i) => (
-          <button
-            key={t}
-            className={`px-3 py-1.5 rounded-full text-sm whitespace-nowrap border ${
-              i === 0
-                ? "bg-neon-teal text-white border-neon-teal"
-                : "bg-bg-card text-text-secondary border-border/50"
-            }`}
-          >
-            {t}
-          </button>
-        ))}
-      </div>
-
       <Section title="精选阅读" eyebrow="Featured Stories" framed={false}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
           {STORIES.slice(0, 2).map((s) => (
@@ -51,6 +34,8 @@ export default function StoryTab() {
                 alt={s.title}
                 text={s.title}
                 aspect="aspect-[16/9]"
+                coverWidth={s.coverWidth}
+                coverHeight={s.coverHeight}
                 rounded="rounded-2xl"
                 className="group-hover:ring-1 group-hover:ring-ancient-bronze/60"
                 ornate={false}
@@ -86,8 +71,10 @@ export default function StoryTab() {
                 alt={s.title}
                 text={s.title.slice(0, 2)}
                 aspect="aspect-square"
+                coverWidth={s.coverWidth}
+                coverHeight={s.coverHeight}
                 rounded="rounded-lg"
-                className="h-20 w-20 shrink-0"
+                className="w-20 shrink-0"
                 ornate={false}
               />
               <div className="min-w-0 flex-1 self-stretch">

@@ -2,7 +2,7 @@
   <top-bar title="故事列表" subtitle="共 {{stories.length}} 篇"></top-bar>
   <view class="story-list-body">
     <view wx:for="{{stories}}" wx:key="id" class="story-card" data-id="{{item.id}}" bindtap="goDetail">
-      <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" aspect="16/9" rounded="2xl" ornate="{{false}}" />
+      <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" coverWidth="{{item.coverWidth}}" coverHeight="{{item.coverHeight}}" aspect="16/9" rounded="2xl" ornate="{{false}}" />
       <view class="story-card-info">
         <view class="story-card-title">{{item.title}}</view>
         <view class="story-card-excerpt">{{item.excerpt}}</view>

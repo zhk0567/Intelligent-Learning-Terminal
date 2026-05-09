@@ -20,6 +20,7 @@ const Profile = lazy(() => import("./pages/Profile"));
 const Search = lazy(() => import("./pages/Search"));
 const SearchResult = lazy(() => import("./pages/SearchResult"));
 const Player = lazy(() => import("./pages/Player"));
+const Lesson = lazy(() => import("./pages/Lesson"));
 const Detail = lazy(() => import("./pages/Detail"));
 
 const StoryList = lazy(() => import("./pages/StoryList"));
@@ -90,6 +91,7 @@ export default function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/search/result" element={<SearchResult />} />
           <Route path="/player" element={<Player />} />
+          <Route path="/lesson/:id" element={<Lesson />} />
           <Route path="/detail/:id" element={<Detail />} />
 
           {/* 故事 */}

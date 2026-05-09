@@ -14,6 +14,9 @@ interface Props {
   style?: CSSProperties;
   /** 是否在右下角叠回纹角章。默认 true，小尺寸场景可关掉。 */
   ornate?: boolean;
+  /** 与源封面图一致的像素宽；与 coverHeight 同时传入时容器按该比例占位，避免裁成 16:9 / 正方形 */
+  coverWidth?: number;
+  coverHeight?: number;
 }
 
 interface Palette {
@@ -43,6 +46,8 @@ export default function Cover({
   aspect = "aspect-square",
   style,
   ornate = true,
+  coverWidth,
+  coverHeight,
 }: Props) {
   const mode = useThemeStore((s) => s.mode);
   const idx = hash(seed) % PALETTES.length;
@@ -51,6 +56,17 @@ export default function Cover({
   const fg = mode === "dark" ? p.textDark : p.text;
   const hasImg = Boolean(src);
   const label = alt ?? text ?? seed;
+  const useIntrinsic =
+    hasImg &&
+    typeof coverWidth === "number" &&
+    typeof coverHeight === "number" &&
+    coverWidth > 0 &&
+    coverHeight > 0;
+  const boxAspectClass = useIntrinsic ? "w-full" : aspect;
+  const boxAspectStyle: CSSProperties | undefined =
+    useIntrinsic && coverWidth && coverHeight
+      ? { aspectRatio: `${coverWidth} / ${coverHeight}` }
+      : undefined;
   /** 有图时不用 flex，避免与横排列表里的固定宽高冲突；无图时 flex 居中占位字。 */
   const layout = hasImg
     ? "block"
@@ -58,8 +74,12 @@ export default function Cover({
 
   return (
     <div
-      className={`${aspect} ${rounded} relative min-w-0 overflow-hidden ${layout} border border-ancient-bronze/40 dark:border-ancient-bronze/30 ${className}`}
-      style={hasImg ? style : { background: bg, color: fg, ...style }}
+      className={`${boxAspectClass} ${rounded} relative min-w-0 overflow-hidden ${layout} border border-ancient-bronze/40 dark:border-ancient-bronze/30 ${className}`}
+      style={
+        hasImg
+          ? { ...boxAspectStyle, ...style }
+          : { background: bg, color: fg, ...style }
+      }
     >
       {hasImg && (
         <img

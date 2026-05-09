@@ -17,6 +17,9 @@ data class Story(
     val tags: List<String> = listOf(),
     // 新增字段（用于 StoryListActivity）
     val publishTime: String = "",
+    /** 与 `StoriesData` / 源 PNG 一致，用于列表按真实长宽比占位 */
+    val coverWidth: Int = 0,
+    val coverHeight: Int = 0,
     val coverResId: Int = -1,
     val likeCount: Int = 0,
     val commentCount: Int = 0,

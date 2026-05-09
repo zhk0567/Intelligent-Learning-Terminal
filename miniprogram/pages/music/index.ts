@@ -1,6 +1,9 @@
 import { applyTheme } from "../../utils/theme";
 import { ALBUMS, HOT_BANNERS } from "../../data/music";
+import { BASIC_LESSONS } from "../../data/lessons";
+import { TRACKS } from "../../data/tracks";
 import { playerStore } from "../../stores/playerStore";
+import { fmtTime } from "../../utils/format";
 
 Page({
   data: {
@@ -10,7 +13,7 @@ Page({
     hot: ALBUMS.filter((a) => a.category === "hot"),
     select: ALBUMS.filter((a) => a.category === "select"),
     guess: ALBUMS.filter((a) => a.category === "guess"),
-    basic: ALBUMS.filter((a) => a.category === "basic"),
+    basic: BASIC_LESSONS.map((l) => ({ ...l, durationStr: fmtTime(l.durationSec) })),
   },
   onLoad() {
     applyTheme(this);
@@ -32,9 +35,15 @@ Page({
     wx.navigateTo({ url: `/pages/detail/index?id=${cat}` });
   },
   playAlbum(e: any) {
-    const cat = e.currentTarget.dataset.cat;
-    const startIdx = cat === "select" ? 1 : cat === "guess" ? 2 : 0;
-    playerStore.actions.setIndex(startIdx);
+    const albumId = e.currentTarget.dataset.id as string;
+    const album = ALBUMS.find((a) => a.id === albumId);
+    const firstId = album?.trackIds[0];
+    const startIdx = firstId != null ? TRACKS.findIndex((t) => t.id === firstId) : 0;
+    playerStore.actions.setIndex(startIdx < 0 ? 0 : startIdx);
     wx.navigateTo({ url: "/pages/player/index" });
+  },
+  openLesson(e: any) {
+    const id = e.currentTarget.dataset.id as string;
+    wx.navigateTo({ url: `/pages/lesson/index?id=${id}` });
   },
 });

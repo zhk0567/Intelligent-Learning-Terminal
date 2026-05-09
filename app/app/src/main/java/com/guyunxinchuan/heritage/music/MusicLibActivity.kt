@@ -149,26 +149,14 @@ class MusicLibActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.arrow_select).setOnClickListener { startActivity(toDetail) }
         findViewById<TextView>(R.id.arrow_like).setOnClickListener { startActivity(toDetail) }
 
-        // 卡片点击 - 音乐相关卡片跳转到播放页；「绘壁遗韵」进入主题故事列表
-        findViewById<LinearLayout>(R.id.hot1).setOnClickListener { startActivity(toPlayer) }
-        findViewById<LinearLayout>(R.id.hot2).setOnClickListener { startActivity(toPlayer) }
-        findViewById<LinearLayout>(R.id.hot3).setOnClickListener { startActivity(toPlayer) }
-        findViewById<LinearLayout>(R.id.hot4).setOnClickListener { startActivity(toPlayer) }
-        findViewById<LinearLayout>(R.id.select1).setOnClickListener { startActivity(toPlayer) }
-        findViewById<LinearLayout>(R.id.select2).setOnClickListener {
-            startActivity(Intent(this, StoryListActivity::class.java).apply {
-                putExtra(StoryListActivity.EXTRA_SECTION_TITLE, getString(R.string.music_lib_card_mural_title))
-                putExtra(StoryListActivity.EXTRA_SECTION_SUBTITLE, getString(R.string.music_lib_card_mural_subtitle))
-                putExtra(StoryListActivity.EXTRA_LIST_SOURCE, StoryListActivity.SOURCE_MURAL_CURATED)
-            })
-            applyStoryListOpenTransition()
-        }
-        findViewById<LinearLayout>(R.id.select3).setOnClickListener { startActivity(toPlayer) }
-        findViewById<LinearLayout>(R.id.list1_item1).setOnClickListener { startActivity(toPlayer) }
-        findViewById<LinearLayout>(R.id.list2_item1).setOnClickListener { startActivity(toPlayer) }
-        findViewById<LinearLayout>(R.id.list3_item1).setOnClickListener { startActivity(toPlayer) }
-        findViewById<LinearLayout>(R.id.learn1).setOnClickListener { startActivity(toDetail) }
-        findViewById<LinearLayout>(R.id.learn2).setOnClickListener { startActivity(toDetail) }
+        // 每日热门：与 `data/音频/每日热门` 曲目一致（PlayerSyncState 索引 5–8）
+        bindDailyHotCells(toPlayer)
+        // 每日精选：与 `data/音频/每日精选` 曲目一致（索引 9–11）
+        bindDailySelectCells(toPlayer)
+        // 猜你喜欢：与 `data/音频/猜你喜欢` 曲目一致（索引 12–14），三个标签 → 三首
+        bindDailyGuessCells(toPlayer)
+        // 基础学习：BASIC_LESSONS（视频课）→ LessonActivity
+        bindBasicLessonCells()
         setupMiniPlayer(toPlayer)
 
         // 初始化底部导航栏
@@ -482,6 +470,79 @@ class MusicLibActivity : AppCompatActivity() {
         }
     }
 
+    private fun bindBasicLessonCells() {
+        data class LearnCell(val lessonIndex: Int, val rootId: Int, val coverId: Int, val titleId: Int, val descId: Int)
+        val cells = listOf(
+            LearnCell(0, R.id.learn1, R.id.learn1_cover, R.id.learn1_title, R.id.learn1_desc),
+            LearnCell(1, R.id.learn2, R.id.learn2_cover, R.id.learn2_title, R.id.learn2_desc),
+        )
+        cells.forEach { c ->
+            val lesson = BasicLessons.ALL.getOrNull(c.lessonIndex) ?: return@forEach
+            findViewById<ImageView>(c.coverId).setImageResource(lesson.coverResId)
+            findViewById<TextView>(c.titleId).text = lesson.title
+            findViewById<TextView>(c.descId).text = "${lesson.artist} · ${lesson.desc}"
+            findViewById<LinearLayout>(c.rootId).setOnClickListener {
+                startActivity(
+                    Intent(this, LessonActivity::class.java)
+                        .putExtra(LessonActivity.EXTRA_LESSON_ID, lesson.id),
+                )
+            }
+        }
+    }
+
+    private fun bindDailyGuessCells(toPlayer: Intent) {
+        data class GuessCell(val trackIndex: Int, val layoutId: Int)
+        val cells = listOf(
+            GuessCell(12, R.id.list1_item1),
+            GuessCell(13, R.id.list2_item1),
+            GuessCell(14, R.id.list3_item1),
+        )
+        cells.forEach { c ->
+            findViewById<LinearLayout>(c.layoutId).setOnClickListener {
+                val dur = PlayerSyncState.tracks[c.trackIndex].durationMs
+                PlayerSyncState.setTrack(c.trackIndex, dur)
+                startActivity(toPlayer)
+            }
+        }
+    }
+
+    private fun bindDailySelectCells(toPlayer: Intent) {
+        data class SelectCell(val title: String, val subtitle: String, val trackIndex: Int, val layoutId: Int)
+        val cells = listOf(
+            SelectCell("杨家将", "河南坠子", 9, R.id.select1),
+            SelectCell("杨府挑将", "濮阳大弦戏", 10, R.id.select2),
+            SelectCell("湖畔枫吟", "古琴", 11, R.id.select3),
+        )
+        cells.forEach { c ->
+            findViewById<LinearLayout>(c.layoutId).setOnClickListener {
+                val dur = PlayerSyncState.tracks[c.trackIndex].durationMs
+                PlayerSyncState.setTrack(c.trackIndex, dur)
+                startActivity(toPlayer)
+            }
+        }
+    }
+
+    private fun bindDailyHotCells(toPlayer: Intent) {
+        // 首页「每日热门」仅展示曲名，乐器/流派不再作为副标题展示。
+        data class HotCell(val title: String, val trackIndex: Int)
+        val cells = listOf(
+            HotCell("哑女告状", 5),
+            HotCell("抬花轿", 6),
+            HotCell("美美与共", 7),
+            HotCell("醉美玉见", 8),
+        )
+        val titleIds = listOf(R.id.hot1_title, R.id.hot2_title, R.id.hot3_title, R.id.hot4_title)
+        val hotIds = listOf(R.id.hot1, R.id.hot2, R.id.hot3, R.id.hot4)
+        cells.forEachIndexed { i, c ->
+            findViewById<TextView>(titleIds[i]).text = c.title
+            findViewById<LinearLayout>(hotIds[i]).setOnClickListener {
+                val dur = PlayerSyncState.tracks[c.trackIndex].durationMs
+                PlayerSyncState.setTrack(c.trackIndex, dur)
+                startActivity(toPlayer)
+            }
+        }
+    }
+
     override fun onDestroy() {
         cancelMusicBannerAutoScroll()
         stopMiniProgressUpdater()
@@ -532,11 +593,6 @@ class MusicLibActivity : AppCompatActivity() {
                 }
                 .start()
         }, 3000)
-    }
-
-    @Suppress("DEPRECATION")
-    private fun applyStoryListOpenTransition() {
-        overridePendingTransition(R.anim.slide_in_bottom, R.anim.fade_out)
     }
 
     // 轮播适配器（多页循环，实现从最后一页继续滑到第一页）

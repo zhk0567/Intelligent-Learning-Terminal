@@ -73,10 +73,6 @@ class ShopActivity : AppCompatActivity() {
             footerMode = ShopFeedAdapter.FooterMode.NONE,
             onProductClick = { openProductDetail(it) },
             onAddToCart = { addToCartFromCard(it) },
-            onHeroClick = {
-                sortByHotSales = false
-                selectCategory(ShopCategoryIds.HERITAGE)
-            },
             onHotSeeAllClick = {
                 sortByHotSales = true
                 selectCategory(ShopCategoryIds.ALL)
@@ -199,22 +195,22 @@ class ShopActivity : AppCompatActivity() {
         scheduleBannerAdvance()
     }
 
-    /** 与首页轮播资源分离；顶栏活动图用通用占位 p_4~p_6。 */
+    /** 与小程序/Web `shopSwiper*`、`shop_swiper_*.jpg` 一致；源图 `data/图片/商城页轮播图`。 */
     private fun shopBannerSlides() = listOf(
         ShopBannerSlide(
             title = "季中精选 · 非遗好物",
             line = "博物馆联名与工坊严选，点按进入「非遗文创」分类。",
-            imageResId = R.drawable.p_4,
+            imageResId = R.drawable.shop_swiper_1,
         ),
         ShopBannerSlide(
             title = "乐器周边热销",
             line = "琴弦拨片、模型摆件与乐谱周边，按销量浏览。",
-            imageResId = R.drawable.p_5,
+            imageResId = R.drawable.shop_swiper_2,
         ),
         ShopBannerSlide(
             title = "香薰雅物专区",
             line = "线香、蜡烛与香器，静室一隅的仪式感。",
-            imageResId = R.drawable.p_6,
+            imageResId = R.drawable.shop_swiper_3,
         ),
     )
 

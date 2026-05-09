@@ -5,6 +5,7 @@
     </view>
   </top-bar>
   <cover extra-class="story-hero" seed="{{story.id}}" src="{{story.coverSrc}}" alt="{{story.title}}"
+         coverWidth="{{story.coverWidth}}" coverHeight="{{story.coverHeight}}"
          aspect="16/9" rounded="md" ornate="{{false}}" bindtap="previewCover" />
   <view class="story-detail-body">
     <view class="story-detail-title">{{story.title}}</view>
@@ -12,8 +13,8 @@
     <view class="story-detail-tags">
       <view wx:for="{{story.tags}}" wx:key="*this" class="story-tag">{{item}}</view>
     </view>
-    <view class="story-detail-text">{{story.excerpt}}</view>
-    <view class="story-detail-text">{{paragraph}}</view>
+    <view class="story-detail-text story-detail-prose">{{story.body}}</view>
+    <view class="story-detail-text story-detail-aside">{{paragraph}}</view>
 
     <view class="comments-card">
       <view class="comments-head">

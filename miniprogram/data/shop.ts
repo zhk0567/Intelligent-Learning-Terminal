@@ -1,4 +1,4 @@
-import { APP_IMAGES } from "./appImages";
+import { shopSwiperBySlot } from "./appImages";
 import { wcCoverPath, wcMockPath } from "./shopMedia";
 
 export type ShopCategoryId =
@@ -77,9 +77,9 @@ export function filterByCategory(list: Product[], id: ShopCategoryId): Product[]
   return list.filter((p) => p.shopCategoryId === id);
 }
 
-/** 商城顶部活动轮播（与首页音乐轮播图资源分离）。 */
+/** 商城顶部活动轮播，图源 `data/图片/商城页轮播图`（`tools/sync_shop_carousel.py`）。 */
 export const SHOP_BANNERS = [
-  { id: "b1", title: "敦煌系列联名上线", subtitle: "非遗匠心 · 限量发售", imageSrc: APP_IMAGES.p4 },
-  { id: "b2", title: "新品·苏绣团扇", subtitle: "双面绣 / 檀木扇柄", imageSrc: APP_IMAGES.p5 },
-  { id: "b3", title: "夏夜香薰雅集", subtitle: "买二赠一 · 限时折扣", imageSrc: APP_IMAGES.p6 },
+  { id: "b1", title: "敦煌系列联名上线", subtitle: "非遗匠心 · 限量发售", imageSrc: shopSwiperBySlot(0) },
+  { id: "b2", title: "新品·苏绣团扇", subtitle: "双面绣 / 檀木扇柄", imageSrc: shopSwiperBySlot(1) },
+  { id: "b3", title: "夏夜香薰雅集", subtitle: "买二赠一 · 限时折扣", imageSrc: shopSwiperBySlot(2) },
 ];

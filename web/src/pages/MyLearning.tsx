@@ -1,7 +1,7 @@
 import { APP_IMAGES } from "../assets/appImages";
 import TopBar from "../components/TopBar";
 import Cover from "../components/Cover";
-import { ALBUMS } from "../data/music";
+import { BASIC_LESSONS } from "../data/lessons";
 
 interface Course {
   id: string;
@@ -15,19 +15,19 @@ interface Course {
 const COURSES: Course[] = [
   {
     id: "c1",
-    title: "古琴入门 7 课",
-    teacher: "王慕之",
+    title: BASIC_LESSONS[0].title,
+    teacher: BASIC_LESSONS[0].artist,
     progress: 4,
     total: 7,
-    coverSrc: ALBUMS.find((a) => a.id === "a7")!.coverSrc,
+    coverSrc: BASIC_LESSONS[0].coverSrc,
   },
   {
     id: "c2",
-    title: "古筝乐理速成",
-    teacher: "周月明",
+    title: BASIC_LESSONS[1].title,
+    teacher: BASIC_LESSONS[1].artist,
     progress: 2,
     total: 6,
-    coverSrc: ALBUMS.find((a) => a.id === "a8")!.coverSrc,
+    coverSrc: BASIC_LESSONS[1].coverSrc,
   },
   {
     id: "c3",
@@ -89,20 +89,20 @@ export default function MyLearning() {
           </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {ALBUMS.filter((a) => a.category === "basic").map((a) => (
-            <div key={a.id} className="rounded-xl bg-bg-card border border-border/40 overflow-hidden card-hover">
+          {BASIC_LESSONS.map((l) => (
+            <div key={l.id} className="rounded-xl bg-bg-card border border-border/40 overflow-hidden card-hover">
               <Cover
-                seed={a.id}
-                src={a.coverSrc}
-                alt={a.title}
-                text={a.title}
+                seed={l.id}
+                src={l.coverSrc}
+                alt={l.title}
+                text={l.title}
                 aspect="aspect-square"
                 rounded="rounded-none"
                 ornate={false}
               />
               <div className="p-2">
-                <div className="text-sm text-text-primary line-clamp-1">{a.title}</div>
-                <div className="text-[11px] text-text-secondary line-clamp-1">{a.desc}</div>
+                <div className="text-sm text-text-primary line-clamp-1">{l.title}</div>
+                <div className="text-[11px] text-text-secondary line-clamp-1">{l.desc}</div>
               </div>
             </div>
           ))}

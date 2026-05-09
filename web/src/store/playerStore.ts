@@ -9,10 +9,30 @@ export interface Track {
   durationSec: number;
   /** 与 `PlayerSyncState` / `MusicLibActivity` 曲目缩略图一致，轮用 banner。 */
   coverSrc: string;
+  /** 本地音频：`public/audio/daily_hot|daily_select|daily_guess/daily_*_*.mp3`。 */
+  audioSrc?: string;
 }
 
 const B = [APP_IMAGES.banner1, APP_IMAGES.banner2, APP_IMAGES.banner3] as const;
 const tc = (i: number) => B[i % 3];
+
+/** `data/图片/每日热门` → `tools/sync_daily_hot_covers.py` */
+export function dailyHotCoverPath(slot: 0 | 1 | 2 | 3): string {
+  const n = slot + 1;
+  return `/images/daily_hot/daily_hot_cover_${n < 10 ? `0${n}` : `${n}`}.jpg`;
+}
+
+/** `data/图片/每日精选` → `tools/sync_daily_select_covers.py` */
+export function dailySelectCoverPath(slot: 0 | 1 | 2): string {
+  const n = slot + 1;
+  return `/images/daily_select/daily_select_cover_${n < 10 ? `0${n}` : `${n}`}.jpg`;
+}
+
+/** `data/图片/猜你喜欢` → `tools/sync_daily_guess_covers.py` */
+export function dailyGuessCoverPath(slot: 0 | 1 | 2): string {
+  const n = slot + 1;
+  return `/images/daily_guess/daily_guess_cover_${n < 10 ? `0${n}` : `${n}`}.jpg`;
+}
 
 export const TRACKS: Track[] = [
   {
@@ -55,6 +75,96 @@ export const TRACKS: Track[] = [
     durationSec: 295,
     coverSrc: tc(4),
   },
+  {
+    id: "hot_t1",
+    title: "哑女告状",
+    artist: "四平调",
+    album: "每日热门",
+    durationSec: 240,
+    coverSrc: dailyHotCoverPath(0),
+    audioSrc: "/audio/daily_hot/daily_hot_01.mp3",
+  },
+  {
+    id: "hot_t2",
+    title: "抬花轿",
+    artist: "沁阳唢呐",
+    album: "每日热门",
+    durationSec: 240,
+    coverSrc: dailyHotCoverPath(1),
+    audioSrc: "/audio/daily_hot/daily_hot_02.mp3",
+  },
+  {
+    id: "hot_t3",
+    title: "美美与共",
+    artist: "箜篌艺术",
+    album: "每日热门",
+    durationSec: 240,
+    coverSrc: dailyHotCoverPath(2),
+    audioSrc: "/audio/daily_hot/daily_hot_03.mp3",
+  },
+  {
+    id: "hot_t4",
+    title: "醉美玉见",
+    artist: "九莲灯",
+    album: "每日热门",
+    durationSec: 240,
+    coverSrc: dailyHotCoverPath(3),
+    audioSrc: "/audio/daily_hot/daily_hot_04.mp3",
+  },
+  {
+    id: "select_t1",
+    title: "杨家将",
+    artist: "河南坠子",
+    album: "每日精选",
+    durationSec: 69,
+    coverSrc: dailySelectCoverPath(0),
+    audioSrc: "/audio/daily_select/daily_select_01.mp3",
+  },
+  {
+    id: "select_t2",
+    title: "杨府挑将",
+    artist: "濮阳大弦戏",
+    album: "每日精选",
+    durationSec: 147,
+    coverSrc: dailySelectCoverPath(1),
+    audioSrc: "/audio/daily_select/daily_select_02.mp3",
+  },
+  {
+    id: "select_t3",
+    title: "湖畔枫吟",
+    artist: "古琴",
+    album: "每日精选",
+    durationSec: 93,
+    coverSrc: dailySelectCoverPath(2),
+    audioSrc: "/audio/daily_select/daily_select_03.mp3",
+  },
+  {
+    id: "guess_t1",
+    title: "湘妃竹",
+    artist: "箜篌艺术",
+    album: "猜你喜欢",
+    durationSec: 217,
+    coverSrc: dailyGuessCoverPath(0),
+    audioSrc: "/audio/daily_guess/daily_guess_01.mp3",
+  },
+  {
+    id: "guess_t2",
+    title: "火龙阵",
+    artist: "濮阳大弦戏",
+    album: "猜你喜欢",
+    durationSec: 175,
+    coverSrc: dailyGuessCoverPath(1),
+    audioSrc: "/audio/daily_guess/daily_guess_02.mp3",
+  },
+  {
+    id: "guess_t3",
+    title: "神人畅",
+    artist: "古琴",
+    album: "猜你喜欢",
+    durationSec: 162,
+    coverSrc: dailyGuessCoverPath(2),
+    audioSrc: "/audio/daily_guess/daily_guess_03.mp3",
+  },
 ];
 
 interface PlayerState {
@@ -66,6 +176,7 @@ interface PlayerState {
   next: () => void;
   prev: () => void;
   seek: (sec: number) => void;
+  setPositionSec: (sec: number) => void;
   tick: () => void;
 }
 
@@ -79,10 +190,15 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   next: () => get().setIndex(get().currentIndex + 1),
   prev: () => get().setIndex(get().currentIndex - 1),
   seek: (sec) => set({ positionSec: sec }),
+  setPositionSec: (sec) => {
+    const t = TRACKS[get().currentIndex];
+    set({ positionSec: Math.max(0, Math.min(sec, t.durationSec)) });
+  },
   tick: () => {
     const { isPlaying, positionSec, currentIndex } = get();
     if (!isPlaying) return;
     const t = TRACKS[currentIndex];
+    if (t.audioSrc) return;
     if (positionSec + 1 >= t.durationSec) {
       get().next();
       return;
@@ -93,4 +209,9 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
 
 export function currentTrack(): Track {
   return TRACKS[usePlayerStore.getState().currentIndex];
+}
+
+export function trackIndexById(id: string): number {
+  const i = TRACKS.findIndex((t) => t.id === id);
+  return i < 0 ? 0 : i;
 }

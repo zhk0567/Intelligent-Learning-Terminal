@@ -16,7 +16,6 @@ class ShopFeedAdapter(
     private var footerMode: FooterMode,
     private val onProductClick: (Product) -> Unit,
     private val onAddToCart: (Product) -> Unit,
-    private val onHeroClick: () -> Unit,
     private val onHotSeeAllClick: () -> Unit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -82,7 +81,6 @@ class ShopFeedAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is HeaderVH -> {
-                holder.hero.setOnClickListener { onHeroClick() }
                 holder.hotSeeAll.setOnClickListener { onHotSeeAllClick() }
                 // 轮播由 ShopActivity 在列表绑定后注入
             }
@@ -97,7 +95,6 @@ class ShopFeedAdapter(
         val categoryChipContainer: LinearLayout = view.findViewById(R.id.categoryChipContainer)
         val bannerPager: ViewPager2 = view.findViewById(R.id.shopHeaderBannerPager)
         val bannerDots: LinearLayout = view.findViewById(R.id.shopHeaderBannerDots)
-        val hero: View = view.findViewById(R.id.shopHeroBanner)
         val hotSeeAll: View = view.findViewById(R.id.shopHotSeeAll)
     }
 
