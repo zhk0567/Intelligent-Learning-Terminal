@@ -11,27 +11,27 @@ object PlayerSyncState {
         val coverResId: Int,
         /** 静态资源域名已配置时与 Web `/images/...` 对齐的封面 URL。 */
         val coverRemoteUrl: String? = null,
-        /** 与 Web `TRACKS[].audioSrc` 一致；索引 0–4 为 null（无线上音频）。 */
+        /** 与 Web `TRACKS[].audioSrc` 一致；0–4 为 `/audio/classic/classic_0N.mp3`。 */
         val audioRemoteUrl: String? = null,
     )
 
-    /** 与小程序 / Web `TRACKS` 顺序一致；5–8 每日热门；9–11 每日精选；12–14 `data/音频/猜你喜欢`（`res/raw/daily_guess_*.mp3`）。 */
+    /** 与小程序 / Web `TRACKS` 顺序一致；5–8 每日热门；9–11 每日精选；12–14 猜你喜欢（线上 mp3）。 */
     val tracks: List<SyncTrack> = listOf(
-        SyncTrack("高山流水", "古筝演奏", "国风雅集", 248_000, R.drawable.banner1_img),
-        SyncTrack("广陵散", "古琴独奏", "国风雅集", 312_000, R.drawable.banner2_img),
-        SyncTrack("二泉映月", "二胡演奏", "民乐经典", 270_000, R.drawable.banner3_img),
-        SyncTrack("梅花三弄", "笛子独奏", "民乐经典", 226_000, R.drawable.banner1_img),
-        SyncTrack("渔舟唱晚", "古筝演奏", "国风雅集", 295_000, R.drawable.banner2_img),
-        SyncTrack("哑女告状", "四平调", "每日热门", 240_000, R.drawable.daily_hot_cover_01),
-        SyncTrack("抬花轿", "沁阳唢呐", "每日热门", 240_000, R.drawable.daily_hot_cover_02),
-        SyncTrack("美美与共", "箜篌艺术", "每日热门", 240_000, R.drawable.daily_hot_cover_03),
-        SyncTrack("醉美玉见", "九莲灯", "每日热门", 240_000, R.drawable.daily_hot_cover_04),
-        SyncTrack("杨家将", "河南坠子", "每日精选", 69_000, R.drawable.daily_select_cover_01),
-        SyncTrack("杨府挑将", "濮阳大弦戏", "每日精选", 147_000, R.drawable.daily_select_cover_02),
-        SyncTrack("湖畔枫吟", "古琴", "每日精选", 93_000, R.drawable.daily_select_cover_03),
-        SyncTrack("湘妃竹", "箜篌艺术", "猜你喜欢", 217_000, R.drawable.daily_guess_cover_01),
-        SyncTrack("火龙阵", "濮阳大弦戏", "猜你喜欢", 175_000, R.drawable.daily_guess_cover_02),
-        SyncTrack("神人畅", "古琴", "猜你喜欢", 162_000, R.drawable.daily_guess_cover_03),
+        SyncTrack("高山流水", "古筝演奏", "国风雅集", 248_000, R.drawable.music_cover_placeholder),
+        SyncTrack("广陵散", "古琴独奏", "国风雅集", 312_000, R.drawable.music_cover_placeholder),
+        SyncTrack("二泉映月", "二胡演奏", "民乐经典", 270_000, R.drawable.music_cover_placeholder),
+        SyncTrack("梅花三弄", "笛子独奏", "民乐经典", 226_000, R.drawable.music_cover_placeholder),
+        SyncTrack("渔舟唱晚", "古筝演奏", "国风雅集", 295_000, R.drawable.music_cover_placeholder),
+        SyncTrack("哑女告状", "四平调", "每日热门", 240_000, R.drawable.music_cover_placeholder),
+        SyncTrack("抬花轿", "沁阳唢呐", "每日热门", 240_000, R.drawable.music_cover_placeholder),
+        SyncTrack("美美与共", "箜篌艺术", "每日热门", 240_000, R.drawable.music_cover_placeholder),
+        SyncTrack("醉美玉见", "九莲灯", "每日热门", 240_000, R.drawable.music_cover_placeholder),
+        SyncTrack("杨家将", "河南坠子", "每日精选", 69_000, R.drawable.music_cover_placeholder),
+        SyncTrack("杨府挑将", "濮阳大弦戏", "每日精选", 147_000, R.drawable.music_cover_placeholder),
+        SyncTrack("湖畔枫吟", "古琴", "每日精选", 93_000, R.drawable.music_cover_placeholder),
+        SyncTrack("湘妃竹", "箜篌艺术", "猜你喜欢", 217_000, R.drawable.music_cover_placeholder),
+        SyncTrack("火龙阵", "濮阳大弦戏", "猜你喜欢", 175_000, R.drawable.music_cover_placeholder),
+        SyncTrack("神人畅", "古琴", "猜你喜欢", 162_000, R.drawable.music_cover_placeholder),
     ).mapIndexed { i, t ->
         SyncTrack(
             title = t.title,

@@ -82,9 +82,13 @@ object StaticRemoteAssets {
         else -> null
     }
 
-    /** 与 Web `playerStore.ts` 中 `TRACKS[].audioSrc` 路径一致；索引 0–4 无线上音频。 */
+    /** 与 Web `playerStore.ts` 中 `TRACKS[].audioSrc` 路径一致；0–4 为 `audio/classic/classic_0N.mp3`。 */
     fun playerTrackAudio(trackIndex: Int): String? = when (trackIndex) {
-        in 0..4 -> null
+        0 -> url("/audio/classic/classic_01.mp3")
+        1 -> url("/audio/classic/classic_02.mp3")
+        2 -> url("/audio/classic/classic_03.mp3")
+        3 -> url("/audio/classic/classic_04.mp3")
+        4 -> url("/audio/classic/classic_05.mp3")
         5 -> url("/audio/daily_hot/daily_hot_01.mp3")
         6 -> url("/audio/daily_hot/daily_hot_02.mp3")
         7 -> url("/audio/daily_hot/daily_hot_03.mp3")

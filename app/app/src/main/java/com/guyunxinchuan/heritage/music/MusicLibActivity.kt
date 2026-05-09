@@ -23,6 +23,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.material.imageview.ShapeableImageView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 
@@ -151,6 +152,7 @@ class MusicLibActivity : AppCompatActivity() {
 
         // 每日热门：与 `data/音频/每日热门` 曲目一致（PlayerSyncState 索引 5–8）
         bindDailyHotCells(toPlayer)
+        bindMusicLibRemoteCoverPreviews()
         // 每日精选：与 `data/音频/每日精选` 曲目一致（索引 9–11）
         bindDailySelectCells(toPlayer)
         // 猜你喜欢：与 `data/音频/猜你喜欢` 曲目一致（索引 12–14），三个标签 → 三首
@@ -514,6 +516,29 @@ class MusicLibActivity : AppCompatActivity() {
                 )
             }
         }
+    }
+
+    /** 精选 / 猜你喜欢卡片封面走线上 `/images/daily_*`，无域名时占位图。 */
+    private fun bindMusicLibRemoteCoverPreviews() {
+        val ph = R.drawable.music_cover_placeholder
+        findViewById<ShapeableImageView>(R.id.select1_cover).loadCoverRemoteOrDrawable(
+            StaticRemoteAssets.dailySelectCover(1), ph, CoverPreset.Card,
+        )
+        findViewById<ShapeableImageView>(R.id.select2_cover).loadCoverRemoteOrDrawable(
+            StaticRemoteAssets.dailySelectCover(2), ph, CoverPreset.Card,
+        )
+        findViewById<ShapeableImageView>(R.id.select3_cover).loadCoverRemoteOrDrawable(
+            StaticRemoteAssets.dailySelectCover(3), ph, CoverPreset.Card,
+        )
+        findViewById<ImageView>(R.id.guess_thumb_1).loadCoverRemoteOrDrawable(
+            StaticRemoteAssets.dailyGuessCover(1), ph, CoverPreset.Thumb,
+        )
+        findViewById<ImageView>(R.id.guess_thumb_2).loadCoverRemoteOrDrawable(
+            StaticRemoteAssets.dailyGuessCover(2), ph, CoverPreset.Thumb,
+        )
+        findViewById<ImageView>(R.id.guess_thumb_3).loadCoverRemoteOrDrawable(
+            StaticRemoteAssets.dailyGuessCover(3), ph, CoverPreset.Thumb,
+        )
     }
 
     private fun bindDailyGuessCells(toPlayer: Intent) {

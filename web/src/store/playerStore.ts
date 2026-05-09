@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { APP_IMAGES } from "../assets/appImages";
 import { assetUrl } from "../lib/assetUrl";
 
 export interface Track {
@@ -8,14 +7,24 @@ export interface Track {
   artist: string;
   album: string;
   durationSec: number;
-  /** 与 `PlayerSyncState` / `MusicLibActivity` 曲目缩略图一致，轮用 banner。 */
+  /** 与 `PlayerSyncState` 一致：线上 `/images/banner{n}_img.jpg` 轮播。 */
   coverSrc: string;
-  /** 本地音频：`public/audio/daily_hot|daily_select|daily_guess/daily_*_*.mp3`。 */
+  /** 线上音频：`public/audio/classic|daily_*` 下 mp3，构建进 `dist/audio/`。 */
   audioSrc?: string;
 }
 
-const B = [APP_IMAGES.banner1, APP_IMAGES.banner2, APP_IMAGES.banner3] as const;
-const tc = (i: number) => B[i % 3];
+/** 国风前五首：封面与 Web `public/images/banner{n}_img.jpg` 一致。 */
+function classicTrackCover(i: number): string {
+  const n = (i % 3) + 1;
+  return assetUrl(`/images/banner${n}_img.jpg`);
+}
+
+/** 国风前五首：`public/audio/classic/classic_01.mp3` … `classic_05.mp3`。 */
+function classicTrackAudio(i: number): string {
+  const n = i + 1;
+  const pad = n < 10 ? `0${n}` : `${n}`;
+  return assetUrl(`/audio/classic/classic_${pad}.mp3`);
+}
 
 /** `data/图片/每日热门` → `tools/sync_daily_hot_covers.py` */
 export function dailyHotCoverPath(slot: 0 | 1 | 2 | 3): string {
@@ -42,7 +51,8 @@ export const TRACKS: Track[] = [
     artist: "古筝演奏",
     album: "国风雅集",
     durationSec: 248,
-    coverSrc: tc(0),
+    coverSrc: classicTrackCover(0),
+    audioSrc: classicTrackAudio(0),
   },
   {
     id: "t2",
@@ -50,7 +60,8 @@ export const TRACKS: Track[] = [
     artist: "古琴独奏",
     album: "国风雅集",
     durationSec: 312,
-    coverSrc: tc(1),
+    coverSrc: classicTrackCover(1),
+    audioSrc: classicTrackAudio(1),
   },
   {
     id: "t3",
@@ -58,7 +69,8 @@ export const TRACKS: Track[] = [
     artist: "二胡演奏",
     album: "民乐经典",
     durationSec: 270,
-    coverSrc: tc(2),
+    coverSrc: classicTrackCover(2),
+    audioSrc: classicTrackAudio(2),
   },
   {
     id: "t4",
@@ -66,7 +78,8 @@ export const TRACKS: Track[] = [
     artist: "笛子独奏",
     album: "民乐经典",
     durationSec: 226,
-    coverSrc: tc(3),
+    coverSrc: classicTrackCover(3),
+    audioSrc: classicTrackAudio(3),
   },
   {
     id: "t5",
@@ -74,7 +87,8 @@ export const TRACKS: Track[] = [
     artist: "古筝演奏",
     album: "国风雅集",
     durationSec: 295,
-    coverSrc: tc(4),
+    coverSrc: classicTrackCover(4),
+    audioSrc: classicTrackAudio(4),
   },
   {
     id: "hot_t1",

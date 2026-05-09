@@ -35,7 +35,7 @@ object BasicLessons {
                 "本曲目《乡村振兴 福满人间》为河洛大鼓代表性传承人创新创作，以乡音乡韵讲述当代河南乡村振兴故事，" +
                 "将百年传统大鼓与时代主题结合，是非遗活态传承的典型范例。",
             durationSec = 285,
-            coverResId = R.drawable.basic_lesson_cover_01,
+            coverResId = R.drawable.music_cover_placeholder,
             videoPath = "/video/basic_lesson/basic_lesson_01.mp4",
         ),
         BasicLesson(
@@ -50,7 +50,7 @@ object BasicLessons {
                 "由商丘市四平调剧团（被誉为「天下第一团」）创排演出，因唱腔平易近人、剧情风趣劝善而深受观众喜爱，" +
                 "也是了解四平调声腔与表演程式的入门佳作。",
             durationSec = 120,
-            coverResId = R.drawable.basic_lesson_cover_02,
+            coverResId = R.drawable.music_cover_placeholder,
             videoPath = "/video/basic_lesson/basic_lesson_02.mp4",
         ),
     )

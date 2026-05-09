@@ -26,7 +26,7 @@
 
 ### Android 在线音频与视频（与 Web 同源）
 
-- 音频路径与 Web `public/audio/` 一致，例如：`/audio/daily_hot/daily_hot_01.mp3`、`/audio/daily_select/…`、`/audio/daily_guess/…`。构建产物需在 **`web/dist/audio/`**（或 Nginx 对应该 URL）下存在文件，否则 App 内播放器无法出声。
+- 音频路径与 Web `public/audio/` 一致，例如：**国风前五首** `/audio/classic/classic_01.mp3` … `classic_05.mp3`；每日热门/精选/猜你喜欢：`/audio/daily_hot/daily_hot_01.mp3`、`/audio/daily_select/…`、`/audio/daily_guess/…`。构建产物需在 **`web/dist/audio/`**（或 Nginx 对应该 URL）下存在文件，否则 App 内播放器无法出声。
 - 基础学习视频：`/video/basic_lesson/basic_lesson_01.mp4` 等，需在 **`web/dist/video/`** 下存在。
 - 仓库根若未提交大体积 `mp3/mp4`，需在服务器或构建流水线中 **单独拷贝 `data/音频` 等素材到 `web/public`** 后再 `npm run build`，否则仅有封面无声音。
 

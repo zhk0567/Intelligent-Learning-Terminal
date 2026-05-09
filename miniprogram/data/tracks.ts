@@ -1,4 +1,3 @@
-import { APP_IMAGES } from "./appImages";
 import { assetUrl } from "../utils/assetUrl";
 
 export interface Track {
@@ -7,14 +6,22 @@ export interface Track {
   artist: string;
   album: string;
   durationSec: number;
-  /** 与 web `PlayerStore.TRACKS` 同序：轮用三张 banner。 */
+  /** 与 web `TRACKS` 同序：线上 `/images/banner{n}_img.jpg`。 */
   coverSrc: string;
-  /** 本地音频（`data/音频/每日热门|每日精选|猜你喜欢` → `tools/sync_daily_*_audio.py`）。 */
+  /** 线上音频：`audio/classic` 或 `daily_*`，须部署到静态域。 */
   audioSrc?: string;
 }
 
-const B = [APP_IMAGES.banner1, APP_IMAGES.banner2, APP_IMAGES.banner3] as const;
-const tc = (i: number) => B[i % 3];
+function classicTrackCover(i: number): string {
+  const n = (i % 3) + 1;
+  return assetUrl(`/images/banner${n}_img.jpg`);
+}
+
+function classicTrackAudio(i: number): string {
+  const n = i + 1;
+  const pad = n < 10 ? `0${n}` : `${n}`;
+  return assetUrl(`/audio/classic/classic_${pad}.mp3`);
+}
 
 /** `data/图片/每日热门` → `tools/sync_daily_hot_covers.py`，与 `daily_hot_0n.mp3` 同序。 */
 export function dailyHotCoverPath(slot: 0 | 1 | 2 | 3): string {
@@ -36,11 +43,11 @@ export function dailyGuessCoverPath(slot: 0 | 1 | 2): string {
 
 /** 顺序与 `data/音频/每日热门` 排序后 `daily_hot_*.mp3` 一致；曲名「-」前，乐器「-」后。 */
 export const TRACKS: Track[] = [
-  { id: "t1", title: "高山流水", artist: "古筝演奏", album: "国风雅集", durationSec: 248, coverSrc: tc(0) },
-  { id: "t2", title: "广陵散", artist: "古琴独奏", album: "国风雅集", durationSec: 312, coverSrc: tc(1) },
-  { id: "t3", title: "二泉映月", artist: "二胡演奏", album: "民乐经典", durationSec: 270, coverSrc: tc(2) },
-  { id: "t4", title: "梅花三弄", artist: "笛子独奏", album: "民乐经典", durationSec: 226, coverSrc: tc(3) },
-  { id: "t5", title: "渔舟唱晚", artist: "古筝演奏", album: "国风雅集", durationSec: 295, coverSrc: tc(4) },
+  { id: "t1", title: "高山流水", artist: "古筝演奏", album: "国风雅集", durationSec: 248, coverSrc: classicTrackCover(0), audioSrc: classicTrackAudio(0) },
+  { id: "t2", title: "广陵散", artist: "古琴独奏", album: "国风雅集", durationSec: 312, coverSrc: classicTrackCover(1), audioSrc: classicTrackAudio(1) },
+  { id: "t3", title: "二泉映月", artist: "二胡演奏", album: "民乐经典", durationSec: 270, coverSrc: classicTrackCover(2), audioSrc: classicTrackAudio(2) },
+  { id: "t4", title: "梅花三弄", artist: "笛子独奏", album: "民乐经典", durationSec: 226, coverSrc: classicTrackCover(3), audioSrc: classicTrackAudio(3) },
+  { id: "t5", title: "渔舟唱晚", artist: "古筝演奏", album: "国风雅集", durationSec: 295, coverSrc: classicTrackCover(4), audioSrc: classicTrackAudio(4) },
   {
     id: "hot_t1",
     title: "哑女告状",
