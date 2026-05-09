@@ -3,6 +3,7 @@ import { ReactNode, Suspense, lazy } from "react";
 import AppShell from "./layout/AppShell";
 import DesktopShell from "./layout/desktop/DesktopShell";
 import { useIsDesktop } from "./hooks/useIsDesktop";
+import GlobalAudioSink from "./audio/GlobalAudioSink";
 
 const Splash = lazy(() => import("./pages/Splash"));
 const Login = lazy(() => import("./pages/Login"));
@@ -66,6 +67,7 @@ function ChromeSwitch({ children }: { children: ReactNode }) {
 export default function App() {
   return (
     <ChromeSwitch>
+      <GlobalAudioSink />
       <Suspense fallback={<PageFallback />}>
         <Routes>
           <Route path="/" element={<Navigate to="/splash" replace />} />

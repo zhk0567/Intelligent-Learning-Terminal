@@ -1,7 +1,6 @@
 package com.guyunxinchuan.heritage.music
 
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -27,7 +26,6 @@ class ShopActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var skeletonOverlay: FrameLayout
     private lateinit var cartBadge: TextView
-    private var categoryContainer: LinearLayout? = null
     private lateinit var feedAdapter: ShopFeedAdapter
     private var bannerPager: ViewPager2? = null
     private var bannerDots: LinearLayout? = null
@@ -38,9 +36,6 @@ class ShopActivity : AppCompatActivity() {
     private var sortByHotSales: Boolean = false
     private var loadedCount: Int = PAGE_SIZE
     private var isLoadingMore: Boolean = false
-    private val chipViews = linkedMapOf<String, TextView>()
-
-    private var categoryHeaderAttachAttempt = 0
     private var isBannerPaused = false
     private val bannerAdvanceRunnable = object : Runnable {
         override fun run() {
@@ -285,32 +280,6 @@ class ShopActivity : AppCompatActivity() {
         selectCategory(selectedCategoryId)
     }
 
-    private fun buildCategoryChips() {
-        val categoryContainer = categoryContainer ?: return
-        categoryContainer.removeAllViews()
-        chipViews.clear()
-        val padV = (12 * resources.displayMetrics.density).toInt()
-        val padH = (20 * resources.displayMetrics.density).toInt()
-        val gap = (10 * resources.displayMetrics.density).toInt()
-
-        ShopCatalog.categoryTabs.forEachIndexed { index, tab ->
-            val tv = TextView(this).apply {
-                text = tab.label
-                setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-                setPadding(padH, padV, padH, padV)
-                setOnClickListener {
-                    sortByHotSales = false
-                    selectCategory(tab.id)
-                }
-            }
-            val lp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            if (index > 0) lp.marginStart = gap
-            categoryContainer.addView(tv, lp)
-            chipViews[tab.id] = tv
-        }
-        applyChipStyles()
-    }
-
     private fun selectCategory(id: String) {
         selectedCategoryId = id
         val cap = ShopCatalog.filterByCategory(ShopCatalog.allProducts, selectedCategoryId).let { list ->
@@ -319,24 +288,8 @@ class ShopActivity : AppCompatActivity() {
         }
         loadedCount = PAGE_SIZE.coerceAtMost(cap)
         isLoadingMore = false
-        applyChipStyles()
         recomputeListAndSubmit()
         recyclerView.scrollToPosition(0)
-    }
-
-    private fun applyChipStyles() {
-        chipViews.forEach { (id, tv) ->
-            val selected = id == selectedCategoryId
-            tv.setBackgroundResource(
-                if (selected) R.drawable.shop_category_chip_selected else R.drawable.shop_category_chip_normal
-            )
-            tv.setTextColor(
-                if (selected) 0xFFFFFFFF.toInt()
-                else ContextCompat.getColor(this@ShopActivity, R.color.mall_meta_readable)
-            )
-            tv.typeface = if (selected) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
-            tv.elevation = if (selected) 4f else 0f
-        }
     }
 
     private fun fullFilteredList(): List<Product> {
@@ -348,7 +301,6 @@ class ShopActivity : AppCompatActivity() {
     }
 
     private fun recomputeListAndSubmit() {
-        categoryHeaderAttachAttempt = 0
         val full = fullFilteredList()
         val visible = full.take(loadedCount.coerceAtMost(full.size))
         val hasMore = visible.size < full.size
@@ -362,25 +314,6 @@ class ShopActivity : AppCompatActivity() {
         feedAdapter.submit(visible, footer)
         recyclerView.post {
             bindShopBannerFromListHeader()
-            recyclerView.post { ensureCategoryChipsInHeader() }
-        }
-    }
-
-    private fun ensureCategoryChipsInHeader() {
-        val vh = recyclerView.findViewHolderForAdapterPosition(0) as? ShopFeedAdapter.HeaderVH
-        if (vh == null) {
-            if (categoryHeaderAttachAttempt++ < 12) {
-                recyclerView.postDelayed({ ensureCategoryChipsInHeader() }, 40)
-            }
-            return
-        }
-        categoryHeaderAttachAttempt = 0
-        val container = vh.categoryChipContainer
-        categoryContainer = container
-        if (container.childCount == 0) {
-            buildCategoryChips()
-        } else {
-            applyChipStyles()
         }
     }
 

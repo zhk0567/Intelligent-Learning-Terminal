@@ -9,28 +9,6 @@
     android:paddingEnd="14dp"
     android:paddingTop="10dp">
 
-    <!-- 分类筛选：随列表上滑离开视口，不钉在标题栏下 -->
-    <HorizontalScrollView
-        android:id="@+id/categoryScroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:clipToPadding="false"
-        android:fillViewport="false"
-        android:overScrollMode="never"
-        android:paddingStart="2dp"
-        android:paddingEnd="2dp"
-        android:scrollbars="none">
-
-        <LinearLayout
-            android:id="@+id/categoryChipContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:minHeight="46dp"
-            android:orientation="horizontal" />
-    </HorizontalScrollView>
-
     <!-- 轮播：随列表滚动，不固定在屏幕上方 -->
     <FrameLayout
         android:layout_width="match_parent"

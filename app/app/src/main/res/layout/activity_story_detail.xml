@@ -178,42 +178,26 @@
                         android:id="@+id/authorInfoContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="18dp"
+                        android:layout_marginBottom="10dp"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <ImageView
                             android:layout_width="14dp"
                             android:layout_height="14dp"
-                            android:layout_marginEnd="4dp"
+                            android:layout_marginEnd="6dp"
                             android:contentDescription="@null"
                             android:src="@drawable/ic_author"
                             app:tint="@color/text_secondary" />
 
                         <TextView
                             android:id="@+id/storyAuthorTextView"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
                             android:textColor="@color/text_secondary"
                             android:textSize="14sp"
                             tools:text="古筝艺术家" />
-
-                        <ImageView
-                            android:layout_width="14dp"
-                            android:layout_height="14dp"
-                            android:layout_marginEnd="4dp"
-                            android:contentDescription="@null"
-                            android:src="@drawable/ic_calendar"
-                            app:tint="@color/text_secondary" />
-
-                        <TextView
-                            android:id="@+id/storyTimeTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/text_secondary"
-                            android:textSize="14sp"
-                            tools:text="2024-04-22" />
                     </LinearLayout>
 
                     <View

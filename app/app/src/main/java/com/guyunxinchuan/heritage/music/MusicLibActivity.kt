@@ -665,9 +665,8 @@ class MusicLibActivity : AppCompatActivity() {
                 bannerImages[idx],
                 CoverPreset.Banner,
             )
-            holder.itemView.setOnClickListener {
-                startActivity(Intent(this@MusicLibActivity, DetailActivity::class.java))
-            }
+            holder.itemView.setOnClickListener(null)
+            holder.itemView.isClickable = false
         }
 
         override fun onViewRecycled(holder: BannerViewHolder) {

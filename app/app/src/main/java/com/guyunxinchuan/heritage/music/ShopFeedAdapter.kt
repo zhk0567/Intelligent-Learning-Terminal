@@ -96,7 +96,6 @@ class ShopFeedAdapter(
     }
 
     class HeaderVH(view: View) : RecyclerView.ViewHolder(view) {
-        val categoryChipContainer: LinearLayout = view.findViewById(R.id.categoryChipContainer)
         val bannerPager: ViewPager2 = view.findViewById(R.id.shopHeaderBannerPager)
         val bannerDots: LinearLayout = view.findViewById(R.id.shopHeaderBannerDots)
         val hotSeeAll: View = view.findViewById(R.id.shopHotSeeAll)

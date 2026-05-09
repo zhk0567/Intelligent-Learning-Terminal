@@ -27,6 +27,8 @@ object PlayerPlaybackBridge {
             PlayerSyncState.updatePlayingState(true)
             return
         }
+        // 先进入播放态，避免 MediaPlayer.prepareAsync 期间主按钮长时间停在「播放」图标。
+        PlayerSyncState.updatePlayingState(true)
         val idx = PlayerSyncState.currentTrackIndex
         val startMs = PlayerSyncState.currentPositionMs
         PlayerAudioEngine.playUrl(

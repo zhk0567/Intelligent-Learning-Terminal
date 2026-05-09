@@ -97,7 +97,6 @@ class StoryDetailActivity : AppCompatActivity() {
         adjustHeroHeight(p)
         binding.storyTitleTextView.text = p.title.ifBlank { getString(R.string.story_detail_toolbar_title) }
         binding.storyAuthorTextView.text = p.author.ifBlank { "—" }
-        binding.storyTimeTextView.text = p.publishedAt.ifBlank { "—" }
         binding.storyContentTextView.text =
             p.body.ifBlank { getString(R.string.story_detail_empty_content) }
         binding.coverImageView.loadCoverRemoteOrDrawable(p.coverRemoteUrl, p.coverResId, CoverPreset.Hero)
@@ -166,7 +165,6 @@ class StoryDetailActivity : AppCompatActivity() {
         val rows = listOf(
             R.string.story_meta_label_category to p.category,
             R.string.story_meta_label_author to p.author,
-            R.string.story_meta_label_published to p.publishedAt,
             R.string.story_meta_label_id to p.id,
         ).filter { it.second.isNotBlank() }
 

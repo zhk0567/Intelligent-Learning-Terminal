@@ -56,6 +56,10 @@ object PlayerSyncState {
             currentPositionMs = PlayerAudioEngine.currentPositionMs().coerceAtMost(trackDurationMs)
             return
         }
+        // 网络曲在 prepareAsync 完成前不要按本地时钟推进进度，否则会与真实音频错位。
+        if (!currentTrack().audioRemoteUrl.isNullOrBlank()) {
+            return
+        }
         val now = SystemClock.elapsedRealtime()
         val delta = (now - lastTickElapsedMs).toInt().coerceAtLeast(0)
         lastTickElapsedMs = now

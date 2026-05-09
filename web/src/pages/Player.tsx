@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
@@ -16,7 +16,7 @@ import {
 } from "../components/Icon";
 import Cover from "../components/Cover";
 import Sheet from "../components/Sheet";
-import { assetUrl } from "../lib/assetUrl";
+import { globalPlayerAudio } from "../lib/globalPlayerAudio";
 import { TRACKS, usePlayerStore } from "../store/playerStore";
 import { toast } from "../components/Toast";
 
@@ -27,55 +27,12 @@ function fmt(s: number) {
 }
 
 export default function Player() {
-  const { currentIndex, isPlaying, positionSec, toggle, next, prev, seek, setIndex, tick } =
+  const { currentIndex, isPlaying, positionSec, toggle, next, prev, seek, setIndex } =
     usePlayerStore();
   const t = TRACKS[currentIndex];
   const [favList, setFavList] = useState<string[]>([]);
   const [listOpen, setListOpen] = useState(false);
   const navigate = useNavigate();
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    if (t.audioSrc) return;
-    if (!isPlaying) return;
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [isPlaying, tick, t.audioSrc]);
-
-  useEffect(() => {
-    const tr = TRACKS[currentIndex];
-    if (!tr.audioSrc) {
-      const prev = audioRef.current;
-      if (prev) {
-        prev.pause();
-        prev.src = "";
-        audioRef.current = null;
-      }
-      return;
-    }
-    const prev = audioRef.current;
-    prev?.pause();
-    const a = new Audio(assetUrl(tr.audioSrc));
-    audioRef.current = a;
-    const onTime = () => usePlayerStore.getState().setPositionSec(Math.floor(a.currentTime));
-    const onEnded = () => usePlayerStore.getState().next();
-    a.addEventListener("timeupdate", onTime);
-    a.addEventListener("ended", onEnded);
-    return () => {
-      a.removeEventListener("timeupdate", onTime);
-      a.removeEventListener("ended", onEnded);
-      a.pause();
-      a.src = "";
-    };
-  }, [currentIndex]);
-
-  useEffect(() => {
-    const a = audioRef.current;
-    const tr = TRACKS[currentIndex];
-    if (!a || !tr.audioSrc) return;
-    if (isPlaying) void a.play().catch(() => {});
-    else a.pause();
-  }, [isPlaying, currentIndex]);
 
   const fav = favList.includes(t.id);
 
@@ -125,7 +82,7 @@ export default function Player() {
             onChange={(e) => {
               const v = Number(e.target.value);
               seek(v);
-              const el = audioRef.current;
+              const el = globalPlayerAudio.current;
               if (el && t.audioSrc) el.currentTime = v;
             }}
             className="w-full h-1"
