@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     允许在开发期通过 HTTP 访问本机 Vite Dev；并允许访问 ECS 公网 39.106.117.118 上的 http 静态资源。
-    换公网 IP 时同步改下方 <domain>39.106.117.118</domain>。上线 HTTPS 域名后可删该 IP 行。
+    换公网 IP 时同步改下方 <domain>39.106.117.118</domain>。详见 docs/DEPLOY.md。
 -->
 <network-security-config>
     <base-config cleartextTrafficPermitted="false" />
