@@ -19,7 +19,8 @@
 - `web/.env.production`：`VITE_STATIC_ORIGIN=http://39.106.117.118`
 - `app/gradle.properties`：`STATIC_ASSET_ORIGIN=http://39.106.117.118`
 - `app/app/src/main/res/xml/network_security_config.xml`：已放行 `39.106.117.118` 明文 HTTP
-- `miniprogram/config/staticOrigin.ts`：`STATIC_ORIGIN=""`（无域名时小程序正式版走包内资源）
+- `miniprogram/config/staticOrigin.ts`：默认与 Web/Android 同源 **`http://39.106.117.118`**（图片/音频/视频经 `assetUrl` 走服务器）；**正式版**须换 **HTTPS 域名** 并在微信公众平台配置 **downloadFile / request** 等合法域名；仅本地调试且未部署静态站时可临时改为 `""` 走包内资源。
+- `miniprogram/project.config.json`：`packOptions.ignore` 含 **`audio`、`images` 文件夹**（上传/预览时不打进代码包，避免代码质量主包/分包「图片和音频」体积未通过）；此时**必须**保证静态站已部署对应 `web/public` 资源，且模拟器/真机能访问 `STATIC_ORIGIN`。
 - `deploy/nginx-git-server.conf`：`root` → `/opt/intelligent-learning-terminal/web/dist`
 
 **换公网 IP：** 改上述三处与 `network_security_config.xml` 内 `<domain>`，`npm run build` 后 `git push`。

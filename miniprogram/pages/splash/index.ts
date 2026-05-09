@@ -9,7 +9,7 @@ Page({
   onLoad() {
     applyTheme(this);
     setTimeout(() => {
-      wx.redirectTo({ url: "/pages/login/index" });
+      wx.redirectTo({ url: "/pkg/login/index" });
     }, 1600);
   },
   onShow() {

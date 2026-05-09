@@ -1,4 +1,8 @@
-"""压缩 miniprogram/images，降低主包体积（需 < 2MB）。"""
+"""压缩 miniprogram/images（供本地素材或 git 提交前瘦身）。
+
+上传预览包默认已通过 project.config.json 忽略 images/audio 目录、改走静态站；
+若将 STATIC_ORIGIN 置空依赖包内图，仍需控制单图体积。
+"""
 from __future__ import annotations
 
 import io

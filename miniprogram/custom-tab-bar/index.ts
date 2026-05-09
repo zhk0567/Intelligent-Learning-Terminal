@@ -50,7 +50,7 @@ Component({
       });
     },
     goPlayer() {
-      wx.navigateTo({ url: "/pages/player/index" });
+      wx.navigateTo({ url: "/pkg/player/index" });
     },
     onToggle() {
       playerStore.actions.toggle();

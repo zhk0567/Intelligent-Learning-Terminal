@@ -55,12 +55,13 @@ export default function MusicLib() {
       </div>
 
       {/* Banner */}
-      <div className="mt-3 md:mt-0 w-full max-h-[200px] sm:max-h-[260px] md:max-h-[280px] overflow-hidden rounded-2xl border border-ancient-bronze/40 dark:border-ancient-bronze/30">
+      <div className="mt-3 md:mt-0 w-full overflow-hidden rounded-2xl border border-ancient-bronze/40 dark:border-ancient-bronze/30">
         <Cover
           seed={HOT_BANNERS[bannerIdx].id}
           src={HOT_BANNERS[bannerIdx].imageSrc}
           alt={HOT_BANNERS[bannerIdx].title}
-          aspect="aspect-[16/9] md:aspect-[16/5]"
+          aspect="aspect-[16/9]"
+          imgFit="contain"
           rounded="rounded-none"
           className="w-full border-0"
           ornate={false}

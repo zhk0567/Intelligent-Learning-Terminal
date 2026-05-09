@@ -15,16 +15,16 @@ Page({
     }
   },
   goPublish() {
-    wx.navigateTo({ url: "/pages/publish-work/index" });
+    wx.navigateTo({ url: "/pkg/publish-work/index" });
   },
   goChallenge() {
-    wx.navigateTo({ url: "/pages/challenge/index" });
+    wx.navigateTo({ url: "/pkg/challenge/index" });
   },
   goCreator() {
-    wx.navigateTo({ url: "/pages/creator-profile/index?id=u1" });
+    wx.navigateTo({ url: "/pkg/creator-profile/index?id=u1" });
   },
   goWork(e: any) {
     const id = e.currentTarget.dataset.id;
-    wx.navigateTo({ url: `/pages/work-detail/index?id=${id}` });
+    wx.navigateTo({ url: `/pkg/work-detail/index?id=${id}` });
   },
 });

@@ -22,10 +22,10 @@ Page({
   onUnload() {
     this._unsubSession?.();
   },
-  goSetting() { wx.navigateTo({ url: "/pages/setting/index" }); },
-  goEdit() { wx.navigateTo({ url: "/pages/edit-profile/index" }); },
-  goFav() { wx.navigateTo({ url: "/pages/favorite/index" }); },
-  goHistory() { wx.navigateTo({ url: "/pages/history/index" }); },
-  goWorks() { wx.navigateTo({ url: "/pages/my-works/index" }); },
-  goLearning() { wx.navigateTo({ url: "/pages/my-learning/index" }); },
+  goSetting() { wx.navigateTo({ url: "/pkg/setting/index" }); },
+  goEdit() { wx.navigateTo({ url: "/pkg/edit-profile/index" }); },
+  goFav() { wx.navigateTo({ url: "/pkg/favorite/index" }); },
+  goHistory() { wx.navigateTo({ url: "/pkg/history/index" }); },
+  goWorks() { wx.navigateTo({ url: "/pkg/my-works/index" }); },
+  goLearning() { wx.navigateTo({ url: "/pkg/my-learning/index" }); },
 });

@@ -28,11 +28,11 @@ Page({
     this.setData({ bannerIdx: e.detail.current });
   },
   goSearch() {
-    wx.navigateTo({ url: "/pages/search/index" });
+    wx.navigateTo({ url: "/pkg/search/index" });
   },
   goDetail(e: any) {
     const cat = e.currentTarget.dataset.cat;
-    wx.navigateTo({ url: `/pages/detail/index?id=${cat}` });
+    wx.navigateTo({ url: `/pkg/detail/index?id=${cat}` });
   },
   playAlbum(e: any) {
     const albumId = e.currentTarget.dataset.id as string;
@@ -40,10 +40,10 @@ Page({
     const firstId = album?.trackIds[0];
     const startIdx = firstId != null ? TRACKS.findIndex((t) => t.id === firstId) : 0;
     playerStore.actions.setIndex(startIdx < 0 ? 0 : startIdx);
-    wx.navigateTo({ url: "/pages/player/index" });
+    wx.navigateTo({ url: "/pkg/player/index" });
   },
   openLesson(e: any) {
     const id = e.currentTarget.dataset.id as string;
-    wx.navigateTo({ url: `/pages/lesson/index?id=${id}` });
+    wx.navigateTo({ url: `/pkg/lesson/index?id=${id}` });
   },
 });

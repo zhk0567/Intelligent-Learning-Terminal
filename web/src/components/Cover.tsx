@@ -15,6 +15,8 @@ interface Props {
   style?: CSSProperties;
   /** 是否在右下角叠回纹角章。默认 true，小尺寸场景可关掉。 */
   ornate?: boolean;
+  /** 有图时：`cover` 铺满裁切；`contain` 完整显示（轮播等横图易裁切时用）。 */
+  imgFit?: "cover" | "contain";
   /** 与源封面图一致的像素宽；与 coverHeight 同时传入时容器按该比例占位，避免裁成 16:9 / 正方形 */
   coverWidth?: number;
   coverHeight?: number;
@@ -47,6 +49,7 @@ export default function Cover({
   aspect = "aspect-square",
   style,
   ornate = true,
+  imgFit = "cover",
   coverWidth,
   coverHeight,
 }: Props) {
@@ -75,9 +78,10 @@ export default function Cover({
     ? "block"
     : "flex min-h-0 items-center justify-center";
 
+  const fitContain = hasImg && imgFit === "contain";
   return (
     <div
-      className={`${boxAspectClass} ${rounded} relative min-w-0 overflow-hidden ${layout} border border-ancient-bronze/40 dark:border-ancient-bronze/30 ${className}`}
+      className={`${boxAspectClass} ${rounded} relative min-w-0 overflow-hidden ${fitContain ? "bg-bg-card" : ""} ${layout} border border-ancient-bronze/40 dark:border-ancient-bronze/30 ${className}`}
       style={
         hasImg
           ? { ...boxAspectStyle, ...style }
@@ -88,7 +92,7 @@ export default function Cover({
         <img
           src={imgSrc}
           alt={label}
-          className="absolute inset-0 z-0 h-full w-full object-cover"
+          className={`absolute inset-0 z-0 h-full w-full ${imgFit === "contain" ? "object-contain" : "object-cover"}`}
           loading="lazy"
         />
       )}

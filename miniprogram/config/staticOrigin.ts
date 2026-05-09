@@ -1,7 +1,8 @@
 /**
- * 与 ECS/Nginx 上静态目录一致的服务根地址，勿尾斜杠。
- * 例：https://assets.example.com（须在微信后台配置合法域名）。
- * 仅公网 IP、无域名：微信正式版无法把 http(s)://IP 配进合法域名，请保持 `""`，资源走包内；
- * 真机调试用开发者工具「不校验合法域名」仅开发有效。
+ * 与 ECS 静态站、Web `VITE_STATIC_ORIGIN`、Android `STATIC_ASSET_ORIGIN` 同源（勿尾斜杠）。
+ * 图 / 音频 / 视频一律经此域名拉取，**不要**在小程序包内放大图或 mp3/mp4。
+ *
+ * - 换公网 IP / 上 HTTPS：改本常量，并在微信公众平台配置 **downloadFile / request 合法域名**。
+ * - `project.config.json` 的 `packOptions.ignore` 已排除本仓库内 `miniprogram/audio`、`miniprogram/images`：**上传/预览包不含这些文件**，须依赖本常量指向的静态站；若改为 `""` 且无本地拷贝，图音会加载失败。
  */
-export const STATIC_ORIGIN = "";
+export const STATIC_ORIGIN = "http://39.106.117.118";

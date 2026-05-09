@@ -64,14 +64,14 @@ Page({
     this.recompute();
   },
   goSearch() {
-    wx.navigateTo({ url: "/pages/search/index" });
+    wx.navigateTo({ url: "/pkg/search/index" });
   },
   goCart() {
-    wx.navigateTo({ url: "/pages/cart/index" });
+    wx.navigateTo({ url: "/pkg/cart/index" });
   },
   goDetail(e: any) {
     const id = e.currentTarget.dataset.id;
-    wx.navigateTo({ url: `/pages/shop-detail/index?id=${id}` });
+    wx.navigateTo({ url: `/pkg/shop-detail/index?id=${id}` });
   },
   addCart() {
     cartStore.actions.add(1);

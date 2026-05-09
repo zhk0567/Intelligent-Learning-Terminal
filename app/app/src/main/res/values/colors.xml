@@ -193,9 +193,6 @@
     <color name="shop_zone_border_gold">#33D4AF37</color>
     <color name="shop_sales_pill_bg">#F1F5F9</color>
     <color name="shop_rating_pill_bg">#E8EDF4</color>
-    <color name="story_hero_scrim_top">#80F8FAFC</color>
-    <color name="story_hero_blend_mid">#CCFFFFFF</color>
-    <color name="story_hero_blend_end">#FFFFFFFF</color>
     <color name="pill_teal_soft_bg">#1A2EC4B6</color>
     <color name="tab_selected_fill_soft">#1A3A86FF</color>
     <color name="vip_gradient_start">#E6D5A8</color>

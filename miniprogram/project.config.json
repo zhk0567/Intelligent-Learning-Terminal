@@ -15,6 +15,14 @@
         "type": "folder"
       },
       {
+        "type": "folder",
+        "value": "audio"
+      },
+      {
+        "type": "folder",
+        "value": "images"
+      },
+      {
         "value": "start.py",
         "type": "file"
       },

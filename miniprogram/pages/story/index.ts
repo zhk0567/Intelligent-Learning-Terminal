@@ -17,13 +17,13 @@ Page({
     }
   },
   goList() {
-    wx.navigateTo({ url: "/pages/story-list/index" });
+    wx.navigateTo({ url: "/pkg/story-list/index" });
   },
   goSearch() {
-    wx.navigateTo({ url: "/pages/search/index" });
+    wx.navigateTo({ url: "/pkg/search/index" });
   },
   goDetail(e: any) {
     const id = e.currentTarget.dataset.id;
-    wx.navigateTo({ url: `/pages/story-detail/index?id=${id}` });
+    wx.navigateTo({ url: `/pkg/story-detail/index?id=${id}` });
   },
 });
