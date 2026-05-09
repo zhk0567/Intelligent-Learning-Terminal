@@ -8,7 +8,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import coil.load
 import com.google.android.material.imageview.ShapeableImageView
 
 class ShopFeedAdapter(
@@ -91,6 +90,11 @@ class ShopFeedAdapter(
         }
     }
 
+    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+        if (holder is ProductVH) holder.recycleImage()
+        super.onViewRecycled(holder)
+    }
+
     class HeaderVH(view: View) : RecyclerView.ViewHolder(view) {
         val categoryChipContainer: LinearLayout = view.findViewById(R.id.categoryChipContainer)
         val bannerPager: ViewPager2 = view.findViewById(R.id.shopHeaderBannerPager)
@@ -106,22 +110,21 @@ class ShopFeedAdapter(
         private val newTag: TextView = view.findViewById(R.id.shopProductNewTag)
         private val addCart: ImageButton = view.findViewById(R.id.shopAddCartButton)
 
+        fun recycleImage() {
+            image.cancelCoverLoad()
+        }
+
         fun bind(
             p: Product,
             onProductClick: (Product) -> Unit,
             onAddToCart: (Product) -> Unit,
         ) {
-            val resId = if (p.imageResId != 0) p.imageResId else R.drawable.music_cover_placeholder
-            val dm = view.resources.displayMetrics
-            val wPx = ((view.width.takeIf { it > 0 } ?: (dm.widthPixels / 2)) * 1.1f).toInt().coerceIn(240, 720)
-            val hPx = (176 * dm.density).toInt().coerceIn(200, 600)
-            image.load(resId) {
-                size(wPx, hPx)
-                crossfade(false)
-                allowRgb565(true)
-                placeholder(R.drawable.music_cover_placeholder)
-                error(R.drawable.music_cover_placeholder)
-            }
+            val fallback = if (p.imageResId != 0) p.imageResId else R.drawable.music_cover_placeholder
+            image.loadCoverRemoteOrDrawable(
+                StaticRemoteAssets.productListCoverRemote(p),
+                fallback,
+                CoverPreset.Card,
+            )
             name.text = p.name
             price.text = "¥${String.format("%.2f", p.price)}"
             meta.text = "${String.format("%.1f", p.rating)}分 · ${p.salesCount}人收货"

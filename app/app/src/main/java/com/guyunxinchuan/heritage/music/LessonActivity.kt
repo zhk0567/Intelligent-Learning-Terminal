@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.MediaController
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -47,6 +48,15 @@ class LessonActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.lesson_tag).text = lesson.desc
         findViewById<TextView>(R.id.lesson_long_desc).text = lesson.longDesc
 
+        val poster = findViewById<ImageView>(R.id.lesson_poster)
+        val coverIdx = BasicLessons.indexOf(lesson)
+        poster.loadCoverRemoteOrDrawable(
+            StaticRemoteAssets.basicLessonCover(coverIdx),
+            lesson.coverResId,
+            CoverPreset.Banner,
+        )
+        poster.visibility = View.VISIBLE
+
         videoView = findViewById(R.id.lesson_video)
         loading = findViewById(R.id.lesson_loading)
         val controller = MediaController(this).apply { setAnchorView(videoView) }
@@ -54,12 +64,14 @@ class LessonActivity : AppCompatActivity() {
         videoView.setVideoURI(Uri.parse(BasicLessons.videoUrl(lesson)))
         videoView.setOnPreparedListener { mp: MediaPlayer ->
             loading.visibility = View.GONE
+            poster.visibility = View.GONE
             mp.isLooping = false
             if (savedPositionMs > 0) videoView.seekTo(savedPositionMs)
             videoView.start()
         }
         videoView.setOnErrorListener { _, _, _ ->
             loading.visibility = View.GONE
+            poster.visibility = View.VISIBLE
             Toast.makeText(
                 this,
                 "视频加载失败，请确认 ${BasicLessons.currentVideoBase()} 可达且文件已部署",

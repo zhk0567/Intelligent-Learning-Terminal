@@ -326,12 +326,25 @@ class MusicLibActivity : AppCompatActivity() {
         setMiniCoverLoading(false, coverLoadingRing)
 
         prevButton.setOnClickListenerThrottled {
+            val wasPlaying = PlayerSyncState.isPlaying
             PlayerSyncState.previousTrack()
+            PlayerPlaybackBridge.onTrackChanged(this, wasPlaying) {
+                refreshMiniPlayerFromSync()
+                if (PlayerSyncState.isPlaying) {
+                    startMiniPlayHalo()
+                    startMiniProgressUpdater(playPauseButton)
+                }
+            }
             refreshMiniPlayerFromSync()
             UiFeedback.toast(this, "上一首")
         }
         playPauseButton.setOnClickListener {
-            PlayerSyncState.updatePlayingState(!PlayerSyncState.isPlaying)
+            PlayerPlaybackBridge.togglePlayPause(this) {
+                playPauseButton.setImageResource(R.drawable.ic_mini_pause)
+                startMiniPlayHalo()
+                startMiniProgressUpdater(playPauseButton)
+                refreshMiniPlayerFromSync()
+            }
             playPauseButton.setImageResource(
                 if (PlayerSyncState.isPlaying) R.drawable.ic_mini_pause
                 else R.drawable.ic_mini_play
@@ -343,9 +356,18 @@ class MusicLibActivity : AppCompatActivity() {
                 stopMiniPlayHalo()
                 stopMiniProgressUpdater()
             }
+            refreshMiniPlayerFromSync()
         }
         nextButton.setOnClickListenerThrottled {
+            val wasPlaying = PlayerSyncState.isPlaying
             PlayerSyncState.nextTrack(shuffle = false)
+            PlayerPlaybackBridge.onTrackChanged(this, wasPlaying) {
+                refreshMiniPlayerFromSync()
+                if (PlayerSyncState.isPlaying) {
+                    startMiniPlayHalo()
+                    startMiniProgressUpdater(playPauseButton)
+                }
+            }
             refreshMiniPlayerFromSync()
             UiFeedback.toast(this, "下一首")
         }
@@ -456,7 +478,7 @@ class MusicLibActivity : AppCompatActivity() {
         val track = PlayerSyncState.currentTrack()
         miniTitleText?.text = track.title
         miniArtistText?.text = track.artist
-        miniCoverImage?.loadCover(track.coverResId, CoverPreset.Thumb)
+        miniCoverImage?.loadCoverRemoteOrDrawable(track.coverRemoteUrl, track.coverResId, CoverPreset.Thumb)
         miniPlayPauseButton?.setImageResource(
             if (PlayerSyncState.isPlaying) R.drawable.ic_mini_pause else R.drawable.ic_mini_play
         )
@@ -478,7 +500,11 @@ class MusicLibActivity : AppCompatActivity() {
         )
         cells.forEach { c ->
             val lesson = BasicLessons.ALL.getOrNull(c.lessonIndex) ?: return@forEach
-            findViewById<ImageView>(c.coverId).setImageResource(lesson.coverResId)
+            findViewById<ImageView>(c.coverId).loadCoverRemoteOrDrawable(
+                StaticRemoteAssets.basicLessonCover(c.lessonIndex),
+                lesson.coverResId,
+                CoverPreset.Card,
+            )
             findViewById<TextView>(c.titleId).text = lesson.title
             findViewById<TextView>(c.descId).text = "${lesson.artist} · ${lesson.desc}"
             findViewById<LinearLayout>(c.rootId).setOnClickListener {
@@ -609,7 +635,11 @@ class MusicLibActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: BannerViewHolder, position: Int) {
             val idx = (position % bannerImages.size + bannerImages.size) % bannerImages.size
-            holder.imageView.loadCover(bannerImages[idx], CoverPreset.Banner)
+            holder.imageView.loadCoverRemoteOrDrawable(
+                StaticRemoteAssets.homeSwiper(idx),
+                bannerImages[idx],
+                CoverPreset.Banner,
+            )
             holder.itemView.setOnClickListener {
                 startActivity(Intent(this@MusicLibActivity, DetailActivity::class.java))
             }

@@ -350,6 +350,10 @@ object ShopCatalog {
         ),
     )
 
+    /** 与 `wc_cover_*` 顺序对齐的列表下标（找不到时 0）。 */
+    fun catalogIndex(product: Product): Int =
+        allProducts.indexOfFirst { it.id == product.id }.takeIf { it >= 0 } ?: 0
+
     fun filterByCategory(products: List<Product>, categoryId: String): List<Product> {
         if (categoryId == ShopCategoryIds.ALL) return products
         return products.filter { it.shopCategoryId == categoryId }

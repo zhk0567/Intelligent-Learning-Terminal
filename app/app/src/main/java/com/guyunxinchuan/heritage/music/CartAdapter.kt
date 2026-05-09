@@ -50,11 +50,16 @@ class CartAdapter(
         holder.productPrice.text = "¥${String.format("%.2f", product.price)}"
         holder.productTagLine.text = "${product.category} · 演示库存 · 不支持拆单合单"
 
-        if (product.imageResId != 0) {
-            holder.productImage.loadCover(product.imageResId, CoverPreset.Thumb)
+        val fallback = if (product.imageResId != 0) {
+            product.imageResId
         } else {
-            holder.productImage.loadCover(R.drawable.music_cover_placeholder, CoverPreset.Thumb)
+            R.drawable.music_cover_placeholder
         }
+        holder.productImage.loadCoverRemoteOrDrawable(
+            StaticRemoteAssets.productListCoverRemote(product),
+            fallback,
+            CoverPreset.Thumb,
+        )
 
         holder.selectCheckBox.setOnCheckedChangeListener(null)
         holder.selectCheckBox.isChecked = cartItem.selected

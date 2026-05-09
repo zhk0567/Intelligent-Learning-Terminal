@@ -64,11 +64,20 @@ class StoryAdapter(
         when {
             story.imageResId != -1 -> {
                 holder.image.scaleType = ImageView.ScaleType.CENTER_CROP
-                holder.image.loadCover(story.imageResId, CoverPreset.Card)
+                holder.image.loadCoverRemoteOrDrawable(
+                    StaticRemoteAssets.remoteBannerMatchingLocal(story.imageResId),
+                    story.imageResId,
+                    CoverPreset.Card,
+                )
             }
-            story.coverResId != -1 -> {
+            story.coverResId != -1 || !story.coverRemoteUrl.isNullOrBlank() -> {
                 holder.image.scaleType = ImageView.ScaleType.CENTER_CROP
-                holder.image.loadCover(story.coverResId, CoverPreset.Card)
+                val fallback = if (story.coverResId != -1) {
+                    story.coverResId
+                } else {
+                    R.drawable.music_cover_placeholder
+                }
+                holder.image.loadCoverRemoteOrDrawable(story.coverRemoteUrl, fallback, CoverPreset.Card)
             }
             else -> {
                 holder.image.cancelCoverLoad()

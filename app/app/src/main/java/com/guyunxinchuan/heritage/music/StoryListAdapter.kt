@@ -48,7 +48,7 @@ class StoryListAdapter(
                     }
                 }
             }
-            binding.coverImageView.loadCover(story.coverResId, CoverPreset.Card)
+            binding.coverImageView.loadCoverRemoteOrDrawable(story.coverRemoteUrl, story.coverResId, CoverPreset.Card)
 
             binding.root.setOnClickListener {
                 onActionClick(story, Action.VIEW_DETAIL)

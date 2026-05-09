@@ -38,6 +38,37 @@ class FavoriteActivity : AppCompatActivity() {
         setupBatchActions()
     }
 
+    /** 与正文目录一致：取前两篇，封面走 `/images/story/{key}.jpg`。 */
+    private fun buildFavoriteStories(): MutableList<Story> {
+        val tiles = listOf(R.color.story_mock_tile_1, R.color.story_mock_tile_2)
+        return StoriesData.ALL.take(2).mapIndexed { i, e ->
+            val hw = if (e.coverWidth > 0 && e.coverHeight > 0) {
+                e.coverHeight.toFloat() / e.coverWidth.toFloat()
+            } else {
+                9f / 16f
+            }
+            Story(
+                id = e.id,
+                title = e.title,
+                author = e.author,
+                category = e.category,
+                placeholderColorRes = tiles[i % tiles.size],
+                aspectRatio = hw,
+                imageResId = -1,
+                content = e.excerpt,
+                publishTime = e.publishTime,
+                coverWidth = e.coverWidth,
+                coverHeight = e.coverHeight,
+                coverResId = e.coverResId,
+                coverRemoteUrl = StaticRemoteAssets.storyCover(e.key),
+                likeCount = e.likeCount,
+                commentCount = e.commentCount,
+                readCount = e.readCount,
+                tags = e.tags,
+            )
+        }.toMutableList()
+    }
+
     private fun initFavoriteLists() {
         favoriteMusics = mutableListOf(
             Product(
@@ -49,6 +80,7 @@ class FavoriteActivity : AppCompatActivity() {
                 "",
                 getString(R.string.fav_cat_guzheng),
                 listOf(getString(R.string.fav_tag_mingqu), getString(R.string.fav_tag_chuantong)),
+                imageResId = R.drawable.banner1_img,
             ),
             Product(
                 "2",
@@ -59,38 +91,10 @@ class FavoriteActivity : AppCompatActivity() {
                 "",
                 getString(R.string.fav_cat_pipa),
                 listOf(getString(R.string.fav_tag_duzou), getString(R.string.fav_tag_guofeng)),
-            ),
-        )
-        favoriteStories = mutableListOf(
-            Story(
-                id = "1",
-                title = getString(R.string.fav_s1_title),
-                author = getString(R.string.fav_s1_author),
-                category = getString(R.string.fav_s1_cat),
-                placeholderColorRes = R.color.story_mock_tile_1,
-                aspectRatio = 1.2f,
-                imageResId = R.drawable.banner1_img,
-                content = getString(R.string.fav_s1_content),
-                imageUrl = "",
-                videoUrl = null,
-                publishDate = System.currentTimeMillis(),
-                tags = listOf(getString(R.string.fav_tag_suxiu), getString(R.string.fav_tag_jiangnan)),
-            ),
-            Story(
-                id = "2",
-                title = getString(R.string.fav_s2_title),
-                author = getString(R.string.fav_s2_author),
-                category = getString(R.string.fav_s2_cat),
-                placeholderColorRes = R.color.story_mock_tile_2,
-                aspectRatio = 1.2f,
                 imageResId = R.drawable.banner2_img,
-                content = getString(R.string.fav_s2_content),
-                imageUrl = "",
-                videoUrl = null,
-                publishDate = System.currentTimeMillis(),
-                tags = listOf(getString(R.string.fav_tag_guqin), getString(R.string.fav_tag_yuepu)),
             ),
         )
+        favoriteStories = buildFavoriteStories()
         favoriteCourses = mutableListOf(
             Product(
                 "1",
@@ -101,6 +105,7 @@ class FavoriteActivity : AppCompatActivity() {
                 "",
                 getString(R.string.fav_cat_course),
                 listOf(getString(R.string.fav_tag_rumen), getString(R.string.fav_cat_guzheng)),
+                imageResId = R.drawable.banner3_img,
             ),
             Product(
                 "2",
@@ -111,6 +116,7 @@ class FavoriteActivity : AppCompatActivity() {
                 "",
                 getString(R.string.fav_cat_course),
                 listOf(getString(R.string.fav_tag_jinjie), getString(R.string.fav_tag_guqin)),
+                imageResId = R.drawable.banner1_img,
             ),
         )
         favoriteProducts = mutableListOf(
@@ -371,10 +377,26 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     private fun navigateToStoryDetail(story: Story) {
-        val intent = Intent(this, StoryActivity::class.java)
-        intent.putExtra("story_id", story.id.toString())
-        intent.putExtra("story_title", story.title)
-        startActivity(intent)
+        val idStr = story.id.toString()
+        val entry = StoriesData.ALL.find { it.id == idStr }
+        val body = entry?.body ?: story.content
+        val excerpt = entry?.excerpt?.trim().orEmpty()
+        startActivity(Intent(this, StoryDetailActivity::class.java).apply {
+            putExtra(StoryDetailPayload.Extras.ID, idStr)
+            putExtra(StoryDetailPayload.Extras.TITLE, story.title)
+            putExtra(StoryDetailPayload.Extras.AUTHOR, story.author)
+            putExtra(StoryDetailPayload.Extras.PUBLISHED_AT, story.publishTime)
+            putExtra(StoryDetailPayload.Extras.BODY, body)
+            if (excerpt.isNotEmpty() && excerpt != body.trim()) {
+                putExtra(StoryDetailPayload.Extras.SUMMARY, excerpt)
+            }
+            putExtra(StoryDetailPayload.Extras.COVER, story.coverResId)
+            putExtra(StoryDetailPayload.Extras.CATEGORY, story.category)
+            putExtra(StoryDetailPayload.Extras.TAGS, story.tags.joinToString("|||"))
+            putExtra(StoryDetailPayload.Extras.READ_COUNT, story.readCount)
+            putExtra(StoryDetailPayload.Extras.LIKE_COUNT, story.likeCount)
+            putExtra(StoryDetailPayload.Extras.COMMENT_COUNT, story.commentCount)
+        })
     }
 
     private fun navigateToCourseDetail(product: Product) {
@@ -383,6 +405,8 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun navigateToProductDetail(product: Product) {
         val priceText = getString(R.string.fav_price_format, String.format("%.2f", product.price))
+        val inCatalog = ShopCatalog.allProducts.any { it.id == product.id }
+        val wcIdx = ShopCatalog.catalogIndex(product)
         val intent = Intent(this, ShopDetailActivity::class.java).apply {
             putExtra("product_name", product.name)
             putExtra("product_price", priceText)
@@ -391,6 +415,16 @@ class FavoriteActivity : AppCompatActivity() {
             if (product.imageResId != 0) putExtra("product_image", product.imageResId)
             if (product.detailHeroResId != 0) putExtra("product_hero", product.detailHeroResId)
             putExtra("product_sales", product.salesCount)
+            if (inCatalog) {
+                StaticRemoteAssets.wcCover(wcIdx)?.let { putExtra("product_image_remote", it) }
+                StaticRemoteAssets.wcMock(wcIdx)?.let { putExtra("product_hero_remote", it) }
+            } else {
+                val banner = StaticRemoteAssets.remoteBannerMatchingLocal(product.imageResId)
+                banner?.let {
+                    putExtra("product_image_remote", it)
+                    putExtra("product_hero_remote", it)
+                }
+            }
         }
         startActivity(intent)
     }

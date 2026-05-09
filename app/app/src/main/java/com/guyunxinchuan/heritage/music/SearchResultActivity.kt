@@ -217,6 +217,11 @@ class SearchResultActivity : AppCompatActivity() {
                     if (result.detailHeroResId != 0) putExtra("product_hero", result.detailHeroResId)
                     result.productDesc?.let { putExtra("product_desc", it) }
                     if (result.productSales >= 0) putExtra("product_sales", result.productSales)
+                    ShopCatalog.allProducts.firstOrNull { it.id == result.id }?.let { p ->
+                        val wcIdx = ShopCatalog.catalogIndex(p)
+                        StaticRemoteAssets.wcCover(wcIdx)?.let { putExtra("product_image_remote", it) }
+                        StaticRemoteAssets.wcMock(wcIdx)?.let { putExtra("product_hero_remote", it) }
+                    }
                 }
                 startActivity(intent)
             }

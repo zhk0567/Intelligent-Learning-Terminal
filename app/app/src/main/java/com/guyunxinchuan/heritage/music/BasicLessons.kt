@@ -57,6 +57,10 @@ object BasicLessons {
 
     fun byId(id: String): BasicLesson? = ALL.firstOrNull { it.id == id }
 
+    /** 与 [StaticRemoteAssets.basicLessonCover] 下标一致（0 为第一门课）。 */
+    fun indexOf(lesson: BasicLesson): Int =
+        ALL.indexOfFirst { it.id == lesson.id }.takeIf { it >= 0 } ?: 0
+
     /** 当前用于拼接 [videoPath] 的基址（供错误提示等）。 */
     fun currentVideoBase(): String {
         val cdn = BuildConfig.STATIC_ASSET_ORIGIN.trim().trimEnd('/')

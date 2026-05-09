@@ -94,13 +94,13 @@ class StoryDetailActivity : AppCompatActivity() {
         liked = false
         saved = false
 
-        adjustHeroHeight(p.coverResId)
+        adjustHeroHeight(p)
         binding.storyTitleTextView.text = p.title.ifBlank { getString(R.string.story_detail_toolbar_title) }
         binding.storyAuthorTextView.text = p.author.ifBlank { "—" }
         binding.storyTimeTextView.text = p.publishedAt.ifBlank { "—" }
         binding.storyContentTextView.text =
             p.body.ifBlank { getString(R.string.story_detail_empty_content) }
-        binding.coverImageView.loadCover(p.coverResId, CoverPreset.Hero)
+        binding.coverImageView.loadCoverRemoteOrDrawable(p.coverRemoteUrl, p.coverResId, CoverPreset.Hero)
         binding.categoryTagTextView.text =
             p.category.ifBlank { getString(R.string.story_detail_default_category) }
         binding.heroFrameContainer.bringChildToFront(binding.categoryTagTextView)
@@ -127,13 +127,21 @@ class StoryDetailActivity : AppCompatActivity() {
 
     /**
      * 根据封面素材比例动态计算头图高度，避免固定高度导致裁切过重。
+     * 远程封面无像素尺寸时优先用目录里的 [StoryDetailPayload.coverWidth]/[StoryDetailPayload.coverHeight]，否则回退 16:9。
      */
-    private fun adjustHeroHeight(coverResId: Int) {
+    private fun adjustHeroHeight(p: StoryDetailPayload) {
         val fallbackRatio = 16f / 9f
-        val drawable = ContextCompat.getDrawable(this, coverResId)
-        val w = drawable?.intrinsicWidth ?: 0
-        val h = drawable?.intrinsicHeight ?: 0
-        val ratio = if (w > 0 && h > 0) w.toFloat() / h.toFloat() else fallbackRatio
+        val ratio = when {
+            p.coverWidth > 0 && p.coverHeight > 0 ->
+                p.coverWidth.toFloat() / p.coverHeight.toFloat()
+            p.coverRemoteUrl.isNullOrBlank() -> {
+                val drawable = ContextCompat.getDrawable(this, p.coverResId)
+                val w = drawable?.intrinsicWidth ?: 0
+                val h = drawable?.intrinsicHeight ?: 0
+                if (w > 0 && h > 0) w.toFloat() / h.toFloat() else fallbackRatio
+            }
+            else -> fallbackRatio
+        }
 
         val screenWidth = resources.displayMetrics.widthPixels
         val rawHeight = (screenWidth / ratio).toInt()

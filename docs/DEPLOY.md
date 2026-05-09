@@ -1,5 +1,7 @@
 # 部署说明
 
+> **提醒（维护人）：** 每次在仓库里改了 **Web 静态资源路径**、**`web/public` 下的图片/音频/视频**、或 **Android `STATIC_ASSET_ORIGIN` / 网络明文域名** 后，都需要在 ECS 上 **`git pull` → `npm run build`（`web/`）→ 校验 Nginx `root` 指向的 `dist`**，否则 **Android 端封面、在线音频（每日热门/精选/猜你喜欢）、基础学习视频** 会加载失败。换公网 IP 时除改配置外也要同步 **`network_security_config.xml`**。
+
 ## 实例与仓库
 
 | 项 | 值 |
@@ -10,6 +12,8 @@
 | 系统 | Alibaba Cloud Linux 3.2104 LTS |
 | 仓库 | `https://gitee.com/zhk567/intelligent-learning-terminal.git` |
 
+**重要：** Gitee 默认分支是 **`main`**（旧目录，无 `web/`）。含 `web/`、`package-lock.json` 的代码在 **`master`**。部署时必须 **`clone -b master`** 或 clone 后执行 **`git checkout master`**，否则会出现 `cd .../web: No such file`。
+
 **仓库内已配置（push 后服务器 `git pull` 即用，一般无需再改文件）：**
 
 - `web/.env.production`：`VITE_STATIC_ORIGIN=http://39.106.117.118`
@@ -19,6 +23,12 @@
 - `deploy/nginx-git-server.conf`：`root` → `/opt/intelligent-learning-terminal/web/dist`
 
 **换公网 IP：** 改上述三处与 `network_security_config.xml` 内 `<domain>`，`npm run build` 后 `git push`。
+
+### Android 在线音频与视频（与 Web 同源）
+
+- 音频路径与 Web `public/audio/` 一致，例如：`/audio/daily_hot/daily_hot_01.mp3`、`/audio/daily_select/…`、`/audio/daily_guess/…`。构建产物需在 **`web/dist/audio/`**（或 Nginx 对应该 URL）下存在文件，否则 App 内播放器无法出声。
+- 基础学习视频：`/video/basic_lesson/basic_lesson_01.mp4` 等，需在 **`web/dist/video/`** 下存在。
+- 仓库根若未提交大体积 `mp3/mp4`，需在服务器或构建流水线中 **单独拷贝 `data/音频` 等素材到 `web/public`** 后再 `npm run build`，否则仅有封面无声音。
 
 **私有仓库：** `git clone` 改为带私人令牌的 HTTPS 或 `git@gitee.com:...`。
 
@@ -32,11 +42,15 @@ curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash -
 sudo yum install -y nodejs
 sudo mkdir -p /opt && cd /opt
 sudo rm -rf intelligent-learning-terminal
-sudo git clone https://gitee.com/zhk567/intelligent-learning-terminal.git intelligent-learning-terminal
+sudo git clone -b master https://gitee.com/zhk567/intelligent-learning-terminal.git intelligent-learning-terminal
 cd /opt/intelligent-learning-terminal/web
-sudo npm ci
-sudo npm run build
+npm ci
+npm run build
 ```
+
+若已按旧文档 clone 过、没有 `web` 目录，在仓库根目录执行：`git fetch origin && git checkout master`，再 `cd web`。
+
+若 **`npm ci` 报没有 package-lock.json**：先 `npm install`，再 `npm run build`。
 
 若 `npm ci` 内存不足：
 
@@ -49,10 +63,19 @@ sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
 
 ## 2. Nginx
 
+**若出现 `conflicting server name "_"`：** 与自带的 `default.conf` 冲突。先停用默认站点再拷配置：
+
 ```bash
+sudo test -f /etc/nginx/conf.d/default.conf && sudo mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.bak
 sudo cp /opt/intelligent-learning-terminal/deploy/nginx-git-server.conf /etc/nginx/conf.d/ilt-web.conf
-sudo nginx -t && sudo systemctl enable nginx && sudo systemctl restart nginx
+sudo nginx -t
+sudo systemctl enable nginx
+sudo systemctl start nginx
 ```
+
+若服务已在跑、只改了配置：`sudo systemctl restart nginx`。
+
+**若 `nginx.service is not active, cannot reload`：** 说明还没启动过，用上面的 **`systemctl start nginx`**，不要用 `reload`。
 
 ---
 
@@ -72,8 +95,9 @@ sudo nginx -t && sudo systemctl enable nginx && sudo systemctl restart nginx
 
 ```bash
 cd /opt/intelligent-learning-terminal
-sudo git pull
-cd web && sudo npm ci && sudo npm run build
+git checkout master
+git pull
+cd web && npm ci && npm run build
 sudo systemctl reload nginx
 ```
 

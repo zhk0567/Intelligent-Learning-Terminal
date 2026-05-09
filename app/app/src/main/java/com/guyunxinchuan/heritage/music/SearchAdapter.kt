@@ -28,7 +28,11 @@ class SearchAdapter(
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val result = results[position]
 
-        holder.image.loadCover(result.imageResId, CoverPreset.Thumb)
+        holder.image.loadCoverRemoteOrDrawable(
+            StaticRemoteAssets.remoteBannerMatchingLocal(result.imageResId),
+            result.imageResId,
+            CoverPreset.Thumb,
+        )
 
         val typeText = when (result.type) {
             SearchResultActivity.SearchResultType.MUSIC -> "音乐"

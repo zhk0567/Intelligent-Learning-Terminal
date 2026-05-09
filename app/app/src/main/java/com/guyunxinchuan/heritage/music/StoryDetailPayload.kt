@@ -16,6 +16,10 @@ data class StoryDetailPayload(
     /** 可选导读/摘要；无则 UI 不展示导读块，避免与正文重复 */
     val summary: String?,
     val coverResId: Int,
+    /** `StoriesData` 条目的 `/images/story/{key}.jpg`；无目录数据时为 null。 */
+    val coverRemoteUrl: String?,
+    val coverWidth: Int,
+    val coverHeight: Int,
     val tags: List<String>,
     val readCount: Int,
     val likeCount: Int,
@@ -54,6 +58,9 @@ data class StoryDetailPayload(
             val commentFinal =
                 if (intent.hasExtra(Extras.COMMENT_COUNT)) intent.getIntExtra(Extras.COMMENT_COUNT, 0) else catalog?.commentCount ?: 0
             val summaryFinal = summaryExtra ?: catalog?.excerpt?.trim()?.takeIf { it.isNotEmpty() && it != bodyFinal.trim() }
+            val coverRemoteUrl = catalog?.key?.let { StaticRemoteAssets.storyCover(it) }
+            val coverWidth = catalog?.coverWidth ?: 0
+            val coverHeight = catalog?.coverHeight ?: 0
             return StoryDetailPayload(
                 id = id,
                 title = titleFinal,
@@ -63,6 +70,9 @@ data class StoryDetailPayload(
                 body = bodyFinal,
                 summary = summaryFinal,
                 coverResId = if (coverFinal != 0) coverFinal else R.drawable.p_1,
+                coverRemoteUrl = coverRemoteUrl,
+                coverWidth = coverWidth,
+                coverHeight = coverHeight,
                 tags = tagsFinal,
                 readCount = readFinal,
                 likeCount = likeFinal,

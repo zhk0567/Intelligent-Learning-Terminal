@@ -19,24 +19,30 @@ class PlayerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPlayerBinding
     private val handler = Handler(Looper.getMainLooper())
-    private var isPlaying = false
-    private var currentTrackIndex = 0
-    private var currentPositionMs = 0
     private var isShuffleMode = false
     private var isLoopMode = false
     private val playlist get() = PlayerSyncState.tracks
 
     private val progressUpdater = object : Runnable {
         override fun run() {
-            if (isPlaying) {
-                currentPositionMs += 1000
-                val duration = currentTrack().durationMs
-                if (currentPositionMs >= duration) {
-                    onTrackComplete()
-                } else {
-                    renderProgress()
-                    handler.postDelayed(this, 1000)
+            if (!PlayerSyncState.isPlaying) return
+            val track = currentTrack()
+            val stream = !track.audioRemoteUrl.isNullOrBlank()
+            if (stream) {
+                PlayerSyncState.syncFromRealtime()
+                if (PlayerSyncState.currentPositionMs >= track.durationMs - 250) {
+                    return
                 }
+                renderProgress()
+                handler.postDelayed(this, 250L)
+                return
+            }
+            PlayerSyncState.currentPositionMs += 1000
+            if (PlayerSyncState.currentPositionMs >= track.durationMs) {
+                onTrackComplete()
+            } else {
+                renderProgress()
+                handler.postDelayed(this, 1000L)
             }
         }
     }
@@ -48,15 +54,14 @@ class PlayerActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val syncedIndex = PlayerSyncState.currentTrackIndex.coerceIn(0, playlist.lastIndex)
-        currentTrackIndex = syncedIndex
-        currentPositionMs = PlayerSyncState.currentPositionMs
+        PlayerSyncState.currentTrackIndex = syncedIndex
+        PlayerSyncState.currentPositionMs = PlayerSyncState.currentPositionMs
             .coerceIn(0, playlist[syncedIndex].durationMs)
-        isPlaying = PlayerSyncState.isPlaying
 
         setupViews()
         renderTrack()
         syncControlVisualState()
-        if (isPlaying) {
+        if (PlayerSyncState.isPlaying) {
             handler.removeCallbacks(progressUpdater)
             handler.post(progressUpdater)
         }
@@ -69,13 +74,12 @@ class PlayerActivity : AppCompatActivity() {
         title.text = getString(R.string.player_playlist_sheet_title, playlist.size)
         val rv = content.findViewById<RecyclerView>(R.id.playlistSheetRecycler)
         rv.layoutManager = LinearLayoutManager(this)
-        rv.adapter = PlayerPlaylistAdapter(playlist, currentTrackIndex) { index ->
+        rv.adapter = PlayerPlaylistAdapter(playlist, PlayerSyncState.currentTrackIndex) { index ->
+            val wasPlaying = PlayerSyncState.isPlaying
             PlayerSyncState.setTrack(index, playlist[index].durationMs)
-            currentTrackIndex = index
-            currentPositionMs = 0
+            PlayerSyncState.currentPositionMs = 0
             renderTrack()
-            PlayerSyncState.updatePlayingState(isPlaying)
-            if (isPlaying) {
+            PlayerPlaybackBridge.onTrackChanged(this, wasPlaying) {
                 handler.removeCallbacks(progressUpdater)
                 handler.post(progressUpdater)
             }
@@ -134,46 +138,50 @@ class PlayerActivity : AppCompatActivity() {
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
-                    currentPositionMs = progress
+                    PlayerSyncState.currentPositionMs = progress
                     renderProgress()
                 }
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
-            override fun onStopTrackingTouch(seekBar: SeekBar?) = Unit
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                val track = currentTrack()
+                if (!track.audioRemoteUrl.isNullOrBlank() && PlayerAudioEngine.drivesSyncState()) {
+                    PlayerAudioEngine.seekTo(PlayerSyncState.currentPositionMs)
+                }
+            }
         })
     }
 
-    private fun currentTrack(): PlayerSyncState.SyncTrack = playlist[currentTrackIndex]
+    private fun currentTrack(): PlayerSyncState.SyncTrack =
+        playlist[PlayerSyncState.currentTrackIndex.coerceIn(0, playlist.lastIndex)]
 
     private fun renderTrack() {
         val track = currentTrack()
-        PlayerSyncState.currentTrackIndex = currentTrackIndex
         PlayerSyncState.trackDurationMs = track.durationMs
         binding.musicTitleTextView.text = track.title
         binding.artistTextView.text = track.artist
         binding.albumTextView.text = track.album
-        binding.coverImageView.loadCover(track.coverResId, CoverPreset.Hero)
+        binding.coverImageView.loadCoverRemoteOrDrawable(track.coverRemoteUrl, track.coverResId, CoverPreset.Hero)
         binding.seekBar.max = track.durationMs
         binding.totalTimeTextView.text = formatTime(track.durationMs)
         renderProgress()
     }
 
     private fun renderProgress() {
-        PlayerSyncState.currentPositionMs = currentPositionMs
-        binding.seekBar.progress = currentPositionMs
-        binding.currentTimeTextView.text = formatTime(currentPositionMs)
+        binding.seekBar.progress = PlayerSyncState.currentPositionMs
+        binding.currentTimeTextView.text = formatTime(PlayerSyncState.currentPositionMs)
     }
 
     private fun togglePlayPause() {
-        isPlaying = !isPlaying
-        PlayerSyncState.updatePlayingState(isPlaying)
-        updatePlayPauseButton()
-        if (isPlaying) {
+        PlayerPlaybackBridge.togglePlayPause(this) {
             handler.removeCallbacks(progressUpdater)
             handler.post(progressUpdater)
-        } else {
-            handler.removeCallbacks(progressUpdater)
+        }
+        updatePlayPauseButton()
+        handler.removeCallbacks(progressUpdater)
+        if (PlayerSyncState.isPlaying) {
+            handler.post(progressUpdater)
         }
     }
 
@@ -206,7 +214,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun updatePlayPauseButton() {
-        if (isPlaying) {
+        if (PlayerSyncState.isPlaying) {
             binding.playPauseButton.setImageResource(R.drawable.ic_player_main_pause)
         } else {
             binding.playPauseButton.setImageResource(R.drawable.ic_player_main_play)
@@ -217,34 +225,31 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun playPrevious() {
+        val wasPlaying = PlayerSyncState.isPlaying
         PlayerSyncState.previousTrack()
-        currentTrackIndex = PlayerSyncState.currentTrackIndex
-        currentPositionMs = 0
-        PlayerSyncState.setTrack(currentTrackIndex, currentTrack().durationMs)
-        PlayerSyncState.updatePlayingState(isPlaying)
         renderTrack()
-        if (isPlaying) {
+        PlayerPlaybackBridge.onTrackChanged(this, wasPlaying) {
             handler.removeCallbacks(progressUpdater)
             handler.post(progressUpdater)
         }
     }
 
     private fun playNext() {
+        val wasPlaying = PlayerSyncState.isPlaying
         PlayerSyncState.nextTrack(shuffle = isShuffleMode)
-        currentTrackIndex = PlayerSyncState.currentTrackIndex
-        currentPositionMs = 0
-        PlayerSyncState.setTrack(currentTrackIndex, currentTrack().durationMs)
-        PlayerSyncState.updatePlayingState(isPlaying)
         renderTrack()
-        if (isPlaying) {
+        PlayerPlaybackBridge.onTrackChanged(this, wasPlaying) {
             handler.removeCallbacks(progressUpdater)
             handler.post(progressUpdater)
         }
     }
 
     private fun onTrackComplete() {
+        if (!currentTrack().audioRemoteUrl.isNullOrBlank()) {
+            return
+        }
         if (isLoopMode) {
-            currentPositionMs = 0
+            PlayerSyncState.currentPositionMs = 0
             renderProgress()
             handler.postDelayed(progressUpdater, 1000)
             return
@@ -284,19 +289,13 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        PlayerSyncState.currentTrackIndex = currentTrackIndex
-        PlayerSyncState.currentPositionMs = currentPositionMs
         PlayerSyncState.trackDurationMs = currentTrack().durationMs
-        PlayerSyncState.updatePlayingState(isPlaying)
         super.onDestroy()
         handler.removeCallbacksAndMessages(null)
     }
 
     override fun onPause() {
-        PlayerSyncState.currentTrackIndex = currentTrackIndex
-        PlayerSyncState.currentPositionMs = currentPositionMs
         PlayerSyncState.trackDurationMs = currentTrack().durationMs
-        PlayerSyncState.updatePlayingState(isPlaying)
         super.onPause()
     }
 }

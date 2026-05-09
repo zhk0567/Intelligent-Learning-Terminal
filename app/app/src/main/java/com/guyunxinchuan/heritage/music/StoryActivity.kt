@@ -44,6 +44,7 @@ class StoryActivity : BaseActivity() {
             coverWidth = e.coverWidth,
             coverHeight = e.coverHeight,
             coverResId = e.coverResId,
+            coverRemoteUrl = StaticRemoteAssets.storyCover(e.key),
             likeCount = e.likeCount,
             commentCount = e.commentCount,
             readCount = e.readCount,

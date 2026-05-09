@@ -29,7 +29,11 @@ class HistoryAdapter(
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val item = historyList[position]
 
-        holder.itemImage.loadCover(item.imageResId, CoverPreset.Thumb)
+        holder.itemImage.loadCoverRemoteOrDrawable(
+            StaticRemoteAssets.remoteBannerMatchingLocal(item.imageResId),
+            item.imageResId,
+            CoverPreset.Thumb,
+        )
         holder.itemTitle.text = item.title
         holder.itemType.text = item.type
         holder.itemTime.text = item.browseTime

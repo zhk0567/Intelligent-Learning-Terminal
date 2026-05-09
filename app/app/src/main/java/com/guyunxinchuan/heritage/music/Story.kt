@@ -21,6 +21,7 @@ data class Story(
     val coverWidth: Int = 0,
     val coverHeight: Int = 0,
     val coverResId: Int = -1,
+    val coverRemoteUrl: String? = null,
     val likeCount: Int = 0,
     val commentCount: Int = 0,
     val readCount: Int = 0,

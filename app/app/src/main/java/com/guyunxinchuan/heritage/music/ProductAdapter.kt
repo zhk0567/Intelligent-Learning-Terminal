@@ -28,11 +28,16 @@ class ProductAdapter(
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = products[position]
 
-        if (product.imageResId != 0) {
-            holder.productImage.loadCover(product.imageResId, CoverPreset.Card)
+        val fallback = if (product.imageResId != 0) {
+            product.imageResId
         } else {
-            holder.productImage.loadCover(R.drawable.music_cover_placeholder, CoverPreset.Card)
+            R.drawable.music_cover_placeholder
         }
+        holder.productImage.loadCoverRemoteOrDrawable(
+            StaticRemoteAssets.productListCoverRemote(product),
+            fallback,
+            CoverPreset.Card,
+        )
         holder.productName.text = product.name
         holder.productPrice.text = "¥${String.format("%.2f", product.price)}"
         holder.productRating.text = String.format("%.1f", product.rating)

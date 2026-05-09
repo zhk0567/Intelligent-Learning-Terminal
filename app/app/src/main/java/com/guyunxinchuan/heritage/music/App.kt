@@ -12,6 +12,11 @@ class App : Application() {
     override fun onCreate() {
         AppCompatDelegate.setDefaultNightMode(ThemePrefs.getNightMode(this))
         super.onCreate()
+        PlayerAudioEngine.setOnPlaybackComplete {
+            PlayerSyncState.updatePlayingState(false)
+            PlayerSyncState.currentPositionMs =
+                PlayerSyncState.trackDurationMs.coerceAtLeast(0)
+        }
         Thread({
             AppSession.warmUp(this)
             ShopCartStore.warmUp(this)

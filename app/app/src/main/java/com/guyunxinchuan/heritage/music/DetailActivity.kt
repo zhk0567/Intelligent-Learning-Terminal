@@ -123,7 +123,11 @@ class DetailActivity : AppCompatActivity() {
         binding.likeCount.text = likeCountValue.toString()
         binding.commentCountMeta.text = commentCountValue.toString()
 
-        binding.detailImage.loadCover(imageResId, CoverPreset.Hero)
+        binding.detailImage.loadCoverRemoteOrDrawable(
+            StaticRemoteAssets.remoteBannerMatchingLocal(imageResId),
+            imageResId,
+            CoverPreset.Hero,
+        )
 
         updateLikeInlineUi()
         updateFavoriteUi()

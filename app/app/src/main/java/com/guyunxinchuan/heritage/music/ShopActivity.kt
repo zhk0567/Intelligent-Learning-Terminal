@@ -201,16 +201,19 @@ class ShopActivity : AppCompatActivity() {
             title = "季中精选 · 非遗好物",
             line = "博物馆联名与工坊严选，点按进入「非遗文创」分类。",
             imageResId = R.drawable.shop_swiper_1,
+            imageRemoteUrl = StaticRemoteAssets.shopSwiper(0),
         ),
         ShopBannerSlide(
             title = "乐器周边热销",
             line = "琴弦拨片、模型摆件与乐谱周边，按销量浏览。",
             imageResId = R.drawable.shop_swiper_2,
+            imageRemoteUrl = StaticRemoteAssets.shopSwiper(1),
         ),
         ShopBannerSlide(
             title = "香薰雅物专区",
             line = "线香、蜡烛与香器，静室一隅的仪式感。",
             imageResId = R.drawable.shop_swiper_3,
+            imageRemoteUrl = StaticRemoteAssets.shopSwiper(2),
         ),
     )
 
@@ -395,6 +398,7 @@ class ShopActivity : AppCompatActivity() {
     }
 
     private fun openProductDetail(product: Product) {
+        val wcIdx = ShopCatalog.catalogIndex(product)
         startActivity(Intent(this, ShopDetailActivity::class.java).apply {
             putExtra("product_name", product.name)
             putExtra("product_price", "¥${String.format("%.2f", product.price)}")
@@ -403,6 +407,8 @@ class ShopActivity : AppCompatActivity() {
             putExtra("product_hero", product.detailHeroResId)
             putExtra("product_desc", product.description)
             putExtra("product_sales", product.salesCount)
+            StaticRemoteAssets.wcCover(wcIdx)?.let { putExtra("product_image_remote", it) }
+            StaticRemoteAssets.wcMock(wcIdx)?.let { putExtra("product_hero_remote", it) }
         })
     }
 

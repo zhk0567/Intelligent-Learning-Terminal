@@ -41,6 +41,7 @@
     <string name="music_score_icon">乐谱图标</string>
     <string name="card_image">卡片图片</string>
     <string name="cd_back">返回</string>
+    <string name="cd_lesson_poster">课程视频封面</string>
 
     <!-- 故事详情 -->
     <string name="story_cover_image">故事封面</string>
@@ -107,18 +108,7 @@
     <string name="fav_tag_chuantong">传统</string>
     <string name="fav_tag_duzou">独奏</string>
     <string name="fav_tag_guofeng">国风</string>
-    <string name="fav_s1_title">苏绣：一针一线的江南记忆</string>
-    <string name="fav_s1_author">非遗故事集</string>
-    <string name="fav_s1_cat">传统工艺</string>
-    <string name="fav_s1_content">从宋代绣坊到现代工坊，苏绣如何把山水花鸟绣进丝绢里。</string>
-    <string name="fav_s2_title">古琴减字谱：古人怎样「写」音乐</string>
-    <string name="fav_s2_author">乐理小史</string>
-    <string name="fav_s2_cat">音乐文化</string>
-    <string name="fav_s2_content">一张谱字里藏着弦位与指法，读懂它就像与古人对话。</string>
-    <string name="fav_tag_suxiu">苏绣</string>
-    <string name="fav_tag_jiangnan">江南</string>
     <string name="fav_tag_guqin">古琴</string>
-    <string name="fav_tag_yuepu">乐谱</string>
     <string name="fav_c1_title">古筝入门：认弦与基本指法</string>
     <string name="fav_c1_desc">零基础系统课，含跟练音频与作业点评。</string>
     <string name="fav_c2_title">古琴音色与吟猱技法精讲</string>

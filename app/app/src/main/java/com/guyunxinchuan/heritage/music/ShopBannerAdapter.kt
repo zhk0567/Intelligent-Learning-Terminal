@@ -5,13 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.google.android.material.imageview.ShapeableImageView
 
 data class ShopBannerSlide(
     val title: String,
     val line: String,
     val imageResId: Int,
+    val imageRemoteUrl: String? = null,
 )
 
 class ShopBannerAdapter(
@@ -44,20 +44,22 @@ class ShopBannerAdapter(
         holder.bind(slides[idx], idx, onSlideClick)
     }
 
+    override fun onViewRecycled(holder: BannerViewHolder) {
+        holder.recycleImage()
+        super.onViewRecycled(holder)
+    }
+
     class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val image: ShapeableImageView = itemView.findViewById(R.id.bannerImage)
         private val title: TextView = itemView.findViewById(R.id.bannerTitle)
         private val line: TextView = itemView.findViewById(R.id.bannerLine)
 
+        fun recycleImage() {
+            image.cancelCoverLoad()
+        }
+
         fun bind(slide: ShopBannerSlide, position: Int, onSlideClick: (Int) -> Unit) {
-            val dm = itemView.resources.displayMetrics
-            val wPx = (itemView.width.takeIf { it > 0 } ?: dm.widthPixels).coerceIn(320, 1080)
-            val hPx = (156 * dm.density).toInt().coerceIn(200, 800)
-            image.load(slide.imageResId) {
-                size(wPx, hPx)
-                crossfade(false)
-                allowRgb565(true)
-            }
+            image.loadCoverRemoteOrDrawable(slide.imageRemoteUrl, slide.imageResId, CoverPreset.Banner)
             title.text = slide.title
             line.text = slide.line
             itemView.setOnClickListener { onSlideClick(position) }

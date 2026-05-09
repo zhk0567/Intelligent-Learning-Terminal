@@ -8,11 +8,15 @@ object PlayerSyncState {
         val artist: String,
         val album: String,
         val durationMs: Int,
-        val coverResId: Int
+        val coverResId: Int,
+        /** 静态资源域名已配置时与 Web `/images/...` 对齐的封面 URL。 */
+        val coverRemoteUrl: String? = null,
+        /** 与 Web `TRACKS[].audioSrc` 一致；索引 0–4 为 null（无线上音频）。 */
+        val audioRemoteUrl: String? = null,
     )
 
     /** 与小程序 / Web `TRACKS` 顺序一致；5–8 每日热门；9–11 每日精选；12–14 `data/音频/猜你喜欢`（`res/raw/daily_guess_*.mp3`）。 */
-    val tracks = listOf(
+    val tracks: List<SyncTrack> = listOf(
         SyncTrack("高山流水", "古筝演奏", "国风雅集", 248_000, R.drawable.banner1_img),
         SyncTrack("广陵散", "古琴独奏", "国风雅集", 312_000, R.drawable.banner2_img),
         SyncTrack("二泉映月", "二胡演奏", "民乐经典", 270_000, R.drawable.banner3_img),
@@ -28,7 +32,17 @@ object PlayerSyncState {
         SyncTrack("湘妃竹", "箜篌艺术", "猜你喜欢", 217_000, R.drawable.daily_guess_cover_01),
         SyncTrack("火龙阵", "濮阳大弦戏", "猜你喜欢", 175_000, R.drawable.daily_guess_cover_02),
         SyncTrack("神人畅", "古琴", "猜你喜欢", 162_000, R.drawable.daily_guess_cover_03),
-    )
+    ).mapIndexed { i, t ->
+        SyncTrack(
+            title = t.title,
+            artist = t.artist,
+            album = t.album,
+            durationMs = t.durationMs,
+            coverResId = t.coverResId,
+            coverRemoteUrl = StaticRemoteAssets.playerTrackCover(i),
+            audioRemoteUrl = StaticRemoteAssets.playerTrackAudio(i),
+        )
+    }
 
     var isPlaying: Boolean = false
     var currentTrackIndex: Int = 0
@@ -38,6 +52,10 @@ object PlayerSyncState {
 
     fun syncFromRealtime() {
         if (!isPlaying) return
+        if (PlayerAudioEngine.drivesSyncState()) {
+            currentPositionMs = PlayerAudioEngine.currentPositionMs().coerceAtMost(trackDurationMs)
+            return
+        }
         val now = SystemClock.elapsedRealtime()
         val delta = (now - lastTickElapsedMs).toInt().coerceAtLeast(0)
         lastTickElapsedMs = now

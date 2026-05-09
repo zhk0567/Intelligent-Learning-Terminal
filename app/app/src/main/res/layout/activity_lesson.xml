@@ -61,6 +61,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="220dp" />
 
+                <ImageView
+                    android:id="@+id/lesson_poster"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:contentDescription="@string/cd_lesson_poster"
+                    android:scaleType="centerCrop" />
+
                 <ProgressBar
                     android:id="@+id/lesson_loading"
                     android:layout_width="48dp"

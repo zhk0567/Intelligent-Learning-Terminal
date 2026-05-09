@@ -34,11 +34,14 @@ class ShopDetailActivity : AppCompatActivity() {
         val rating = intent.getStringExtra("product_rating") ?: "4.9"
         val coverId = intent.getIntExtra("product_image", 0)
         val heroExtra = intent.getIntExtra("product_hero", 0)
+        val listRemote = intent.getStringExtra("product_image_remote")?.trim()?.takeIf { it.isNotEmpty() }
+        val heroRemote = intent.getStringExtra("product_hero_remote")?.trim()?.takeIf { it.isNotEmpty() }
         val imageResId = when {
             heroExtra != 0 -> heroExtra
             coverId != 0 -> coverId
             else -> R.drawable.banner2_img
         }
+        val primaryRemote = heroRemote ?: listRemote
         val description = intent.getStringExtra("product_desc")
             ?: "创意礼物博物馆文创非遗伴手礼，采用天然材料精雕细刻，融合传统非遗元素，每一件都是独一无二的艺术品。"
         val sales = intent.getIntExtra("product_sales", -1)
@@ -46,7 +49,11 @@ class ShopDetailActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.detail_name).text = name
         findViewById<TextView>(R.id.detail_price).text = price
         findViewById<TextView>(R.id.detail_rating).text = formatRatingForPill(rating)
-        findViewById<ShapeableImageView>(R.id.detail_image).loadCover(imageResId, CoverPreset.Hero)
+        findViewById<ShapeableImageView>(R.id.detail_image).loadCoverRemoteOrDrawable(
+            primaryRemote,
+            imageResId,
+            CoverPreset.Hero,
+        )
         findViewById<TextView>(R.id.detail_description).text = description
 
         findViewById<TextView>(R.id.detail_sales).text = formatSalesForPill(sales)

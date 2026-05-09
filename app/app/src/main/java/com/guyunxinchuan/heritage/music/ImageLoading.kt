@@ -29,6 +29,35 @@ enum class CoverPreset(val targetDpW: Int, val targetDpH: Int) {
     Hero(360, 240),
 }
 
+/** 当 `remoteUrl` 非空且已配置静态资源域名时从网络加载，否则加载 [fallbackResId]。 */
+fun ImageView.loadCoverRemoteOrDrawable(
+    remoteUrl: String?,
+    @DrawableRes fallbackResId: Int,
+    preset: CoverPreset = CoverPreset.Card,
+    @DrawableRes placeholder: Int = R.drawable.music_cover_placeholder,
+    @DrawableRes error: Int = R.drawable.music_cover_placeholder,
+    centerCrop: Boolean = true,
+) {
+    val url = remoteUrl?.trim()?.takeIf { it.isNotEmpty() }
+    if (url == null) {
+        loadCover(fallbackResId, preset, placeholder, error, centerCrop)
+        return
+    }
+    val dm = resources.displayMetrics
+    val measuredW = if (width > 0) width else (preset.targetDpW * dm.density).toInt()
+    val measuredH = if (height > 0) height else (preset.targetDpH * dm.density).toInt()
+    val safeW = measuredW.coerceIn(64, 1080)
+    val safeH = measuredH.coerceIn(64, 1080)
+    load(url) {
+        size(safeW, safeH)
+        scale(if (centerCrop) Scale.FILL else Scale.FIT)
+        crossfade(false)
+        allowRgb565(true)
+        placeholder(fallbackResId)
+        error(error)
+    }
+}
+
 fun ImageView.loadCover(
     @DrawableRes resId: Int,
     preset: CoverPreset = CoverPreset.Card,
