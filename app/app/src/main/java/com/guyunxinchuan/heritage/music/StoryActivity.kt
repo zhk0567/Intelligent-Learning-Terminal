@@ -69,8 +69,10 @@ class StoryActivity : BaseActivity() {
         storyRv = findViewById(R.id.storyRecyclerView)
 
         // RecyclerView 用 2列瀑布流；不在列间挪 item，保证每列宽度稳定、图片竖边对齐
+        @Suppress("DEPRECATION")
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL).apply {
-            gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
+            // 填列间高度差，避免滑到底部出现大块空白（GAP_HANDLING_NONE 时两列不齐易留缝）
+            gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
         }
         storyRv.layoutManager = layoutManager
         storyRv.setHasFixedSize(false)

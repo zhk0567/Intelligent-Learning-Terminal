@@ -20,8 +20,8 @@ export default function AppShell() {
   }
 
   return (
-    <div className="relative min-h-[100dvh] pb-[136px]">
-      <main className="min-h-[calc(100dvh-136px)]">
+    <div className="relative pb-[136px]">
+      <main>
         <Outlet />
       </main>
       <MiniPlayer onListClick={() => setListOpen(true)} />
