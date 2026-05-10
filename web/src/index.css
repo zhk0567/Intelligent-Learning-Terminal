@@ -65,16 +65,22 @@ body {
   display: flex;
   justify-content: center;
   align-items: stretch;
+  /* 允许唯一子项（.phone-shell）在需要时低于内容最小高度，从而在壳内出现纵向滚动 */
+  min-height: 0;
 }
 
-/* 移动端「手机壳」 */
+/* 移动端「手机壳」：勿用 overflow:hidden，否则长页面在真机上无法滑动 */
 .phone-shell {
   width: 100%;
   max-width: 480px;
   min-height: 100dvh;
+  max-height: 100dvh;
   background: var(--bg-primary);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
 }
 
 @media (min-width: 768px) {
