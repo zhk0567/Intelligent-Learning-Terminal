@@ -32,12 +32,6 @@
   white-space: pre-line;
 }
 .story-detail-prose { margin-top: 28rpx; }
-.story-detail-aside {
-  margin-top: 28rpx;
-  font-size: 24rpx;
-  line-height: 1.75;
-  color: var(--text-secondary);
-}
 
 .story-input-bar {
   position: fixed;

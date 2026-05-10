@@ -14,7 +14,6 @@
       <view wx:for="{{story.tags}}" wx:key="*this" class="story-tag">{{item}}</view>
     </view>
     <view class="story-detail-text story-detail-prose">{{story.body}}</view>
-    <view class="story-detail-text story-detail-aside">{{paragraph}}</view>
   </view>
 
   <view class="story-input-bar">

@@ -52,16 +52,13 @@
     <string name="story_detail_section_body">正文</string>
     <string name="story_detail_section_meta">本篇信息</string>
     <string name="story_detail_section_tags">标签</string>
-    <string name="story_detail_section_related">延伸阅读</string>
     <string name="story_stat_reads">%1$s 浏览</string>
     <string name="story_stat_likes">%1$s 赞</string>
     <string name="story_stat_comments">%1$s 评论</string>
     <string name="story_meta_label_category">分类</string>
     <string name="story_meta_label_author">作者</string>
     <string name="story_meta_label_published">发布</string>
-    <string name="story_meta_label_id">编号</string>
     <string name="story_detail_no_tags">暂无标签</string>
-    <string name="story_related_toast">「%1$s」将随内容库更新开放</string>
     <string name="story_action_like">点赞</string>
     <string name="story_action_comment">评论</string>
     <string name="story_action_share">分享</string>

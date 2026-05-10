@@ -281,39 +281,6 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal" />
                     </HorizontalScrollView>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="12dp"
-                        android:background="@color/divider_light" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/story_detail_section_label_bg"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="4dp"
-                        android:text="@string/story_detail_section_related"
-                        android:textColor="@color/neon_teal"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <HorizontalScrollView
-                        android:id="@+id/relatedScrollView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        android:scrollbars="none">
-
-                        <LinearLayout
-                            android:id="@+id/relatedStoriesRow"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal" />
-                    </HorizontalScrollView>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>

@@ -2,15 +2,10 @@ import { applyTheme } from "../../utils/theme";
 import { toast } from "../../utils/toast";
 import { STORIES_FULL, storyByIdFull } from "../data/storyBodies";
 
-const PARAGRAPH = `非遗的魅力，并非只陈列在展柜里的标本，而是仍活跃在传承人、观众与一方水土之间的共同记忆。
-我们用记录与传播的方式重新打开它——让它被听见、被看见、被讨论、被续写。
-你也许不会成为传承人，但只要你愿意多了解一分，便已参与它的延续。`;
-
 Page({
   data: {
     __themeClass: "theme-dark",
     story: STORIES_FULL[0],
-    paragraph: PARAGRAPH,
     liked: false,
     saved: false,
   },

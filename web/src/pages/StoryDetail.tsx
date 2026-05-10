@@ -6,10 +6,6 @@ import { STORIES } from "../data/story";
 import { Heart, HeartFilled, Share, Star } from "../components/Icon";
 import { toast } from "../components/Toast";
 
-const PARAGRAPH = `非遗的魅力，并非只陈列在展柜里的标本，而是仍活跃在传承人、观众与一方水土之间的共同记忆。
-我们用记录与传播的方式重新打开它——让它被听见、被看见、被讨论、被续写。
-你也许不会成为传承人，但只要你愿意多了解一分，便已参与它的延续。`;
-
 export default function StoryDetail() {
   const { id } = useParams();
   const story = STORIES.find((s) => s.id === id) ?? STORIES[0];
@@ -43,9 +39,6 @@ export default function StoryDetail() {
         <article className="mt-4 text-sm leading-7 text-text-primary whitespace-pre-line">
           {story.body}
         </article>
-        <p className="mt-4 text-xs text-text-secondary leading-6 whitespace-pre-line border-t border-border/40 pt-4">
-          {PARAGRAPH}
-        </p>
       </div>
 
       <div

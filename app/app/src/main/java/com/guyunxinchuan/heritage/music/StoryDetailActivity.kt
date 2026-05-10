@@ -114,7 +114,6 @@ class StoryDetailActivity : AppCompatActivity() {
 
         bindMetaRows(p)
         populateTags(p)
-        populateRelatedStories(p.category)
         updateLikeUi()
         updateSaveUi()
     }
@@ -160,7 +159,6 @@ class StoryDetailActivity : AppCompatActivity() {
         val rows = listOf(
             R.string.story_meta_label_category to p.category,
             R.string.story_meta_label_author to p.author,
-            R.string.story_meta_label_id to p.id,
         ).filter { it.second.isNotBlank() }
 
         if (rows.isEmpty()) {
@@ -217,43 +215,6 @@ class StoryDetailActivity : AppCompatActivity() {
             val lp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
             lp.marginEnd = gap
             binding.tagContainer.addView(tv, lp)
-        }
-    }
-
-    private fun populateRelatedStories(category: String) {
-        binding.relatedStoriesRow.removeAllViews()
-        val stubs = relatedStubsFor(category)
-        val inflater = LayoutInflater.from(this)
-        for (stub in stubs) {
-            val card = inflater.inflate(R.layout.item_story_related_card, binding.relatedStoriesRow, false)
-            card.findViewById<TextView>(R.id.relatedTitle).text = stub.title
-            card.findViewById<TextView>(R.id.relatedSubtitle).text = stub.subtitle
-            card.setOnClickListenerThrottled {
-                UiFeedback.toast(this, getString(R.string.story_related_toast, stub.title))
-            }
-            binding.relatedStoriesRow.addView(card)
-        }
-    }
-
-    private data class RelatedStub(val title: String, val subtitle: String)
-
-    private fun relatedStubsFor(category: String): List<RelatedStub> {
-        return when {
-            category.contains("电子") -> listOf(
-                RelatedStub("电子国风音色设计笔记", "从采样到混音，留住传统乐器的颗粒感"),
-                RelatedStub("舞台现场：非遗与合成器", "小型巡演中的调音与动态控制"),
-                RelatedStub("版权与采样：传统素材使用边界", "创作者避坑简明清单")
-            )
-            category.contains("宫廷") || category.contains("礼乐") -> listOf(
-                RelatedStub("礼乐与宫廷乐谱概览", "从用乐制度看古代音阶实践"),
-                RelatedStub("钟磬编列与节奏型", "博物馆展品背后的声学线索"),
-                RelatedStub("雅乐复原演出的现代编排", "如何让当代听众听得懂")
-            )
-            else -> listOf(
-                RelatedStub("古谱里的节奏密码", "工尺谱与板式：从文本到演奏"),
-                RelatedStub("非遗纪录片声音设计", "旁白、环境声与民乐的层次"),
-                RelatedStub("地域民歌数字化采集", "田野录音设备与归档建议")
-            )
         }
     }
 
