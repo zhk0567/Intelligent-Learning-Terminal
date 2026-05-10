@@ -8,7 +8,7 @@ import android.os.Looper
 
 /**
  * 乐库 / 全屏播放器共用的网络音频（与 Web `public/audio/...` 一致）。
- * 前五首（国风轮播）无 `audioSrc`，不经过本类。
+ * 未配置静态源时 URL 为空，由 [PlayerPlaybackBridge] 决定是否换曲；有 URL 时走本类拉流。
  */
 object PlayerAudioEngine {
 

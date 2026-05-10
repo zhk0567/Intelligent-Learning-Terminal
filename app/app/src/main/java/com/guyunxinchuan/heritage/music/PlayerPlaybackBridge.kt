@@ -21,8 +21,23 @@ object PlayerPlaybackBridge {
             PlayerSyncState.updatePlayingState(false)
             return
         }
-        val track = PlayerSyncState.currentTrack()
-        val url = track.audioRemoteUrl
+
+        // 冷启动默认停在索引 0：若当前曲无远程 mp3（未配 STATIC_ASSET_ORIGIN 等），首点播放会「没反应」。
+        // 先随机换到一首有可播 URL 的曲目；若全部不可播则随机换一首走虚拟计时，至少迷你条有反馈。
+        var url = PlayerSyncState.currentTrack().audioRemoteUrl
+        if (url.isNullOrBlank()) {
+            val playable = PlayerSyncState.tracks.indices.filter {
+                !PlayerSyncState.tracks[it].audioRemoteUrl.isNullOrBlank()
+            }
+            if (playable.isNotEmpty()) {
+                val pick = playable.random()
+                PlayerSyncState.setTrack(pick, PlayerSyncState.tracks[pick].durationMs)
+            } else {
+                PlayerSyncState.nextTrack(shuffle = true)
+            }
+            url = PlayerSyncState.currentTrack().audioRemoteUrl
+        }
+
         if (url.isNullOrBlank()) {
             PlayerSyncState.updatePlayingState(true)
             return

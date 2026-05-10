@@ -178,6 +178,7 @@ class PlayerActivity : AppCompatActivity() {
             handler.removeCallbacks(progressUpdater)
             handler.post(progressUpdater)
         }
+        renderTrack()
         updatePlayPauseButton()
         handler.removeCallbacks(progressUpdater)
         if (PlayerSyncState.isPlaying) {
