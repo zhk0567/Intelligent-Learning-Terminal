@@ -23,7 +23,7 @@ export default function MiniPlayer({ onListClick }: Props) {
   return (
     <div className="fixed bottom-16 left-1/2 -translate-x-1/2 z-30 w-full max-w-phone px-3">
       <div
-        className="flex min-w-0 items-center gap-3 rounded-2xl bg-transparent border-0 px-3 py-2 shadow-none"
+        className="flex min-w-0 items-center gap-3 rounded-2xl bg-bg-card/95 backdrop-blur-md border border-border/50 px-3 py-2 shadow-card dark:shadow-cardDark"
         onClick={() => navigate("/player")}
       >
         <Cover
