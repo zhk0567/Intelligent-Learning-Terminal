@@ -7,8 +7,8 @@
         <view class="story-card-title">{{item.title}}</view>
         <view class="story-card-excerpt">{{item.excerpt}}</view>
         <view class="story-card-meta">
-          <text>{{item.author}} · {{item.publishTime}}</text>
-          <text class="cinnabar">♥ {{item.likeCount}} · 评论 {{item.commentCount}}</text>
+          <text>{{item.author}}</text>
+          <text class="cinnabar">♥ {{item.likeCount}}</text>
         </view>
         <view class="story-card-tags">
           <view wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this" class="story-tag">{{t}}</view>

@@ -97,4 +97,19 @@
   font-size: 28rpx;
 }
 
-.empty-text { padding: 96rpx 0; text-align: center; color: var(--text-hint); font-size: 24rpx; }
+.empty-wrap {
+  padding: 96rpx 24rpx 120rpx;
+  text-align: center;
+}
+.empty-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.empty-hint {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: var(--text-hint);
+  line-height: 1.55;
+}

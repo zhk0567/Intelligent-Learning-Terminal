@@ -15,7 +15,7 @@
         <cover seed="{{item.id}}" src="{{item.coverSrc}}" alt="{{item.title}}" coverWidth="{{item.coverWidth}}" coverHeight="{{item.coverHeight}}" aspect="16/9" rounded="2xl" ornate="{{false}}" />
         <view class="story-feature-title">{{item.title}}</view>
         <view class="story-feature-excerpt">{{item.excerpt}}</view>
-        <view class="story-feature-meta">{{item.author}} · {{item.publishTime}} · {{item.readCount}} 阅读</view>
+        <view class="story-feature-meta">{{item.author}}</view>
       </view>
     </view>
   </section>
@@ -27,7 +27,7 @@
         <view class="story-row-info">
           <view class="story-row-title">{{item.title}}</view>
           <view class="story-row-excerpt">{{item.excerpt}}</view>
-          <view class="story-row-meta">{{item.author}} · {{item.publishTime}}</view>
+          <view class="story-row-meta">{{item.author}}</view>
         </view>
       </view>
     </view>

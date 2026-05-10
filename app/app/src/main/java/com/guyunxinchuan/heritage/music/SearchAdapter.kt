@@ -28,8 +28,10 @@ class SearchAdapter(
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val result = results[position]
 
+        val remote = result.thumbRemoteUrl?.trim()?.takeIf { it.isNotEmpty() }
+            ?: StaticRemoteAssets.remoteBannerMatchingLocal(result.imageResId)
         holder.image.loadCoverRemoteOrDrawable(
-            StaticRemoteAssets.remoteBannerMatchingLocal(result.imageResId),
+            remote,
             result.imageResId,
             CoverPreset.Thumb,
         )

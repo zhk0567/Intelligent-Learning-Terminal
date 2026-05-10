@@ -89,7 +89,8 @@ export default function MusicLib() {
         </div>
       </Section>
       <Section title="每日精选" eyebrow="Editor's Picks" action={<More onClick={() => navigate("/detail/select")} />}>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+        {/* 仅 3 张专辑：大屏勿用 4 列，避免右侧空一列 */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {select.map((a) => (
             <AlbumCard key={a.id} album={a} onPlay={() => playAlbumStart(a)} />
           ))}

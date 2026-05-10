@@ -149,30 +149,6 @@
                         tools:text="古琴的千年传承" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="14dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <!-- 仅保留浏览量，避免与底部固定栏的点赞/评论操作重复 -->
-                        <TextView
-                            android:id="@+id/readStatText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/story_detail_stat_pill_bg"
-                            android:drawablePadding="6dp"
-                            android:gravity="center_vertical"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="6dp"
-                            android:textColor="@color/neon_teal"
-                            android:textSize="12sp"
-                            app:drawableStartCompat="@drawable/ic_search"
-                            app:drawableTint="@color/neon_teal"
-                            tools:text="1.0k 浏览" />
-                    </LinearLayout>
-
-                    <LinearLayout
                         android:id="@+id/authorInfoContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -381,34 +357,6 @@
                 android:textColor="@color/text_secondary"
                 android:textSize="13sp"
                 tools:text="128" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/commentButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/story_action_comment"
-                android:padding="10dp"
-                android:src="@drawable/ic_comment"
-                app:tint="@color/neon_teal" />
-
-            <TextView
-                android:id="@+id/storyBarCommentCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:minWidth="22dp"
-                android:textColor="@color/text_secondary"
-                android:textSize="13sp"
-                tools:text="36" />
         </LinearLayout>
 
         <ImageButton

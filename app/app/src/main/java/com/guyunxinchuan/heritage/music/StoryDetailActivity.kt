@@ -27,7 +27,6 @@ class StoryDetailActivity : AppCompatActivity() {
     private lateinit var payload: StoryDetailPayload
 
     private var likeCount = 0
-    private var commentCount = 0
     private var liked = false
     private var saved = false
 
@@ -80,17 +79,14 @@ class StoryDetailActivity : AppCompatActivity() {
 
     private fun setupViews() {
         binding.likeButton.setOnClickListenerThrottled { toggleLike() }
-        binding.commentButton.setOnClickListenerThrottled { showCommentDialog() }
         binding.shareButton.setOnClickListenerThrottled { shareStory() }
         binding.saveButton.setOnClickListenerThrottled { toggleSave() }
         // 数字区域与按钮同效，避免用户只点到文案以为无响应
         binding.storyBarLikeCount.setOnClickListenerThrottled { toggleLike() }
-        binding.storyBarCommentCount.setOnClickListenerThrottled { showCommentDialog() }
     }
 
     private fun bindPayload(p: StoryDetailPayload) {
         likeCount = p.likeCount
-        commentCount = p.commentCount
         liked = false
         saved = false
 
@@ -104,7 +100,6 @@ class StoryDetailActivity : AppCompatActivity() {
             p.category.ifBlank { getString(R.string.story_detail_default_category) }
         binding.heroFrameContainer.bringChildToFront(binding.categoryTagTextView)
 
-        binding.readStatText.text = getString(R.string.story_stat_reads, formatCount(p.readCount))
         updateEngagementBarCounts()
 
         val summary = p.summary?.trim().orEmpty()
@@ -270,7 +265,6 @@ class StoryDetailActivity : AppCompatActivity() {
 
     private fun updateEngagementBarCounts() {
         binding.storyBarLikeCount.text = formatCount(likeCount)
-        binding.storyBarCommentCount.text = formatCount(commentCount)
     }
 
     private fun toggleLike() {
@@ -306,12 +300,6 @@ class StoryDetailActivity : AppCompatActivity() {
                 )
             )
         )
-    }
-
-    private fun showCommentDialog() {
-        commentCount += 1
-        updateEngagementBarCounts()
-        UiFeedback.toast(this, getString(R.string.story_comment_demo))
     }
 
     private fun shareStory() {

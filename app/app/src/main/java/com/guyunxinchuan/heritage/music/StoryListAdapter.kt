@@ -1,11 +1,8 @@
 package com.guyunxinchuan.heritage.music
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.guyunxinchuan.heritage.music.databinding.ItemStoryBinding
 
@@ -17,7 +14,6 @@ class StoryListAdapter(
     enum class Action {
         VIEW_DETAIL,    // 查看详情
         LIKE,           // 点赞
-        COMMENT,        // 评论
         SHARE,          // 分享
         SAVE            // 收藏
     }
@@ -27,7 +23,6 @@ class StoryListAdapter(
 
         fun bind(story: StoryListActivity.Story, onActionClick: (StoryListActivity.Story, Action) -> Unit) {
             binding.storyTitleTextView.text = story.title
-            binding.viewCountTextView.text = story.readCount.toString()
             binding.categoryTagTextView.text = story.tags.firstOrNull() ?: story.category
 
             binding.coverImageView.scaleType = ImageView.ScaleType.CENTER_CROP

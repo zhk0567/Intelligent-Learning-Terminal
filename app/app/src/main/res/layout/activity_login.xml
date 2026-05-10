@@ -97,11 +97,13 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/button_explore_selector"
+                android:backgroundTint="@null"
+                app:backgroundTint="@null"
                 android:elevation="4dp"
                 android:letterSpacing="0.04"
                 android:stateListAnimator="@null"
                 android:text="开始探索"
-                android:textColor="@color/white"
+                android:textColor="@color/explore_cta_label"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

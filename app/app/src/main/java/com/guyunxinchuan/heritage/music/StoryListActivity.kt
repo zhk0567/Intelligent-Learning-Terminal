@@ -93,7 +93,6 @@ class StoryListActivity : AppCompatActivity() {
             when (action) {
                 StoryListAdapter.Action.VIEW_DETAIL -> viewStoryDetail(story)
                 StoryListAdapter.Action.LIKE -> toggleLike(story)
-                StoryListAdapter.Action.COMMENT -> commentStory(story)
                 StoryListAdapter.Action.SHARE -> shareStory(story)
                 StoryListAdapter.Action.SAVE -> saveStory(story)
             }
@@ -268,10 +267,6 @@ class StoryListActivity : AppCompatActivity() {
         syncStoryToCatalog(updated)
         storyAdapter.notifyItemChanged(idx)
         UiFeedback.toast(this, if (likedNow) "已点赞" else "已取消点赞")
-    }
-
-    private fun commentStory(story: Story) {
-        UiFeedback.toast(this, "评论功能开发中")
     }
 
     private fun shareStory(story: Story) {

@@ -13,11 +13,6 @@ Page({
     paragraph: PARAGRAPH,
     liked: false,
     saved: false,
-    comment: "",
-    comments: [
-      { name: "青禾", text: "史料与传承脉络写得很清楚，读完对这门非遗更有敬意。" },
-      { name: "白露", text: "已转发给家人，希望更多人能看到地方曲艺与古乐。" },
-    ] as any[],
   },
   onLoad(query: any) {
     applyTheme(this);
@@ -35,17 +30,6 @@ Page({
     const saved = !this.data.saved;
     this.setData({ saved });
     toast(saved ? "已加入收藏" : "已移除收藏");
-  },
-  onInput(e: any) {
-    this.setData({ comment: e.detail.value });
-  },
-  submitComment() {
-    const c = this.data.comment.trim();
-    if (!c) return;
-    this.setData({
-      comment: "",
-      comments: [{ name: "我", text: c }, ...this.data.comments],
-    });
   },
   onShare() {
     toast("分享链接已复制");

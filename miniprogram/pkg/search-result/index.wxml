@@ -61,6 +61,10 @@
       </view>
     </block>
 
-    <view wx:if="{{total === 0}}" class="empty-text">未找到相关内容，换个关键词试试吧。</view>
+    <view wx:if="{{total === 0}}" class="empty-wrap">
+      <view wx:if="{{q}}" class="empty-title">没有与「{{q}}」匹配的结果</view>
+      <view wx:else class="empty-title">暂无搜索结果</view>
+      <view class="empty-hint">换个关键词试试，可搜曲名、作者、故事或商品</view>
+    </view>
   </view>
 </view>

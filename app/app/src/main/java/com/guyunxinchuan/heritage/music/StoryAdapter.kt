@@ -23,7 +23,6 @@ class StoryAdapter(
     inner class VH(view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView  = view.findViewById(R.id.coverImageView)
         val title: TextView   = view.findViewById(R.id.storyTitleTextView)
-        val viewCount: TextView = view.findViewById(R.id.viewCountTextView)
         val categoryTag: TextView = view.findViewById(R.id.categoryTagTextView)
     }
 
@@ -38,7 +37,6 @@ class StoryAdapter(
     override fun onBindViewHolder(holder: VH, position: Int) {
         val story = stories[position]
         holder.title.text  = story.title
-        holder.viewCount.text = story.readCount.toString()
         holder.categoryTag.text = story.category
 
         // 优先按封面原图像素比（h/w）设高，与 `data/图片/故事` 一致；否则用 aspectRatio

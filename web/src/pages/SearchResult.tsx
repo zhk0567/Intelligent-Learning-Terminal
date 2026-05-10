@@ -155,8 +155,8 @@ export default function SearchResult() {
 
         {total === 0 && (
           <EmptyState
-            text="未找到相关内容"
-            hint="换个关键词或试试热门搜索"
+            text={q ? `没有与「${q}」匹配的结果` : "暂无搜索结果"}
+            hint="换个关键词试试，可搜曲名、作者、故事标题或商品名"
             icon="kite"
           />
         )}

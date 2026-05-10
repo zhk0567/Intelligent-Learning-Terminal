@@ -104,6 +104,12 @@
     <!-- Login Page Colors -->
     <color name="gold_accent">#D4AF37</color>
     <color name="version_text">#707080</color>
+    <!-- 登录页「开始探索」：深色底上提高对比（亮青绿 + 浓墨字） -->
+    <color name="explore_cta_gradient_start">#4AE8DA</color>
+    <color name="explore_cta_gradient_end">#24B0A4</color>
+    <color name="explore_cta_pressed_start">#38D2C4</color>
+    <color name="explore_cta_pressed_end">#1C948A</color>
+    <color name="explore_cta_label">#061018</color>
 
     <!-- 商城页：古韵 + 科技 -->
     <color name="shop_bar_bg">#0F0F1A</color>

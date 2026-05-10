@@ -9,6 +9,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guyunxinchuan.heritage.music.databinding.ActivitySearchResultBinding
+import java.util.Locale
 
 class SearchResultActivity : AppCompatActivity() {
 
@@ -82,52 +83,56 @@ class SearchResultActivity : AppCompatActivity() {
         binding.resultRecyclerView.visibility = View.GONE
 
         android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
-            generateMockResults(keyword)
+            buildSearchResults(keyword)
 
             binding.loadingProgress.visibility = View.GONE
 
             if (allResults.isEmpty()) {
-                showEmptyState()
+                showEmptyState(keyword)
             } else {
                 showResults()
             }
         }, 500)
     }
 
-    private fun generateMockResults(keyword: String) {
+    private fun buildSearchResults(keyword: String) {
         allResults.clear()
-
-        allResults.add(
-            SearchResult(
-                type = SearchResultType.MUSIC,
-                title = "$keyword · 精选合辑",
-                subtitle = "国风雅集 · 3:45",
-                imageResId = R.drawable.banner1_img,
-                id = "music_1"
-            )
-        )
-
-        allResults.add(
-            SearchResult(
-                type = SearchResultType.STORY,
-                title = "走近「$keyword」的非遗故事",
-                subtitle = "非遗故事集 · 2 小时前",
-                imageResId = R.drawable.banner2_img,
-                id = "story_henan_zhuizi",
-            )
-        )
-
-        allResults.add(
-            SearchResult(
-                type = SearchResultType.COURSE,
-                title = "$keyword 入门精讲",
-                subtitle = "12 节课 · 已学 300+",
-                imageResId = R.drawable.banner3_img,
-                id = "course_1"
-            )
-        )
-
         val kw = keyword.trim()
+        if (kw.isEmpty()) {
+            searchAdapter.notifyDataSetChanged()
+            return
+        }
+
+        PlayerSyncState.tracks.forEachIndexed { index, t ->
+            if (trackMatches(t, kw)) {
+                allResults.add(
+                    SearchResult(
+                        type = SearchResultType.MUSIC,
+                        title = t.title,
+                        subtitle = "${t.artist} · ${t.album} · ${formatDurationMs(t.durationMs)}",
+                        imageResId = t.coverResId,
+                        id = index.toString(),
+                        thumbRemoteUrl = t.coverRemoteUrl,
+                    ),
+                )
+            }
+        }
+
+        StoriesData.ALL.forEach { e ->
+            if (storyMatches(e, kw)) {
+                allResults.add(
+                    SearchResult(
+                        type = SearchResultType.STORY,
+                        title = e.title,
+                        subtitle = e.author,
+                        imageResId = e.coverResId,
+                        id = e.id,
+                        thumbRemoteUrl = StaticRemoteAssets.storyCover(e.key),
+                    ),
+                )
+            }
+        }
+
         ShopCatalog.allProducts.filter { productMatches(it, kw) }.forEach { p ->
             val priceFmt = "¥${String.format("%.2f", p.price)}"
             allResults.add(
@@ -149,6 +154,24 @@ class SearchResultActivity : AppCompatActivity() {
         searchAdapter.notifyDataSetChanged()
     }
 
+    private fun trackMatches(t: PlayerSyncState.SyncTrack, kw: String): Boolean =
+        t.title.contains(kw, ignoreCase = true) ||
+            t.artist.contains(kw, ignoreCase = true) ||
+            t.album.contains(kw, ignoreCase = true)
+
+    private fun storyMatches(e: StoryEntry, kw: String): Boolean =
+        e.title.contains(kw, ignoreCase = true) ||
+            e.author.contains(kw, ignoreCase = true) ||
+            e.excerpt.contains(kw, ignoreCase = true) ||
+            e.tags.any { it.contains(kw, ignoreCase = true) }
+
+    private fun formatDurationMs(ms: Int): String {
+        val totalSec = (ms / 1000).coerceAtLeast(0)
+        val m = totalSec / 60
+        val s = totalSec % 60
+        return String.format(Locale.CHINA, "%d:%02d", m, s)
+    }
+
     private fun productMatches(p: Product, kw: String): Boolean {
         if (kw.isEmpty()) return false
         if (p.name.contains(kw, ignoreCase = true)) return true
@@ -158,9 +181,12 @@ class SearchResultActivity : AppCompatActivity() {
         return false
     }
 
-    private fun showEmptyState() {
+    private fun showEmptyState(keyword: String) {
         binding.emptyStateLayout.visibility = View.VISIBLE
         binding.resultRecyclerView.visibility = View.GONE
+        val displayKw = keyword.trim().ifEmpty { "…" }
+        binding.emptyText.text = getString(R.string.search_result_empty_title, displayKw)
+        binding.emptySubtext.text = getString(R.string.search_result_empty_hint)
     }
 
     private fun showResults() {
@@ -171,10 +197,12 @@ class SearchResultActivity : AppCompatActivity() {
     private fun navigateToDetail(result: SearchResult) {
         when (result.type) {
             SearchResultType.MUSIC -> {
-                val intent = Intent(this, PlayerActivity::class.java)
-                intent.putExtra("music_id", result.id)
-                intent.putExtra("music_title", result.title)
-                startActivity(intent)
+                val idx = result.id.toIntOrNull()?.coerceIn(0, PlayerSyncState.tracks.lastIndex) ?: 0
+                val t = PlayerSyncState.tracks[idx]
+                PlayerSyncState.setTrack(idx, t.durationMs)
+                PlayerSyncState.currentPositionMs = 0
+                PlayerSyncState.updatePlayingState(false)
+                startActivity(Intent(this, PlayerActivity::class.java))
             }
             SearchResultType.STORY -> {
                 val entry = StoriesData.ALL.find { it.id == result.id }
@@ -238,6 +266,8 @@ class SearchResultActivity : AppCompatActivity() {
         val subtitle: String,
         val imageResId: Int,
         val id: String,
+        /** 列表缩略图优先使用的远程 URL（曲目/故事封面等）；为空则按 [imageResId] 走 banner 映射或本地图。 */
+        val thumbRemoteUrl: String? = null,
         /** 商品详情顶图（样机），非商品类型为 0 */
         val detailHeroResId: Int = 0,
         val productRating: String? = null,

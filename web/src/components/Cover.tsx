@@ -68,7 +68,8 @@ export default function Cover({
     typeof coverHeight === "number" &&
     coverWidth > 0 &&
     coverHeight > 0;
-  const boxAspectClass = useIntrinsic ? "w-full" : aspect;
+  /** 不用 `w-full`：否则会盖掉调用方传入的 `w-20` 等固定宽（故事列表横排缩略图会撑满一行、文字排布错乱）。块级 + `width:auto` 在父级内仍会占满可用宽度。 */
+  const boxAspectClass = useIntrinsic ? "block min-w-0 max-w-full" : aspect;
   const boxAspectStyle: CSSProperties | undefined =
     useIntrinsic && coverWidth && coverHeight
       ? { aspectRatio: `${coverWidth} / ${coverHeight}` }

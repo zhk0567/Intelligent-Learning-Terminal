@@ -37,8 +37,8 @@ export default function StoryList() {
               <div className="text-base font-bold text-text-primary group-hover:text-ancient-bronze transition-colors">{s.title}</div>
               <div className="mt-1 line-clamp-2 text-xs text-text-secondary">{s.excerpt}</div>
               <div className="mt-2 flex items-center justify-between text-[11px] text-text-hint">
-                <span>{s.author} · {s.publishTime}</span>
-                <span><span className="text-ancient-cinnabar">♥</span> {s.likeCount} · 评论 {s.commentCount}</span>
+                <span>{s.author}</span>
+                <span><span className="text-ancient-cinnabar">♥</span> {s.likeCount}</span>
               </div>
               <div className="mt-2 flex flex-wrap gap-1">
                 {s.tags.map((t) => (

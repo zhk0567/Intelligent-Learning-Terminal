@@ -159,4 +159,8 @@
     <string name="setting_theme_option_light">浅色</string>
     <string name="setting_theme_option_dark">深色</string>
     <string name="setting_theme_option_system">跟随系统</string>
+
+    <!-- 搜索结果为空 -->
+    <string name="search_result_empty_title">没有找到与「%1$s」相关的内容</string>
+    <string name="search_result_empty_hint">换个关键词试试，也可搜索曲名、艺人、故事标题或商品名</string>
 </resources>

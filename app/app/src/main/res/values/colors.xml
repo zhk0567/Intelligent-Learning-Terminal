@@ -104,6 +104,12 @@
     <!-- Login Page Colors -->
     <color name="gold_accent">#D4AF37</color>
     <color name="version_text">#707080</color>
+    <!-- 登录页「开始探索」主按钮渐变（浅色：赭红底 + 白字，见 activity_login） -->
+    <color name="explore_cta_gradient_start">#9A3A28</color>
+    <color name="explore_cta_gradient_end">#5E2316</color>
+    <color name="explore_cta_pressed_start">#7A2E1E</color>
+    <color name="explore_cta_pressed_end">#45140C</color>
+    <color name="explore_cta_label">@color/white</color>
 
     <!-- 商城页（浅色） -->
     <color name="shop_bar_bg">#F8FAFC</color>

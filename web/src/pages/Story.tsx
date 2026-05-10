@@ -43,13 +43,7 @@ export default function StoryTab() {
               <div className="mt-2 px-1">
                 <div className="text-base font-bold text-text-primary group-hover:text-ancient-bronze transition-colors">{s.title}</div>
                 <div className="mt-1 text-xs text-text-secondary line-clamp-2">{s.excerpt}</div>
-                <div className="mt-1 flex items-center gap-2 text-xs text-text-hint">
-                  <span>{s.author}</span>
-                  <span>·</span>
-                  <span>{s.publishTime}</span>
-                  <span>·</span>
-                  <span>{s.readCount} 阅读</span>
-                </div>
+                <div className="mt-1 text-xs text-text-hint">{s.author}</div>
               </div>
             </button>
           ))}
@@ -77,10 +71,14 @@ export default function StoryTab() {
                 className="w-20 shrink-0"
                 ornate={false}
               />
-              <div className="min-w-0 flex-1 self-stretch">
-                <div className="truncate text-sm font-semibold text-text-primary">{s.title}</div>
-                <div className="line-clamp-2 mt-1 text-xs text-text-secondary">{s.excerpt}</div>
-                <div className="mt-1 text-[11px] text-text-hint">{s.author} · {s.publishTime}</div>
+              <div className="min-w-0 flex-1 flex flex-col gap-1">
+                <div className="line-clamp-2 text-sm font-semibold text-text-primary leading-snug break-words">
+                  {s.title}
+                </div>
+                <div className="line-clamp-2 text-xs text-text-secondary leading-relaxed break-words">
+                  {s.excerpt}
+                </div>
+                <div className="mt-auto line-clamp-1 text-[11px] text-text-hint break-words">{s.author}</div>
               </div>
             </button>
           ))}
